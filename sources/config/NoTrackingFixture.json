@@ -1,0 +1,20 @@
+{
+    "config" : {
+        "userAgent": "555",
+        "video": {
+            "url": "https://video.com",
+            "context": { "foo": "bar" }
+        },
+        "vpaid" : {
+            "document" : "https://document.html"
+        },
+        "openMeasurement" : {
+            "script" : "https://script.url"
+        },
+        "telemetry": {
+            "url": "https://telemetry.url",
+            "context": { }
+        },
+        "tracking": { }
+    }
+}

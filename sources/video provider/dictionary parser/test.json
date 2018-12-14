@@ -1,0 +1,12 @@
+[{
+  "int" : 1,
+  "float" : 0.5,
+  "bool" : true,
+  "string" : "abc",
+  "null" : null,
+  "array" : ["1", "2", "3"],
+  "object" : {
+    "field_1" : "value1",
+    "field_2" : "value2"
+  }
+}]

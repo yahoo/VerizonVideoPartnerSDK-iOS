@@ -1,0 +1,75 @@
+{% macro properties type %}
+        {% if type.allVariables.publicGet.count > 0 or type.allVariables.publicSet.count > 0 %}
+            "properties": {
+                {% for var in type.allVariables where var.readAccess == 'public' or var.writeAccess == 'public' %}
+                "{{ var.name }}": {
+                    "typeName": "{% if var.type.name == nil %}{{ var.typeName }}{% else %}{{ var.type.name }}{% endif %}",
+                    "flags": ["{{ var.isStatic }}", "{{ var.isFinal }}", {{ var.isOptional }}]
+                }{% if not forloop.last %},{% endif %}
+                {% endfor %}
+            },
+        {% endif %}
+{% endmacro %}
+
+{% macro methodParams method %}
+                {% if method.parameters.count > 0 %}
+                    "parameters": {
+                        {% for parameter in method.parameters %}
+                        "{{ parameter.name }}": "{{ parameter.typeName }}"{% if not forloop.last %},{% endif %}
+                        {% endfor %}
+                    },
+                {% endif %}
+{% endmacro %}
+
+{% macro methods type %}
+        {% if type.allMethods.public.count > 0 %}
+            "methods": {
+                {% for method in type.allMethods.public %}
+                "{{ method.selectorName }}": {
+                    {% call methodParams method %}
+                    "flags": ["{{ method.throws }}", "{{ method.rethrows }}", "{{ method.isStatic }}", "{{ method.isClass }}", "{{ method.isFinal }}"]
+                }{% if not forloop.last %},{% endif %}
+                {% endfor %}
+            },
+        {% endif %}
+{% endmacro %}
+
+{% macro implements type %}
+            "implements": [
+                {% for impl in type.implements %}
+                "{{ impl }}"{% if not forloop.last %},{% endif %}
+                {% endfor %}
+            ],
+{% endmacro %}
+
+{% macro parent type %}
+        {% if type.parentName != nil %}
+            "parent": "{{ type.parentName }}"
+        {% endif %}
+{% endmacro %}
+
+{% macro typesToJSON specific_types %}
+    {% for type in specific_types where type.accessLevel == 'public' %}
+        "{{ type.name }}": {
+            {% call properties type %}
+            {% call methods type %}
+            {% call implements type %}
+            {% call parent type %}
+        }{% if not forloop.last %},{% endif %}
+    {% endfor %}
+{% endmacro %}
+
+{
+  "Protocols": {
+    {% call typesToJSON types.protocols %}
+  },
+  "Classes": {
+    {% call typesToJSON types.classes %}
+  },
+  "Structs": {
+    {% call typesToJSON types.structs %}
+  },
+  "Enums": {
+    {% call typesToJSON types.enums %}
+  }
+}

@@ -1,0 +1,283 @@
+actions_path 'actions/common/'
+actions_path 'actions/common/cocoapods/'
+actions_path 'actions/common/github/'
+actions_path 'actions/common/sourcery/'
+actions_path 'actions/common/json/'
+actions_path 'actions/common/utils/'
+
+before_all do |_lane, _options|
+  xcversion(version: '~> 10')
+end
+
+lane :clean do
+  clear_derived_data
+  sh 'rm -rf /Carthage/Build'
+  sh 'rm -rf ~/Library/Caches/org.carthage.CarthageKit'
+end
+
+lane :build do
+  carthage(
+    command: 'build',
+    project_directory: '.',
+    cache_builds: true,
+    platform: 'iOS,tvOS',
+    no_skip_current: true
+  )
+end
+
+lane :build_tvos_target do
+  next if git_branch == 'master'
+  carthage(
+    command: 'build',
+    project_directory: '.',
+    cache_builds: true,
+    platform: 'tvOS',
+    no_skip_current: true
+  )
+end
+
+lane :update_dependencies do
+  carthage(
+    command: 'update',
+    project_directory: '.',
+    cache_builds: true,
+    platform: 'iOS,tvOS',
+    use_binaries: false,
+    use_ssh: true
+  )
+end
+
+lane :archive do |options|
+  carthage(
+    command: 'archive',
+    project_directory: '.',
+    frameworks: options[:frameworks],
+    output: options[:name]
+  )
+end
+
+lane :test do
+  scan(
+    scheme: 'OathVideoPartnerSDK_iOS',
+    sdk: 'iphonesimulator',
+    devices: ['iPhone 8'],
+    clean: false
+  )
+end
+
+lane :is_latest_video_renderer do |_options|
+  result = false
+  Dir.chdir('../Carthage/Checkouts/OneMobileSDK-videorenderer-ios') do
+    sh 'git fetch --tags'
+    last_tag = sh 'git describe --abbrev=0 --tags'
+    last_commit = sh 'git rev-parse origin/master'
+
+    result = last_commit == last_tag
+  end
+  result
+end
+
+lane :release_description do |options|
+  token = options[:token]
+  description = "# Supported Xcode versions\n"\
+  "\n"\
+  "- Xcode 10\n"\
+  "\n"\
+  "# Examples\n"\
+  "\n"\
+  "Checkout [Tutorials](https://github.com/OathAdPlatforms/OathVideoPartnerSDK-iOS/OathVideoPartnerSDK-Tutorials) for up-to-date integration and usage examples.\n"\
+  "\n"\
+  "# Change Log\n"\
+  "\n"
+  begin
+    result = description << github_changelog_generator(
+      output: 'unreleased.md',
+      unreleased_only: true,
+      token: token
+    )
+    UI.message result
+    result
+  rescue StandardError => exception
+    UI.user_error! exception.message
+  end
+end
+
+# podspec_path ./podspecs/OathVideoPartnerSDK.podspec'
+# swift_version 4.2
+lane :travis_prerelease_sdk do |options|
+  update_dependencies
+
+  UI.message 'Running tests...'
+  test
+
+  travis_branch = options[:branch]
+  is_pull_request = options[:is_pull_request]
+  if travis_branch != 'master' || is_pull_request
+    UI.message 'Compiling tvOS project...'
+    build_tvos_target
+  else
+    prerelease_sdk(options)
+  end
+end
+
+desc 'Make pre-release of OathVideoPartnerSDK'
+lane :prerelease_sdk do |options|
+  next unless is_branch_up_to_date(git_branch: git_branch)
+
+  swift_version = options[:swift_version]
+  archive_name = options[:archive_name]
+  podspec_name = options[:podspec_path]
+
+  UI.user_error! 'Expecting `archive name`!' if archive_name.nil?
+  UI.user_error! 'Expecting `podspec_path`!' if podspec_name.nil?
+  UI.user_error! 'Expecting `swift_version`!' if swift_version.nil?
+
+  travis_branch = options[:branch]
+  is_pull_request = options[:is_pull_request]
+  github_api_token = options[:github_api_token]
+
+  is_travis = !travis_branch.nil? && !is_pull_request.nil?
+  if is_travis == true
+    UI.message "Branch #{travis_branch}"
+    UI.message "Is pull request: #{is_pull_request}"
+
+    next UI.message 'Branch is not \'master\'' if travis_branch != 'master'
+    next UI.message 'It is pull request - skipping prerelease.' if is_pull_request
+  end
+
+  UI.important 'Starting prerelease of OathVideoPartnerSDK...'
+
+  build
+  archive(
+    frameworks: 'OathVideoPartnerSDK,PlayerControls,VideoRenderer,PlayerCore',
+    name: archive_name
+  )
+  omsdk_name = 'OMSDK_Oath2.framework'
+  compress(input: omsdk_name,
+           output: "#{omsdk_name}.zip")
+
+  sources_repo = 'https://github.com/OathAdPlatforms/OneMobileSDK-releases-iOS.git'
+
+  version = get_version_number(xcodeproj: 'OathVideoPartnerSDK.xcodeproj', target: 'OathVideoPartnerSDK_iOS')
+  UI.user_error!('Version not found!') if version.nil?
+  UI.message "Found version: '#{version}'"
+
+  github_releases_api(action: 'delete_latest_prerelease', tag: version)
+
+  release = set_github_release(
+    repository_name: 'OathAdPlatforms/OneMobileSDK-releases-iOS',
+    name: "Version #{version}",
+    tag_name: version,
+    description: release_description(token: github_api_token),
+    is_draft: false,
+    is_prerelease: true,
+    api_token: github_api_token,
+    upload_assets: [archive_name, omsdk_name]
+  )
+
+  asset = release['assets'].select { |asset| asset['name'] == archive_name }.first
+  UI.user_error!('No asset - check upload!') if asset.nil?
+
+  update_podspec(
+    framewokr_link_url: asset['browser_download_url'],
+    podspec_path: podspec_name,
+    version: sdk_version_string(version: version)
+  )
+  deploy_podspec(
+    podspec_path: podspec_name,
+    spec_repo_name: 'onemobile-sdk-podspecs',
+    spec_repo_url: 'git@github.com:OathAdPlatforms/OneMobileSDK-releases-iOS.git',
+    sources_repo: sources_repo,
+    swift_version: swift_version
+  )
+  reset_git_repo(
+    force: true,
+    files: [podspec_name]
+  )
+  UI.important 'Finished prerelease of OathVideoPartnerSDK!'
+end
+
+# Usage like these expected 'bundle exec fastlane release_sdk next_version:1.0 swift_version:4.2 podspec_path:./podspecs/OathVideoPartnerSDK.podspec'
+desc 'Release current SDK version and bump project to provided version'
+lane :release_sdk do |options|
+  next unless is_branch_up_to_date(git_branch: git_branch)
+
+  next_version = options[:next_version]
+  swift_version = options[:swift_version]
+  archive_name = options[:archive_name]
+  podspec_name = options[:podspec_path]
+
+  UI.user_error! 'Expecting `archive name`!' if archive_name.nil?
+  UI.user_error! 'Expecting `podspec_path`!' if podspec_name.nil?
+  UI.user_error! 'Expecting `swift_version`!' if swift_version.nil?
+  UI.user_error! 'Expecting next version!' if next_version.nil?
+
+  UI.user_error!('You have to release video renderer!') if is_latest_video_renderer
+
+  release_version = get_version_number(xcodeproj: 'OathVideoPartnerSDK.xcodeproj', target: 'OathVideoPartnerSDK_iOS')
+
+  response = github_releases_api(
+    action: 'get_github_releases',
+    tag: release_version
+  )
+
+  next UI.user_error!('Must be a prerelease!') if response['prerelease'] == false
+
+  # mark this prerelase as release!
+  github_releases_api(
+    action: 'update_github_release',
+    tag: release_version,
+    is_draft: false,
+    is_prerelease: false,
+    release_id: response['id'].to_s
+  )
+
+  asset = response['assets'].select { |asset| asset['name'] == archive_name }.first
+  update_podspec(
+    framewokr_link_url: asset['browser_download_url'],
+    podspec_path: podspec_name,
+    version: sdk_version_string(version: release_version)
+  )
+  deploy_podspec(
+    podspec_path: podspec_name,
+    spec_repo_name: 'onemobile-sdk-podspecs',
+    spec_repo_url: 'git@github.com:OathAdPlatforms/OneMobileSDK-releases-iOS.git',
+    sources_repo: 'https://github.com/OathAdPlatforms/OneMobileSDK-releases-iOS.git',
+    swift_version: swift_version
+  )
+  reset_git_repo(
+    force: true,
+    files: [podspec_name]
+  )
+  add_git_tag(tag: release_version)
+  push_git_tags
+
+  increment_version_number(
+    version_number: next_version,
+    xcodeproj: 'OathVideoPartnerSDK.xcodeproj'
+  )
+  git_commit(
+    path: [
+      './support/OathVideoPartnerSDK-Info.plist',
+      './support/OathVideoPartnerSDK-Version.plist',
+      './support/TestsInfo.plist',
+    ],
+    message: "Bumping to #{next_version}"
+  )
+  push_to_git_remote(tags: false)
+end
+
+desc 'Install Sourcery'
+lane :install_sourcery do
+  sourcery(action: 'install')
+end
+
+desc 'Run Sourcery with params: sources, templates, output'
+lane :run_sourcery do |options|
+  sourcery(
+    action: 'run',
+    sources: options[:sources],
+    templates: options[:templates],
+    output: options[:output]
+  )
+end

@@ -1,0 +1,11 @@
+source 'https://github.com/OathAdPlatforms/OneMobileSDK-releases-iOS.git'
+
+target 'Tutorial' do
+	platform :ios, 9.0
+  	pod 'OathVideoPartnerSDK'
+end
+
+target 'Tutorial_tvOS' do
+	platform :tvos, 9.0
+  	pod 'OathVideoPartnerSDK'
+end

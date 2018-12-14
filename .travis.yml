@@ -1,0 +1,29 @@
+cache:
+  bundler: true
+  directories:
+    - Carthage/Build
+
+git:
+  depth: 1
+
+install:
+    # Installing all gems from bundler
+    - bundle install
+    - brew install sourcery
+matrix: 
+  include:
+    - os: osx
+      language: objective-c
+      osx_image: xcode10
+      before_script: 
+        - . ./fastlane/travis\ scripts/pre-xcode10.sh
+      script: 
+        - . ./fastlane/travis\ scripts/xcode10.sh
+        - bundle exec danger || true
+notifications:
+    email: false
+    slack:
+        secure: HY+kZDjc2HSg+Ernsqvq8simGa7bZUW2DA4G6Rxiuy29jeVNifY3Yqqr61YFRU/Y0ppcqEK/+K37/l+j/GvmGZaW0ICPObe1uUXfx6KIcPBfjNiEfOKdYkUJc6aa4rI7PpbyCe1ja6mOxyvolD8aqOyi77K5j5x7/h/l4UprnKhzDYvTLcEpMoqEQv+s64zccs9X5hXMdHi08yqfiJ8xaUTydIU3UIuOI2vJi7MYhTOVuLfdvby0fr1Q76O8DPTm1T0utP50iovy1pKmF2LYmxV7U+l85SkMmxSLK4C5DAHWZhl17Bk7EQFWBfrTWkJ24KVQHzLCZcLJXcGw64SRrDr+xeIkW/wA3hivPw5NXn/4UOGbSdOmX+29sSey9R93Tp2DC8jlbGHs4r5Xkz8uhkxlaw+Q9pbOB9dk8yUv4Bsdfj0JAdq3DPOLDJaVY2sRU6Tx9oiCD5T3yME9yPEwQpO7gmIhdgFq/8tyzDKGNnJySZVE5KXnjrLndMUsVRRaxM+vTm+/3tAo5eMeA76ulNfxdX0LJ2kHlNe31w6eKI5TJNni8ZJ7DLhbsrW0JFi3fmGZyW+wxG0vA2nAUgRJ5UNn5YHNlg6Tns5YwUxUxy8NQyXKNEyONUh84u8X3c6ccqPWoQi66i22I+Icj6A4NPWS/8j/g1SU6Sy/apmP2/Q=
+after_success:
+    - ". ./fastlane/travis\ scripts/update-test-app.sh"
+    

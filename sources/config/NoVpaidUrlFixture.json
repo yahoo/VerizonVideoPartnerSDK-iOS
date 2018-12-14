@@ -1,0 +1,30 @@
+{
+    "config": {
+        "userAgent": "USER AGENT",
+        "video": {
+            "context": {
+                "isHlsEnabled": true,
+                "defaultPodSize": 1,
+                "companyKey": "company_key"
+            },
+            "url": "http://localhost:3000/videoservice/single_video_without_ad_javascript_implementation/"
+        },
+        "telemetry": {
+            "url": "https://telemetry.url",
+            "context": {
+                "a": "b"
+            }
+        },
+        "tracking": {
+            "javascript": {
+                "source": "http://localhost:3000/javascript/tracking.js",
+                "telemetry": {
+                    "url": "https://telemetry.url",
+                    "context": {
+                        "a": "b"
+                    }
+                }
+            }
+        }
+    }
+}

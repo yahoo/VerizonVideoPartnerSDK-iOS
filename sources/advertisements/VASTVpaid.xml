@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VAST version="2.0">
+    <Ad id="sample">
+        <InLine>
+            <AdSystem version="1.0">Adap.tv</AdSystem>
+            <AdTitle>
+                <![CDATA[Adap.tv Ad Unit]]>
+            </AdTitle>
+            <AdVerifications>
+                <Verification vendor="TestAppVendor">
+                    <JavaScriptResource/>
+                    <VerificationParameters>
+                        <![CDATA[http://10.0.2.2:3000/0/beacons]]>
+                    </VerificationParameters>
+                </Verification>
+            </AdVerifications>
+            <Error><![CDATA[http://localhost:3000/6/beacons/vast/error.gif?int=123&str=abc&macro=[HELLO]&url=https%3A%2F%2Fexample.com%2Fpath]]></Error>
+            <Impression><![CDATA[http://localhost:3000/6/beacons/vast/impression.gif?int=123&str=abc&macro=[HELLO]&url=https%3A%2F%2Fexample.com%2Fpath]]></Impression>
+            <Creatives>
+                <Creative>
+                    <Linear>
+                        <Duration>
+                            <![CDATA[00:00:30]]>
+                        </Duration>
+                        <TrackingEvents>
+                            <Tracking event="creativeView"><![CDATA[http://localhost:3000/6/beacons/vast/creative-view.gif?int=123&str=abc&macro=[HELLO]&url=https%3A%2F%2Fexample.com%2Fpath]]></Tracking>
+                            <Tracking event="start"><![CDATA[http://localhost:3000/6/beacons/vast/start.gif?int=123&str=abc&macro=[HELLO]&url=https%3A%2F%2Fexample.com%2Fpath]]></Tracking>
+                            <Tracking event="midpoint"><![CDATA[http://localhost:3000/6/beacons/vast/midpoint.gif?int=123&str=abc&macro=[HELLO]&url=https%3A%2F%2Fexample.com%2Fpath]]></Tracking>
+                            <Tracking event="firstQuartile"><![CDATA[http://localhost:3000/6/beacons/vast/first-quartile.gif?int=123&str=abc&macro=[HELLO]&url=https%3A%2F%2Fexample.com%2Fpath]]></Tracking>
+                            <Tracking event="thirdQuartile"><![CDATA[http://localhost:3000/6/beacons/vast/third-quartile.gif?int=123&str=abc&macro=[HELLO]&url=https%3A%2F%2Fexample.com%2Fpath]]></Tracking>
+                            <Tracking event="complete"><![CDATA[http://localhost:3000/6/beacons/vast/complete.gif?int=123&str=abc&macro=[HELLO]&url=https%3A%2F%2Fexample.com%2Fpath]]></Tracking>
+                            <Tracking event="pause"><![CDATA[http://localhost:3000/6/beacons/vast/pause.gif?int=123&str=abc&macro=[HELLO]&url=https%3A%2F%2Fexample.com%2Fpath]]></Tracking>
+                            <Tracking event="resume"><![CDATA[http://localhost:3000/6/beacons/vast/resume.gif?int=123&str=abc&macro=[HELLO]&url=https%3A%2F%2Fexample.com%2Fpath]]></Tracking>
+                            <Tracking event="closeLinear"><![CDATA[http://localhost:3000/6/beacons/vast/close.gif?int=123&str=abc&macro=[HELLO]&url=https%3A%2F%2Fexample.com%2Fpath]]></Tracking>
+                            <Tracking event="acceptInvitationLinear"><![CDATA[http://localhost:3000/6/beacons/vast/accept.gif?int=123&str=abc&macro=[HELLO]&url=https%3A%2F%2Fexample.com%2Fpath]]></Tracking>
+                            <Tracking event="mute"><![CDATA[http://localhost:3000/6/beacons/vast/mute.gif?int=123&str=abc&macro=[HELLO]&url=https%3A%2F%2Fexample.com%2Fpath]]></Tracking>
+                            <Tracking event="unmute"><![CDATA[http://localhost:3000/6/beacons/vast/unmute.gif?int=123&str=abc&macro=[HELLO]&url=https%3A%2F%2Fexample.com%2Fpath]]></Tracking>
+                        </TrackingEvents>
+                        <VideoClicks>
+                            <ClickThrough>http://localhost:3000/html/ad_site.html</ClickThrough>
+                            <ClickTracking><![CDATA[http://localhost:3000/6/beacons/vast/click.gif?int=123&str=abc&macro=[HELLO]&url=https%3A%2F%2Fexample.com%2Fpath]]></ClickTracking>
+                        </VideoClicks>
+                        <AdParameters>
+                            <![CDATA[{"videos": [{"mimetype":"video/mp4", "url":"http://localhost:3000/video/aolon.mp4"}],
+                                "overlay":"http://localhost:3000/thumbnails/button.jpg"}]]>
+                        </AdParameters>
+                        <MediaFiles>
+                            <MediaFile delivery="progressive" width="400" height="300" trusted_player="mandatory-params-not-passed-in" type="application/javascript" apiFramework="VPAID">
+                                <![CDATA[http://localhost:3000/vpaid/6/video.js]]>
+                            </MediaFile>
+                        </MediaFiles>
+                    </Linear>
+                </Creative>
+            </Creatives>
+        </InLine>
+    </Ad>
+</VAST>

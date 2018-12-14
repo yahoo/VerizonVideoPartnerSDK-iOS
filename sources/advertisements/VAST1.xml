@@ -1,0 +1,48 @@
+<VAST version="2.0">
+    <Ad id="4203085">
+        <InLine>
+            <AdSystem/>
+            <AdTitle/>
+            <AdVerifications>
+                <Verification vendor="TestAppVendor">
+                    <JavaScriptResource>
+                        <![CDATA[https://verificationcompany1.com/verification_script1.js]]>
+                    </JavaScriptResource>
+                    <VerificationParameters>
+                        <![CDATA[http://localhost:3000/0/beacons]]>
+                    </VerificationParameters>
+                    <TrackingEvents>
+                        <Tracking event="verificationNotExecuted">
+                            <![CDATA[http://localhost:3000/0/beacons/vast/verification-not-executed.gif]]>
+                        </Tracking>
+                    </TrackingEvents>
+                </Verification>
+            </AdVerifications>
+            <Impression><![CDATA[http://localhost:3000/0/pixels/pixel.php?name=noname_impression&random=[CACHE_BUSTER]]]></Impression>
+            <Creatives>
+                <Creative id="55414">
+                    <Linear>
+                        <Duration>00:00:30</Duration>
+                        <TrackingEvents>
+                            <Tracking event="creativeView"><![CDATA[http://localhost:3000/6/beacons/vast/creativeView.gif]]></Tracking>
+                            <Tracking event="start"><![CDATA[http://localhost:3000/6/beacons/vast/start.gif]]></Tracking>
+                            <Tracking event="firstQuartile"><![CDATA[http://localhost:3000/6/beacons/vast/firstQuartile.gif]]></Tracking>
+                            <Tracking event="midpoint"><![CDATA[http://localhost:3000/6/beacons/vast/midpoint.gif]]></Tracking>
+                            <Tracking event="thirdQuartile"><![CDATA[http://localhost:3000/6/beacons/vast/thirdQuartile.gif]]></Tracking>
+                            <Tracking event="complete"><![CDATA[http://localhost:3000/6/beacons/vast/complete.gif]]></Tracking>
+                        </TrackingEvents>
+                        <VideoClicks>
+                            <ClickThrough><![CDATA[http://localhost:3000]]></ClickThrough>
+                        </VideoClicks>
+                        <MediaFiles>
+                            <MediaFile delivery="progressive" bitrate="400" width="400" height="300" type="video/mp4" scalable="true" maintainAspectRatio="true">
+                                https
+                                <![CDATA[://dev.example.com/videos/2018/video_example_1280x720.]]>
+                                mp4
+                            </MediaFile>
+                        </MediaFiles>
+                    </Linear>
+                </Creative></Creatives>
+        </InLine>
+    </Ad>
+</VAST>
