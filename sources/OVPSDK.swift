@@ -14,7 +14,7 @@ public struct OVPSDK {
     
     public let videoProvider: VideoProvider
     private let vrmProvider: VRMProvider
-
+    
     private let ephemeralSession: URLSession
     private static let defaultSession = URLSession(configuration: .default)
     private var telemetryMetrics: Telemetry.Metrics?
@@ -53,7 +53,7 @@ public struct OVPSDK {
         /* attach ad url process listener */ do {
             if let url = configuration.telemetry?.url {
                 let listener = Telemetry.Listeners.AdURLProcessListener.shared
-
+                
                 listener.session = ephemeralSession
                 listener.url = url
                 
@@ -407,7 +407,21 @@ public struct OVPSDK {
         
         func setupVRMWithNewCore() {
             let adStartProcessing = StartAdProcessingController(dispatch: dispatcher)
-            let _ = player.addObserver { playerProps in
+            let vrmRequestController = VRMRequestController(dispatch: dispatcher,
+                                                            groupsMapper: mapGroups) { url -> Future<VRMProvider.Response?> in
+                                                                return Future { fullfill in
+                                                                    self.vrmProvider.requestAds(with: .init(url: url,
+                                                                                                            cachePolicy: .useProtocolCachePolicy,
+                                                                                                            timeoutInterval: hardTimeout))
+                                                                        .onComplete(callback: fullfill)
+                                                                }
+            }
+            
+            _ = player.store.state.addObserver { state in
+                vrmRequestController.process(with: state)
+            }
+            
+            _ = player.addObserver { playerProps in
                 adStartProcessing.process(props: playerProps)
             }
         }
