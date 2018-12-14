@@ -1,7 +1,7 @@
 //  Copyright 2018, Oath Inc.
 //  Licensed under the terms of the MIT License. See LICENSE.md file in project root for terms.
 import XCTest
-@testable import OneMobileSDK
+@testable import OathVideoPartnerSDK
 @testable import PlayerCore
 
 class StartAdProcessingControllerTest: XCTestCase {
@@ -14,8 +14,8 @@ class StartAdProcessingControllerTest: XCTestCase {
     override func setUp() {
         super.setUp()
         let dispatch: (PlayerCore.Action) -> Void = recorder.hook("dispatch") { targetAction, recordedAction -> Bool in
-            if let targetAction = targetAction as? PlayerCore.NewVRMCore.AdRequest,
-                let recordedAction = recordedAction as? PlayerCore.NewVRMCore.AdRequest {
+            if let targetAction = targetAction as? PlayerCore.VRMCore.AdRequest,
+                let recordedAction = recordedAction as? PlayerCore.VRMCore.AdRequest {
                 return targetAction.type == recordedAction.type &&
                        targetAction.url == recordedAction.url
             }
@@ -55,8 +55,8 @@ class StartAdProcessingControllerTest: XCTestCase {
         }
         
         recorder.verify {
-            sut.dispatch(PlayerCore.NewVRMCore.AdRequest(url: url, id: UUID(), type: .preroll))
-            sut.dispatch(PlayerCore.NewVRMCore.AdRequest(url: url, id: UUID(), type: .preroll))
+            sut.dispatch(PlayerCore.VRMCore.AdRequest(url: url, id: UUID(), type: .preroll))
+            sut.dispatch(PlayerCore.VRMCore.AdRequest(url: url, id: UUID(), type: .preroll))
         }
     }
     
@@ -73,7 +73,7 @@ class StartAdProcessingControllerTest: XCTestCase {
         }
         
         recorder.verify {
-            sut.dispatch(PlayerCore.NewVRMCore.AdRequest(url: url, id: UUID(), type: .preroll))
+            sut.dispatch(PlayerCore.VRMCore.AdRequest(url: url, id: UUID(), type: .preroll))
         }
     }
     
@@ -85,7 +85,7 @@ class StartAdProcessingControllerTest: XCTestCase {
         }
         
         recorder.verify {
-            sut.dispatch(PlayerCore.NewVRMCore.AdRequest(url: url, id: UUID(), type: .preroll))
+            sut.dispatch(PlayerCore.VRMCore.AdRequest(url: url, id: UUID(), type: .preroll))
         }
     }
 }

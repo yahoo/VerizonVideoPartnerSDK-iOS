@@ -1,12 +1,12 @@
 [submodule "PlayerCore"]
 	path = PlayerCore
-	url = git@github.com:OathAdPlatforms/OathVideoPartnerSDK-PlayerCore-iOS.git
+	url = https://github.com/OathAdPlatforms/OathVideoPartnerSDK-PlayerCore-iOS.git
 [submodule "PlayerControls"]
 	path = PlayerControls
-	url = git@github.com:OathAdPlatforms/OneMobileSDK-controls-ios.git
+	url = https://github.com/OathAdPlatforms/OneMobileSDK-controls-ios.git
 [submodule "VideoRenderer"]
 	path = VideoRenderer
-	url = git@github.com:OathAdPlatforms/OneMobileSDK-videorenderer-ios.git
+	url = https://github.com/OathAdPlatforms/OneMobileSDK-videorenderer-ios.git
 [submodule "fastlane/actions"]
 	path = fastlane/actions
-	url = git@github.com:OathAdPlatforms/OneMobileSDK-build-scripts-ios.git
+	url = https://github.com/OathAdPlatforms/OneMobileSDK-build-scripts-ios.git
