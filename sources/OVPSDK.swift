@@ -407,8 +407,9 @@ public struct OVPSDK {
         
         func setupVRMWithNewCore() {
             let adStartProcessing = StartAdProcessingController(dispatch: dispatcher)
+            let startGroupProcessing = StartVRMGroupProcessingController(dispatch: dispatcher)
             let vrmRequestController = VRMRequestController(dispatch: dispatcher,
-                                                            groupsMapper: mapGroups) { url -> Future<VRMProvider.Response?> in
+                                                            groupsMapper: mapGroups) { url in
                                                                 return Future { fullfill in
                                                                     self.vrmProvider.requestAds(with: .init(url: url,
                                                                                                             cachePolicy: .useProtocolCachePolicy,
@@ -419,6 +420,7 @@ public struct OVPSDK {
             
             _ = player.store.state.addObserver { state in
                 vrmRequestController.process(with: state)
+                startGroupProcessing.process(with: state)
             }
             
             _ = player.addObserver { playerProps in
