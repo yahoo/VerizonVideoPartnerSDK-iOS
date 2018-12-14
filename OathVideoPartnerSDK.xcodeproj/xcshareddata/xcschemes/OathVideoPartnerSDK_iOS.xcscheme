@@ -34,6 +34,34 @@
                ReferencedContainer = "container:PlayerCore/PlayerCore.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "50582F9D1E65D78C00B18908"
+               BuildableName = "PlayerControlsTests.xctest"
+               BlueprintName = "PlayerControlsTests"
+               ReferencedContainer = "container:PlayerControls/PlayerControls/PlayerControls.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "DEA9938C1E83FE0600EB3B8A"
+               BuildableName = "VideoRendererTests.xctest"
+               BlueprintName = "VideoRendererTests"
+               ReferencedContainer = "container:VideoRenderer/VideoRenderer/VideoRenderer.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -68,26 +96,6 @@
                BuildableName = "OathVideoPartnerSDKTests.xctest"
                BlueprintName = "OathVideoPartnerSDKTests"
                ReferencedContainer = "container:OathVideoPartnerSDK.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "50582F9D1E65D78C00B18908"
-               BuildableName = "PlayerControlsTests.xctest"
-               BlueprintName = "PlayerControlsTests"
-               ReferencedContainer = "container:Carthage/Checkouts/OneMobileSDK-controls-ios/PlayerControls/PlayerControls.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "DEA9938C1E83FE0600EB3B8A"
-               BuildableName = "VideoRendererTests.xctest"
-               BlueprintName = "VideoRendererTests"
-               ReferencedContainer = "container:Carthage/Checkouts/OneMobileSDK-videorenderer-ios/VideoRenderer/VideoRenderer.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
