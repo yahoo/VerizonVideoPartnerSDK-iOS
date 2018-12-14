@@ -92,6 +92,10 @@ struct VRMProvider {
         let request = URLRequest(url: url,
                                  cachePolicy: .useProtocolCachePolicy,
                                  timeoutInterval: 2.5)
+        return requestAds(with: request)
+    }
+    
+    func requestAds(with request: URLRequest) -> Future<Response?> {
         return session.dataFuture(with: request)
             .map(Network.Parse.successResponseData)
             .map(Network.Parse.json)
