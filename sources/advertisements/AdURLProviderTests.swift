@@ -27,7 +27,7 @@ class AdURLProviderTests: XCTestCase {
             }
         }
         
-        let groupsContext = AsyncContext<URL, [[VRMProvider.Item]]?>()
+        let groupsContext = AsyncContext<URL, VRMProvider.Response?>()
         let itemContext = AsyncContext<VRMProvider.Item, PlayerCore.Ad.VASTModel?>()
         let softTimeoutContext = AsyncContext<TimeInterval, Void>()
         let hardTimeoutContext = AsyncContext<TimeInterval, Void>()

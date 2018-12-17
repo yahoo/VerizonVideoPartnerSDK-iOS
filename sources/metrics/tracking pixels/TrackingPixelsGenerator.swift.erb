@@ -5,8 +5,13 @@ import Foundation <%
 require 'YAML'
 require 'FileUtils'
 
-path = "mobile sdk evolution/definitions/tracking pixels/tracking-pixels.yaml"
-api = YAML.load(File.read(path)).map { |request_name, fields|
+file = nil
+Dir.chdir('..') do 
+  path = "mobile-sdk-evolution/definitions/tracking pixels/tracking-pixels.yaml"
+  file = File.read(path)
+end
+
+api = YAML.load(file).map { |request_name, fields|
   fields[:request_name] = request_name
   fields["parameters"] = fields["parameters"].map { |key, value|
     {

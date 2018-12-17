@@ -39,10 +39,12 @@ extension TrackingPixels.Connector {
                                          info: OathVideoPartnerSDK.info(from: start.info),
                                          type: adType,
                                          transactionId: start.transactionID,
-                                         videoViewUID: state.playbackSession.id.uuidString)
+                                         videoViewUID: state.playbackSession.id.uuidString,
+                                         cpm: state.adVRMManager.cpm)
                 reporter.adServerRequest(info: OathVideoPartnerSDK.info(from: start.info),
                                          videoIndex: state.playlist.currentIndex,
-                                         videoViewUID: state.playbackSession.id.uuidString)
+                                         videoViewUID: state.playbackSession.id.uuidString,
+                                         cpm: state.adVRMManager.cpm)
                 
             case .completeItem(let item):
                 reporter.adEngineResponse(videoIndex: state.playlist.currentIndex,
@@ -53,7 +55,8 @@ extension TrackingPixels.Connector {
                                           timeout: item.timeoutBarrier,
                                           fillType: item.fillType,
                                           transactionId: item.transactionID,
-                                          videoViewUID: state.playbackSession.id.uuidString)
+                                          videoViewUID: state.playbackSession.id.uuidString,
+                                          cpm: state.adVRMManager.cpm)
             case .timeoutItem(let timeout):
                 reporter.adEngineResponse(videoIndex: state.playlist.currentIndex,
                                           info: OathVideoPartnerSDK.info(from: timeout.info),
@@ -63,7 +66,8 @@ extension TrackingPixels.Connector {
                                           timeout: timeout.timeoutBarrier,
                                           fillType: timeout.fillType,
                                           transactionId: timeout.transactionID,
-                                          videoViewUID: state.playbackSession.id.uuidString)
+                                          videoViewUID: state.playbackSession.id.uuidString,
+                                          cpm: state.adVRMManager.cpm)
             case .otherErrorItem(let other):
                 reporter.adEngineResponse(videoIndex: state.playlist.currentIndex,
                                           info: OathVideoPartnerSDK.info(from: other.info),
@@ -73,7 +77,8 @@ extension TrackingPixels.Connector {
                                           timeout: nil,
                                           fillType: other.fillType,
                                           transactionId: other.transactionID,
-                                          videoViewUID: state.playbackSession.id.uuidString)
+                                          videoViewUID: state.playbackSession.id.uuidString,
+                                          cpm: state.adVRMManager.cpm)
             }
         }
         struct Payload {
@@ -93,7 +98,8 @@ extension TrackingPixels.Connector {
                                   autoplay: model.isAutoplayEnabled,
                                   transactionId: payload.transactionID,
                                   adId: payload.adID,
-                                  videoViewUID: state.playbackSession.id.uuidString)
+                                  videoViewUID: state.playbackSession.id.uuidString,
+                                  cpm: state.adVRMManager.cpm)
         }
         
         func report(with function: (Payload) -> ()) {
@@ -153,7 +159,8 @@ extension TrackingPixels.Connector {
                                     adId: holder.adID,
                                     transactionId: state.transactionIDHolder?.transactionID,
                                     adCurrentTime: result.time,
-                                    adDuration: result.duration)
+                                    adDuration: result.duration,
+                                    cpm: state.adVRMManager.cpm)
             }
         }
         /* Slot Opportunity Detector */ do {
@@ -215,7 +222,8 @@ extension TrackingPixels.Connector {
                                       autoplay: model.isAutoplayEnabled,
                                       transactionId: state.transactionIDHolder?.transactionID,
                                       adId: holder.adID,
-                                      videoViewUID: state.playbackSession.id.uuidString)
+                                      videoViewUID: state.playbackSession.id.uuidString,
+                                      cpm: state.adVRMManager.cpm)
             }
         }
         
@@ -280,7 +288,8 @@ extension TrackingPixels.Connector {
                         reporter.sendBeacon(urls: payload.pixels.start)
                         reporter.adStart(info: payload.info,
                                          videoIndex: state.playlist.currentIndex,
-                                         videoViewUID: state.playbackSession.id.uuidString)
+                                         videoViewUID: state.playbackSession.id.uuidString,
+                                         cpm: state.adVRMManager.cpm)
                     }
                 case .AdVideoFirstQuartile:
                     report { payload in
@@ -316,7 +325,8 @@ extension TrackingPixels.Connector {
                                            stage: .load,
                                            transactionId: state.transactionIDHolder?.transactionID,
                                            adId: holder.adID,
-                                           videoViewUID: state.playerSession.id.uuidString)
+                                           videoViewUID: state.playerSession.id.uuidString,
+                                           cpm: state.adVRMManager.cpm)
                 default: break
                 }
             }
@@ -331,7 +341,8 @@ extension TrackingPixels.Connector {
                         engineFlow(stage: .started, payload: payload)
                         reporter.adStart(info: payload.info,
                                          videoIndex: state.playlist.currentIndex,
-                                         videoViewUID: state.playbackSession.id.uuidString)
+                                         videoViewUID: state.playbackSession.id.uuidString,
+                                         cpm: state.adVRMManager.cpm)
                     }
                     guard let duration = state.duration.ad?.seconds else { return }
                     let volume: Float = state.mute.player ? 0 : 1
@@ -351,7 +362,8 @@ extension TrackingPixels.Connector {
                                           autoplay: model.isAutoplayEnabled,
                                           transactionId: state.transactionIDHolder?.transactionID,
                                           adId: holder.adID,
-                                          videoViewUID: state.playbackSession.id.uuidString)
+                                          videoViewUID: state.playbackSession.id.uuidString,
+                                          cpm: state.adVRMManager.cpm)
                     
                 case .nothing: break
                 }
@@ -505,7 +517,8 @@ extension TrackingPixels.Connector {
                                            stage: .load,
                                            transactionId: state.transactionIDHolder?.transactionID,
                                            adId: holder.adID,
-                                           videoViewUID: state.playerSession.id.uuidString)
+                                           videoViewUID: state.playerSession.id.uuidString,
+                                           cpm: state.adVRMManager.cpm)
                 }
             }
             

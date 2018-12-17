@@ -375,7 +375,7 @@ extension TrackingPixels.Reporter {
                     transactionId: String?,
                     adCurrentTime: Double,
                     adDuration: Double,
-                    cpm: CostPerMille) {
+                    cpm: CostPerMille?) {
     
         sendMetric(.tracking(
             TrackingPixels.Generator.adViewTime(
@@ -406,7 +406,7 @@ extension TrackingPixels.Reporter {
         type: Ad.Metrics.PlayType,
         transactionId: String?,
         videoViewUID: String,
-        cpm: CostPerMille) {
+        cpm: CostPerMille?) {
         sendMetric(.tracking(
             TrackingPixels.Generator.adEngineRequest(
                 app_id: context.applicationID,
@@ -441,7 +441,7 @@ extension TrackingPixels.Reporter {
         fillType: Ad.Metrics.FillType?,
         transactionId: String?,
         videoViewUID: String,
-        cpm: CostPerMille) {
+        cpm: CostPerMille?) {
         sendMetric(.tracking(
             TrackingPixels.Generator.adEngineResponse(
                 app_id: context.applicationID,
@@ -479,7 +479,7 @@ extension TrackingPixels.Reporter {
         transactionId: String?,
         adId: String?,
         videoViewUID: String,
-        cpm: CostPerMille) {
+        cpm: CostPerMille?) {
         sendMetric(.tracking(
             TrackingPixels.Generator.adIssue(
                 app_id: context.applicationID,
@@ -518,7 +518,7 @@ extension TrackingPixels.Reporter {
         transactionId: String?,
         adId: String?,
         videoViewUID: String,
-        cpm: CostPerMille) {
+        cpm: CostPerMille?) {
         sendMetric(.tracking(
             TrackingPixels.Generator.adEngineFlow(
                 app_id: context.applicationID,
@@ -602,7 +602,7 @@ extension TrackingPixels.Reporter {
     func adStart(info: Ad.Metrics.Info,
                  videoIndex: Int,
                  videoViewUID: String,
-                 cpm: CostPerMille) {
+                 cpm: CostPerMille?) {
         sendMetric(.advertisement(
             TrackingPixels.Generator.adStart(
                 app_id: context.applicationID,
@@ -622,7 +622,7 @@ extension TrackingPixels.Reporter {
     func adServerRequest(info: Ad.Metrics.Info,
                          videoIndex: Int,
                          videoViewUID: String,
-                         cpm: CostPerMille) {
+                         cpm: CostPerMille?) {
         sendMetric(.advertisement(
             TrackingPixels.Generator.adServerRequest(
                 app_id: context.applicationID,
