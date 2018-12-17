@@ -13,5 +13,5 @@ github.pr_body.include? "[JIRA Ticket](xxx)"
 
 xcov.report(
    scheme: 'OathVideoPartnerSDK_iOS',
-   Project: 'OathVideoPartnerSDK.xcodeproj'
+   project: 'OathVideoPartnerSDK.xcodeproj'
 )
