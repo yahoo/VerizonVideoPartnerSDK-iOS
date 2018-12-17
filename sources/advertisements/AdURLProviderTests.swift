@@ -75,8 +75,12 @@ class AdURLProviderTests: XCTestCase {
             [ item ],
             [ item ]
         ]
+        let response = VRMProvider.Response(transactionId: nil,
+                                            slot: "slot",
+                                            cpm: "cpm",
+                                            items:groups)
         
-        groupsContext.callbacks[0](groups)
+        groupsContext.callbacks[0](response)
         provider.queue.sync {}
         
         XCTAssertEqual(softTimeoutContext.callbacks.count, 1)

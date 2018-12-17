@@ -71,6 +71,7 @@ class VRMRequestControllerTest: XCTestCase {
                                         
                                         return Future(value: VRMProvider.Response(transactionId: "transactionId",
                                                                                   slot: "slot",
+                                                                                  cpm: "cpm",
                                                                                   items: self.itemsResponse)) })
         
         

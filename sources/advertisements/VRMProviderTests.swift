@@ -5,7 +5,7 @@ import Quick
 import Nimble
 @testable import OathVideoPartnerSDK
 
-class VRMCallTests: QuickSpec {
+class VRMProviderTests: QuickSpec {
     override func spec() { //swiftlint:disable:this function_body_length
         describe("groups parsing") {
             let parse = VRMProvider.parseGroups
@@ -57,6 +57,25 @@ class VRMCallTests: QuickSpec {
                 it("should throw an error on plain array") {
                     expect { try parse(["aeg": group1 ]) }.to(throwError())
                 }
+            }
+        }
+        
+        describe("cpm parsing") {
+            it("should be successful even if value is missing") {
+                expect {
+                    let result = try VRMProvider.parseCpm(from: [:])
+                    expect(result).to(beNil())
+                    return result
+                }.toNot(throwError())
+            }
+            
+            it("should parse succesful if there is cpm value") {
+                expect {
+                    let result = try VRMProvider.parseCpm(from: ["cpm" : "cpm"])
+                    expect(result).toNot(beNil())
+                    expect(result) == "cpm"
+                    return result
+                }.toNot(throwError())
             }
         }
         
