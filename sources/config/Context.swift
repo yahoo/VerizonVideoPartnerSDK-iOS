@@ -33,7 +33,7 @@ extension OVPSDK {
             let mainInfo = Bundle.main.infoDictionary!
             let plistPathFromMainBundle = Bundle.main.path(forResource: "OathVideoPartnerSDK-Version",
                                                            ofType: "plist")
-            let plistPathFromSDKBundle = Bundle(identifier: "com.oath.VideoPartnerSDK")?
+            let plistPathFromSDKBundle = Bundle(identifier: "com.Oath.VideoPartnerSDK")?
                 .path(forResource: "OathVideoPartnerSDK-Version", ofType: "plist")
             
             guard let file = plistPathFromSDKBundle ?? plistPathFromMainBundle else {
