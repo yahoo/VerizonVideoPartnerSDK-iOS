@@ -408,6 +408,7 @@ public struct OVPSDK {
         func setupVRMWithNewCore() {
             let adStartProcessing = StartAdProcessingController(dispatch: dispatcher)
             let startGroupProcessing = StartVRMGroupProcessingController(dispatch: dispatcher)
+            let itemController = VRMItemController(dispatch: dispatcher)
             let vrmRequestController = VRMRequestController(dispatch: dispatcher,
                                                             groupsMapper: mapGroups) { url in
                                                                 return Future { fullfill in
@@ -421,6 +422,7 @@ public struct OVPSDK {
             _ = player.store.state.addObserver { state in
                 vrmRequestController.process(with: state)
                 startGroupProcessing.process(with: state)
+                itemController.process(with: state)
             }
             
             _ = player.addObserver { playerProps in

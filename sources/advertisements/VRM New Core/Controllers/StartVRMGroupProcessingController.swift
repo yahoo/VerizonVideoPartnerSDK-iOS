@@ -23,6 +23,5 @@ final class StartVRMGroupProcessingController {
         let nextGroup = groupsQueue.first else { return }
         
         dispatch(VRMCore.startGroupProcessing(group: nextGroup))
-        
     }
 }
