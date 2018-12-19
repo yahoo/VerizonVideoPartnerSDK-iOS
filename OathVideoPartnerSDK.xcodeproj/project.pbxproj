@@ -45,7 +45,6 @@
 		06E5F33721C2CA7E0099D733 /* PlayerControls.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06E5F30D21C2C7DE0099D733 /* PlayerControls.framework */; };
 		06E5F33821C2CA7E0099D733 /* PlayerCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06E5F31D21C2C7F80099D733 /* PlayerCore.framework */; };
 		06E5F33921C2CA7E0099D733 /* VideoRenderer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06E5F31521C2C7EB0099D733 /* VideoRenderer.framework */; };
-		06EE6C6521CA8613005A8329 /* Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EE6C6421CA8613005A8329 /* Animations.swift */; };
 		06F8DBC421C2A2D40019021D /* StartAdProcessingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06F8DBC121C2A2D40019021D /* StartAdProcessingController.swift */; };
 		06F8DBC521C2A2D40019021D /* StartAdProcessingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06F8DBC121C2A2D40019021D /* StartAdProcessingController.swift */; };
 		06F8DBC621C2A2F50019021D /* StartAdProcessingControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06F8DBC021C2A2D40019021D /* StartAdProcessingControllerTest.swift */; };
@@ -441,7 +440,6 @@
 		06BF541620A062E300B98A6D /* VASTVpaid.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = VASTVpaid.xml; sourceTree = "<group>"; };
 		06E5F33221C2C9D40099D733 /* Autogeneratable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Autogeneratable.swift; sourceTree = "<group>"; };
 		06E6F4CC213DA6FF008BAA23 /* PlayerCore.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = PlayerCore.xcodeproj; path = PlayerCore/PlayerCore.xcodeproj; sourceTree = "<group>"; };
-		06EE6C6421CA8613005A8329 /* Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animations.swift; sourceTree = "<group>"; };
 		06F8DBC021C2A2D40019021D /* StartAdProcessingControllerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartAdProcessingControllerTest.swift; sourceTree = "<group>"; };
 		06F8DBC121C2A2D40019021D /* StartAdProcessingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartAdProcessingController.swift; sourceTree = "<group>"; };
 		500B20E91D1AB8D50012C3CB /* ExecuteOnce.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExecuteOnce.swift; path = detectors/display/ExecuteOnce.swift; sourceTree = "<group>"; };
@@ -1174,7 +1172,6 @@
 				DEBAA7BE1E154D4100DFC359 /* Future.swift */,
 				DEBAA7C71E1571A100DFC359 /* Result.swift */,
 				50A5A4FF1E69958600C15E12 /* Timer.swift */,
-				06EE6C6421CA8613005A8329 /* Animations.swift */,
 			);
 			name = utils;
 			path = sources/utils;
@@ -1844,7 +1841,6 @@
 				50B049901CD2546800CC2D47 /* PlayerViewController.swift in Sources */,
 				DEBE4A7F1CA2EEDC006E01C1 /* Pipeline.swift in Sources */,
 				FEEB8E581F4C92F0003507BE /* ErrorDetector.swift in Sources */,
-				06EE6C6521CA8613005A8329 /* Animations.swift in Sources */,
 				063988A72100C95000FE8475 /* VPAIDMessageHandler.swift in Sources */,
 				DEF02B521D1EC0AD001F64EE /* VASTModel.swift in Sources */,
 				DE684CD71E0C2F36007CE35C /* Action.swift in Sources */,
