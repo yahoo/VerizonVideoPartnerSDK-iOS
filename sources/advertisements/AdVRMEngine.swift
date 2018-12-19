@@ -11,14 +11,15 @@ class AdVRMEngine {
         self.dispatcher = dispatcher
     }
     
-    func requestAds(using request: @escaping (URL) -> Future<VRMProvider.Response?>) -> (URL) -> Future<[[VRMProvider.Item]]?> {
+    func requestAds(using request: @escaping (URL) -> Future<VRMProvider.Response?>) -> (URL) -> Future<VRMProvider.Response?> {
         return { url in
-            return request(url).map { [weak self] result in
+            return request(url).map { [weak self] result -> VRMProvider.Response? in
                 guard let `self` = self else { return nil }
                 guard let response = result else { return nil }
                 self.dispatcher(PlayerCore.adProcessGroup(transactionId: response.transactionId,
-                                                          slot: response.slot))
-                return response.items
+                                                          slot: response.slot,
+                                                          cpm: response.cpm))
+                return response
             }
         }
     }

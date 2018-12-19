@@ -9,6 +9,7 @@ struct VRMProvider {
     struct Response {
         let transactionId: String?
         let slot: String
+        let cpm: CostPerMille?
         let items: [[Item]]
     }
     
@@ -24,10 +25,15 @@ struct VRMProvider {
         return try json.parse("aeg")
     }
     
+    static func parseCpm(from json: JSON) throws -> CostPerMille? {
+        return json.parse("cpm")
+    }
+    
     static func parse(json: JSON) throws -> Response {
         return Response(
             transactionId: parseTransactionId(from: json),
             slot: try parseSlot(from: json),
+            cpm: try parseCpm(from: json),
             items: try parseGroups(from: json).map { try $0.map(parseItem) })
     }
     

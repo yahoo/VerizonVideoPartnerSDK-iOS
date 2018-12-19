@@ -4,14 +4,14 @@ import Foundation
 import PlayerCore
 
 struct AdURLProvider {
-    let groupsFetch: (URL) -> Future<[[VRMProvider.Item]]?>
+    let groupsFetch: (URL) -> Future<VRMProvider.Response?>
     let processItem: (VRMProvider.Item) -> Future<PlayerCore.Ad.VASTModel?>
     let softTimeoutAction: (TimeInterval, @escaping Action<Void>) -> Void
     let hardTimeoutAction: (TimeInterval, @escaping Action<Void>) -> Void
     let softTimeoutValue: TimeInterval
     let hardTimeoutValue: TimeInterval
     
-    init(groupsFetch: @escaping (URL) -> Future<[[VRMProvider.Item]]?>,
+    init(groupsFetch: @escaping (URL) -> Future<VRMProvider.Response?>,
          processItem: @escaping (VRMProvider.Item) -> Future<PlayerCore.Ad.VASTModel?>,
          softTimeoutAction: @escaping (TimeInterval, @escaping Action<Void>) -> Void,
          hardTimeoutAction: @escaping (TimeInterval, @escaping Action<Void>) -> Void,
@@ -53,11 +53,11 @@ struct AdURLProvider {
             func requestGroups() {
                 process.requestGroups()
                 self.groupsFetch(url).onComplete { result in
-                    if let groups = result {
+                    if let response = result {
                         self.queue.async {
                             if !isStopped {
-                                process.didReceiveGroups(groups)
-                                request.inputs.didReceiveGroups(groups)
+                                process.didReceiveGroups(response.items)
+                                request.inputs.didReceiveGroups(response.items)
                                 
                                 self.softTimeoutAction(self.softTimeoutValue) {
                                     self.queue.async {

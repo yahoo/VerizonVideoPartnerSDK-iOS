@@ -361,6 +361,34 @@
 			remoteGlobalIDString = 50582F5A1E65C41900B18908;
 			remoteInfo = PlayerControls;
 		};
+		50AC123821C414E400B428D1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DE611A791E9D40F200D253B2 /* PlayerControls.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 50582F5A1E65C41900B18908;
+			remoteInfo = PlayerControls;
+		};
+		50AC123A21C414E400B428D1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DE2BBB281E8BEE2F00CA4296 /* VideoRenderer.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = DEA993831E83FE0600EB3B8A;
+			remoteInfo = VideoRenderer;
+		};
+		50AC123C21C414E400B428D1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 06E6F4CC213DA6FF008BAA23 /* PlayerCore.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 06CD5298213D8D0700C5B783;
+			remoteInfo = PlayerCore;
+		};
+		50AC124421C414ED00B428D1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 06E6F4CC213DA6FF008BAA23 /* PlayerCore.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 06CD5298213D8D0700C5B783;
+			remoteInfo = PlayerCore;
+		};
 		DE4C51261C8071D500BFFB0B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = DEF3CBAE1C7F12D200CB5A74 /* Project object */;
@@ -1329,6 +1357,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				50AC124521C414ED00B428D1 /* PBXTargetDependency */,
 			);
 			name = OathVideoPartnerSDK_tvOS;
 			productName = OneSDK;
@@ -1349,6 +1378,9 @@
 			buildRules = (
 			);
 			dependencies = (
+				50AC123921C414E400B428D1 /* PBXTargetDependency */,
+				50AC123B21C414E400B428D1 /* PBXTargetDependency */,
+				50AC123D21C414E400B428D1 /* PBXTargetDependency */,
 				5033927A1E96AFCA002562D9 /* PBXTargetDependency */,
 			);
 			name = OathVideoPartnerSDK_iOS;
@@ -1888,6 +1920,26 @@
 			isa = PBXTargetDependency;
 			name = PlayerControls;
 			targetProxy = 503392791E96AFCA002562D9 /* PBXContainerItemProxy */;
+		};
+		50AC123921C414E400B428D1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = PlayerControls;
+			targetProxy = 50AC123821C414E400B428D1 /* PBXContainerItemProxy */;
+		};
+		50AC123B21C414E400B428D1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = VideoRenderer;
+			targetProxy = 50AC123A21C414E400B428D1 /* PBXContainerItemProxy */;
+		};
+		50AC123D21C414E400B428D1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = PlayerCore;
+			targetProxy = 50AC123C21C414E400B428D1 /* PBXContainerItemProxy */;
+		};
+		50AC124521C414ED00B428D1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = PlayerCore;
+			targetProxy = 50AC124421C414ED00B428D1 /* PBXContainerItemProxy */;
 		};
 		DE4C51271C8071D500BFFB0B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
