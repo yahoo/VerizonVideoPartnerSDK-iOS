@@ -10,6 +10,8 @@ import WebKit
 /// Reacts on events from `Player` and sends action to `Player`.
 public final class PlayerViewController: UIViewController {
     
+    private var loadingImageView: UIImageView!
+    
     public override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         viewDidHide()
@@ -45,6 +47,17 @@ public final class PlayerViewController: UIViewController {
     
     var isAppeared = false
     
+    var isLoading: Bool = false {
+        didSet {
+            guard isAppeared else { return }
+            loadingImageView.isHidden = !isLoading
+
+            isLoading
+                ? loadingImageView.enableRotation()
+                : loadingImageView.disableRotation()
+        }
+    }
+    
     @objc func viewDidHide() {
         isAppeared = false
         player?.update(playerDimensions: nil)
@@ -67,6 +80,16 @@ public final class PlayerViewController: UIViewController {
             adControls.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
             view.addSubview(adControls.view)
             adControls.didMove(toParent: self)
+        }
+        
+        /* Create -> configure -> add loading indicator to video view */ do {
+            let loadingImage = UIImage(named: "icon-loading", in: Bundle(for: AdVideoControls.self), compatibleWith: view.traitCollection)
+            loadingImageView = UIImageView(image: loadingImage)
+            view.addSubview(loadingImageView)
+            loadingImageView.translatesAutoresizingMaskIntoConstraints = false
+            NSLayoutConstraint.activate([loadingImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+                                         loadingImageView.centerYAnchor.constraint(equalTo: view.centerYAnchor)])
+            loadingImageView.isHidden = true        
         }
         
         // Images of UIButton's are taken
@@ -171,6 +194,8 @@ public final class PlayerViewController: UIViewController {
             }
             contentRenderer?.dispatch = props.content?.dispatch
             contentRenderer?.props = props.content?.props
+            
+            isLoading = props.activeContext == .empty
             
             view.setNeedsLayout()
         }
