@@ -13,30 +13,50 @@ class VerifyBuldTests: XCTestCase {
         let model = PlayerCore.Ad.VASTModel(
             adVerifications: [],
             mediaFiles: [
-                Ad.VASTModel.MediaFile.init(url: url,
-                                            type: .vpaid,
-                                            width: 100,
-                                            height: 100,
-                                            scalable: false,
-                                            maintainAspectRatio: true)
+                Ad.VASTModel.MediaFile(url: url,
+                                       type: .vpaid,
+                                       width: 100,
+                                       height: 100,
+                                       scalable: false,
+                                       maintainAspectRatio: true)
             ],
             clickthrough: nil,
             adParameters: "",
-            pixels: AdPixels(impression: [], error: [], clickTracking: [], creativeView: [], start: [], firstQuartile: [], midpoint: [], thirdQuartile: [], complete: [], pause: [], resume: []),
+            pixels: AdPixels(impression: [],
+                             error: [],
+                             clickTracking: [],
+                             creativeView: [],
+                             start: [],
+                             firstQuartile: [],
+                             midpoint: [],
+                             thirdQuartile: [],
+                             complete: [],
+                             pause: [],
+                             resume: []),
             id: "id")
         
         result = select(model: model,
-                             dispatcher: dispatcher,
-                             info: VRMMetaInfo(engineType: "", ruleId: "", ruleCompanyId: "", vendor: "", name: ""),
-                             requestDate: Date(),
-                             isVPAIDAllowed: true)
+                        dispatcher: dispatcher,
+                        info: VRMMetaInfo(engineType: "",
+                                          ruleId: "",
+                                          ruleCompanyId: "",
+                                          vendor: "",
+                                          name: "",
+                                          cpm: ""),
+                        requestDate: Date(),
+                        isVPAIDAllowed: true)
         XCTAssertNotNil(result)
         
         result = select(model: model,
-                             dispatcher: dispatcher,
-                             info: VRMMetaInfo(engineType: "", ruleId: "", ruleCompanyId: "", vendor: "", name: ""),
-                             requestDate: Date(),
-                             isVPAIDAllowed: false)
+                        dispatcher: dispatcher,
+                        info: VRMMetaInfo(engineType: "",
+                                          ruleId: "",
+                                          ruleCompanyId: "",
+                                          vendor: "",
+                                          name: "",
+                                          cpm: ""),
+                        requestDate: Date(),
+                        isVPAIDAllowed: false)
         XCTAssertNil(result)
     }
     

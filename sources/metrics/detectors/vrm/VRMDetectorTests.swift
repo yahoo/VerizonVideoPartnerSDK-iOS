@@ -14,7 +14,8 @@ class VRMDetectorTests: XCTestCase {
                            ruleId: nil,
                            ruleCompanyId: nil,
                            vendor: vendor,
-                           name: nil)
+                           name: nil,
+                           cpm: nil)
     }
     
     func finishResult(transactionID: String?, slot: String) -> AdVRMManager.VRMRequest.State {
@@ -35,7 +36,6 @@ class VRMDetectorTests: XCTestCase {
     func testEmptyDetection() {
         let result = detector.process(
             state: .init(timeoutBarrier: 3500,
-                         cpm: nil,
                          requestsFired: 0,
                          request: .init(id: UUID(),
                                         timeout: .beforeSoft,
@@ -46,7 +46,6 @@ class VRMDetectorTests: XCTestCase {
     func testVRMRequests() {
         let id1 = UUID()
         var result = detector.process(state: .init(timeoutBarrier: 3500,
-                                                   cpm: nil,
                                                    requestsFired: 0,
                                                    request: .init(id: id1,
                                                                   timeout: .beforeSoft,
@@ -54,7 +53,6 @@ class VRMDetectorTests: XCTestCase {
         XCTAssertEqual(result.count, 0)
         
         result = detector.process(state: .init(timeoutBarrier: 3500,
-                                               cpm: nil,
                                                requestsFired: 0,
                                                request: .init(id: id1,
                                                               timeout: .beforeSoft,
@@ -62,7 +60,6 @@ class VRMDetectorTests: XCTestCase {
         XCTAssertEqual(result.count, 0)
         
         result = detector.process(state: .init(timeoutBarrier: 3500,
-                                               cpm: nil,
                                                requestsFired: 0,
                                                request: .init(id: id1,
                                                               timeout: .beforeSoft,
@@ -78,7 +75,6 @@ class VRMDetectorTests: XCTestCase {
         }
         
         result = detector.process(state: .init(timeoutBarrier: 3500,
-                                               cpm: nil,
                                                requestsFired: 0,
                                                request: .init(id: UUID(),
                                                               timeout: .beforeSoft,
@@ -118,7 +114,6 @@ class VRMDetectorTests: XCTestCase {
         sut.startItems.insert(startItem1)
         
         var result = detector.process(state: .init(timeoutBarrier: 3500,
-                                                   cpm: nil,
                                                    requestsFired: 0,
                                                    request: .init(id: id,
                                                                   timeout: .afterSoft,
@@ -134,7 +129,6 @@ class VRMDetectorTests: XCTestCase {
         
         sut.startItems.insert(startItem1)
         result = detector.process(state: .init(timeoutBarrier: 3500,
-                                               cpm: nil,
                                                requestsFired: 0,
                                                request: .init(id: id,
                                                               timeout: .afterSoft,
@@ -145,7 +139,6 @@ class VRMDetectorTests: XCTestCase {
         sut.startItems.insert(startItem2)
         
         result = detector.process(state: .init(timeoutBarrier: 3500,
-                                               cpm: nil,
                                                requestsFired: 0,
                                                request: .init(id: id,
                                                               timeout: .afterSoft,
@@ -178,7 +171,6 @@ class VRMDetectorTests: XCTestCase {
                                                              completeItem: nil)
         sut.completeItem = completeItem1
         var result = detector.process(state: .init(timeoutBarrier: 3500,
-                                                   cpm: nil,
                                                    requestsFired: 0,
                                                    request: .init(id: id,
                                                                   timeout: .afterSoft,
@@ -215,7 +207,6 @@ class VRMDetectorTests: XCTestCase {
                                                              completeItem: nil)
         sut.timeoutItems.insert(timeoutItem1)
         var result = detector.process(state: .init(timeoutBarrier: 3500,
-                                                   cpm: nil,
                                                    requestsFired: 0,
                                                    request: .init(id: id,
                                                                   timeout: .afterSoft,
@@ -229,7 +220,6 @@ class VRMDetectorTests: XCTestCase {
         }
         
         result = detector.process(state: .init(timeoutBarrier: 3500,
-                                               cpm: nil,
                                                requestsFired: 0,
                                                request: .init(id: id,
                                                               timeout: .afterSoft,
@@ -240,7 +230,6 @@ class VRMDetectorTests: XCTestCase {
         sut.timeoutItems.insert(timeoutItem1)
         sut.timeoutItems.insert(timeoutItem2)
         result = detector.process(state: .init(timeoutBarrier: 3500,
-                                               cpm: nil,
                                                requestsFired: 0,
                                                request: .init(id: id,
                                                               timeout: .afterSoft,
@@ -279,7 +268,6 @@ class VRMDetectorTests: XCTestCase {
         sut.otherErrorItems.insert(otherErrorItem1)
         
         var result = detector.process(state: .init(timeoutBarrier: 3500,
-                                                   cpm: nil,
                                                    requestsFired: 0,
                                                    request: .init(id: id,
                                                                   timeout: .afterSoft,
@@ -294,7 +282,6 @@ class VRMDetectorTests: XCTestCase {
         
         sut.otherErrorItems.insert(otherErrorItem1)
         result = detector.process(state: .init(timeoutBarrier: 3500,
-                                               cpm: nil,
                                                requestsFired: 0,
                                                request: .init(id: id,
                                                               timeout: .afterSoft,
@@ -305,7 +292,6 @@ class VRMDetectorTests: XCTestCase {
         sut.otherErrorItems.insert(otherErrorItem1)
         sut.otherErrorItems.insert(otherErrorItem2)
         result = detector.process(state: .init(timeoutBarrier: 3500,
-                                               cpm: nil,
                                                requestsFired: 0,
                                                request: .init(id: id,
                                                               timeout: .afterSoft,

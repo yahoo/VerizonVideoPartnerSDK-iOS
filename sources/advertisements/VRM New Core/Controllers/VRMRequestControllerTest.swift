@@ -15,7 +15,8 @@ class VRMRequestControllerTest: XCTestCase {
                                                  ruleId: "ruleId",
                                                  ruleCompanyId: "ruleCompanyId",
                                                  vendor: "vendor",
-                                                 name: "name")
+                                                 name: "name",
+                                                 cpm: "cpm")
     
     var urlItem: VRMProvider.Item { return .url(url, itemMetaInfo) }
     var vastItem: VRMProvider.Item { return .vast(vastString, itemMetaInfo) }
@@ -153,6 +154,7 @@ extension VRMCore.Item.MetaInfo {
             lsv.ruleId == rsv.ruleId &&
             lsv.ruleCompanyId == rsv.ruleCompanyId &&
             lsv.vendor == rsv.vendor &&
-            lsv.name == rsv.name
+            lsv.name == rsv.name &&
+            lsv.cpm == rsv.cpm
     }
 }

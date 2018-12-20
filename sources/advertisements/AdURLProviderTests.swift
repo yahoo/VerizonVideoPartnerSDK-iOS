@@ -66,8 +66,8 @@ class AdURLProviderTests: XCTestCase {
             ruleId: nil,
             ruleCompanyId: nil,
             vendor: "vendor",
-            name: "name"
-        )
+            name: "name",
+            cpm: nil)
         
         let item = VRMProvider.Item.url(url, metaInfo)
         

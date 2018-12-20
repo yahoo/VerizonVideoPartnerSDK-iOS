@@ -61,7 +61,7 @@ class VRMProviderTests: QuickSpec {
         }
         
         describe("cpm parsing") {
-            it("should be successful even if value is missing") {
+            it("should return nil even if value is missing") {
                 expect {
                     let result = try VRMProvider.parseCpm(from: [:])
                     expect(result).to(beNil())
@@ -69,13 +69,21 @@ class VRMProviderTests: QuickSpec {
                 }.toNot(throwError())
             }
             
-            it("should parse succesful if there is cpm value") {
+            it("should return value if it is encoded in base64") {
                 expect {
-                    let result = try VRMProvider.parseCpm(from: ["cpm" : "cpm"])
+                    let result = try VRMProvider.parseCpm(from: ["cpm" : "NTA="])
                     expect(result).toNot(beNil())
-                    expect(result) == "cpm"
+                    expect(result) == "50"
                     return result
                 }.toNot(throwError())
+            }
+            
+            it("should return nil if there if value is not encoded in base64") {
+                expect {
+                    let result = try VRMProvider.parseCpm(from: ["cpm" : "cpm"])
+                    expect(result).to(beNil())
+                    return result
+                    }.toNot(throwError())
             }
         }
         
@@ -103,10 +111,17 @@ class VRMProviderTests: QuickSpec {
             
             it("should extract vast") {
                 do {
-                    if case let .vast(text, _) = try parse([
+                    if case let .vast(text, metaInfo) = try parse([
                         "vastXml": "vast",
-                        "vendor" : "vendor"]) {
+                        "vendor" : "vendor",
+                        "cpm" : "NTA="]) {
                         expect(text) == "vast"
+                        expect(metaInfo.vendor) == "vendor"
+                        expect(metaInfo.cpm) == "50"
+                        expect(metaInfo.engineType).to(beNil())
+                        expect(metaInfo.name).to(beNil())
+                        expect(metaInfo.ruleCompanyId).to(beNil())
+                        expect(metaInfo.ruleId).to(beNil())
                     } else {
                         fail()
                     }
@@ -115,10 +130,17 @@ class VRMProviderTests: QuickSpec {
             
             it("should extract url") {
                 do {
-                    if case let .url(url, _) = try parse([
-                        "url": "http://test.com",
-                        "vendor" : "vendor"]) {
+                    if case let .url(url, metaInfo) = try parse([
+                        "url" : "http://test.com",
+                        "vendor" : "vendor",
+                        "cpm" : "NTA="]) {
                         expect(url.absoluteString) == "http://test.com"
+                        expect(metaInfo.vendor) == "vendor"
+                        expect(metaInfo.cpm) == "50"
+                        expect(metaInfo.engineType).to(beNil())
+                        expect(metaInfo.name).to(beNil())
+                        expect(metaInfo.ruleCompanyId).to(beNil())
+                        expect(metaInfo.ruleId).to(beNil())
                     } else {
                         fail()
                     }

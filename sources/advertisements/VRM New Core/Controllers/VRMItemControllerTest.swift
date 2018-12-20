@@ -21,7 +21,8 @@ class VRMItemControllerTest: XCTestCase {
                                              ruleId: "ruleId",
                                              ruleCompanyId: "ruleCompanyId",
                                              vendor: "vendor",
-                                             name: "name")
+                                             name: "name",
+                                             cpm: "cpm")
         
         vastItem = VRMCore.Item.vast(vastXML, metaInfo)
         urlItem = VRMCore.Item.url(url, metaInfo)

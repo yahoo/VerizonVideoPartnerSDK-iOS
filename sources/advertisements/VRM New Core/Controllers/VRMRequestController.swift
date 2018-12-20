@@ -13,13 +13,15 @@ func mapGroups(from itemsArray: [[VRMProvider.Item]] ) -> [VRMCore.Group] {
                                                    ruleId: metainfo.ruleId,
                                                    ruleCompanyId: metainfo.ruleCompanyId,
                                                    vendor: metainfo.vendor,
-                                                   name: metainfo.name))
+                                                   name: metainfo.name,
+                                                   cpm: metainfo.cpm))
             case let .vast(vastString, metainfo):
                 return VRMCore.Item.vast(vastString, .init(engineType: metainfo.engineType,
                                                            ruleId: metainfo.ruleId,
                                                            ruleCompanyId: metainfo.ruleCompanyId,
                                                            vendor: metainfo.vendor,
-                                                           name: metainfo.name))
+                                                           name: metainfo.name,
+                                                           cpm: metainfo.cpm))
                 
             }
         }
