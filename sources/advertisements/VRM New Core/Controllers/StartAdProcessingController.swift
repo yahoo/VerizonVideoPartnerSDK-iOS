@@ -33,7 +33,7 @@ final class StartAdProcessingController {
         
         if isPrerollRequested == false {
             isPrerollRequested = true
-            dispatch(PlayerCore.VRMCore.adRequest(url: url, id: UUID(), type: .preroll))
+            dispatch(VRMCore.adRequest(url: url, id: UUID(), type: .preroll))
         }
     }
 }

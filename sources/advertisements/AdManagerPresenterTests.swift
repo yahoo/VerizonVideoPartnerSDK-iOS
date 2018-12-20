@@ -6,11 +6,10 @@ import Nimble
 @testable import OathVideoPartnerSDK
 @testable import PlayerCore
 
-let targetURL = URL(string: "http://test.com")!
-
 class AdManagerPresenterTests: QuickSpec {
+    
     override func spec() { //swiftlint:disable:this function_body_length
-        
+        let targetURL = URL(string: "http://test.com")!
         describe("ad manager") {
             let uuid1 = UUID()
             let uuid2 = UUID()
