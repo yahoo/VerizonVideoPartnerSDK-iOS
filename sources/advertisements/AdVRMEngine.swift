@@ -17,8 +17,7 @@ class AdVRMEngine {
                 guard let `self` = self else { return nil }
                 guard let response = result else { return nil }
                 self.dispatcher(PlayerCore.adProcessGroup(transactionId: response.transactionId,
-                                                          slot: response.slot,
-                                                          cpm: response.cpm))
+                                                          slot: response.slot))
                 return response
             }
         }
@@ -34,7 +33,8 @@ class AdVRMEngine {
                                        ruleId: meta.ruleId,
                                        ruleCompanyId: meta.ruleCompanyId,
                                        vendor: meta.vendor,
-                                       name: meta.name)
+                                       name: meta.name,
+                                       cpm: meta.cpm)
                 
                 let requestDate = Date()
                 self.dispatcher(PlayerCore.adVRMItemStart(info: info,

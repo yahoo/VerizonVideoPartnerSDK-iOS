@@ -405,8 +405,7 @@ extension TrackingPixels.Reporter {
         info: Ad.Metrics.Info,
         type: Ad.Metrics.PlayType,
         transactionId: String?,
-        videoViewUID: String,
-        cpm: CostPerMille?) {
+        videoViewUID: String) {
         sendMetric(.tracking(
             TrackingPixels.Generator.adEngineRequest(
                 app_id: context.applicationID,
@@ -428,7 +427,7 @@ extension TrackingPixels.Reporter {
                 vvuid: videoViewUID,
                 cb: cachebuster(),
                 m_fwsitesection: context.siteSection,
-                cpm: cpm)))
+                cpm: info.cpm)))
     }
     
     func adEngineResponse(
@@ -440,8 +439,7 @@ extension TrackingPixels.Reporter {
         timeout: Int?,
         fillType: Ad.Metrics.FillType?,
         transactionId: String?,
-        videoViewUID: String,
-        cpm: CostPerMille?) {
+        videoViewUID: String) {
         sendMetric(.tracking(
             TrackingPixels.Generator.adEngineResponse(
                 app_id: context.applicationID,
@@ -467,7 +465,7 @@ extension TrackingPixels.Reporter {
                 vvuid: videoViewUID,
                 cb: cachebuster(),
                 m_fwsitesection: context.siteSection,
-                cpm: cpm)))
+                cpm: info.cpm)))
     }
     
     func adEngineIssue(
@@ -478,8 +476,7 @@ extension TrackingPixels.Reporter {
         stage: Ad.Metrics.ExecutionStage?,
         transactionId: String?,
         adId: String?,
-        videoViewUID: String,
-        cpm: CostPerMille?) {
+        videoViewUID: String) {
         sendMetric(.tracking(
             TrackingPixels.Generator.adIssue(
                 app_id: context.applicationID,
@@ -504,7 +501,7 @@ extension TrackingPixels.Reporter {
                 cb: cachebuster(),
                 aid: adId,
                 m_fwsitesection: context.siteSection,
-                cpm: cpm)))
+                cpm: info.cpm)))
     }
     
     func adEngineFlow(
@@ -517,8 +514,7 @@ extension TrackingPixels.Reporter {
         autoplay: Bool,
         transactionId: String?,
         adId: String?,
-        videoViewUID: String,
-        cpm: CostPerMille?) {
+        videoViewUID: String) {
         sendMetric(.tracking(
             TrackingPixels.Generator.adEngineFlow(
                 app_id: context.applicationID,
@@ -545,7 +541,7 @@ extension TrackingPixels.Reporter {
                 cb: cachebuster(),
                 aid: adId,
                 m_fwsitesection: context.siteSection,
-                cpm: cpm)))
+                cpm: info.cpm)))
     }
     
     func adVRMRequest(
@@ -601,8 +597,7 @@ extension TrackingPixels.Reporter {
     
     func adStart(info: Ad.Metrics.Info,
                  videoIndex: Int,
-                 videoViewUID: String,
-                 cpm: CostPerMille?) {
+                 videoViewUID: String) {
         sendMetric(.advertisement(
             TrackingPixels.Generator.adStart(
                 app_id: context.applicationID,
@@ -616,13 +611,12 @@ extension TrackingPixels.Reporter {
                 vvuid: videoViewUID,
                 cb: cachebuster(),
                 m_fwsitesection: context.siteSection,
-                cpm: cpm)))
+                cpm: info.cpm)))
     }
     
     func adServerRequest(info: Ad.Metrics.Info,
                          videoIndex: Int,
-                         videoViewUID: String,
-                         cpm: CostPerMille?) {
+                         videoViewUID: String) {
         sendMetric(.advertisement(
             TrackingPixels.Generator.adServerRequest(
                 app_id: context.applicationID,
@@ -636,7 +630,7 @@ extension TrackingPixels.Reporter {
                 vvuid: videoViewUID,
                 cb: cachebuster(),
                 m_fwsitesection: context.siteSection,
-                cpm: cpm)))
+                cpm: info.cpm)))
     }
 }
 

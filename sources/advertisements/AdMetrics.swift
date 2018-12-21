@@ -32,6 +32,7 @@ extension Ad.Metrics {
         let ruleCompanyId: String?
         let vendor: String
         let name: String?
+        let cpm: String?
     }
     
     enum PlayType: String {
@@ -71,5 +72,6 @@ extension Ad.Metrics.Info {
         self.ruleCompanyId = metaInfo.ruleCompanyId
         self.vendor = metaInfo.vendor
         self.name = metaInfo.name
+        self.cpm = metaInfo.cpm
     }
 }

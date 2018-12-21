@@ -25,10 +25,6 @@ struct VRMProvider {
         return try json.parse("aeg")
     }
     
-    static func parseCpm(from json: JSON) throws -> CostPerMille? {
-        return json.parse("cpm")
-    }
-    
     static func parse(json: JSON) throws -> Response {
         return Response(
             transactionId: parseTransactionId(from: json),
@@ -43,7 +39,8 @@ struct VRMProvider {
             ruleId: parseRuleId(from: json),
             ruleCompanyId: parseRuleCompanyId(from: json),
             vendor: try parseVendor(from: json),
-            name: parseName(from: json))
+            name: parseName(from: json),
+            cpm: try parseCpm(from: json))
         if let vast = try? parseVAST(from: json) { return .vast(vast, metaInfo) }
         if let url = try? parseURL(json: json) { return .url(url, metaInfo) }
         
@@ -60,10 +57,17 @@ struct VRMProvider {
             let ruleCompanyId: String?
             let vendor: String
             let name: String?
+            let cpm: CostPerMille?
         }
         
         case vast(String, MetaInfo)
         case url(URL, MetaInfo)
+    }
+    
+    static func parseCpm(from json: JSON) throws -> CostPerMille? {
+        guard let cpmEncodedValue: CostPerMille = json.parse("cpm") else { return nil }
+        guard let data = Data(base64Encoded: cpmEncodedValue) else { return nil }
+        return String(data: data, encoding: .utf8)
     }
     
     static func parseURL(json: JSON) throws -> URL {
