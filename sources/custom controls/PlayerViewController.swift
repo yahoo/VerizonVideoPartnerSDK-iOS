@@ -10,7 +10,7 @@ import WebKit
 /// Reacts on events from `Player` and sends action to `Player`.
 public final class PlayerViewController: UIViewController {
     
-    private var loadingImageView: LoadingImageView!
+    private var loadingImageView: LoadingImageView?
     
     public override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
@@ -73,12 +73,13 @@ public final class PlayerViewController: UIViewController {
         
         /* Create -> configure -> add loading indicator to video view */ do {
             let loadingImage = UIImage(named: "icon-loading", in: Bundle(for: AdVideoControls.self), compatibleWith: view.traitCollection)
-            loadingImageView = LoadingImageView(image: loadingImage)
+            let loadingImageView = LoadingImageView(image: loadingImage)
             view.addSubview(loadingImageView)
             loadingImageView.translatesAutoresizingMaskIntoConstraints = false
             NSLayoutConstraint.activate([loadingImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
                                          loadingImageView.centerYAnchor.constraint(equalTo: view.centerYAnchor)])
-            loadingImageView.isHidden = true        
+            loadingImageView.isHidden = true
+            self.loadingImageView = loadingImageView
         }
         
         // Images of UIButton's are taken
@@ -184,7 +185,7 @@ public final class PlayerViewController: UIViewController {
             contentRenderer?.dispatch = props.content?.dispatch
             contentRenderer?.props = props.content?.props
             
-            loadingImageView.isLoading = props.activeContext == .empty
+            loadingImageView?.isLoading = props.activeContext == .empty
             
             view.setNeedsLayout()
         }
