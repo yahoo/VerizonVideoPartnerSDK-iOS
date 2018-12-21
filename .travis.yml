@@ -19,6 +19,7 @@ matrix:
     - ". ./fastlane/travis-scripts/pre-xcode10.sh"
     script:
     - bundle exec fastlane test
+    - bundle exec fastlane build_tvos_target
     - bundle exec danger || true
     
 notifications:
