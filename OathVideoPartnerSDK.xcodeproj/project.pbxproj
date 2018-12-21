@@ -63,6 +63,7 @@
 		501AB1ED2029F5C700BAFA9C /* SlotOpportunityDetectorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501AB1EC2029F5C700BAFA9C /* SlotOpportunityDetectorTests.swift */; };
 		501C8BD71D1C0B8200C52AB3 /* ContextStartedDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501C8BD61D1C0B8200C52AB3 /* ContextStartedDetector.swift */; };
 		501C8BD91D1C0BAB00C52AB3 /* ContextStartedDetectorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501C8BD81D1C0BAB00C52AB3 /* ContextStartedDetectorTests.swift */; };
+		502288F721CD142C0045B868 /* VRMItemController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E257A9F421C927FF0016D35A /* VRMItemController.swift */; };
 		5034AD2A207E69CA00B5CAA1 /* VideoSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5034AD29207E69CA00B5CAA1 /* VideoSelector.swift */; };
 		5034AD2B207E69CA00B5CAA1 /* VideoSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5034AD29207E69CA00B5CAA1 /* VideoSelector.swift */; };
 		503EB7CE1CE76F510090E595 /* AdManagerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503EB7CD1CE76F510090E595 /* AdManagerPresenter.swift */; };
@@ -1704,6 +1705,7 @@
 				50C99D35200D184B0041B013 /* AdVRMEngine.swift in Sources */,
 				06B13EF32090AB13009A6645 /* AdViewTimeDetector.swift in Sources */,
 				50C99D4B2010B4A00041B013 /* Observer.swift in Sources */,
+				502288F721CD142C0045B868 /* VRMItemController.swift in Sources */,
 				501AB1E52029C69C00BAFA9C /* PlaybackCycleDetector.swift in Sources */,
 				50A11DC01D59D7E000F4A068 /* OVP.swift in Sources */,
 				50A5A5011E69958600C15E12 /* Timer.swift in Sources */,
