@@ -15,14 +15,10 @@ class StartVRMGroupProcessingControllerTest: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        let dispatch = recorder.hook("testDispatchFirstGroup") { target, recorded in
-            guard let target = target as? PlayerCore.VRMCore.StartGroupProcessing,
-                let recorded = recorded as? PlayerCore.VRMCore.StartGroupProcessing else {
-                    return false
-            }
-            return target.group == recorded.group
-            
-            } as (PlayerCore.Action) -> ()
+        let actionComparator = ActionComparator<VRMCore.StartGroupProcessing> {
+            $0.group == $1.group
+        }
+        let dispatch = recorder.hook("dispatch", cmp: actionComparator.compare)
         
         sut = StartVRMGroupProcessingController(dispatch: dispatch)
     }

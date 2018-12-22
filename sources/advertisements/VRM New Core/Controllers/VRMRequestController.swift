@@ -9,19 +9,21 @@ func mapGroups(from itemsArray: [[VRMProvider.Item]] ) -> [VRMCore.Group] {
         let transformedItems = group.map { item -> VRMCore.Item in
             switch item {
             case let .url(url, metainfo):
-                return VRMCore.Item.url(url, .init(engineType: metainfo.engineType,
-                                                   ruleId: metainfo.ruleId,
-                                                   ruleCompanyId: metainfo.ruleCompanyId,
-                                                   vendor: metainfo.vendor,
-                                                   name: metainfo.name,
-                                                   cpm: metainfo.cpm))
+                return VRMCore.Item(source: .url(url),
+                                    metaInfo: .init(engineType: metainfo.engineType,
+                                                    ruleId: metainfo.ruleId,
+                                                    ruleCompanyId: metainfo.ruleCompanyId,
+                                                    vendor: metainfo.vendor,
+                                                    name: metainfo.name,
+                                                    cpm: metainfo.cpm))
             case let .vast(vastString, metainfo):
-                return VRMCore.Item.vast(vastString, .init(engineType: metainfo.engineType,
-                                                           ruleId: metainfo.ruleId,
-                                                           ruleCompanyId: metainfo.ruleCompanyId,
-                                                           vendor: metainfo.vendor,
-                                                           name: metainfo.name,
-                                                           cpm: metainfo.cpm))
+                return VRMCore.Item(source: .vast(vastString),
+                                    metaInfo: .init(engineType: metainfo.engineType,
+                                                    ruleId: metainfo.ruleId,
+                                                    ruleCompanyId: metainfo.ruleCompanyId,
+                                                    vendor: metainfo.vendor,
+                                                    name: metainfo.name,
+                                                    cpm: metainfo.cpm))
                 
             }
         }

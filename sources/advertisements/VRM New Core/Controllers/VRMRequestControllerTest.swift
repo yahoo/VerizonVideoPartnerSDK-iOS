@@ -8,6 +8,15 @@ import XCTest
 class VRMRequestControllerTest: XCTestCase {
     
     let recorder = Recorder()
+    let responseActionComparator = ActionComparator<VRMCore.VRMResponseAction> {
+        $0.slot == $1.slot &&
+        $0.transactionId == $1.transactionId &&
+        $0.groups == $1.groups
+    }
+    let fetchFaildActionComparator = ActionComparator<VRMCore.VRMResponseFetchFailed> {
+        $0.requestID == $1.requestID
+    }
+    
     let url = URL(string: "http://test.com")!
     let vrmURL = URL(string: "http://vrm.com")!
     let vastString = "vast String"
@@ -54,15 +63,7 @@ class VRMRequestControllerTest: XCTestCase {
             return []
         }
         
-        let dispatch: (PlayerCore.Action) -> Void = recorder.hook("dispatch ad response") { targetAction, recordedAction -> Bool in
-            guard let targetAction = targetAction as? PlayerCore.VRMCore.VRMResponseAction,
-                let recordedAction = recordedAction as? PlayerCore.VRMCore.VRMResponseAction else {
-                    return false
-            }
-            return targetAction.slot == recordedAction.slot &&
-                targetAction.transactionId == recordedAction.transactionId &&
-                targetAction.groups == recordedAction.groups
-        }
+        let dispatch = recorder.hook("dispatch ad response", cmp: responseActionComparator.compare)
         
         let sut = VRMRequestController(dispatch: dispatch,
                                        groupsMapper: groupsMapper,
@@ -109,13 +110,7 @@ class VRMRequestControllerTest: XCTestCase {
             return []
         }
         
-        let dispatch: (PlayerCore.Action) -> Void = recorder.hook("dispatch ad response") { targetAction, recordedAction -> Bool in
-            guard let targetAction = targetAction as? PlayerCore.VRMCore.VRMResponseFetchFailed,
-                let recordedAction = recordedAction as? PlayerCore.VRMCore.VRMResponseFetchFailed else {
-                    return false
-            }
-            return targetAction.requestID == recordedAction.requestID
-        }
+        let dispatch = recorder.hook("dispatch ad response", cmp: fetchFaildActionComparator.compare)
         
         let sut = VRMRequestController(dispatch: dispatch,
                                        groupsMapper: groupsMapper,
@@ -137,11 +132,11 @@ class VRMRequestControllerTest: XCTestCase {
 extension VRMCore.Item {
     public static func ==(lsv: VRMCore.Item,
                           rsv: VRMProvider.Item) -> Bool {
-        switch (lsv, rsv) {
-        case let (.url(urlLeft, metaInfoLeft), .url(urlRight, metaInfoRight)):
-            return urlLeft == urlRight && metaInfoLeft == metaInfoRight
-        case let (.vast(vastLeft, metaInfoLeft), .vast(vastRight, metaInfoRight)):
-            return vastLeft == vastRight && metaInfoLeft == metaInfoRight
+        switch (lsv.source, rsv) {
+        case let (.url(urlLeft), .url(urlRight, metaInfoRight)):
+            return urlLeft == urlRight && lsv.metaInfo == metaInfoRight
+        case let (.vast(vastLeft), .vast(vastRight, metaInfoRight)):
+            return vastLeft == vastRight && lsv.metaInfo == metaInfoRight
         default: return false
         }
     }
