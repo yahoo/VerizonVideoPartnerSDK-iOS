@@ -153,8 +153,7 @@ extension TrackingPixels.Connector {
                                     adId: holder.adID,
                                     transactionId: state.transactionIDHolder?.transactionID,
                                     adCurrentTime: result.time,
-                                    adDuration: result.duration,
-                                    cpm: holder.info.cpm)
+                                    adDuration: result.duration)
             }
         }
         /* Slot Opportunity Detector */ do {
