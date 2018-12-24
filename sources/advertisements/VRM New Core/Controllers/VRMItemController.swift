@@ -22,14 +22,13 @@ final class VRMItemController {
         scheduledItems
             .subtracting(startedItems)
             .forEach { item in
-            switch (item.source) {
-            case let .url(url):
                 startedItems.insert(item)
-                dispatch(VRMCore.startItemFetch(originalItem: item, url: url))
-            case let .vast(vastXML):
-                startedItems.insert(item)
-                dispatch(VRMCore.startItemParsing(originalItem: item, vastXML: vastXML))
-            }
+                switch (item.source) {
+                case let .url(url):
+                    dispatch(VRMCore.startItemFetch(originalItem: item, url: url))
+                case let .vast(vastXML):
+                    dispatch(VRMCore.startItemParsing(originalItem: item, vastXML: vastXML))
+                }
         }
     }
 }

@@ -406,23 +406,27 @@ public struct OVPSDK {
         }
         
         func setupVRMWithNewCore() {
+            let createRequest: (URL) -> (URLRequest) = {
+                .init(url: $0, timeoutInterval: hardTimeout)
+            }
             let adStartProcessing = StartAdProcessingController(dispatch: dispatcher)
             let startGroupProcessing = StartVRMGroupProcessingController(dispatch: dispatcher)
             let itemController = VRMItemController(dispatch: dispatcher)
+            let itemFetchController = FetchVRMItemController(dispatch: dispatcher) { url in
+                return self.ephemeralSession.dataFuture(with: createRequest(url))
+                           .map(Network.Parse.successResponseData)
+                           .map(Network.Parse.string)
+            }
             let vrmRequestController = VRMRequestController(dispatch: dispatcher,
                                                             groupsMapper: mapGroups) { url in
-                                                                return Future { fullfill in
-                                                                    self.vrmProvider.requestAds(with: .init(url: url,
-                                                                                                            cachePolicy: .useProtocolCachePolicy,
-                                                                                                            timeoutInterval: hardTimeout))
-                                                                        .onComplete(callback: fullfill)
-                                                                }
+                                                                return self.vrmProvider.requestAds(with: createRequest(url))
             }
             
             _ = player.store.state.addObserver { state in
                 vrmRequestController.process(with: state)
                 startGroupProcessing.process(with: state)
                 itemController.process(with: state)
+                itemFetchController.process(with: state)
             }
             
             _ = player.addObserver { playerProps in
