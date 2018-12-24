@@ -180,6 +180,7 @@
 		50FEC4001DDF58A20013DA99 /* NonEmptyString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FEC3FE1DDF58A20013DA99 /* NonEmptyString.swift */; };
 		861AF6D31D994DC80086B8EF /* Nimble.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 861AF6D11D994DC80086B8EF /* Nimble.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		861AF6D41D994DC80086B8EF /* Quick.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 861AF6D21D994DC80086B8EF /* Quick.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		9A1469E621CE9549007315BA /* ActionComparator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1469E521CE9549007315BA /* ActionComparator.swift */; };
 		A614D83720581451001FFD4E /* MidrollDetectorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A614D83620581451001FFD4E /* MidrollDetectorTests.swift */; };
 		A61B687C2029BB98007CFB32 /* Metrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = A61B687B2029BB98007CFB32 /* Metrics.swift */; };
 		A61B687D2029BB98007CFB32 /* Metrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = A61B687B2029BB98007CFB32 /* Metrics.swift */; };
@@ -507,6 +508,7 @@
 		50FEC3FE1DDF58A20013DA99 /* NonEmptyString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NonEmptyString.swift; sourceTree = "<group>"; };
 		861AF6D11D994DC80086B8EF /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/iOS/Nimble.framework; sourceTree = "<group>"; };
 		861AF6D21D994DC80086B8EF /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/iOS/Quick.framework; sourceTree = "<group>"; };
+		9A1469E521CE9549007315BA /* ActionComparator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionComparator.swift; sourceTree = "<group>"; };
 		A614D83620581451001FFD4E /* MidrollDetectorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MidrollDetectorTests.swift; sourceTree = "<group>"; };
 		A61B687B2029BB98007CFB32 /* Metrics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Metrics.swift; path = sources/telemetry/Metrics.swift; sourceTree = "<group>"; };
 		B418F5461ECB267B00C9131D /* VASTWrapper.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = VASTWrapper.xml; sourceTree = "<group>"; };
@@ -1179,6 +1181,7 @@
 				DEBAA7BE1E154D4100DFC359 /* Future.swift */,
 				DEBAA7C71E1571A100DFC359 /* Result.swift */,
 				50A5A4FF1E69958600C15E12 /* Timer.swift */,
+				9A1469E521CE9549007315BA /* ActionComparator.swift */,
 			);
 			name = utils;
 			path = sources/utils;
@@ -1881,6 +1884,7 @@
 				E257A9FB21C93F4A0016D35A /* VRMItemControllerTest.swift in Sources */,
 				50C4602E1C80C36D002AB8AB /* VideoTimeDetectorTests.swift in Sources */,
 				507A83C11D19799F0013B729 /* ExecuteOnceTests.swift in Sources */,
+				9A1469E621CE9549007315BA /* ActionComparator.swift in Sources */,
 				DE1685E71CE76A5D00492A90 /* VASTParserTests.swift in Sources */,
 				E241041621C3FAF400036290 /* VRMRequestControllerTest.swift in Sources */,
 				E231AA7721340100008C5B6A /* AdMaxShowTimeDetectorTest.swift in Sources */,

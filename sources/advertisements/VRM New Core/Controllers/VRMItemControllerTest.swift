@@ -8,12 +8,20 @@ import XCTest
 class VRMItemControllerTest: XCTestCase {
     
     let recorder = Recorder()
+    let parseActionComparator = ActionComparator<VRMCore.StartItemParsing> {
+        $0.vastXML == $1.vastXML && $0.originalItem == $1.originalItem
+    }
+    
+    let fetchActionComparator = ActionComparator<VRMCore.StartItemFetch> {
+        $0.url == $1.url && $0.originalItem == $1.originalItem
+    }
     
     let url = URL(string: "http://test.com")!
     let vastXML = "VAST String"
     var vastItem: VRMCore.Item!
     var urlItem: VRMCore.Item!
     var sut: VRMItemController!
+    
     
     override func setUp() {
         super.setUp()
@@ -24,8 +32,8 @@ class VRMItemControllerTest: XCTestCase {
                                              name: "name",
                                              cpm: "cpm")
         
-        vastItem = VRMCore.Item.vast(vastXML, metaInfo)
-        urlItem = VRMCore.Item.url(url, metaInfo)
+        vastItem = VRMCore.Item(source: .vast(vastXML), metaInfo: metaInfo)
+        urlItem = VRMCore.Item(source: .url(url), metaInfo: metaInfo)
     }
     
     override func tearDown() {
@@ -35,14 +43,7 @@ class VRMItemControllerTest: XCTestCase {
     }
     
     func testStartItemsFetching() {
-        let dispatch: (PlayerCore.Action) -> () = recorder.hook("testStartItemsFetching") { target, recorded -> Bool in
-            switch(target, recorded) {
-            case let ( VRMCore.StartItem.fetching(targetItem, targetUrl, _),
-                       VRMCore.StartItem.fetching(recordedItem, recordedUrl, _) ):
-                return targetUrl == recordedUrl && recordedItem == targetItem
-            default: return false
-            }
-            }
+        let dispatch = recorder.hook("compareFetchActions", cmp: fetchActionComparator.compare)
         
         sut = VRMItemController(dispatch: dispatch)
         
@@ -56,14 +57,7 @@ class VRMItemControllerTest: XCTestCase {
     }
     
     func testStartItemsParsing() {
-        let dispatch: (PlayerCore.Action) -> () = recorder.hook("testStartItemsParsing") { target, recorded -> Bool in
-            switch(target, recorded) {
-            case let ( VRMCore.StartItem.parsing(targetItem, targetVast, _),
-                       VRMCore.StartItem.parsing(recordedItem, recordedVast, _) ):
-                return targetVast == recordedVast && recordedItem == targetItem
-            default: return false
-            }
-            }
+        let dispatch = recorder.hook("testStartItemsParsing", cmp: parseActionComparator.compare)
         
         sut = VRMItemController(dispatch: dispatch)
         
@@ -77,14 +71,7 @@ class VRMItemControllerTest: XCTestCase {
     }
     
     func testDoubleDispatch() {
-        let dispatch: (PlayerCore.Action) -> () = recorder.hook("testDoubleDispatch") { targetAction, recordeAction -> Bool in
-            switch(targetAction, recordeAction) {
-            case let ( VRMCore.StartItem.parsing(targetItem, targetVast, _),
-                       VRMCore.StartItem.parsing(recordedItem, recordedVast, _) ):
-                return targetVast == recordedVast && recordedItem == targetItem
-            default: return false
-            }
-            }
+        let dispatch = recorder.hook("testDoubleDispatch", cmp: parseActionComparator.compare)
         
         sut = VRMItemController(dispatch: dispatch)
         

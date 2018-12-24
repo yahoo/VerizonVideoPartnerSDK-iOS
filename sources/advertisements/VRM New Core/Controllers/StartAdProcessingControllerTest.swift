@@ -13,14 +13,11 @@ class StartAdProcessingControllerTest: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        let dispatch: (PlayerCore.Action) -> Void = recorder.hook("dispatch") { targetAction, recordedAction -> Bool in
-            guard let targetAction = targetAction as? PlayerCore.VRMCore.AdRequest,
-                let recordedAction = recordedAction as? PlayerCore.VRMCore.AdRequest else {
-                    return false
-            }
-            return targetAction.type == recordedAction.type &&
-                targetAction.url == recordedAction.url
+        let actionComparator = ActionComparator<VRMCore.AdRequest> {
+            $0.type == $1.type && $0.url == $1.url
         }
+        let dispatch = recorder.hook("dispatch", cmp: actionComparator.compare)
+        
         sut = StartAdProcessingController(dispatch: dispatch)
     }
     
