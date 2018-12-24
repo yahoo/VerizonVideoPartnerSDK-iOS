@@ -62,13 +62,13 @@ final class VRMRequestController {
             weak var weakSelf = self
             fetchVRMResponse(url).onComplete { response in
                 guard let response = response,
-                      let `self` = weakSelf else {
+                    let `self` = weakSelf else {
                         weakSelf?.dispatch(VRMCore.adResponseFetchFailed(requestID: id))
                         return
                 }
                 weakSelf?.dispatch(VRMCore.adResponse(transactionId: response.transactionId,
-                                                                 slot: response.slot,
-                                                                 groups: self.groupsMapper(response.items)))
+                                                      slot: response.slot,
+                                                      groups: self.groupsMapper(response.items)))
             }
         }
     }

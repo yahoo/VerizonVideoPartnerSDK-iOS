@@ -5,18 +5,18 @@ import Foundation
 import PlayerCore
 
 final class FetchVRMItemController {
-
+    
     let dispatch: (PlayerCore.Action) -> Void
     let fetchUrl: (URL) -> Future<Result<String>>
     
     private var startedItems = Set<PlayerCore.VRMFetchItemQueue.Candidate>()
     
     init(dispatch: @escaping (PlayerCore.Action) -> Void,
-        fetchUrl: @escaping (URL) -> Future<Result<String>>) {
+         fetchUrl: @escaping (URL) -> Future<Result<String>>) {
         self.dispatch = dispatch
         self.fetchUrl = fetchUrl
     }
-
+    
     func process(with state: PlayerCore.State) {
         process(with: state.vrmFetchItemsQueue.candidates)
     }
@@ -33,7 +33,7 @@ final class FetchVRMItemController {
                     }.onError { error in
                         self.dispatch(VRMCore.failedItemFetch(originalItem: fetchCandidate.parentItem,
                                                               fetchCandidate: fetchCandidate))
-                    }
+                }
         }
     }
 }

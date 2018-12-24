@@ -417,6 +417,13 @@ public struct OVPSDK {
                            .map(Network.Parse.successResponseData)
                            .map(Network.Parse.string)
             }
+            let itemParseController = ParseVRMItemController(dispatch: dispatcher,
+                                                             vastMapper: vastMapper) { vastXML in
+                return Future(value: vastXML)
+                        .dispatch(on: DispatchQueue.global(qos: .userInitiated))
+                        .map(VASTParser.parseFrom)
+                
+            }
             let vrmRequestController = VRMRequestController(dispatch: dispatcher,
                                                             groupsMapper: mapGroups) { url in
                                                                 return self.vrmProvider.requestAds(with: createRequest(url))
@@ -427,6 +434,7 @@ public struct OVPSDK {
                 startGroupProcessing.process(with: state)
                 itemController.process(with: state)
                 itemFetchController.process(with: state)
+                itemParseController.process(with: state)
             }
             
             _ = player.addObserver { playerProps in
