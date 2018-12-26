@@ -4,8 +4,6 @@ import Foundation
 
 enum TrackingPixels {}
 
-typealias CostPerMille = String
-
 extension TrackingPixels {
     final class Reporter {
         enum Item {
@@ -374,8 +372,7 @@ extension TrackingPixels.Reporter {
                     adId: String?,
                     transactionId: String?,
                     adCurrentTime: Double,
-                    adDuration: Double,
-                    cpm: CostPerMille?) {
+                    adDuration: Double) {
     
         sendMetric(.tracking(
             TrackingPixels.Generator.adViewTime(
@@ -396,7 +393,7 @@ extension TrackingPixels.Reporter {
                 cb: cachebuster(),
                 al: formatter.string(from: adDuration as NSNumber),
                 m_fwsitesection: context.siteSection,
-                cpm: cpm)))
+                cpm: info.cpm)))
     }
     
     
@@ -592,7 +589,8 @@ extension TrackingPixels.Reporter {
                 r: context.referringURL,
                 vvuid: videoViewUID,
                 cb: cachebuster(),
-                m_fwsitesection: context.siteSection)))
+                m_fwsitesection: context.siteSection,
+                cpm: info.cpm)))
     }
     
     func adStart(info: Ad.Metrics.Info,

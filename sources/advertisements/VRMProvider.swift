@@ -9,7 +9,7 @@ struct VRMProvider {
     struct Response {
         let transactionId: String?
         let slot: String
-        let cpm: CostPerMille?
+        let cpm: String?
         let items: [[Item]]
     }
     
@@ -57,15 +57,15 @@ struct VRMProvider {
             let ruleCompanyId: String?
             let vendor: String
             let name: String?
-            let cpm: CostPerMille?
+            let cpm: String?
         }
         
         case vast(String, MetaInfo)
         case url(URL, MetaInfo)
     }
     
-    static func parseCpm(from json: JSON) throws -> CostPerMille? {
-        guard let cpmEncodedValue: CostPerMille = json.parse("cpm") else { return nil }
+    static func parseCpm(from json: JSON) throws -> String? {
+        guard let cpmEncodedValue: String = json.parse("cpm") else { return nil }
         guard let data = Data(base64Encoded: cpmEncodedValue) else { return nil }
         return String(data: data, encoding: .utf8)
     }
