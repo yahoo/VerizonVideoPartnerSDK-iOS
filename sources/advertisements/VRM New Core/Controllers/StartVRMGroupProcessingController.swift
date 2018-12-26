@@ -20,7 +20,7 @@ final class StartVRMGroupProcessingController {
     func process(with currentGroup: VRMCore.Group?,
                  groupsQueue: [VRMCore.Group]) {
         guard currentGroup == nil,
-        let nextGroup = groupsQueue.first else { return }
+            let nextGroup = groupsQueue.first else { return }
         
         dispatch(VRMCore.startGroupProcessing(group: nextGroup))
     }
