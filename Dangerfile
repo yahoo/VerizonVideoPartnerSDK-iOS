@@ -12,6 +12,6 @@ warn 'Please, set correct Jira link in the PR comment.' if
 github.pr_body.include? "[JIRA Ticket](xxx)"
 
 xcov.report(
-   scheme: 'OathVideoPartnerSDK_iOS',
-   project: 'OathVideoPartnerSDK.xcodeproj'
+   scheme: 'VerizonVideoPartnerSDK_iOS',
+   project: 'VerizonVideoPartnerSDK.xcodeproj'
 )

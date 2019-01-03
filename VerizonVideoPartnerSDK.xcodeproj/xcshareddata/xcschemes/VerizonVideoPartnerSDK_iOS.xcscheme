@@ -93,7 +93,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "DE4C51231C8071D500BFFB0B"
-               BuildableName = "OathVideoPartnerSDKTests.xctest"
+               BuildableName = "VerizonVideoPartnerSDKTests.xctest"
                BlueprintName = "VerizonVideoPartnerSDKTests"
                ReferencedContainer = "container:VerizonVideoPartnerSDK.xcodeproj">
             </BuildableReference>

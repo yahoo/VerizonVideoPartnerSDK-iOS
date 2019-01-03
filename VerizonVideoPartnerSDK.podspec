@@ -20,7 +20,6 @@ DESC
 
   s.source           = { git: 'https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS.git',
                          tag: s.version.to_s }
-  s.resources        = 'support/VerizonVideoPartnerSDK-Version.plist'
   s.source_files     = 'sources/**/*.swift'
   s.exclude_files    = 'sources/utils/Utils.swift', 
                        'sources/utils/Recorder.swift', 
@@ -29,9 +28,12 @@ DESC
                        'sources/**/Contents.swift'
 
   s.ios.exclude_files  = 'sources/default controls'
-  s.tvos.exclude_files = 'sources/custom controls', 'sources/vpaid', 'sources/metrics/open measurement'
+  s.tvos.exclude_files = 'sources/custom controls', 
+                         'sources/vpaid', 
+                         'sources/metrics/open measurement'
 
   s.static_framework = true
+  
   s.dependency 'VideoRenderer', '1.25'
   s.dependency 'PlayerCore', '1.0.2'
   s.ios.dependency 'PlayerControls', '1.27'

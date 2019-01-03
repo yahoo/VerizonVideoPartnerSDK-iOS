@@ -31,15 +31,6 @@ extension VVPSDK {
         
         public static var current: Context {
             let mainInfo = Bundle.main.infoDictionary!
-            let plistPathFromMainBundle = Bundle.main.path(forResource: "VerizonVideoPartnerSDK-Version",
-                                                           ofType: "plist")
-            let plistPathFromSDKBundle = Bundle(identifier: "com.Verizon.VideoPartnerSDK")?
-                .path(forResource: "VerizonVideoPartnerSDK-Version", ofType: "plist")
-            
-            guard let file = plistPathFromSDKBundle ?? plistPathFromMainBundle else {
-                fatalError("VerizonVideoPartnerSDK info plist file is missing") }
-            guard let sdkInfo = NSDictionary(contentsOfFile: file) else {
-                fatalError("VerizonVideoPartnerSDK info plist file has wrong format") }
             
             let hardwareVersion: String = {
                 var sysinfo = utsname()
@@ -62,7 +53,7 @@ extension VVPSDK {
                     model: hardwareVersion,
                     os: UIDevice.current.systemVersion),
                 sdk: SDK.init(
-                    version: sdkInfo["CFBundleVersion"] as! String,
+                    version: "2.31",
                     renderers: Renderer.Repository.shared.availableRenderers
                 ),
                 extra: [:])

@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0601B21B214947F900C42920 /* VerizonVideoPartnerSDK-Version.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0601B212214947F900C42920 /* VerizonVideoPartnerSDK-Version.plist */; };
-		0601B21C214947F900C42920 /* VerizonVideoPartnerSDK-Version.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0601B212214947F900C42920 /* VerizonVideoPartnerSDK-Version.plist */; };
 		061CFFFC211C7263002B5BE9 /* MuteDetectorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061CFFFB211C7263002B5BE9 /* MuteDetectorTests.swift */; };
 		061CFFFE211C7272002B5BE9 /* MuteDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061CFFFD211C7272002B5BE9 /* MuteDetector.swift */; };
 		061CFFFF211C7272002B5BE9 /* MuteDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061CFFFD211C7272002B5BE9 /* MuteDetector.swift */; };
@@ -424,7 +422,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0601B212214947F900C42920 /* VerizonVideoPartnerSDK-Version.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "VerizonVideoPartnerSDK-Version.plist"; sourceTree = "<group>"; };
 		061CFFFB211C7263002B5BE9 /* MuteDetectorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MuteDetectorTests.swift; sourceTree = "<group>"; };
 		061CFFFD211C7272002B5BE9 /* MuteDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MuteDetector.swift; sourceTree = "<group>"; };
 		062E9B3D20F5097C00AF1D54 /* PlayerViewController_Clickthrough.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PlayerViewController_Clickthrough.swift; path = "sources/custom controls/PlayerViewController_Clickthrough.swift"; sourceTree = "<group>"; };
@@ -1039,7 +1036,6 @@
 				DEBE4A961CA407AA006E01C1 /* VerizonVideoPartnerSDK.h */,
 				DE4C512B1C8071D500BFFB0B /* TestsInfo.plist */,
 				DE4C511F1C8071D500BFFB0B /* VerizonVideoPartnerSDK-Info.plist */,
-				0601B212214947F900C42920 /* VerizonVideoPartnerSDK-Version.plist */,
 			);
 			path = support;
 			sourceTree = "<group>";
@@ -1572,7 +1568,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0601B21C214947F900C42920 /* VerizonVideoPartnerSDK-Version.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1580,7 +1575,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0601B21B214947F900C42920 /* VerizonVideoPartnerSDK-Version.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
