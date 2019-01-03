@@ -58,7 +58,7 @@ end
 
 lane :test do
   scan(
-    scheme: 'OathVideoPartnerSDK_iOS',
+    scheme: 'VerizonVideoPartnerSDK_iOS',
     sdk: 'iphonesimulator',
     devices: ['iPhone 8'],
     clean: false
@@ -85,7 +85,7 @@ lane :release_description do |options|
   "\n"\
   "# Examples\n"\
   "\n"\
-  "Checkout [Tutorials](https://github.com/OathAdPlatforms/OathVideoPartnerSDK-iOS/OathVideoPartnerSDK-Tutorials) for up-to-date integration and usage examples.\n"\
+  "Checkout [Tutorials](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/VerizonVideoPartnerSDK-Tutorials) for up-to-date integration and usage examples.\n"\
   "\n"\
   "# Change Log\n"\
   "\n"
@@ -102,7 +102,7 @@ lane :release_description do |options|
   end
 end
 
-# podspec_path ./podspecs/OathVideoPartnerSDK.podspec'
+# podspec_path ./podspecs/VerizonVideoPartnerSDK.podspec'
 # swift_version 4.2
 lane :travis_prerelease_sdk do |options|
   update_dependencies
@@ -120,7 +120,7 @@ lane :travis_prerelease_sdk do |options|
   end
 end
 
-desc 'Make pre-release of OathVideoPartnerSDK'
+desc 'Make pre-release of VerizonVideoPartnerSDK'
 lane :prerelease_sdk do |options|
   next unless is_branch_up_to_date(git_branch: git_branch)
 
@@ -145,27 +145,27 @@ lane :prerelease_sdk do |options|
     next UI.message 'It is pull request - skipping prerelease.' if is_pull_request
   end
 
-  UI.important 'Starting prerelease of OathVideoPartnerSDK...'
+  UI.important 'Starting prerelease of VerizonVideoPartnerSDK...'
 
   build
   archive(
-    frameworks: 'OathVideoPartnerSDK,PlayerControls,VideoRenderer,PlayerCore',
+    frameworks: 'VerizonVideoPartnerSDK,PlayerControls,VideoRenderer,PlayerCore',
     name: archive_name
   )
   omsdk_name = 'OMSDK_Oath2.framework'
   compress(input: omsdk_name,
            output: "#{omsdk_name}.zip")
 
-  sources_repo = 'https://github.com/OathAdPlatforms/OneMobileSDK-releases-iOS.git'
+  sources_repo = 'https://github.com/VerizonAdPlatforms/OneMobileSDK-releases-iOS.git'
 
-  version = get_version_number(xcodeproj: 'OathVideoPartnerSDK.xcodeproj', target: 'OathVideoPartnerSDK_iOS')
+  version = get_version_number(xcodeproj: 'VerizonVideoPartnerSDK.xcodeproj', target: 'VerizonVideoPartnerSDK_iOS')
   UI.user_error!('Version not found!') if version.nil?
   UI.message "Found version: '#{version}'"
 
   github_releases_api(action: 'delete_latest_prerelease', tag: version)
 
   release = set_github_release(
-    repository_name: 'OathAdPlatforms/OneMobileSDK-releases-iOS',
+    repository_name: 'VerizonAdPlatforms/OneMobileSDK-releases-iOS',
     name: "Version #{version}",
     tag_name: version,
     description: release_description(token: github_api_token),
@@ -186,7 +186,7 @@ lane :prerelease_sdk do |options|
   deploy_podspec(
     podspec_path: podspec_name,
     spec_repo_name: 'onemobile-sdk-podspecs',
-    spec_repo_url: 'git@github.com:OathAdPlatforms/OneMobileSDK-releases-iOS.git',
+    spec_repo_url: 'git@github.com:VerizonAdPlatforms/OneMobileSDK-releases-iOS.git',
     sources_repo: sources_repo,
     swift_version: swift_version
   )
@@ -194,10 +194,10 @@ lane :prerelease_sdk do |options|
     force: true,
     files: [podspec_name]
   )
-  UI.important 'Finished prerelease of OathVideoPartnerSDK!'
+  UI.important 'Finished prerelease of VerizonVideoPartnerSDK!'
 end
 
-# Usage like these expected 'bundle exec fastlane release_sdk next_version:1.0 swift_version:4.2 podspec_path:./podspecs/OathVideoPartnerSDK.podspec'
+# Usage like these expected 'bundle exec fastlane release_sdk next_version:1.0 swift_version:4.2 podspec_path:./podspecs/VerizonVideoPartnerSDK.podspec'
 desc 'Release current SDK version and bump project to provided version'
 lane :release_sdk do |options|
   next unless is_branch_up_to_date(git_branch: git_branch)
@@ -214,7 +214,7 @@ lane :release_sdk do |options|
 
   UI.user_error!('You have to release video renderer!') if is_latest_video_renderer
 
-  release_version = get_version_number(xcodeproj: 'OathVideoPartnerSDK.xcodeproj', target: 'OathVideoPartnerSDK_iOS')
+  release_version = get_version_number(xcodeproj: 'VerizonVideoPartnerSDK.xcodeproj', target: 'VerizonVideoPartnerSDK_iOS')
 
   response = github_releases_api(
     action: 'get_github_releases',
@@ -241,8 +241,8 @@ lane :release_sdk do |options|
   deploy_podspec(
     podspec_path: podspec_name,
     spec_repo_name: 'onemobile-sdk-podspecs',
-    spec_repo_url: 'git@github.com:OathAdPlatforms/OneMobileSDK-releases-iOS.git',
-    sources_repo: 'https://github.com/OathAdPlatforms/OneMobileSDK-releases-iOS.git',
+    spec_repo_url: 'git@github.com:VerizonAdPlatforms/OneMobileSDK-releases-iOS.git',
+    sources_repo: 'https://github.com/VerizonAdPlatforms/OneMobileSDK-releases-iOS.git',
     swift_version: swift_version
   )
   reset_git_repo(
@@ -254,12 +254,12 @@ lane :release_sdk do |options|
 
   increment_version_number(
     version_number: next_version,
-    xcodeproj: 'OathVideoPartnerSDK.xcodeproj'
+    xcodeproj: 'VerizonVideoPartnerSDK.xcodeproj'
   )
   git_commit(
     path: [
-      './support/OathVideoPartnerSDK-Info.plist',
-      './support/OathVideoPartnerSDK-Version.plist',
+      './support/VerizonVideoPartnerSDK-Info.plist',
+      './support/VerizonVideoPartnerSDK-Version.plist',
       './support/TestsInfo.plist',
     ],
     message: "Bumping to #{next_version}"

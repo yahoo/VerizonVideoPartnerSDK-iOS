@@ -9,7 +9,7 @@ import OMSDK_Oath2
 #endif
 /// Glue code for connecting all parts of an SDK.
 /// It contains some configuration details for other components.
-public struct OVPSDK {
+public struct VVPSDK {
     private let configuration: Configuration
     
     public let videoProvider: VideoProvider
@@ -19,10 +19,10 @@ public struct OVPSDK {
     private static let defaultSession = URLSession(configuration: .default)
     private var telemetryMetrics: Telemetry.Metrics?
     
-    /// Initialiser for OVPSDK struct.
+    /// Initialiser for VVPSDK struct.
     ///
     /// - parameter configuration: Describe fields and behaviors of an SDK instance
-    /// - returns: OVPSDK struct.
+    /// - returns: VVPSDK struct.
     public init(configuration: Configuration) {
         self.configuration = configuration
         /* setup ephemeral session */ do {
@@ -102,7 +102,7 @@ public struct OVPSDK {
     ///   ```
     ///
     /// - returns: Async code helper.
-    @available(tvOS, unavailable, message: "OathVideoPartnerSDK currently supports only single video playback")
+    @available(tvOS, unavailable, message: "VerizonVideoPartnerSDK currently supports only single video playback")
     public func getPlayer(playlistID: String,
                           autoplay: Bool = true,
                           siteSection: String = "") -> Future<Result<Player>> {
@@ -310,7 +310,7 @@ public struct OVPSDK {
             
             let jsAnalytics = AnalyticsObserver(context: context,
                                                 jsSourceUrl: javascript.source,
-                                                session: OVPSDK.defaultSession,
+                                                session: VVPSDK.defaultSession,
                                                 send: send,
                                                 report: jsTelemetry.send)
             _ = player.addObserver(jsAnalytics.process)

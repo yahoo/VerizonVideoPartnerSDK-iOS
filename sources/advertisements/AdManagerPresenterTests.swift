@@ -3,7 +3,7 @@
 
 import Quick
 import Nimble
-@testable import OathVideoPartnerSDK
+@testable import VerizonVideoPartnerSDK
 @testable import PlayerCore
 
 class AdManagerPresenterTests: QuickSpec {

@@ -4,7 +4,7 @@
 import XCTest
 import Nimble
 
-@testable import OathVideoPartnerSDK
+@testable import VerizonVideoPartnerSDK
 
 class QuartileDetectorTests: XCTestCase {
     var sut: Detectors.Quartile!

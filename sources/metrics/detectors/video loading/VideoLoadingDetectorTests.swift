@@ -4,7 +4,7 @@
 import XCTest
 import CoreMedia
 import PlayerCore
-@testable import OathVideoPartnerSDK
+@testable import VerizonVideoPartnerSDK
 
 class VideoLoadingDetectorIntegrationTests: XCTestCase {
     var detector: Detectors.VideoLoading!

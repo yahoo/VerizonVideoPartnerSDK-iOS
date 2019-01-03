@@ -42,32 +42,32 @@ func parse(any: Any?) throws -> URL {
     return url
 }
 
-func parse(any: Any?) throws -> OVPSDK.Configuration.Service {
+func parse(any: Any?) throws -> VVPSDK.Configuration.Service {
     let any: Any = try any |> parse
     let json: JSON = try any |> parse
     
-    return try OVPSDK.Configuration.Service(
+    return try VVPSDK.Configuration.Service(
         url: json["url"] |> parse,
         context: json["context"] |> parse
     )
 }
 
 
-func parse(any: Any?) throws -> OVPSDK.Configuration.VPAID {
+func parse(any: Any?) throws -> VVPSDK.Configuration.VPAID {
     let any: Any = try any |> parse
     let json: JSON = try any |> parse
     
-    return try OVPSDK.Configuration.VPAID(document: json["document"] |> parse)
+    return try VVPSDK.Configuration.VPAID(document: json["document"] |> parse)
 }
 
-func parse(any: Any?) throws -> OVPSDK.Configuration.OpenMeasurement {
+func parse(any: Any?) throws -> VVPSDK.Configuration.OpenMeasurement {
     let any: Any = try any |> parse
     let json: JSON = try any |> parse
     
-    return try OVPSDK.Configuration.OpenMeasurement(script: json["script"] |> parse)
+    return try VVPSDK.Configuration.OpenMeasurement(script: json["script"] |> parse)
 }
 
-func parse(any: Any?) throws -> OVPSDK.Configuration.Tracking {
+func parse(any: Any?) throws -> VVPSDK.Configuration.Tracking {
     let any: Any = try any |> parse
     let json: JSON = try any |> parse
     
@@ -81,22 +81,22 @@ func parse(any: Any?) throws -> OVPSDK.Configuration.Tracking {
     }
 }
 
-func parse(any: Any?) throws -> OVPSDK.Configuration.Tracking.Javascript {
+func parse(any: Any?) throws -> VVPSDK.Configuration.Tracking.Javascript {
     let any: Any = try any |> parse
     let json: JSON = try any |> parse
     
-    return try OVPSDK.Configuration.Tracking.Javascript(
+    return try VVPSDK.Configuration.Tracking.Javascript(
         source: json["source"] |> parse,
         telemetry: json["telemetry"] |> parse
     )
 }
 
-func parse(any: Any?) throws -> OVPSDK.Configuration {
+func parse(any: Any?) throws -> VVPSDK.Configuration {
     let any: Any = try any |> parse
     let json: JSON = try any |> parse
     let config: JSON = try json["config"] |> parse
     
-    return try OVPSDK.Configuration(
+    return try VVPSDK.Configuration(
         userAgent: config["userAgent"] |> parse,
         video: config["video"] |> parse,
         vpaid: config["vpaid"] |> parse,

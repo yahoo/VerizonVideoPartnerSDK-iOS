@@ -3,7 +3,7 @@
 import AdSupport
 import VideoRenderer
 
-extension OVPSDK {
+extension VVPSDK {
     public struct Context {
         public struct Client {
             public var id: String
@@ -31,15 +31,15 @@ extension OVPSDK {
         
         public static var current: Context {
             let mainInfo = Bundle.main.infoDictionary!
-            let plistPathFromMainBundle = Bundle.main.path(forResource: "OathVideoPartnerSDK-Version",
+            let plistPathFromMainBundle = Bundle.main.path(forResource: "VerizonVideoPartnerSDK-Version",
                                                            ofType: "plist")
-            let plistPathFromSDKBundle = Bundle(identifier: "com.Oath.VideoPartnerSDK")?
-                .path(forResource: "OathVideoPartnerSDK-Version", ofType: "plist")
+            let plistPathFromSDKBundle = Bundle(identifier: "com.Verizon.VideoPartnerSDK")?
+                .path(forResource: "VerizonVideoPartnerSDK-Version", ofType: "plist")
             
             guard let file = plistPathFromSDKBundle ?? plistPathFromMainBundle else {
-                fatalError("OathVideoPartnerSDK info plist file is missing") }
+                fatalError("VerizonVideoPartnerSDK info plist file is missing") }
             guard let sdkInfo = NSDictionary(contentsOfFile: file) else {
-                fatalError("OathVideoPartnerSDK info plist file has wrong format") }
+                fatalError("VerizonVideoPartnerSDK info plist file has wrong format") }
             
             let hardwareVersion: String = {
                 var sysinfo = utsname()

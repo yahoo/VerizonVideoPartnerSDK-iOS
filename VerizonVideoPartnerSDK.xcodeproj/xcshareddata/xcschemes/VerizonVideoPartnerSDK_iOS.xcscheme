@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "DE4C511A1C8071D500BFFB0B"
-               BuildableName = "OathVideoPartnerSDK.framework"
-               BlueprintName = "OathVideoPartnerSDK_iOS"
-               ReferencedContainer = "container:OathVideoPartnerSDK.xcodeproj">
+               BuildableName = "VerizonVideoPartnerSDK.framework"
+               BlueprintName = "VerizonVideoPartnerSDK_iOS"
+               ReferencedContainer = "container:VerizonVideoPartnerSDK.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -75,9 +75,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "DE4C511A1C8071D500BFFB0B"
-            BuildableName = "OathVideoPartnerSDK.framework"
-            BlueprintName = "OathVideoPartnerSDK_iOS"
-            ReferencedContainer = "container:OathVideoPartnerSDK.xcodeproj">
+            BuildableName = "VerizonVideoPartnerSDK.framework"
+            BlueprintName = "VerizonVideoPartnerSDK_iOS"
+            ReferencedContainer = "container:VerizonVideoPartnerSDK.xcodeproj">
          </BuildableReference>
          <BuildableReference
             BuildableIdentifier = "primary"
@@ -94,8 +94,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "DE4C51231C8071D500BFFB0B"
                BuildableName = "OathVideoPartnerSDKTests.xctest"
-               BlueprintName = "OathVideoPartnerSDKTests"
-               ReferencedContainer = "container:OathVideoPartnerSDK.xcodeproj">
+               BlueprintName = "VerizonVideoPartnerSDKTests"
+               ReferencedContainer = "container:VerizonVideoPartnerSDK.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -103,9 +103,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "DE4C511A1C8071D500BFFB0B"
-            BuildableName = "OathVideoPartnerSDK.framework"
-            BlueprintName = "OathVideoPartnerSDK_iOS"
-            ReferencedContainer = "container:OathVideoPartnerSDK.xcodeproj">
+            BuildableName = "VerizonVideoPartnerSDK.framework"
+            BlueprintName = "VerizonVideoPartnerSDK_iOS"
+            ReferencedContainer = "container:VerizonVideoPartnerSDK.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -125,9 +125,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "DE4C511A1C8071D500BFFB0B"
-            BuildableName = "OathVideoPartnerSDK.framework"
-            BlueprintName = "OathVideoPartnerSDK_iOS"
-            ReferencedContainer = "container:OathVideoPartnerSDK.xcodeproj">
+            BuildableName = "VerizonVideoPartnerSDK.framework"
+            BlueprintName = "VerizonVideoPartnerSDK_iOS"
+            ReferencedContainer = "container:VerizonVideoPartnerSDK.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -143,9 +143,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "DE4C511A1C8071D500BFFB0B"
-            BuildableName = "OathVideoPartnerSDK.framework"
-            BlueprintName = "OathVideoPartnerSDK_iOS"
-            ReferencedContainer = "container:OathVideoPartnerSDK.xcodeproj">
+            BuildableName = "VerizonVideoPartnerSDK.framework"
+            BlueprintName = "VerizonVideoPartnerSDK_iOS"
+            ReferencedContainer = "container:VerizonVideoPartnerSDK.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>

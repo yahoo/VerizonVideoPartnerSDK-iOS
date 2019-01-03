@@ -3,7 +3,7 @@
 
 import Quick
 import Nimble
-@testable import OathVideoPartnerSDK
+@testable import VerizonVideoPartnerSDK
 
 class VRMRequestTests: QuickSpec {
     override func spec() { //swiftlint:disable:this function_body_length

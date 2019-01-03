@@ -3,7 +3,7 @@
 
 import XCTest
 import PlayerCore
-@testable import OathVideoPartnerSDK
+@testable import VerizonVideoPartnerSDK
 
 class AdURLProviderTests: XCTestCase {
     

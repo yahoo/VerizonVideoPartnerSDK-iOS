@@ -4,7 +4,7 @@
 import XCTest
 import Quick
 import Nimble
-@testable import OathVideoPartnerSDK
+@testable import VerizonVideoPartnerSDK
 
 class UserActionInitiatedTests: QuickSpec {
     override func spec() {

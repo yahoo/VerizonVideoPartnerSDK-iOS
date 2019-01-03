@@ -3,7 +3,7 @@
 
 import XCTest
 import CoreMedia
-@testable import OathVideoPartnerSDK
+@testable import VerizonVideoPartnerSDK
 
 class ThreeSecPlaybackDetectorTests: XCTestCase {
     

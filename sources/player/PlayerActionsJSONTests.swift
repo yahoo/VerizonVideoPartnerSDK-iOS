@@ -4,7 +4,7 @@
 import XCTest
 import CoreMedia
 import PlayerCore
-@testable import OathVideoPartnerSDK
+@testable import VerizonVideoPartnerSDK
 
 extension PlayerCore.AdPixels: Equatable {
     public static func ==(lhs: PlayerCore.AdPixels, rhs: PlayerCore.AdPixels) -> Bool {
