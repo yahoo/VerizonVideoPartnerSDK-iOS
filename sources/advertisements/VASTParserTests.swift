@@ -4,7 +4,7 @@
 import XCTest
 import Foundation
 
-@testable import OathVideoPartnerSDK
+@testable import VerizonVideoPartnerSDK
 
 class VASTParserTests: XCTestCase {
     var bundle: Bundle { return Bundle(for: type(of: self)) }

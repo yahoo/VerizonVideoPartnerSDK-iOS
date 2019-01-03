@@ -2,7 +2,7 @@
 //  Licensed under the terms of the MIT License. See LICENSE.md file in project root for terms.
 import Foundation
 
-extension OVPSDK {
+extension VVPSDK {
     public struct Configuration {
         
         public enum Error: Swift.Error {

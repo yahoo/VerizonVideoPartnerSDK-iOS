@@ -36,17 +36,17 @@ extension TrackingPixels.Connector {
                                       videoViewUID: state.playbackSession.id.uuidString)
             case .startItem(let start):
                 reporter.adEngineRequest(videoIndex: state.playlist.currentIndex,
-                                         info: OathVideoPartnerSDK.info(from: start.info),
+                                         info: VerizonVideoPartnerSDK.info(from: start.info),
                                          type: adType,
                                          transactionId: start.transactionID,
                                          videoViewUID: state.playbackSession.id.uuidString)
-                reporter.adServerRequest(info: OathVideoPartnerSDK.info(from: start.info),
+                reporter.adServerRequest(info: VerizonVideoPartnerSDK.info(from: start.info),
                                          videoIndex: state.playlist.currentIndex,
                                          videoViewUID: state.playbackSession.id.uuidString)
                 
             case .completeItem(let item):
                 reporter.adEngineResponse(videoIndex: state.playlist.currentIndex,
-                                          info: OathVideoPartnerSDK.info(from: item.info),
+                                          info: VerizonVideoPartnerSDK.info(from: item.info),
                                           type: adType,
                                           responseStatus: .yes,
                                           responseTime: UInt(item.responseTime),
@@ -56,7 +56,7 @@ extension TrackingPixels.Connector {
                                           videoViewUID: state.playbackSession.id.uuidString)
             case .timeoutItem(let timeout):
                 reporter.adEngineResponse(videoIndex: state.playlist.currentIndex,
-                                          info: OathVideoPartnerSDK.info(from: timeout.info),
+                                          info: VerizonVideoPartnerSDK.info(from: timeout.info),
                                           type: adType,
                                           responseStatus: .timeout,
                                           responseTime: UInt(timeout.responseTime),
@@ -66,7 +66,7 @@ extension TrackingPixels.Connector {
                                           videoViewUID: state.playbackSession.id.uuidString)
             case .otherErrorItem(let other):
                 reporter.adEngineResponse(videoIndex: state.playlist.currentIndex,
-                                          info: OathVideoPartnerSDK.info(from: other.info),
+                                          info: VerizonVideoPartnerSDK.info(from: other.info),
                                           type: adType,
                                           responseStatus: .no,
                                           responseTime: UInt(other.responseTime),
@@ -100,7 +100,7 @@ extension TrackingPixels.Connector {
             guard
                 case .finish(let finish) = state.adVRMManager.request.state,
                 let completeItem = finish.completeItem else { return }
-            let info = OathVideoPartnerSDK.info(from: completeItem.info)
+            let info = VerizonVideoPartnerSDK.info(from: completeItem.info)
             
             func pixels() -> PlayerCore.AdPixels {
                 if let pixels = state.adInfoHolder?.pixels {
@@ -145,7 +145,7 @@ extension TrackingPixels.Connector {
             
             if let result = adViewTimeDetector.process(newInput: input) {
                 guard let holder = state.adInfoHolder else { return }
-                let info = OathVideoPartnerSDK.info(from: holder.info)
+                let info = VerizonVideoPartnerSDK.info(from: holder.info)
                 reporter.adViewTime(videoIndex: result.videoIndex,
                                     info: info,
                                     type: adType,
@@ -205,7 +205,7 @@ extension TrackingPixels.Connector {
         /*Ad Max Show Time Detector*/ do {
             if adMaxShowTimerDetector.process(state: state) {
                 guard let holder = state.adInfoHolder else { return }
-                let info = OathVideoPartnerSDK.info(from: holder.info)
+                let info = VerizonVideoPartnerSDK.info(from: holder.info)
                 reporter.adEngineFlow(videoIndex: state.playlist.currentIndex,
                                       info: info,
                                       type: adType,
@@ -224,7 +224,7 @@ extension TrackingPixels.Connector {
             let events = vpaidEventsDetector.process(events: state.vpaid.events)
             guard !events.isEmpty else { return }
             guard let holder = state.adInfoHolder else { return }
-            let info = OathVideoPartnerSDK.info(from: holder.info)
+            let info = VerizonVideoPartnerSDK.info(from: holder.info)
             events.forEach {
                 switch $0 {
                 case .AdScriptLoaded:
@@ -341,7 +341,7 @@ extension TrackingPixels.Connector {
                     guard let holder = state.adInfoHolder else { return }
                     reporter.sendBeacon(urls: holder.pixels.complete)
                     openMeasurementVideoEvents?.complete()
-                    let info = OathVideoPartnerSDK.info(from: holder.info)
+                    let info = VerizonVideoPartnerSDK.info(from: holder.info)
                     reporter.adEngineFlow(videoIndex: state.playlist.currentIndex,
                                           info: info,
                                           type: adType,
@@ -495,7 +495,7 @@ extension TrackingPixels.Connector {
                                             return error
                 }).map { (issue: Detectors.AdError.Result) in
                     guard let holder = state.adInfoHolder else { return }
-                    let info = OathVideoPartnerSDK.info(from: holder.info)
+                    let info = VerizonVideoPartnerSDK.info(from: holder.info)
                     reporter.sendBeacon(urls: holder.pixels.error)
                     
                     reporter.adEngineIssue(videoIndex: state.playlist.currentIndex,

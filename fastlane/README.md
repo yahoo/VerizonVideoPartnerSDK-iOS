@@ -80,6 +80,11 @@ Install Sourcery
 fastlane run_sourcery
 ```
 Run Sourcery with params: sources, templates, output
+### lint_current_podspec
+```
+fastlane lint_current_podspec
+```
+
 
 ----
 

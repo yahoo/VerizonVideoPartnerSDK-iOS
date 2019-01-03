@@ -3,7 +3,7 @@
 
 import XCTest
 import Nimble
-@testable import OathVideoPartnerSDK
+@testable import VerizonVideoPartnerSDK
 
 class DecileDetectorTests: XCTestCase {
     var sut: Detectors.Decile!

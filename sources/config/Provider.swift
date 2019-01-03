@@ -16,7 +16,7 @@ extension URLSession {
     }
 }
 
-extension OVPSDK {
+extension VVPSDK {
     public struct Provider {
         public var url: URL = URL(string: "https://api.onesdk.aol.com/config")!
         public var context: Context = Context.current
@@ -31,7 +31,7 @@ extension OVPSDK {
                 request.setValue("application/json", forHTTPHeaderField: "Content-Type")
                 request.httpBody = try JSONSerialization.data(withJSONObject: context.json, options: [])
                 
-                let future: Future<Result<OVPSDK.Configuration>> = session.dataFuture(with: request)
+                let future: Future<Result<VVPSDK.Configuration>> = session.dataFuture(with: request)
                     .map(Network.Parse.successResponseData |> Network.Parse.json)
                     .map { (json: Any) in try json |> parse }
                 
@@ -42,8 +42,8 @@ extension OVPSDK {
             }
         }
         
-        public func getSDK() -> Future<Result<OVPSDK>> {
-            return getConfiguration().map(OVPSDK.init)
+        public func getSDK() -> Future<Result<VVPSDK>> {
+            return getConfiguration().map(VVPSDK.init)
         }
     }
 }

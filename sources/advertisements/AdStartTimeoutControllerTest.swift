@@ -3,11 +3,11 @@
 
 
 import XCTest
-@testable import OathVideoPartnerSDK
+@testable import VerizonVideoPartnerSDK
 
 class AdStartTimeoutControllerTest: XCTestCase {
     
-    class MockTimer: OathVideoPartnerSDK.Cancellable {
+    class MockTimer: VerizonVideoPartnerSDK.Cancellable {
         var didCancelCalled = false
         
         func cancel() {

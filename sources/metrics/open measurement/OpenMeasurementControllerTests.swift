@@ -3,12 +3,12 @@
 
 import XCTest
 @testable import PlayerCore
-@testable import OathVideoPartnerSDK
+@testable import VerizonVideoPartnerSDK
 
 class OpenMeasurementComponentTestCase: XCTestCase {
     
     var recorder: Recorder!
-    var controller: OathVideoPartnerSDK.OpenMeasurement.AdSessionController!
+    var controller: VerizonVideoPartnerSDK.OpenMeasurement.AdSessionController!
     var dispatcher: ((PlayerCore.Action) -> Void)!
     var adVerifications = [PlayerCore.Ad.VASTModel.AdVerification]()
     
@@ -17,7 +17,7 @@ class OpenMeasurementComponentTestCase: XCTestCase {
     let adEvents = PlayerCore.OpenMeasurement.AdEvents.empty
     let videoEvents = PlayerCore.OpenMeasurement.VideoEvents.empty
     let adView = UIView(frame: .zero)
-    typealias OMErrors = OathVideoPartnerSDK.OpenMeasurement.Errors
+    typealias OMErrors = VerizonVideoPartnerSDK.OpenMeasurement.Errors
     
     override func setUp() {
         super.setUp()
@@ -38,7 +38,7 @@ class OpenMeasurementComponentTestCase: XCTestCase {
             default: return false
             }
         }
-        controller = OathVideoPartnerSDK.OpenMeasurement.AdSessionController(
+        controller = VerizonVideoPartnerSDK.OpenMeasurement.AdSessionController(
             adViewAction: { [weak self] in self?.adView },
             createOMContext: createContext,
             dispatcher: dispatcher)
@@ -130,10 +130,10 @@ class OpenMeasurementComponentTestCase: XCTestCase {
     }
     
     func testWithFailedConfiguration() {
-        func createFailedContext(input: OathVideoPartnerSDK.OpenMeasurement.Input) throws -> OathVideoPartnerSDK.OpenMeasurement.Output {
+        func createFailedContext(input: VerizonVideoPartnerSDK.OpenMeasurement.Input) throws -> VerizonVideoPartnerSDK.OpenMeasurement.Output {
             throw OMErrors.failedToActivateSDK
         }
-        controller = OathVideoPartnerSDK.OpenMeasurement.AdSessionController(
+        controller = VerizonVideoPartnerSDK.OpenMeasurement.AdSessionController(
             adViewAction: { return UIView(frame: .zero) },
             createOMContext: createFailedContext,
             dispatcher: dispatcher)
@@ -150,7 +150,7 @@ class OpenMeasurementComponentTestCase: XCTestCase {
         XCTAssertFalse(adSession.isFinished)
     }
     func testWithNoAdView() {
-        controller = OathVideoPartnerSDK.OpenMeasurement.AdSessionController(
+        controller = VerizonVideoPartnerSDK.OpenMeasurement.AdSessionController(
             adViewAction: { return nil },
             createOMContext: createContext,
             dispatcher: dispatcher)
@@ -166,8 +166,8 @@ class OpenMeasurementComponentTestCase: XCTestCase {
         XCTAssertFalse(adSession.isStarted)
         XCTAssertFalse(adSession.isFinished)
     }
-    func createContext(input: OathVideoPartnerSDK.OpenMeasurement.Input) throws -> OathVideoPartnerSDK.OpenMeasurement.Output {
-        return OathVideoPartnerSDK.OpenMeasurement.Output(adSession: adSession,
+    func createContext(input: VerizonVideoPartnerSDK.OpenMeasurement.Input) throws -> VerizonVideoPartnerSDK.OpenMeasurement.Output {
+        return VerizonVideoPartnerSDK.OpenMeasurement.Output(adSession: adSession,
                                                    adEvents: adEvents,
                                                    videoEvents: videoEvents)
     }

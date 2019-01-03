@@ -1,5 +1,5 @@
 import XCTest
-@testable import OathVideoPartnerSDK
+@testable import VerizonVideoPartnerSDK
 
 class AdViewTimeDetectorTests: XCTestCase {
     var sut: Detectors.AdViewTime!

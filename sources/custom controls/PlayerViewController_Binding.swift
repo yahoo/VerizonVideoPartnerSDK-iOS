@@ -199,7 +199,7 @@ extension PlayerViewController {
                     return .init(uuid: selectedOption.id, name: selectedOption.displayName)
                 }()
                 
-                let isFinished: Bool = OathVideoPartnerSDK.perform {
+                let isFinished: Bool = VerizonVideoPartnerSDK.perform {
                     return item.content.time.static?.isFinished ?? item.content.time.live?.isFinished ?? true
                 }
                 

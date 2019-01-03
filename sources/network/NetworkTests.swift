@@ -4,7 +4,7 @@
 import Quick
 import Nimble
 
-@testable import enum OathVideoPartnerSDK.Network
+@testable import enum VerizonVideoPartnerSDK.Network
 
 class NetworkTests: QuickSpec {
     //swiftlint:disable force_cast

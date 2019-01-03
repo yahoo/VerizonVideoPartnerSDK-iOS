@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "50A11D931D59D7E000F4A068"
-               BuildableName = "OathVideoPartnerSDK.framework"
-               BlueprintName = "OathVideoPartnerSDK_tvOS"
-               ReferencedContainer = "container:OathVideoPartnerSDK.xcodeproj">
+               BuildableName = "VerizonVideoPartnerSDK.framework"
+               BlueprintName = "VerizonVideoPartnerSDK_tvOS"
+               ReferencedContainer = "container:VerizonVideoPartnerSDK.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -46,9 +46,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "50A11D931D59D7E000F4A068"
-            BuildableName = "OathVideoPartnerSDK.framework"
-            BlueprintName = "OathVideoPartnerSDK_tvOS"
-            ReferencedContainer = "container:OathVideoPartnerSDK.xcodeproj">
+            BuildableName = "VerizonVideoPartnerSDK.framework"
+            BlueprintName = "VerizonVideoPartnerSDK_tvOS"
+            ReferencedContainer = "container:VerizonVideoPartnerSDK.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -64,9 +64,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "50A11D931D59D7E000F4A068"
-            BuildableName = "OathVideoPartnerSDK.framework"
-            BlueprintName = "OathVideoPartnerSDK_tvOS"
-            ReferencedContainer = "container:OathVideoPartnerSDK.xcodeproj">
+            BuildableName = "VerizonVideoPartnerSDK.framework"
+            BlueprintName = "VerizonVideoPartnerSDK_tvOS"
+            ReferencedContainer = "container:VerizonVideoPartnerSDK.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>

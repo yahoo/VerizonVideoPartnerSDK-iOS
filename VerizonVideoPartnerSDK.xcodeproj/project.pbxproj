@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0601B21B214947F900C42920 /* OathVideoPartnerSDK-Version.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0601B212214947F900C42920 /* OathVideoPartnerSDK-Version.plist */; };
-		0601B21C214947F900C42920 /* OathVideoPartnerSDK-Version.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0601B212214947F900C42920 /* OathVideoPartnerSDK-Version.plist */; };
 		061CFFFC211C7263002B5BE9 /* MuteDetectorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061CFFFB211C7263002B5BE9 /* MuteDetectorTests.swift */; };
 		061CFFFE211C7272002B5BE9 /* MuteDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061CFFFD211C7272002B5BE9 /* MuteDetector.swift */; };
 		061CFFFF211C7272002B5BE9 /* MuteDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061CFFFD211C7272002B5BE9 /* MuteDetector.swift */; };
@@ -69,7 +67,7 @@
 		503EB7CE1CE76F510090E595 /* AdManagerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503EB7CD1CE76F510090E595 /* AdManagerPresenter.swift */; };
 		50463DF61ED42D2300521E7D /* SystemPlayerViewControlller_Binding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5098D6931ECC930F00070681 /* SystemPlayerViewControlller_Binding.swift */; };
 		50463E551ED73AC200521E7D /* SystemPlayerReplayDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50463E541ED73AC200521E7D /* SystemPlayerReplayDetector.swift */; };
-		504CA73D1C85D5D9006D0ADF /* OathVideoPartnerSDK.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = DE4C511B1C8071D500BFFB0B /* OathVideoPartnerSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		504CA73D1C85D5D9006D0ADF /* VerizonVideoPartnerSDK.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = DE4C511B1C8071D500BFFB0B /* VerizonVideoPartnerSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		504CA74A1C870225006D0ADF /* VideoLoadingDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504CA7441C85F508006D0ADF /* VideoLoadingDetector.swift */; };
 		504CA7521C8731A1006D0ADF /* VideoActionsDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504CA7511C8731A1006D0ADF /* VideoActionsDetector.swift */; };
 		504CA7581C874A5D006D0ADF /* Player_VideoEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504CA7571C874A5D006D0ADF /* Player_VideoEvents.swift */; };
@@ -113,8 +111,8 @@
 		50A11DBC1D59D7E000F4A068 /* VideoTimeDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4C51501C80731B00BFFB0B /* VideoTimeDetector.swift */; };
 		50A11DBD1D59D7E000F4A068 /* VRMProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1FB2941CE3679500B99941 /* VRMProvider.swift */; };
 		50A11DBE1D59D7E000F4A068 /* VideoContextPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF9693F1CF067ED000788AD /* VideoContextPresenter.swift */; };
-		50A11DC01D59D7E000F4A068 /* OVP.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBE4A9A1CA40DAC006E01C1 /* OVP.swift */; };
-		50A11DC21D59D7E000F4A068 /* OVPSDK.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4C51351C8072FA00BFFB0B /* OVPSDK.swift */; };
+		50A11DC01D59D7E000F4A068 /* VVP.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBE4A9A1CA40DAC006E01C1 /* VVP.swift */; };
+		50A11DC21D59D7E000F4A068 /* VVPSDK.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4C51351C8072FA00BFFB0B /* VVPSDK.swift */; };
 		50A11DC41D59D7E000F4A068 /* VideoPlayDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4C514D1C80731B00BFFB0B /* VideoPlayDetector.swift */; };
 		50A11DC51D59D7E000F4A068 /* VASTParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1685DC1CE732D600492A90 /* VASTParser.swift */; };
 		50A11DC71D59D7E000F4A068 /* SkipRepeatsDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEAE91DA1CAA83D200C736D0 /* SkipRepeatsDecorator.swift */; };
@@ -137,7 +135,7 @@
 		50A11DE61D59D7E000F4A068 /* VASTModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF02B511D1EC0AD001F64EE /* VASTModel.swift */; };
 		50A11DEB1D59D7E000F4A068 /* AdMetrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D442581D0FF9DB00C0DAB0 /* AdMetrics.swift */; };
 		50A11DEC1D59D7E000F4A068 /* VASTWrapperProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF02B561D228216001F64EE /* VASTWrapperProcessor.swift */; };
-		50A11DF01D59D7E000F4A068 /* OathVideoPartnerSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = DEBE4A961CA407AA006E01C1 /* OathVideoPartnerSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		50A11DF01D59D7E000F4A068 /* VerizonVideoPartnerSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = DEBE4A961CA407AA006E01C1 /* VerizonVideoPartnerSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		50A11E091D59D9F000F4A068 /* OpenSafariUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A11E081D59D9F000F4A068 /* OpenSafariUtil.swift */; };
 		50A12D031CE639160088A74E /* NetworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A12CFE1CE638EB0088A74E /* NetworkTests.swift */; };
 		50A5A5001E69958600C15E12 /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A5A4FF1E69958600C15E12 /* Timer.swift */; };
@@ -166,7 +164,7 @@
 		50D36F151F334D7B00DE7085 /* HeartbeatDetectorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D36F141F334D7B00DE7085 /* HeartbeatDetectorTests.swift */; };
 		50D442551D085A3900C0DAB0 /* AdURLProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D442541D085A3900C0DAB0 /* AdURLProvider.swift */; };
 		50D442591D0FF9DB00C0DAB0 /* AdMetrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D442581D0FF9DB00C0DAB0 /* AdMetrics.swift */; };
-		50D4425A1D1029AF00C0DAB0 /* OVPSDK.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4C51351C8072FA00BFFB0B /* OVPSDK.swift */; };
+		50D4425A1D1029AF00C0DAB0 /* VVPSDK.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4C51351C8072FA00BFFB0B /* VVPSDK.swift */; };
 		50D629D320237BA5000B2F8F /* TrackingPixelsConnector_Ad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D629D220237BA5000B2F8F /* TrackingPixelsConnector_Ad.swift */; };
 		50D629D420237BA5000B2F8F /* TrackingPixelsConnector_Ad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D629D220237BA5000B2F8F /* TrackingPixelsConnector_Ad.swift */; };
 		50D7475C1CE389EF00CB91D4 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D7475B1CE389EF00CB91D4 /* Network.swift */; };
@@ -206,8 +204,8 @@
 		DE1FD9D31CE777C500C0B7BC /* ProcessAdItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1FD9D11CE775B300C0B7BC /* ProcessAdItem.swift */; };
 		DE22C78D1D0EFAA000F47147 /* Disposable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE22C78C1D0EFAA000F47147 /* Disposable.swift */; };
 		DE22C78F1D11830300F47147 /* PlayerViewController_Binding.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE22C78E1D11830300F47147 /* PlayerViewController_Binding.swift */; };
-		DE3DA42B1E55D9A900D34880 /* OVPSDKPlugins.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3DA42A1E55D9A900D34880 /* OVPSDKPlugins.swift */; };
-		DE3DA42C1E55D9A900D34880 /* OVPSDKPlugins.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3DA42A1E55D9A900D34880 /* OVPSDKPlugins.swift */; };
+		DE3DA42B1E55D9A900D34880 /* VVPSDKPlugins.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3DA42A1E55D9A900D34880 /* VVPSDKPlugins.swift */; };
+		DE3DA42C1E55D9A900D34880 /* VVPSDKPlugins.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3DA42A1E55D9A900D34880 /* VVPSDKPlugins.swift */; };
 		DE445EE31FB347A900D50790 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE445EE21FB347A900D50790 /* Store.swift */; };
 		DE445EE41FB347A900D50790 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE445EE21FB347A900D50790 /* Store.swift */; };
 		DE4539421D09644D00317632 /* XMLParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4539411D09644D00317632 /* XMLParser.swift */; };
@@ -246,8 +244,8 @@
 		DEBAA7C81E1571A100DFC359 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBAA7C71E1571A100DFC359 /* Result.swift */; };
 		DEBAA7C91E1571A100DFC359 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBAA7C71E1571A100DFC359 /* Result.swift */; };
 		DEBE4A7F1CA2EEDC006E01C1 /* Pipeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBE4A7E1CA2EEDC006E01C1 /* Pipeline.swift */; };
-		DEBE4A971CA407AA006E01C1 /* OathVideoPartnerSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = DEBE4A961CA407AA006E01C1 /* OathVideoPartnerSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		DEBE4A9B1CA40DAC006E01C1 /* OVP.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBE4A9A1CA40DAC006E01C1 /* OVP.swift */; };
+		DEBE4A971CA407AA006E01C1 /* VerizonVideoPartnerSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = DEBE4A961CA407AA006E01C1 /* VerizonVideoPartnerSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		DEBE4A9B1CA40DAC006E01C1 /* VVP.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBE4A9A1CA40DAC006E01C1 /* VVP.swift */; };
 		DECB6CDD1CA2E7F000E7FC19 /* VideoProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DECB6CDC1CA2E7F000E7FC19 /* VideoProviderTests.swift */; };
 		DEE069D61E840BDF00A95BE9 /* VideoProviderResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE06F78B1E7AB647006B5DD3 /* VideoProviderResponse.swift */; };
 		DEF02B521D1EC0AD001F64EE /* VASTModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF02B511D1EC0AD001F64EE /* VASTModel.swift */; };
@@ -417,14 +415,13 @@
 			files = (
 				861AF6D31D994DC80086B8EF /* Nimble.framework in CopyFiles */,
 				861AF6D41D994DC80086B8EF /* Quick.framework in CopyFiles */,
-				504CA73D1C85D5D9006D0ADF /* OathVideoPartnerSDK.framework in CopyFiles */,
+				504CA73D1C85D5D9006D0ADF /* VerizonVideoPartnerSDK.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0601B212214947F900C42920 /* OathVideoPartnerSDK-Version.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "OathVideoPartnerSDK-Version.plist"; sourceTree = "<group>"; };
 		061CFFFB211C7263002B5BE9 /* MuteDetectorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MuteDetectorTests.swift; sourceTree = "<group>"; };
 		061CFFFD211C7272002B5BE9 /* MuteDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MuteDetector.swift; sourceTree = "<group>"; };
 		062E9B3D20F5097C00AF1D54 /* PlayerViewController_Clickthrough.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PlayerViewController_Clickthrough.swift; path = "sources/custom controls/PlayerViewController_Clickthrough.swift"; sourceTree = "<group>"; };
@@ -486,7 +483,7 @@
 		509B89F51EF302360097707F /* JavascriptTrackingFixture.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = JavascriptTrackingFixture.json; sourceTree = "<group>"; };
 		509B89F71EF3024F0097707F /* NativeTrackingFixture.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = NativeTrackingFixture.json; sourceTree = "<group>"; };
 		50A039581F30D54C00DDAE4B /* UnrecognizedTrackingFixture.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = UnrecognizedTrackingFixture.json; sourceTree = "<group>"; };
-		50A11DFB1D59D7E000F4A068 /* OathVideoPartnerSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OathVideoPartnerSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		50A11DFB1D59D7E000F4A068 /* VerizonVideoPartnerSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = VerizonVideoPartnerSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		50A11E081D59D9F000F4A068 /* OpenSafariUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = OpenSafariUtil.swift; path = "sources/custom controls/OpenSafariUtil.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		50A12CFE1CE638EB0088A74E /* NetworkTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = NetworkTests.swift; path = sources/network/NetworkTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		50A5A4FF1E69958600C15E12 /* Timer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
@@ -538,14 +535,14 @@
 		DE22C78C1D0EFAA000F47147 /* Disposable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Disposable.swift; sourceTree = "<group>"; };
 		DE22C78E1D11830300F47147 /* PlayerViewController_Binding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlayerViewController_Binding.swift; path = "sources/custom controls/PlayerViewController_Binding.swift"; sourceTree = "<group>"; };
 		DE2BBB281E8BEE2F00CA4296 /* VideoRenderer.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = VideoRenderer.xcodeproj; path = VideoRenderer/VideoRenderer/VideoRenderer.xcodeproj; sourceTree = "<group>"; };
-		DE3DA42A1E55D9A900D34880 /* OVPSDKPlugins.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OVPSDKPlugins.swift; path = sources/OVPSDKPlugins.swift; sourceTree = "<group>"; };
+		DE3DA42A1E55D9A900D34880 /* VVPSDKPlugins.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VVPSDKPlugins.swift; path = sources/VVPSDKPlugins.swift; sourceTree = "<group>"; };
 		DE445EE21FB347A900D50790 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		DE4539411D09644D00317632 /* XMLParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMLParser.swift; sourceTree = "<group>"; };
-		DE4C511B1C8071D500BFFB0B /* OathVideoPartnerSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = OathVideoPartnerSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		DE4C511F1C8071D500BFFB0B /* OathVideoPartnerSDK-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OathVideoPartnerSDK-Info.plist"; sourceTree = "<group>"; };
-		DE4C51241C8071D500BFFB0B /* OathVideoPartnerSDKTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OathVideoPartnerSDKTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DE4C511B1C8071D500BFFB0B /* VerizonVideoPartnerSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = VerizonVideoPartnerSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DE4C511F1C8071D500BFFB0B /* VerizonVideoPartnerSDK-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "VerizonVideoPartnerSDK-Info.plist"; sourceTree = "<group>"; };
+		DE4C51241C8071D500BFFB0B /* VerizonVideoPartnerSDKTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VerizonVideoPartnerSDKTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE4C512B1C8071D500BFFB0B /* TestsInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = TestsInfo.plist; sourceTree = "<group>"; };
-		DE4C51351C8072FA00BFFB0B /* OVPSDK.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = OVPSDK.swift; path = sources/OVPSDK.swift; sourceTree = "<group>"; };
+		DE4C51351C8072FA00BFFB0B /* VVPSDK.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = VVPSDK.swift; path = sources/VVPSDK.swift; sourceTree = "<group>"; };
 		DE4C51421C80731B00BFFB0B /* DecileDetector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DecileDetector.swift; sourceTree = "<group>"; };
 		DE4C51431C80731B00BFFB0B /* DecileDetectorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = DecileDetectorTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		DE4C51451C80731B00BFFB0B /* PlaylistStatisticDetectorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = PlaylistStatisticDetectorTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -589,8 +586,8 @@
 		DEBAA7BE1E154D4100DFC359 /* Future.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Future.swift; sourceTree = "<group>"; };
 		DEBAA7C71E1571A100DFC359 /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		DEBE4A7E1CA2EEDC006E01C1 /* Pipeline.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pipeline.swift; sourceTree = "<group>"; };
-		DEBE4A961CA407AA006E01C1 /* OathVideoPartnerSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OathVideoPartnerSDK.h; sourceTree = "<group>"; };
-		DEBE4A9A1CA40DAC006E01C1 /* OVP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OVP.swift; path = sources/OVP.swift; sourceTree = "<group>"; };
+		DEBE4A961CA407AA006E01C1 /* VerizonVideoPartnerSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerizonVideoPartnerSDK.h; sourceTree = "<group>"; };
+		DEBE4A9A1CA40DAC006E01C1 /* VVP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VVP.swift; path = sources/VVP.swift; sourceTree = "<group>"; };
 		DECB6CDC1CA2E7F000E7FC19 /* VideoProviderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = VideoProviderTests.swift; path = provider/VideoProviderTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		DEF02B511D1EC0AD001F64EE /* VASTModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VASTModel.swift; sourceTree = "<group>"; };
 		DEF02B561D228216001F64EE /* VASTWrapperProcessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = VASTWrapperProcessor.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -1036,10 +1033,9 @@
 		DE4C51331C80722500BFFB0B /* support */ = {
 			isa = PBXGroup;
 			children = (
-				DEBE4A961CA407AA006E01C1 /* OathVideoPartnerSDK.h */,
+				DEBE4A961CA407AA006E01C1 /* VerizonVideoPartnerSDK.h */,
 				DE4C512B1C8071D500BFFB0B /* TestsInfo.plist */,
-				DE4C511F1C8071D500BFFB0B /* OathVideoPartnerSDK-Info.plist */,
-				0601B212214947F900C42920 /* OathVideoPartnerSDK-Version.plist */,
+				DE4C511F1C8071D500BFFB0B /* VerizonVideoPartnerSDK-Info.plist */,
 			);
 			path = support;
 			sourceTree = "<group>";
@@ -1047,9 +1043,9 @@
 		DE4C51341C80725A00BFFB0B /* products */ = {
 			isa = PBXGroup;
 			children = (
-				DE4C511B1C8071D500BFFB0B /* OathVideoPartnerSDK.framework */,
-				DE4C51241C8071D500BFFB0B /* OathVideoPartnerSDKTests.xctest */,
-				50A11DFB1D59D7E000F4A068 /* OathVideoPartnerSDK.framework */,
+				DE4C511B1C8071D500BFFB0B /* VerizonVideoPartnerSDK.framework */,
+				DE4C51241C8071D500BFFB0B /* VerizonVideoPartnerSDKTests.xctest */,
+				50A11DFB1D59D7E000F4A068 /* VerizonVideoPartnerSDK.framework */,
 			);
 			name = products;
 			sourceTree = "<group>";
@@ -1283,9 +1279,9 @@
 				DE1FB28A1CE359B300B99941 /* advertisements */,
 				50D7475A1CE389DA00CB91D4 /* network */,
 				500D34D61CB3EF0A00CD6716 /* default UI */,
-				DEBE4A9A1CA40DAC006E01C1 /* OVP.swift */,
-				DE4C51351C8072FA00BFFB0B /* OVPSDK.swift */,
-				DE3DA42A1E55D9A900D34880 /* OVPSDKPlugins.swift */,
+				DEBE4A9A1CA40DAC006E01C1 /* VVP.swift */,
+				DE4C51351C8072FA00BFFB0B /* VVPSDK.swift */,
+				DE3DA42A1E55D9A900D34880 /* VVPSDKPlugins.swift */,
 				DEB112341E30F0AE007E65BD /* config */,
 				504CA7411C85D620006D0ADF /* frameworks */,
 				DE4C51341C80725A00BFFB0B /* products */,
@@ -1352,7 +1348,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				50A11DF01D59D7E000F4A068 /* OathVideoPartnerSDK.h in Headers */,
+				50A11DF01D59D7E000F4A068 /* VerizonVideoPartnerSDK.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1360,16 +1356,16 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DEBE4A971CA407AA006E01C1 /* OathVideoPartnerSDK.h in Headers */,
+				DEBE4A971CA407AA006E01C1 /* VerizonVideoPartnerSDK.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		50A11D931D59D7E000F4A068 /* OathVideoPartnerSDK_tvOS */ = {
+		50A11D931D59D7E000F4A068 /* VerizonVideoPartnerSDK_tvOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 50A11DF81D59D7E000F4A068 /* Build configuration list for PBXNativeTarget "OathVideoPartnerSDK_tvOS" */;
+			buildConfigurationList = 50A11DF81D59D7E000F4A068 /* Build configuration list for PBXNativeTarget "VerizonVideoPartnerSDK_tvOS" */;
 			buildPhases = (
 				DAAD98341F67F2D6006C47FA /* Check Sourcery */,
 				50A11D941D59D7E000F4A068 /* Sources */,
@@ -1383,14 +1379,14 @@
 			dependencies = (
 				50AC124521C414ED00B428D1 /* PBXTargetDependency */,
 			);
-			name = OathVideoPartnerSDK_tvOS;
+			name = VerizonVideoPartnerSDK_tvOS;
 			productName = OneSDK;
-			productReference = 50A11DFB1D59D7E000F4A068 /* OathVideoPartnerSDK.framework */;
+			productReference = 50A11DFB1D59D7E000F4A068 /* VerizonVideoPartnerSDK.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		DE4C511A1C8071D500BFFB0B /* OathVideoPartnerSDK_iOS */ = {
+		DE4C511A1C8071D500BFFB0B /* VerizonVideoPartnerSDK_iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = DE4C512C1C8071D500BFFB0B /* Build configuration list for PBXNativeTarget "OathVideoPartnerSDK_iOS" */;
+			buildConfigurationList = DE4C512C1C8071D500BFFB0B /* Build configuration list for PBXNativeTarget "VerizonVideoPartnerSDK_iOS" */;
 			buildPhases = (
 				DA7309A11F667D39000A7364 /* Check Sourcery */,
 				DE4C51161C8071D500BFFB0B /* Sources */,
@@ -1407,14 +1403,14 @@
 				50AC123D21C414E400B428D1 /* PBXTargetDependency */,
 				5033927A1E96AFCA002562D9 /* PBXTargetDependency */,
 			);
-			name = OathVideoPartnerSDK_iOS;
+			name = VerizonVideoPartnerSDK_iOS;
 			productName = OneSDK;
-			productReference = DE4C511B1C8071D500BFFB0B /* OathVideoPartnerSDK.framework */;
+			productReference = DE4C511B1C8071D500BFFB0B /* VerizonVideoPartnerSDK.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		DE4C51231C8071D500BFFB0B /* OathVideoPartnerSDKTests */ = {
+		DE4C51231C8071D500BFFB0B /* VerizonVideoPartnerSDKTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = DE4C512F1C8071D500BFFB0B /* Build configuration list for PBXNativeTarget "OathVideoPartnerSDKTests" */;
+			buildConfigurationList = DE4C512F1C8071D500BFFB0B /* Build configuration list for PBXNativeTarget "VerizonVideoPartnerSDKTests" */;
 			buildPhases = (
 				DE4C51201C8071D500BFFB0B /* Sources */,
 				DE4C51211C8071D500BFFB0B /* Frameworks */,
@@ -1426,9 +1422,9 @@
 			dependencies = (
 				DE4C51271C8071D500BFFB0B /* PBXTargetDependency */,
 			);
-			name = OathVideoPartnerSDKTests;
+			name = VerizonVideoPartnerSDKTests;
 			productName = OneSDKTests;
-			productReference = DE4C51241C8071D500BFFB0B /* OathVideoPartnerSDKTests.xctest */;
+			productReference = DE4C51241C8071D500BFFB0B /* VerizonVideoPartnerSDKTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -1453,7 +1449,7 @@
 					};
 				};
 			};
-			buildConfigurationList = DEF3CBB11C7F12D200CB5A74 /* Build configuration list for PBXProject "OathVideoPartnerSDK" */;
+			buildConfigurationList = DEF3CBB11C7F12D200CB5A74 /* Build configuration list for PBXProject "VerizonVideoPartnerSDK" */;
 			compatibilityVersion = "Xcode 6.3";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -1487,9 +1483,9 @@
 			);
 			projectRoot = "";
 			targets = (
-				DE4C511A1C8071D500BFFB0B /* OathVideoPartnerSDK_iOS */,
-				DE4C51231C8071D500BFFB0B /* OathVideoPartnerSDKTests */,
-				50A11D931D59D7E000F4A068 /* OathVideoPartnerSDK_tvOS */,
+				DE4C511A1C8071D500BFFB0B /* VerizonVideoPartnerSDK_iOS */,
+				DE4C51231C8071D500BFFB0B /* VerizonVideoPartnerSDKTests */,
+				50A11D931D59D7E000F4A068 /* VerizonVideoPartnerSDK_tvOS */,
 			);
 		};
 /* End PBXProject section */
@@ -1572,7 +1568,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0601B21C214947F900C42920 /* OathVideoPartnerSDK-Version.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1580,7 +1575,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0601B21B214947F900C42920 /* OathVideoPartnerSDK-Version.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1707,7 +1701,7 @@
 				DEB112371E30F0CE007E65BD /* Context.swift in Sources */,
 				50A11DB21D59D7E000F4A068 /* Player_VideoEvents.swift in Sources */,
 				DE07CE091DD2353C00DAE3EC /* PlayerProperties.swift in Sources */,
-				DE3DA42C1E55D9A900D34880 /* OVPSDKPlugins.swift in Sources */,
+				DE3DA42C1E55D9A900D34880 /* VVPSDKPlugins.swift in Sources */,
 				E22B6A8621D14D1F00D480A0 /* ParseVRMItemController.swift in Sources */,
 				50A11DB51D59D7E000F4A068 /* VRMRequest.swift in Sources */,
 				DE445EE41FB347A900D50790 /* Store.swift in Sources */,
@@ -1725,10 +1719,10 @@
 				50C99D4B2010B4A00041B013 /* Observer.swift in Sources */,
 				502288F721CD142C0045B868 /* VRMItemController.swift in Sources */,
 				501AB1E52029C69C00BAFA9C /* PlaybackCycleDetector.swift in Sources */,
-				50A11DC01D59D7E000F4A068 /* OVP.swift in Sources */,
+				50A11DC01D59D7E000F4A068 /* VVP.swift in Sources */,
 				50A5A5011E69958600C15E12 /* Timer.swift in Sources */,
 				50C99D2F200CDF770041B013 /* MidrollDetector.swift in Sources */,
-				50A11DC21D59D7E000F4A068 /* OVPSDK.swift in Sources */,
+				50A11DC21D59D7E000F4A068 /* VVPSDK.swift in Sources */,
 				DE0031801ED5ADE0007FE000 /* PropsMapping.swift in Sources */,
 				50A11DC41D59D7E000F4A068 /* VideoPlayDetector.swift in Sources */,
 				50A11DC51D59D7E000F4A068 /* VASTParser.swift in Sources */,
@@ -1808,7 +1802,7 @@
 				DE4C51E11C80D43200BFFB0B /* TrackingPixelsConnector.swift in Sources */,
 				50D629D320237BA5000B2F8F /* TrackingPixelsConnector_Ad.swift in Sources */,
 				DE07F0511EF9956B00C8E9F2 /* ReporterTracer.swift in Sources */,
-				DE3DA42B1E55D9A900D34880 /* OVPSDKPlugins.swift in Sources */,
+				DE3DA42B1E55D9A900D34880 /* VVPSDKPlugins.swift in Sources */,
 				50FEC3FF1DDF58A20013DA99 /* NonEmptyString.swift in Sources */,
 				DE4C51C41C80918E00BFFB0B /* VideoTimeDetector.swift in Sources */,
 				DE1FB2951CE3679500B99941 /* VRMProvider.swift in Sources */,
@@ -1816,11 +1810,11 @@
 				DEF969401CF067ED000788AD /* VideoContextPresenter.swift in Sources */,
 				DEBAA7C81E1571A100DFC359 /* Result.swift in Sources */,
 				50E6E455208F94EF003B0F4E /* UserActionInitiated.swift in Sources */,
-				DEBE4A9B1CA40DAC006E01C1 /* OVP.swift in Sources */,
+				DEBE4A9B1CA40DAC006E01C1 /* VVP.swift in Sources */,
 				501AB1EA2029F5A900BAFA9C /* SlotOpportunityDetector.swift in Sources */,
 				50C99D4E2010B4E00041B013 /* Observable.swift in Sources */,
 				067209BF21B6BD9A0086CDBE /* OpenMeasurementController.swift in Sources */,
-				50D4425A1D1029AF00C0DAB0 /* OVPSDK.swift in Sources */,
+				50D4425A1D1029AF00C0DAB0 /* VVPSDK.swift in Sources */,
 				06BF5392209B470F00B98A6D /* UserActionsDetector.swift in Sources */,
 				DE8416A11F4493FF00E57971 /* PlayerInterface.swift in Sources */,
 				DE4C51C31C80913F00BFFB0B /* VideoPlayDetector.swift in Sources */,
@@ -1977,7 +1971,7 @@
 		};
 		DE4C51271C8071D500BFFB0B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = DE4C511A1C8071D500BFFB0B /* OathVideoPartnerSDK_iOS */;
+			target = DE4C511A1C8071D500BFFB0B /* VerizonVideoPartnerSDK_iOS */;
 			targetProxy = DE4C51261C8071D500BFFB0B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -1993,11 +1987,11 @@
 				DYLIB_CURRENT_VERSION = 2;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = "$(SRCROOT)/support/OathVideoPartnerSDK-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/support/VerizonVideoPartnerSDK-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.Oath.VideoPartnerSDK;
-				PRODUCT_NAME = OathVideoPartnerSDK;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Verizon.VideoPartnerSDK;
+				PRODUCT_NAME = VerizonVideoPartnerSDK;
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
 				SWIFT_INSTALL_OBJC_HEADER = YES;
@@ -2017,11 +2011,11 @@
 				DYLIB_CURRENT_VERSION = 2;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = "$(SRCROOT)/support/OathVideoPartnerSDK-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/support/VerizonVideoPartnerSDK-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.Oath.VideoPartnerSDK;
-				PRODUCT_NAME = OathVideoPartnerSDK;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Verizon.VideoPartnerSDK;
+				PRODUCT_NAME = VerizonVideoPartnerSDK;
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
 				SWIFT_INSTALL_OBJC_HEADER = YES;
@@ -2046,12 +2040,12 @@
 				GCC_WARN_SHADOW = YES;
 				GCC_WARN_UNUSED_LABEL = YES;
 				GCC_WARN_UNUSED_PARAMETER = YES;
-				INFOPLIST_FILE = "$(SRCROOT)/support/OathVideoPartnerSDK-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/support/VerizonVideoPartnerSDK-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "-Xfrontend -warn-long-function-bodies=300 -Xfrontend -warn-long-expression-type-checking=300";
-				PRODUCT_BUNDLE_IDENTIFIER = com.Oath.VideoPartnerSDK;
-				PRODUCT_NAME = OathVideoPartnerSDK;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Verizon.VideoPartnerSDK;
+				PRODUCT_NAME = VerizonVideoPartnerSDK;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_INSTALL_OBJC_HEADER = YES;
@@ -2077,11 +2071,11 @@
 				GCC_WARN_SHADOW = YES;
 				GCC_WARN_UNUSED_LABEL = YES;
 				GCC_WARN_UNUSED_PARAMETER = YES;
-				INFOPLIST_FILE = "$(SRCROOT)/support/OathVideoPartnerSDK-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/support/VerizonVideoPartnerSDK-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.Oath.VideoPartnerSDK;
-				PRODUCT_NAME = OathVideoPartnerSDK;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Verizon.VideoPartnerSDK;
+				PRODUCT_NAME = VerizonVideoPartnerSDK;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_INSTALL_OBJC_HEADER = YES;
@@ -2102,7 +2096,7 @@
 				INFOPLIST_FILE = support/TestsInfo.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.oath.VideoPartnerSDKTests;
-				PRODUCT_NAME = OathVideoPartnerSDKTests;
+				PRODUCT_NAME = VerizonVideoPartnerSDKTests;
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 4.2;
 			};
@@ -2120,7 +2114,7 @@
 				INFOPLIST_FILE = support/TestsInfo.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.oath.VideoPartnerSDKTests;
-				PRODUCT_NAME = OathVideoPartnerSDKTests;
+				PRODUCT_NAME = VerizonVideoPartnerSDKTests;
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 4.2;
 			};
@@ -2250,7 +2244,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		50A11DF81D59D7E000F4A068 /* Build configuration list for PBXNativeTarget "OathVideoPartnerSDK_tvOS" */ = {
+		50A11DF81D59D7E000F4A068 /* Build configuration list for PBXNativeTarget "VerizonVideoPartnerSDK_tvOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				50A11DF91D59D7E000F4A068 /* Debug */,
@@ -2259,7 +2253,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		DE4C512C1C8071D500BFFB0B /* Build configuration list for PBXNativeTarget "OathVideoPartnerSDK_iOS" */ = {
+		DE4C512C1C8071D500BFFB0B /* Build configuration list for PBXNativeTarget "VerizonVideoPartnerSDK_iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DE4C512D1C8071D500BFFB0B /* Debug */,
@@ -2268,7 +2262,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		DE4C512F1C8071D500BFFB0B /* Build configuration list for PBXNativeTarget "OathVideoPartnerSDKTests" */ = {
+		DE4C512F1C8071D500BFFB0B /* Build configuration list for PBXNativeTarget "VerizonVideoPartnerSDKTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DE4C51301C8071D500BFFB0B /* Debug */,
@@ -2277,7 +2271,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		DEF3CBB11C7F12D200CB5A74 /* Build configuration list for PBXProject "OathVideoPartnerSDK" */ = {
+		DEF3CBB11C7F12D200CB5A74 /* Build configuration list for PBXProject "VerizonVideoPartnerSDK" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DEF3CBBD1C7F12D200CB5A74 /* Debug */,
