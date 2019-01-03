@@ -281,3 +281,9 @@ lane :run_sourcery do |options|
     output: options[:output]
   )
 end
+
+lane :lint_current_podspec do
+  lint_podspec(
+    podspec_path: 'VerizonVideoPartnerSDK.podspec',
+    sources_repo: 'https://github.com/VerizonAdPlatforms/OneMobileSDK-releases-iOS')
+end
