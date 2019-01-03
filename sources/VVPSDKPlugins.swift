@@ -2,12 +2,12 @@
 //  Licensed under the terms of the MIT License. See LICENSE.md file in project root for terms.
 import Foundation
 
-public protocol _OVPSDKPlugin: class {
+public protocol _VVPSDKPlugin: class {
     func provideObserverFor(ids: [VideoId], siteSection: String) -> Player.PropsObserver
 }
 
-extension OVPSDK {
-    public typealias Plugin = _OVPSDKPlugin
+extension VVPSDK {
+    public typealias Plugin = _VVPSDKPlugin
     
     public final class Plugins {
         private var plugins: [Plugin] = []

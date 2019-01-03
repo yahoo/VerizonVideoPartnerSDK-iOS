@@ -4,7 +4,7 @@
 import XCTest
 import Nimble
 import PlayerCore
-@testable import OathVideoPartnerSDK
+@testable import VerizonVideoPartnerSDK
 
 class PlayerDestructionTests: XCTestCase {
     

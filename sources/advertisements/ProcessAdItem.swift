@@ -35,7 +35,7 @@ struct VASTTagProcessor {
         return tagFuture
             .map(Network.Parse.successResponseData)
             .map(VASTParser.parseFrom(data:))
-            .map { (result: OathVideoPartnerSDK.Result<VASTModel?>) in
+            .map { (result: VerizonVideoPartnerSDK.Result<VASTModel?>) in
                 switch result {
                 case .value(let value): return Result(model: value)
                 case .error(let error): return Result.error(error)

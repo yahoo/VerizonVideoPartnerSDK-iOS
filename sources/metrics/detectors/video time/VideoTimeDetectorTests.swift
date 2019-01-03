@@ -4,7 +4,7 @@
 import XCTest
 import Nimble
 import struct PlayerCore.Progress
-@testable import OathVideoPartnerSDK
+@testable import VerizonVideoPartnerSDK
 
 class VideoTimeDetectorTests: XCTestCase {
     

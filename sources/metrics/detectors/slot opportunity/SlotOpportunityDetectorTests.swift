@@ -2,7 +2,7 @@
 //  Licensed under the terms of the MIT License. See LICENSE.md file in project root for terms.
 
 import XCTest
-@testable import OathVideoPartnerSDK
+@testable import VerizonVideoPartnerSDK
 
 class SlotOpportunityDetectorTests: XCTestCase {
     var sut: Detectors.SlotOpportunity!

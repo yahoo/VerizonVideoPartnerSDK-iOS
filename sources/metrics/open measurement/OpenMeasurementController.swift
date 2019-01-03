@@ -42,7 +42,7 @@ extension OpenMeasurement {
             }
             do {
                 let sdkVersion: String = {
-                    guard let sdkInfo = Bundle(identifier: "com.Oath.VideoPartnerSDK")?.infoDictionary else {
+                    guard let sdkInfo = Bundle(identifier: "com.Verizon.VideoPartnerSDK")?.infoDictionary else {
                         fatalError("Couldn't find sdk bundle")
                     }
                     return sdkInfo["CFBundleShortVersionString"] as! String

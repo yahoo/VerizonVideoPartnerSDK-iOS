@@ -99,7 +99,7 @@ extension SystemPlayerViewController {
                         handleEvent: contentEventHandler,
                         metadata: [],
                         ciFilterHandler: nil,
-                        cuePoints: OathVideoPartnerSDK.perform {
+                        cuePoints: VerizonVideoPartnerSDK.perform {
                             guard let item = props.playbackItem else { return [] }
                             
                             return item.midrolls

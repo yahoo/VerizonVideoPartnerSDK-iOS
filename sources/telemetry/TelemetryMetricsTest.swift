@@ -3,7 +3,7 @@
 
 import XCTest
 @testable import PlayerCore
-@testable import OathVideoPartnerSDK
+@testable import VerizonVideoPartnerSDK
 
 class TelemetryMetricsTest: XCTestCase {
     

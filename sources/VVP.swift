@@ -4,16 +4,16 @@ import Foundation
 
 /// Enum with typealiases available globally.
 // swiftlint:disable type_name
-public enum OVP {
+public enum VVP {
     /// SDK shorthand.
-    public typealias SDK = OathVideoPartnerSDK.OVPSDK
+    public typealias SDK = VerizonVideoPartnerSDK.VVPSDK
     /// Player shorthand.
-    public typealias Player = OathVideoPartnerSDK.Player
+    public typealias Player = VerizonVideoPartnerSDK.Player
     /// Content Video Playback Events shorthand.
-    public typealias PlaybackEvents = OathVideoPartnerSDK.PlaybackEvents
+    public typealias PlaybackEvents = VerizonVideoPartnerSDK.PlaybackEvents
     
     #if os(iOS)
     /// Player View Controller shorthand.
-    public typealias PlayerViewController = OathVideoPartnerSDK.PlayerViewController
+    public typealias PlayerViewController = VerizonVideoPartnerSDK.PlayerViewController
     #endif
 }

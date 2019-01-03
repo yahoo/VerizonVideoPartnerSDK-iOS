@@ -2,7 +2,7 @@
 //  Licensed under the terms of the MIT License. See LICENSE.md file in project root for terms.
 
 import XCTest
-@testable import OathVideoPartnerSDK
+@testable import VerizonVideoPartnerSDK
 
 class ConfigurationParserTests: XCTestCase {
     static func fixtureUrl(with name: String) -> URL {
@@ -22,33 +22,33 @@ class ConfigurationParserTests: XCTestCase {
     
     func testNoVpaid() throws {
         let json = try ConfigurationParserTests.createJson(with: "NoVpaidUrlFixture")
-        XCTAssertThrowsError(try parse(any: json) as OVPSDK.Configuration)
+        XCTAssertThrowsError(try parse(any: json) as VVPSDK.Configuration)
     }
     
     func testVpaidParsing() throws {
         let json = try ConfigurationParserTests.createJson(with: "NativeTrackingFixture")
-        let config = try parse(any: json) as OVPSDK.Configuration
+        let config = try parse(any: json) as VVPSDK.Configuration
         XCTAssertEqual(config.vpaid.document.absoluteString, "https://document.html")
     }
     func testNoOpenMeasurement() throws {
         let json = try ConfigurationParserTests.createJson(with: "NoOMScriptFixture")
-        XCTAssertThrowsError(try parse(any: json) as OVPSDK.Configuration)
+        XCTAssertThrowsError(try parse(any: json) as VVPSDK.Configuration)
     }
     
     func testOpenMeasurementParsing() throws {
         let json = try ConfigurationParserTests.createJson(with: "NativeTrackingFixture")
-        let config = try parse(any: json) as OVPSDK.Configuration
+        let config = try parse(any: json) as VVPSDK.Configuration
         XCTAssertEqual(config.openMeasurement.script.absoluteString, "https://script.url")
     }
     
     func testNoTrackingParsing() throws {
         let json = try ConfigurationParserTests.createJson(with: "NoTrackingFixture")
-        XCTAssertThrowsError(try parse(any: json) as OVPSDK.Configuration)
+        XCTAssertThrowsError(try parse(any: json) as VVPSDK.Configuration)
     }
     
     func testJavascriptTrackingParsing() throws {
         let json = try ConfigurationParserTests.createJson(with: "JavascriptTrackingFixture")
-        let config = try parse(any: json) as OVPSDK.Configuration
+        let config = try parse(any: json) as VVPSDK.Configuration
         XCTAssertEqual(config.userAgent, "USER AGENT")
         XCTAssertEqual(config.video.url.absoluteString, "http://localhost:3000/videoservice/single_video_without_ad_javascript_implementation/")
         XCTAssertEqual(config.telemetry?.url.absoluteString, "https://telemetry.url")
@@ -61,7 +61,7 @@ class ConfigurationParserTests: XCTestCase {
     
     func testNativeTrackingParsing() throws {
         let json = try ConfigurationParserTests.createJson(with: "NativeTrackingFixture")
-        let config = try parse(any: json) as OVPSDK.Configuration
+        let config = try parse(any: json) as VVPSDK.Configuration
         XCTAssertEqual(config.userAgent, "555")
         XCTAssertEqual(config.video.url.absoluteString, "https://video.com")
         XCTAssertEqual(config.telemetry?.url.absoluteString, "https://telemetry.url")
@@ -73,6 +73,6 @@ class ConfigurationParserTests: XCTestCase {
     
     func testUnrecognizedTrackingTypeParsing() throws {
         let json = try ConfigurationParserTests.createJson(with: "UnrecognizedTrackingFixture")
-        XCTAssertThrowsError(try parse(any: json) as OVPSDK.Configuration)
+        XCTAssertThrowsError(try parse(any: json) as VVPSDK.Configuration)
     }
 }

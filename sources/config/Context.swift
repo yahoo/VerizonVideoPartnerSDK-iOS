@@ -3,7 +3,7 @@
 import AdSupport
 import VideoRenderer
 
-extension OVPSDK {
+extension VVPSDK {
     public struct Context {
         public struct Client {
             public var id: String
@@ -31,15 +31,6 @@ extension OVPSDK {
         
         public static var current: Context {
             let mainInfo = Bundle.main.infoDictionary!
-            let plistPathFromMainBundle = Bundle.main.path(forResource: "OathVideoPartnerSDK-Version",
-                                                           ofType: "plist")
-            let plistPathFromSDKBundle = Bundle(identifier: "com.Oath.VideoPartnerSDK")?
-                .path(forResource: "OathVideoPartnerSDK-Version", ofType: "plist")
-            
-            guard let file = plistPathFromSDKBundle ?? plistPathFromMainBundle else {
-                fatalError("OathVideoPartnerSDK info plist file is missing") }
-            guard let sdkInfo = NSDictionary(contentsOfFile: file) else {
-                fatalError("OathVideoPartnerSDK info plist file has wrong format") }
             
             let hardwareVersion: String = {
                 var sysinfo = utsname()
@@ -62,7 +53,7 @@ extension OVPSDK {
                     model: hardwareVersion,
                     os: UIDevice.current.systemVersion),
                 sdk: SDK.init(
-                    version: sdkInfo["CFBundleVersion"] as! String,
+                    version: "2.31",
                     renderers: Renderer.Repository.shared.availableRenderers
                 ),
                 extra: [:])

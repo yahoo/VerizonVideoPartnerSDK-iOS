@@ -2,9 +2,9 @@
 //  Licensed under the terms of the MIT License. See LICENSE.md file in project root for terms.
 import Foundation
 
-extension OVP {
+extension VVP {
     /// SDK Network typealias.
-    public typealias Network = OathVideoPartnerSDK.Network
+    public typealias Network = VerizonVideoPartnerSDK.Network
 }
 
 /// Model with all network information
