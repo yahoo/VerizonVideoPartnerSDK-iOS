@@ -166,7 +166,7 @@ The runtime circumstances and algorithm for getting an ad or not, are not in the
 
 |Portrait|Landscape|
 |--------|---------|
-|<img width="300" alt="screen shot 2017-12-21 at 9 06 35 pm" src="https://user-images.githubusercontent.com/16276892/34273124-5943e9de-e693-11e7-90dd-d5d2fc2a2f65.png">|<img width="300" alt="screen shot 2017-12-21 at 9 06 41 pm" src="https://user-images.githubusercontent.com/16276892/34273126-595cdb24-e693-11e7-8bc7-5f95683ec676.png">|
+|<img width="340" alt="portrait" src="https://user-images.githubusercontent.com/16276892/34273124-5943e9de-e693-11e7-90dd-d5d2fc2a2f65.png">|<img width="540" alt="landscape" src="https://user-images.githubusercontent.com/16276892/34273126-595cdb24-e693-11e7-8bc7-5f95683ec676.png">|
 
 The default player controls UX contains the following elements:
 * Play/Pause/Replay button (with loading animation)
