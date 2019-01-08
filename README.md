@@ -28,6 +28,7 @@ The SDK includes a complete video player controls UX (user experience), that inc
 
 - [Background](#background)
   - [Main Features](#main-sdk-features)
+  - [Default Video Player Controls UX](#default-video-player-controls-ux)
 - [Install](#install)
   - [Requirements](#initial-requirements)
   - [App Onboarding](#onboard-your-apps-for-sdk-authentication)
@@ -36,7 +37,6 @@ The SDK includes a complete video player controls UX (user experience), that inc
 - [Usage](#usage)
   - [Architecture](#high-level-architecture-overview)
   - [How the SDK Works](#how-the-sdk-works)
-- [Default Video Player Controls UX](#default-video-player-controls-ux)
 - [Advertising Info and User Tracking](#advertising-info-and-user-tracking)
 - [Contribute](#contribute)
 - [Maintainers](#maintainers)
@@ -61,7 +61,7 @@ There are several technical advantages to using the native VVPSDK over a web pla
 * Video playback of VOD (video on demand), 360°, and LIVE streaming video types
 * Supports either mp4 or m3u8 (HLS) formats
 * Video ads (VAST support of both mp4 and vpaid ads)
-* Pre-rolls and mid-rolls ad support
+* Pre-rolls and mid-rolls ads support
 * Tap an ad to access the ad click URL (more information) via an in-app-browser
 * Full video and ads analytics
 * Default video player controls UX (full source code open sourced) with VoiceOver support
@@ -71,6 +71,57 @@ There are several technical advantages to using the native VVPSDK over a web pla
 * Complete apps control of the frame where videos play
 * Native iOS Picture-in-Picture support
 * Apple AirPlay support
+
+### Default Video Player Controls UX
+
+|Portrait|Landscape|
+|--------|---------|
+|<img width="340" alt="portrait" src="https://user-images.githubusercontent.com/16276892/34273124-5943e9de-e693-11e7-90dd-d5d2fc2a2f65.png">|<img width="540" alt="landscape" src="https://user-images.githubusercontent.com/16276892/34273126-595cdb24-e693-11e7-8bc7-5f95683ec676.png">|
+
+The default player controls UX contains the following elements:
+
+* Play/Pause/Replay button (with loading animation)
+* ± 10 second skip buttons
+* Previous and Next buttons
+* Seekbar
+* Video title
+* Elapsed time
+* Video duration
+* LIVE indicator
+* 360° View Orientation Compass / Orientation Reset button
+* Closed Captioning/SAP Settings button
+* Picture-in-Picture (PiP) button
+* AirPlay button
+* 4 app-custom "Sidebar" buttons
+
+It also includes some gestures to interact with player:
+
+| Controls hide/show gesture|
+|---------------------------|
+|<img width="650" alt="show-hide-anim" src="https://user-images.githubusercontent.com/31652265/40317058-ec57c4a0-5d28-11e8-9f5c-535c48f17a3b.gif">|
+
+|Content full-screen gesture|
+|---------------------------|
+|<img width="650" alt="show-hide-anim" src="https://user-images.githubusercontent.com/31652265/40316727-e4ff0228-5d27-11e8-8cb4-14df42c4447f.gif">|
+
+The default video controls implementation allows a few runtime customizations that can be set on a player-by-player basis. This includes the ability to:
+
+* Set the tint color for the controls (to match your app’s brand)
+* Hide various elements of the controls (useful for smaller view versus full-screen playback)
+* Set any of the 4 app-custom sidebar buttons
+
+The built-in tint color of the default video player controls UX is <span style="color:magenta">pink/magenta</span>. This is deliberate for easier development; feel free to change it to match with your app’s specific design or brand. The built-in tint color of the ad’s UX is <span style="color:gold">yellow/gold</span>. This cannot be dynamically changed at this time, and we advise that you don’t tint your main controls yellow since that will make it difficult to see. You also shouldn't use black or shades of gray because video contrast will reduce visibility of the controls. However, white is generally a good shade to choose because there is a slightly darkened canvas layered above the video, but below the controls; this helps make white controls more visible. 
+
+The player controls are shown under several well-established circumstances. This includes whenever the video is paused, such as before a video starts (with AutoPlay off) or while buffering, after any video finishes (with AutoPlay off), or after all videos linked to the player finish. They also will display (fade in) on demand whenever a video is tapped. If a video is actively playing, the controls will automatically hide (fade out) after a predetermined number of seconds. At any time the controls are shown, they can be quickly hidden by tapping on the video (but not on a specific button, of course).
+
+The default player controls UX implementation includes 4 optional app-specific sidebar buttons. You can set any or all of these to use as you see fit. This was built to allow for app-specific video overlay customization in anticipation for up to 4 new behaviors. Because these 4 sidebar buttons are built right into the default controls UX, they will automatically fade in/out with the rest of the video controls. There is no need to handle any of that logic or attempt to synchronize to the animation timings.
+
+We also think that there should be more gestures that will help users interact with our player. One of these is a double tap gesture. By doing double tap in the empty space of the player, the user will be able to change video gravity from aspect fit to aspect fill. This gesture won't have any conflicts with controls show/hide gesture. 
+
+The complete implementation of the default player controls UX is open source and has been provided as an implementation example of this SDK. Feel free to inspect it, copy it, and modify it at will.
+
+The default iOS Controls UI implementation repo can be found here: 
+[Verizon Video Partner SDK Controls for iOS](https://github.com/VerizonAdPlatforms/OneMobileSDK-controls-ios)
 
 ## Install
 
@@ -85,7 +136,7 @@ There are several technical advantages to using the native VVPSDK over a web pla
 
 ### Onboard your Apps for SDK Authentication
 
-For the VVPSDK to authenticate itself for video playback within your app, the containing app’s unique App Store bundle identifier is passed to Verizon's back end service. You need to email the [Video Support Team](mailto:video.support@oath.com) to register your app bundle IDs to use VVPSDK. You can also register multiple bundled IDs against your same app entity. You might need to do this if you need to allow for a dev/test app bundle ID or an enterprise bundle ID that co-exists on a device alongside your production app. Also, both iOS and Android app bundle IDs can either be the same or different – for the same app. Registration not only authenticates your application, but it ensures your back-end video and ads analytics are all configured properly. In addition, this registration information also defines the video content your app is allowed to play through the SDK.
+In order for the VVPSDK to authenticate itself for video playback within your app, the containing app’s unique App Store bundle identifier is passed to Verizon's back end service. You need to email the [Video Support Team](mailto:video.support@oath.com) to register your app bundle IDs to use VVPSDK. You can also register multiple bundled IDs against your same app entity. You might need to do this if you need to allow for a dev/test app bundle ID or an enterprise bundle ID that co-exists on a device alongside your production app. Also, both iOS and Android app bundle IDs can either be the same or different – for the same app. Registration not only authenticates your application, but it ensures your back-end video and ads analytics are all configured properly. In addition, this registration information also defines the video content your app is allowed to play through the SDK.
 
 The sample projects are all set up to use the following test-only bundle ID: `com.aol.mobile.one.testapp`
 
@@ -136,7 +187,7 @@ Our modular approach makes it easy to add new renderers in the future, or to add
 
 Note, that new renderers must be registered with our back-end micro service. Reach [Video Support Team](mailto:video.support@oath.com) to start this process.
 
-You can visit our [tutorials](https://github.com/VerizonAdPlatforms/OneMobileSDK-playground-ios) to see examples of how to integrate our SDK and how to customize the player for your app.
+**You can visit our [tutorials](/OneMobileSDK-playground-ios) to see examples of how to integrate our SDK and how to customize the player for your app.**
 
 ### How the SDK Works
 
@@ -162,56 +213,6 @@ The runtime circumstances and algorithm for getting an ad or not, are not in the
 
 **Note**: The SDK only operates with an active network connection; you will not be able to do anything without it.
 
-## Default Video Player Controls UX
-
-|Portrait|Landscape|
-|--------|---------|
-|<img width="340" alt="portrait" src="https://user-images.githubusercontent.com/16276892/34273124-5943e9de-e693-11e7-90dd-d5d2fc2a2f65.png">|<img width="540" alt="landscape" src="https://user-images.githubusercontent.com/16276892/34273126-595cdb24-e693-11e7-8bc7-5f95683ec676.png">|
-
-The default player controls UX contains the following elements:
-* Play/Pause/Replay button (with loading animation)
-* ± 10 second skip buttons
-* Previous and Next buttons
-* Seekbar
-* Video title
-* Elapsed time
-* Video duration
-* LIVE indicator
-* 360° View Orientation Compass / Orientation Reset button
-* Closed Captioning/SAP Settings button
-* Picture-in-Picture (PiP) button
-* AirPlay button
-* 4 app-custom "Sidebar" buttons
-
-It also includes some gestures to interact with player:
-
-| Controls hide/show gesture|
-|---------------------------|
-|<img width="650" alt="show-hide-anim" src="https://user-images.githubusercontent.com/31652265/40317058-ec57c4a0-5d28-11e8-9f5c-535c48f17a3b.gif">|
-
-|Content full-screen gesture|
-|---------------------------|
-|<img width="650" alt="show-hide-anim" src="https://user-images.githubusercontent.com/31652265/40316727-e4ff0228-5d27-11e8-8cb4-14df42c4447f.gif">|
-
-The default video controls implementation allows a few runtime customizations that can be set on a player-by-player basis. This includes the ability to:
-
-* Set the tint color for the controls (to match your app’s brand)
-* Hide various elements of the controls (useful for smaller view versus full-screen playback)
-* Set any of the 4 app-custom sidebar buttons
-
-The built-in tint color of the default video player controls UX is <span style="color:magenta">pink/magenta</span>. This is deliberate for easier development; feel free to change it to match with your app’s specific design or brand. The built-in tint color of the ad’s UX is <span style="color:gold">yellow/gold</span>. This cannot be dynamically changed at this time, and we advise that you don’t tint your main controls yellow since that will make it difficult to see. You also shouldn't use black or shades of gray because video contrast will reduce visibility of the controls. However, white is generally a good shade to choose because there is a slightly darkened canvas layered above the video, but below the controls; this helps make white controls more visible. 
-
-The player controls are shown under several well-established circumstances. This includes whenever the video is paused, such as before a video starts (with AutoPlay off) or while buffering, after any video finishes (with AutoPlay off), or after all videos linked to the player finish. They also will display (fade in) on demand whenever a video is tapped. If a video is actively playing, the controls will automatically hide (fade out) after a predetermined number of seconds. At any time the controls are shown, they can be quickly hidden by tapping on the video (but not on a specific button, of course).
-
-The default player controls UX implementation includes 4 optional app-specific sidebar buttons. You can set any or all of these to use as you see fit. This was built to allow for app-specific video overlay customization in anticipation for up to 4 new behaviors. Because these 4 sidebar buttons are built right into the default controls UX, they will automatically fade in/out with the rest of the video controls. There is no need to handle any of that logic or attempt to synchronize to the animation timings.
-
-We also think that there should be more gestures that will help users interact with our player. One of these is a double tap gesture. By doing double tap in the empty space of the player, the user will be able to change video gravity from aspect fit to aspect fill. This gesture won't have any conflicts with controls show/hide gesture. 
-
-The complete implementation of the default player controls UX is open source and has been provided as an implementation example of this SDK. Feel free to inspect it, copy it, and modify it at will.
-
-The default iOS Controls UI implementation repo can be found here: 
-[Verizon Video Partner SDK Controls for iOS](https://github.com/VerizonAdPlatforms/OneMobileSDK-controls-ios)
-
 ## Advertising Info and User Tracking
 
 The Verizon Video Partner SDK does not collect any Personal Identifying Information (PII) or track anything that is not related to playing videos or video ads. We use the IDFA (ID for advertisers) value and respect the user's settings for Limit Ad Tracking (iOS enforces this anyway). The device geolocation is determined by our back-end video servers based on IP address, for the purposes of determining and filtering out content that is geo-restricted by content owners. The SDK does not explicitly use the built-in Location Services APIs, and thus does not require your users to grant access to device location data.
@@ -222,6 +223,7 @@ Please refer to the [CONTRIBUTING](Contributing.md) file for information about h
 
 ## Maintainers
 
+- [Mark Gerl](mailto:mark.gerl@oath.com) *(Team Manager)*
 - [Andrey Moskvin](mailto:andrey.moskvin@oath.com)
 - [Roman Tysiachnik](mailto:roman.tysiachnik@oath.com)
 - [Vladyslav Anokhin](mailto:vladyslav.anokhin@oath.com)
