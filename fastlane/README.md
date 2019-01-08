@@ -64,7 +64,7 @@ fastlane travis_prerelease_sdk
 ```
 fastlane prerelease_sdk
 ```
-Make pre-release of OathVideoPartnerSDK
+Make pre-release of VerizonVideoPartnerSDK
 ### release_sdk
 ```
 fastlane release_sdk
@@ -83,6 +83,11 @@ Run Sourcery with params: sources, templates, output
 ### lint_current_podspec
 ```
 fastlane lint_current_podspec
+```
+
+### build_tutorials
+```
+fastlane build_tutorials
 ```
 
 
