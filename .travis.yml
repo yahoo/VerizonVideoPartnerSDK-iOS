@@ -8,6 +8,7 @@ git:
 
 install:
   - bundle install
+  - brew update-reset && brew update
   - brew install sourcery
   - carthage update --platform iOS
 

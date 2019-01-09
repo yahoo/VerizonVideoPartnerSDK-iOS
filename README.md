@@ -1,4 +1,4 @@
-# Verizon Video Partner SDK – for iOS and tvOS
+# Verizon Video Partner SDK for iOS and tvOS
 
 > The Verizon Video Partner SDK (formerly named _Oath Video Partner SDK_) is a native iOS SDK that makes it easy to play and monetize videos from the Verizon/Oath Video Partner network on iOS-based platforms.
 
@@ -6,12 +6,9 @@
     <a href="https://raw.githubusercontent.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/master/LICENSE.md">
         <img src="https://img.shields.io/badge/License-MIT-blue.svg?style=flat" alt="MIT LICENSE" />
     </a>
-    <img src="https://img.shields.io/badge/Swift-4.1-orange.svg" alt="Swift 4.1" />
+    <img src="https://img.shields.io/badge/Swift-4.2-orange.svg" alt="Swift 4.1" />
     <a href="https://github.com/Cocoapods">
         <img src="https://img.shields.io/badge/CocoaPods-compatible-4BC51D.svg?style=flat" alt="CocoaPods Compatible" />
-    </a>
-    <a href="https://github.com/Carthage/Carthage">
-        <img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat" alt="Carthage Compatible" />
     </a>
     <a href="https://github.com/apple/swift-package-manager">
         <img src="https://img.shields.io/badge/Swift%20Package%20Manager-n/a (unsupported for iOS)-ff658d.svg?style=flat" alt="Swift Package Manager Incompatible" />
@@ -26,21 +23,22 @@ The SDK includes a complete video player controls UX (user experience), that inc
 
 ## Table of Contents
 
-- [Background](#background)
-  - [Main Features](#main-sdk-features)
-  - [Default Video Player Controls UX](#default-video-player-controls-ux)
-- [Install](#install)
-  - [Requirements](#initial-requirements)
-  - [App Onboarding](#onboard-your-apps-for-sdk-authentication)
-  - [Cocoapods](#cocoapods)
-  - [Carthage](#carthage)
-- [Usage](#usage)
-  - [Architecture](#high-level-architecture-overview)
-  - [How the SDK Works](#how-the-sdk-works)
-- [Advertising Info and User Tracking](#advertising-info-and-user-tracking)
-- [Contribute](#contribute)
-- [Maintainers](#maintainers)
-- [License](#license)
+- [Verizon Video Partner SDK for iOS and tvOS](#verizon-video-partner-sdk-for-ios-and-tvos)
+  - [Table of Contents](#table-of-contents)
+  - [Background](#background)
+    - [Main SDK Features](#main-sdk-features)
+    - [Default Video Player Controls UX](#default-video-player-controls-ux)
+  - [Install](#install)
+    - [Initial Requirements](#initial-requirements)
+    - [Onboard your Apps for SDK Authentication](#onboard-your-apps-for-sdk-authentication)
+    - [Cocoapods](#cocoapods)
+  - [Usage](#usage)
+    - [High-Level Architecture Overview](#high-level-architecture-overview)
+    - [How the SDK Works](#how-the-sdk-works)
+  - [Advertising Info and User Tracking](#advertising-info-and-user-tracking)
+  - [Contribute](#contribute)
+  - [Maintainers](#maintainers)
+  - [License](#license)
 
 ## Background
 
@@ -128,8 +126,8 @@ The default iOS Controls UI implementation repo can be found here:
 ### Initial Requirements
 
 * Xcode 9.3+
-* Swift 4.1 (use in Obj-C projects is also possible by writing wrapper around Swift framework)
-* CocoaPods or Carthage
+* Swift 4.2 (use in Obj-C projects is also possible by writing wrapper around Swift framework)
+* CocoaPods
 * Mobile device running iOS 9 or later or AppleTV device running tvOS 9 or later
 * Account in the Verizon Video Partner network Portal, and access to Verizon-ingested video content
 * Onboarded application bundle ID
@@ -156,20 +154,6 @@ After that, open Terminal app into a folder with it and execute this command:
 pod install
 ```
 
-### Carthage
-
-To use Carthage, all you need is to add this repository in your `Cartfile`:
-
-```bash
-github "VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS"
-```
-
-And then you have to execute command:
-
-```bash
-carthage update 
-```
-
 ## Usage
 
 ### High-Level Architecture Overview
@@ -187,7 +171,7 @@ Our modular approach makes it easy to add new renderers in the future, or to add
 
 Note, that new renderers must be registered with our back-end micro service. Reach [Video Support Team](mailto:video.support@oath.com) to start this process.
 
-**You can visit our [tutorials](/OneMobileSDK-playground-ios) to see examples of how to integrate our SDK and how to customize the player for your app.**
+**You can visit our [tutorials](/tutorials/) to see examples of how to integrate our SDK and how to customize the player for your app.**
 
 ### How the SDK Works
 
@@ -197,8 +181,8 @@ However, if you choose to use the SDK’s built-in player controls UX implementa
 
 To play a video, follow these very basic steps:
 
-1. Initialize an instance of the `OneSDK`
-2. Using OneSDK, initialize a new `Player` object with a video ID/IDs or playlist ID
+1. Initialize an instance of the `VVPSDK`
+2. Using VVPSDK, initialize a new `Player` object with a video ID/IDs or playlist ID
 3. Set `Player` to the `PlayerViewController`
 4. Set `Controls` to the `PlayerViewController`
 5. Show `PlayerViewController`
