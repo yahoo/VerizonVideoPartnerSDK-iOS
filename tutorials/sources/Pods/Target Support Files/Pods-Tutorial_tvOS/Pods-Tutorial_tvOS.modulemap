@@ -1,0 +1,6 @@
+module Pods_Tutorial_tvOS {
+  umbrella header "Pods-Tutorial_tvOS-umbrella.h"
+
+  export *
+  module * { export * }
+}

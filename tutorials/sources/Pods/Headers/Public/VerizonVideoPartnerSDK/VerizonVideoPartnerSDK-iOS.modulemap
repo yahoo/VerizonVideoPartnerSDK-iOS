@@ -1,0 +1,7 @@
+module VerizonVideoPartnerSDK {
+  umbrella header "VerizonVideoPartnerSDK-iOS-umbrella.h"
+  exclude header "VerizonVideoPartnerSDK-tvOS-umbrella.h"
+
+  export *
+  module * { export * }
+}

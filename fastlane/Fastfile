@@ -287,3 +287,31 @@ lane :lint_current_podspec do
     podspec_path: 'VerizonVideoPartnerSDK.podspec',
     sources_repo: 'https://github.com/VerizonAdPlatforms/OneMobileSDK-releases-iOS')
 end
+
+lane :build_tutorials do 
+  xcodebuild(
+    workspace: 'tutorials/sources/Tutorial.xcworkspace',
+    scheme: 'Tutorial',
+    configuration: 'Debug',
+    clean: true,
+    build: true,
+    build_settings: {
+      'CODE_SIGNING_REQUIRED' => 'NO',
+      'CODE_SIGN_IDENTITY' => '',
+      'CODE_SIGN_ENTITLEMENTS' => '',
+      'CODE_SIGNING_ALLOWED' => 'NO',
+    })
+
+  xcodebuild(
+    workspace: 'tutorials/sources/Tutorial.xcworkspace',
+    scheme: 'Tutorial_tvOS',
+    configuration: 'Debug',
+    clean: true,
+    build: true,
+    build_settings: {
+      'CODE_SIGNING_REQUIRED' => 'NO',
+      'CODE_SIGN_IDENTITY' => '',
+      'CODE_SIGN_ENTITLEMENTS' => '',
+      'CODE_SIGNING_ALLOWED' => 'NO',
+  })
+end

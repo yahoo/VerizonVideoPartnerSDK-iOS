@@ -1,0 +1,4 @@
+module OMSDK_Oath2 {
+    header "Headers/OMIDImports.h"
+    export *
+}

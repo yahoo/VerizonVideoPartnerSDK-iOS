@@ -1,0 +1,61 @@
+//  Copyright 2018, Oath Inc.
+//  Licensed under the terms of the MIT License. See LICENSE.md file in project root for terms.
+import Foundation <%
+
+require 'YAML'
+require 'FileUtils'
+
+file = nil
+Dir.chdir('..') do 
+  path = "mobile-sdk-evolution/definitions/tracking pixels/tracking-pixels.yaml"
+  file = File.read(path)
+end
+
+api = YAML.load(file).map { |request_name, fields|
+  fields[:request_name] = request_name
+  fields["parameters"] = fields["parameters"].map { |key, value|
+    {
+      name: key,
+      nullable: value[0],
+      description: value[1]
+    }
+  }
+  fields
+}
+
+def escapeDotsIn(parameterName)
+  parameterName.gsub('.','_')
+end
+
+def parameterList(parameters)
+  parameters.map { |p|
+    "#{escapeDotsIn(p[:name])}: String#{p[:nullable] ? "? = nil" : "" }"
+  }.join(",\n\t\t")
+end
+
+%>
+
+extension TrackingPixels {
+    struct Generator {
+        private init() {}
+    }
+}
+
+extension TrackingPixels.Generator {
+    <% for call in api %>
+    static func <%=call[:request_name]%>(
+        <%= parameterList(call["parameters"]) %>) -> URLComponents
+    {
+        var queryItems = [URLQueryItem]()
+        
+        <% for p in call["parameters"]%><% name = escapeDotsIn(p[:name])%><%if !p[:nullable]%>queryItems.append(URLQueryItem(name: "<%=p[:name]%>", value: <%=name%>))
+        <%else%>if let <%=name%> = <%=name%> { queryItems.append(URLQueryItem(name: "<%=p[:name]%>", value: <%=name%>)) }
+        <%end%><%end%>
+        var components = URLComponents()
+        components.path = "<%=call["anchor"]%>"
+        components.queryItems = queryItems
+        
+        return components
+    }
+    <% end%>
+}
