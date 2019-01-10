@@ -174,6 +174,8 @@
 		50E5ADEA1EE08A76004104D6 /* PlayerTracer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E5ADE81EE08A76004104D6 /* PlayerTracer.swift */; };
 		50E6E455208F94EF003B0F4E /* UserActionInitiated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E6E454208F94EF003B0F4E /* UserActionInitiated.swift */; };
 		50E6E456208F94EF003B0F4E /* UserActionInitiated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E6E454208F94EF003B0F4E /* UserActionInitiated.swift */; };
+		50FD8EB221E77A1E00A679BB /* VVPSDK_Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FD8EB121E77A1E00A679BB /* VVPSDK_Version.swift */; };
+		50FD8EB321E77A1E00A679BB /* VVPSDK_Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FD8EB121E77A1E00A679BB /* VVPSDK_Version.swift */; };
 		50FEC3FF1DDF58A20013DA99 /* NonEmptyString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FEC3FE1DDF58A20013DA99 /* NonEmptyString.swift */; };
 		50FEC4001DDF58A20013DA99 /* NonEmptyString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50FEC3FE1DDF58A20013DA99 /* NonEmptyString.swift */; };
 		861AF6D31D994DC80086B8EF /* Nimble.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 861AF6D11D994DC80086B8EF /* Nimble.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -508,6 +510,7 @@
 		50E5ADE71EE0428A004104D6 /* PlayerTracer.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = PlayerTracer.playground; path = tracer/PlayerTracer.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		50E5ADE81EE08A76004104D6 /* PlayerTracer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlayerTracer.swift; path = tracer/PlayerTracer.swift; sourceTree = "<group>"; };
 		50E6E454208F94EF003B0F4E /* UserActionInitiated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserActionInitiated.swift; sourceTree = "<group>"; };
+		50FD8EB121E77A1E00A679BB /* VVPSDK_Version.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = VVPSDK_Version.swift; path = sources/VVPSDK_Version.swift; sourceTree = "<group>"; };
 		50FEC3FE1DDF58A20013DA99 /* NonEmptyString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NonEmptyString.swift; sourceTree = "<group>"; };
 		861AF6D11D994DC80086B8EF /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/iOS/Nimble.framework; sourceTree = "<group>"; };
 		861AF6D21D994DC80086B8EF /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/iOS/Quick.framework; sourceTree = "<group>"; };
@@ -1282,6 +1285,7 @@
 				DEBE4A9A1CA40DAC006E01C1 /* VVP.swift */,
 				DE4C51351C8072FA00BFFB0B /* VVPSDK.swift */,
 				DE3DA42A1E55D9A900D34880 /* VVPSDKPlugins.swift */,
+				50FD8EB121E77A1E00A679BB /* VVPSDK_Version.swift */,
 				DEB112341E30F0AE007E65BD /* config */,
 				504CA7411C85D620006D0ADF /* frameworks */,
 				DE4C51341C80725A00BFFB0B /* products */,
@@ -1694,6 +1698,7 @@
 				501AB1D9202892DA00BAFA9C /* AdClickDetector.swift in Sources */,
 				50A11DAA1D59D7E000F4A068 /* Disposable.swift in Sources */,
 				50A11DAB1D59D7E000F4A068 /* Network.swift in Sources */,
+				50FD8EB321E77A1E00A679BB /* VVPSDK_Version.swift in Sources */,
 				50C99D4F2010B4E00041B013 /* Observable.swift in Sources */,
 				DE79CE221E979F9700C3A660 /* AdURLProviderProcess.swift in Sources */,
 				50C99D532010DAE90041B013 /* VRMDetector.swift in Sources */,
@@ -1860,6 +1865,7 @@
 				061CFFFE211C7272002B5BE9 /* MuteDetector.swift in Sources */,
 				504D8C961E65960B0068120E /* Telemetry.swift in Sources */,
 				067209D421B6BE320086CDBE /* BufferingDetector.swift in Sources */,
+				50FD8EB221E77A1E00A679BB /* VVPSDK_Version.swift in Sources */,
 				DE1FB29A1CE4F34300B99941 /* Rethrow.swift in Sources */,
 				50B049901CD2546800CC2D47 /* PlayerViewController.swift in Sources */,
 				DEBE4A7F1CA2EEDC006E01C1 /* Pipeline.swift in Sources */,
