@@ -1,42 +1,63 @@
-# Oath Video Partner SDK Tutorials
+# Verizon Video Partner SDK Tutorials
 
 This document will link you to sample projects and code, that are kept up-to-date with the latest versions of the the developer tools, API, and language we support. Our iOS and tvOS samples use CocoaPods as the default dependency manager (except for any Carthage-specific samples). 
 
-1. [TLDR: Quick Start](#tldr)
-2. [Tutorial 1: Playing Videos](#tutorial-1-playing-videos)
-	1. [Setting default player controls’ tint color](#setting-default-player-controls-tint-color)
-	2. [Playing with AutoPlay on/off](#playing-with-autoplay-onoff)
-	3. [Playing Muted](#playing-muted)
-	4. [Disabling HLS (or forcing MP4 playback)](#disabling-hls-or-forcing-mp4-playback)
-3. [Tutorial 2: Customizing the Default Controls UX](#tutorial-2-customizing-the-default-controls-ux)
-	1. [Hiding Various Controls buttons](#hiding-various-controls-buttons)
-	2. [Closed Captioning / SAP Settings button](#closed-captioning--sap-settings-button)
-	3. [Using the 4 Custom Sidebar buttons](#using-the-4-custom-sidebar-buttons)
-	4. [Setting the LIVE indicator’s tint color](#setting-the-live-indicators-tint-color)
-	5. [Animations Customization and Disabling](#animations-customization-and-disabling)
-	6. [Custom colors for seeker elements](#custom-colors-for-seeker-elements)
-4. [Tutorial 3: Observing the Player](#tutorial-3-observing-the-player)
-	1. [Current Playback State and Position](#current-playback-state-and-position)
-	2. [Looping Playback](#looping-playback)
-	3. [LIVE, VOD, or 360°?](#live-vod-or-360)
-	4. [Manually Hooking up Previous or Next Videos](#manually-hooking-up-previous-or-next-videos)
-5. [Tutorial 4: Error Handling in the SDK](#tutorial-4-error-handling-in-the-sdk)
-	1. [SDK Initialization Errors](#sdk-initialization-errors)
-	2. [Player Initialization Errors](#player-initialization-errors)
-	3. [Restricted Videos](#restricted-videos)
-	4. [Deleted Videos](#deleted-videos)
-	5. [Invalid or Unknown Videos](#invalid-or-unknown-videos)
-6. [Specific Notes for iPhone X](#specific-notes-for-iphone-x)
-	1. [Player Controls on the iPhone X](#player-controls-on-the-iphone-x)
-	2. [Home Indicator Auto Hidden Setup](#home-indicator-auto-hidden-setup)
-7. [Specific Notes for tvOS Apps](#specific-notes-for-tvos-apps)
-	1. [Tutorial 5: Playing Videos on tvOS](#tutorial-5-playing-videos-on-tvos)
-8. [Next Steps](#next-steps)
-	1. [Getting O2 Video/Playlist IDs into your apps](#getting-o2-videoplaylist-ids-into-your-apps)
-	2. [Controlling Ads via your O2 Portal Account](#controlling-ads-via-your-o2-portal-account)
-9. [FAQ](#faq)
-    1. [iOS hardware ringer](#ios-hardware-ringer)
-    2. [Extracting SDK version in runtime](#extracting-sdk-version-in-runtime) 
+- [Verizon Video Partner SDK Tutorials](#verizon-video-partner-sdk-tutorials)
+	- [TLDR: Quick Start](#tldr-quick-start)
+	- [Tutorial 1: Playing Videos](#tutorial-1-playing-videos)
+		- [_Tutorial Sample:_](#tutorial-sample)
+			- [Setting default player controls’ tint color](#setting-default-player-controls-tint-color)
+				- [_Tutorial Sample:_](#tutorial-sample-1)
+			- [Playing with AutoPlay on/off](#playing-with-autoplay-onoff)
+		- [_Tutorial Sample:_](#tutorial-sample-2)
+			- [Playing Muted](#playing-muted)
+				- [_Tutorial Sample:_](#tutorial-sample-3)
+			- [Disabling HLS (or forcing MP4 playback)](#disabling-hls-or-forcing-mp4-playback)
+	- [Tutorial 2: Customizing the Default Controls UX](#tutorial-2-customizing-the-default-controls-ux)
+		- [_Tutorial Sample:_](#tutorial-sample-4)
+			- [Hiding Various Controls buttons](#hiding-various-controls-buttons)
+		- [_Tutorial Sample:_](#tutorial-sample-5)
+			- [Closed Captioning / SAP Settings button](#closed-captioning--sap-settings-button)
+		- [_Tutorial Sample:_](#tutorial-sample-6)
+			- [Using the 4 Custom Sidebar buttons](#using-the-4-custom-sidebar-buttons)
+		- [_Tutorial Sample:_](#tutorial-sample-7)
+			- [Setting the LIVE indicator’s tint color](#setting-the-live-indicators-tint-color)
+		- [_Tutorial Sample:_](#tutorial-sample-8)
+			- [Animations Customization and Disabling](#animations-customization-and-disabling)
+				- [_Tutorial Sample:_](#tutorial-sample-9)
+			- [Custom Colors for Seeker Elements](#custom-colors-for-seeker-elements)
+		- [_Tutorial Sample:_](#tutorial-sample-10)
+	- [Tutorial 3: Observing the Player](#tutorial-3-observing-the-player)
+			- [Current Playback State and Position](#current-playback-state-and-position)
+		- [_Tutorial Sample:_](#tutorial-sample-11)
+			- [Looping Playback](#looping-playback)
+		- [_Tutorial Sample:_](#tutorial-sample-12)
+			- [LIVE, VOD, or 360°?](#live-vod-or-360%C2%B0)
+			- [Manually Hooking up Previous or Next Videos](#manually-hooking-up-previous-or-next-videos)
+		- [_Tutorial Sample:_](#tutorial-sample-13)
+	- [Tutorial 4: Error Handling in the SDK](#tutorial-4-error-handling-in-the-sdk)
+		- [SDK Initialization Errors](#sdk-initialization-errors)
+		- [Player Initialization Errors](#player-initialization-errors)
+		- [Restricted Videos](#restricted-videos)
+		- [_Tutorial Sample:_](#tutorial-sample-14)
+			- [Deleted Videos](#deleted-videos)
+				- [_Tutorial Sample:_](#tutorial-sample-15)
+			- [Invalid or Unknown Videos](#invalid-or-unknown-videos)
+				- [_Tutorial Sample:_](#tutorial-sample-16)
+		- [Specific Notes for tvOS Apps](#specific-notes-for-tvos-apps)
+	- [Tutorial 5: Playing Videos on tvOS](#tutorial-5-playing-videos-on-tvos)
+		- [_Tutorial Sample:_](#tutorial-sample-17)
+	- [Specific Notes for iPhone X](#specific-notes-for-iphone-x)
+		- [Player Controls on the iPhone X](#player-controls-on-the-iphone-x)
+		- [Home Indicator Auto Hidden setup](#home-indicator-auto-hidden-setup)
+		- [What You Must Do to Enable this Auto-Hiding Behavior in your App](#what-you-must-do-to-enable-this-auto-hiding-behavior-in-your-app)
+			- [_Tutorial Sample:_](#tutorial-sample-18)
+	- [Next Steps](#next-steps)
+		- [Getting O2 Video/Playlist IDs into your apps](#getting-o2-videoplaylist-ids-into-your-apps)
+		- [Controlling Ads via your O2 Portal Account](#controlling-ads-via-your-o2-portal-account)
+	- [FAQ](#faq)
+		- [iOS hardware ringer](#ios-hardware-ringer)
+		- [Extracting SDK version in runtime](#extracting-sdk-version-in-runtime)
     
 
 <a name="tldr"></a>
@@ -51,7 +72,7 @@ So for beginning use Tutorial 1!
 
 This tutorial sample shows you how to quickly init the OVPSDK and play videos using all the default options and behaviors, with very little code. Playing a single video, a list of individual videos, or videos from an O2 Playlist are all done the same way. The only difference between playing a single video or multiple videos is that the SDK strings multiple videos together, connects up the previous and next player controls UX buttons, and if AutoPlay is on - plays them straight through.
 
-##### _Tutorial Sample:_
+### _Tutorial Sample:_
 
 > [Playing Videos](Tutorials)
 
@@ -69,7 +90,7 @@ By default, the SDK plays videos with AutoPlay mode on. This means, that as soon
 
 If AutoPlay mode is off, the user will have to tap the play button to start the playback process. Alternatively, you can programmatically do this by controlling the Player object.
 
-##### _Tutorial Sample:_
+### _Tutorial Sample:_
 
 > [Turning Off AutoPlay](Tutorials)
 
@@ -90,7 +111,7 @@ Many (but not all) of the videos in the O2 video platform, have multiple renditi
 
 This tutorial sample shows you how to further modify the default controls UX.
 
-##### _Tutorial Sample:_
+### _Tutorial Sample:_
 
 > [Custom UX Color](Tutorials)
 
@@ -109,7 +130,7 @@ You can change the look of the default controls UX on a player-by-player basis t
 
 If you hide the title, and bottom element buttons such as CC/SAP, PiP, and AirPlay, the seekbar will fall down closer to the bottom of the video frame, to cover the gap usually left for those elements. See this tutorial for examples of how to hide/show these elements.
 
-##### _Tutorial Sample:_
+### _Tutorial Sample:_
 
 > [Hiding Default Controls Buttons](Tutorials)
 
@@ -117,7 +138,7 @@ If you hide the title, and bottom element buttons such as CC/SAP, PiP, and AirPl
 
 This new feature of the OVPSDK is generally dependent on having this information in the HLS stream. There are ways to filter out what CC languages and SAP audio tracks are available. Also, there’s a way to control what the choices are for a given video. One reason to control this may be to implement a “sticky” closed captioning setting. By default, turning CC on only applies the the current playing video. A next or previous video would not have CC on by default. If you wanted your app to support a sticky setting for this, you would do it yourself. This part of this tutorial will show you how to accomplish this.
 
-##### _Tutorial Sample:_
+### _Tutorial Sample:_
 
 > [Filtered Subtitles](Tutorials)
 
@@ -125,7 +146,7 @@ This new feature of the OVPSDK is generally dependent on having this information
 
 Use this sample to see how to add custom code and behaviors to one of the 4 sidebar buttons. The Sidebar buttons are part of the default player controls UX and are there for you to add up to 4 different overlays/behaviors to your player. You provide the button graphics – icons for normal, selected, and highlighted modes, and you provide a handler to be called in the case of a button tap. The SDK will handle showing/hiding the buttons along with the other player controls.
 
-##### _Tutorial Sample:_
+### _Tutorial Sample:_
 
 > [Custom Sidebar Buttons](Tutorials)
 
@@ -133,7 +154,7 @@ Use this sample to see how to add custom code and behaviors to one of the 4 side
 
 The LIVE indicator only appears during a LIVE streaming video playback. This will not appear for a video on demand video. Part of the LIVE indicator is the ability to colorize the • that appears next to the LIVE indicator. In general, you may want to use a standard pure-red color. However, it’s possible that you want to use your app’s brand color or while here instead. You can use black or any dark-gray color, but that is ill advised, because of the general nature of video to have lots of blacks in it. The sample code in this example shows how to set this.
 
-##### _Tutorial Sample:_
+### _Tutorial Sample:_
 
 > [LIVE Indicator Color](Tutorials)
 
@@ -149,7 +170,7 @@ We've added some new animations to our default player controls UX. If you want t
 
 The 2.28 version of SDK now includes a new feature to set custom colors for each element of player's seeker, like current time, progress, cue points etc. It is also possible to set custom color only for one of seeker elements, when the others will have the same color as the view's tint color.
 
-##### _Tutorial Sample:_
+### _Tutorial Sample:_
 
 > [Custom colors for seeker elements](Tutorials)
 
@@ -162,7 +183,7 @@ This tutorial sample shows you how to observe just about everything you can obse
 
 Determining the current state of the `Player` is a key need for apps … most app-level video playback logic starts here. In addition to the play/pause state, also includes the current position. Once you can query for these property values, you can also programmatically modify them.
 
-##### _Tutorial Sample:_
+### _Tutorial Sample:_
 
 > [Video States](Tutorials)
 
@@ -170,7 +191,7 @@ Determining the current state of the `Player` is a key need for apps … most ap
 
 If your app has some need to loop a `Player` (one video or many), such as running a kiosk-style interface, for example. This is an easy operation to accomplish with the OVPSDK. Look in this example, to see how to determine when playback finishes, and how to reset the video index back to the first video and start it over.
 
-##### _Tutorial Sample:_
+### _Tutorial Sample:_
 
 > [Looping Videos](Tutorials)
 
@@ -183,7 +204,7 @@ You may need to inspect some more metadata on the video, such as what type of vi
 
 There are many legitimate app UX circumstance, that can dictate the dynamicness of a video player – meaning, that not every app design will simply be setup to operate off fixed playlists or lists of videos. As such, the Player can be modified on the fly to dynamically handle what video is played when the previous or next buttons are tapped. This example tutorial has sample code that shows you precisely how to do this. However, be judicious with the usage of this behavior, and make sure it matches a natural flow of content for the user.
 
-##### _Tutorial Sample:_
+### _Tutorial Sample:_
 
 > [Hooking Up Next Video](Tutorials)
 
@@ -192,7 +213,7 @@ There are many legitimate app UX circumstance, that can dictate the dynamicness 
 
 This tutorial sample shows you how to handle various different types of errors that can occur when using the OVPSDK and how to catch and identify them. How you handle these in your app is up to you. The SDK is designed to either return a valid SDK or Player instance otherwise it returns an error. There is no middle ground. If you don’t get a valid instance, you should look at the error result instead to determine why. This section describes some common issues.
 
-#### SDK Initialization Errors
+### SDK Initialization Errors
 
 For various reasons, the SDK may fail to initialize. The most common reason for this, is you’re trying to use the OVPSDK without first having [onboarded your app’s bundle ID](##Onboarding\ your\ Apps\ for\ SDK\ Authentication). In this case, you’ll get an error that looks like something like this:
 ```
@@ -201,16 +222,16 @@ For various reasons, the SDK may fail to initialize. The most common reason for 
 } 
 ```
 
-#### Player Initialization Errors
+### Player Initialization Errors
 
 For various reasons, the `Player` and `OneSDK` may fail to initialize. Errors are usually self-descriptive. 
 Contact [Video Support Team](mailto:video.support@oath.com) if you are stuck and we will be happy to help you!
 
-#### Restricted Videos
+### Restricted Videos
 
 Videos can be restricted for playback in two very distinct ways. The first is geo restricted content. The second is device restricted content. If you’re attempting to initialize a `Player` with content that’s restricted against your device or geolocation, that content is automatically filtered out. Only valid, playable video IDs are accepted, and have their metadata pulled into the `Player` instance. If you end up with no `Player` instance, it’s because there are no valid video IDs for it to operate on. So, you get an error to this effect. This tutorial sample shows how to detect that a video is not playable because it is restricted.
 
-##### _Tutorial Sample:_
+### _Tutorial Sample:_
 
 > [Restricted Video](Tutorials)
 
@@ -230,18 +251,18 @@ Only valid, playable video IDs are accepted, and have their metadata pulled into
 
 > [Unknown Video](Tutorials)
 
-## Specific Notes for tvOS Apps
+### Specific Notes for tvOS Apps
 
 The OVPSDK supports tvOS with the same source framework as iOS. We are utilising `AVPlayerViewController` for both content and advertisement playback. Controls also used from this class. As expected - no customisation of UI is allowed for tvOS implementation.
 
 Because there is no way to tap on the screen, you cannot access the ad URL. Additionally, tvOS has no support for web views – so there would be no consistent way to render the ad URL.
 
 <a name="tutorial-5"></a>
-### Tutorial 5: Playing Videos on tvOS
+## Tutorial 5: Playing Videos on tvOS
 
 This tutorial sample shows you how to do many of the same things as iOS as described above in [Tutorial 1](#tutorial-1), but for tvOS. In terms of the OVPSDK, the biggest difference is that you cannot use the default Custom Controls UX with tvOS – you must use the built-in `AVPlayerViewController` controls. With this, you get direct access to the advanced Siri Remote control features, for example.
 
-##### _Tutorial Sample:_
+### _Tutorial Sample:_
 
 > [Playing Videos on tvOS](Tutorials/Tutorial_tvOS)
 
@@ -271,7 +292,7 @@ To implement this desired behavior, in the main view controller that contains th
 
 To see how it works, simply launch our Tutorials app on an iPhone X and play any video.
 
-##### _Tutorial Sample:_
+#### _Tutorial Sample:_
 
 > [Adding Method Override to Support iPhone X](Tutorials/Tutorial)
 
@@ -297,7 +318,7 @@ By default the hardware ringer position (muted/unmuted) is respected - if it is 
 To override this behavior you need to add following code before creating a player. 
 This needs to be done only once - for example this in `AppDelegate` class.
 
-```
+```swift
 let audioSession = AVAudioSession.sharedInstance()
 do {
     try audioSession.setCategory(AVAudioSessionCategoryPlayback)
@@ -312,7 +333,6 @@ Details about this category can be found [here](https://developer.apple.com/docu
 
 If you are looking for SDK version in runtime - here is the code snippet that will extract it:
 
-```
-let sdkInfo = Bundle(identifier: "com.oath.VideoPartnerSDK")?.infoDictionary
-print(sdkInfo?["CFBundleShortVersionString"] as? String)
-```
+```swift
+let version = VVPSDK.version // "1.1.0"
+``````
