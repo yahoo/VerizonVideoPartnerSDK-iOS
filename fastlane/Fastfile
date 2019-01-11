@@ -67,7 +67,7 @@ end
 
 lane :is_latest_video_renderer do |_options|
   result = false
-  Dir.chdir('../Carthage/Checkouts/OneMobileSDK-videorenderer-ios') do
+  Dir.chdir('../Carthage/Checkouts/VerizonVideoPartnerSDK-videorenderer-ios') do
     sh 'git fetch --tags'
     last_tag = sh 'git describe --abbrev=0 --tags'
     last_commit = sh 'git rev-parse origin/master'

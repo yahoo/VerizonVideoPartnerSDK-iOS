@@ -119,7 +119,7 @@ We also think that there should be more gestures that will help users interact w
 The complete implementation of the default player controls UX is open source and has been provided as an implementation example of this SDK. Feel free to inspect it, copy it, and modify it at will.
 
 The default iOS Controls UI implementation repo can be found here: 
-[Verizon Video Partner SDK Controls for iOS](https://github.com/VerizonAdPlatforms/OneMobileSDK-controls-ios)
+[Verizon Video Partner SDK Controls for iOS](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-controls-ios)
 
 ## Install
 

@@ -36,7 +36,7 @@ pod install
 
 To use Carthage, all you need is to add this repository in your Cartfile as:
 ```bash
-github "OathAdPlatforms/OathVideoPartnerSDK-PlayerCore-iOS"
+github "VerizonAdPlatforms/VerizonVideoPartnerSDK-PlayerCore-iOS"
 ```
 
 And then you have to execute command:
@@ -46,7 +46,7 @@ carthage update
 
 ## Usage
 
-This project is used in [Oath VideoPartner SDK](https://github.com/OathAdPlatforms/OathVideoPartnerSDK-iOS).
+This project is used in [Oath VideoPartner SDK](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS).
 It is a required dependency for the OVPSDK and it is not expected to be used separately from the SDK.
 
 ## Contribute

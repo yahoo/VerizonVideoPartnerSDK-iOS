@@ -109,7 +109,7 @@
         <!--System Player View Controller-->
         <scene sceneID="Yv8-Au-BRW">
             <objects>
-                <viewController id="fuC-Io-VD4" customClass="SystemPlayerViewController" customModule="OathVideoPartnerSDK" sceneMemberID="viewController">
+                <viewController id="fuC-Io-VD4" customClass="SystemPlayerViewController" customModule="VerizonVideoPartnerSDK" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="5Mh-aC-hAy"/>
                         <viewControllerLayoutGuide type="bottom" id="BU8-Wn-AuI"/>

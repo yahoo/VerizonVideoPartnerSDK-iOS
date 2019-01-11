@@ -3,7 +3,7 @@
 > A native iOS SDK that makes it easy to play and monetize videos from the Oath Video Partner network on iOS-based platforms.
 
 <p>
-    <a href="https://raw.githubusercontent.com/OathAdPlatforms/OathVideoPartnerSDK-iOS/master/LICENSE.md">
+    <a href="https://raw.githubusercontent.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/master/LICENSE.md">
         <img src="https://img.shields.io/badge/License-MIT-blue.svg?style=flat" alt="MIT LICENSE" />
     </a>
     <img src="https://img.shields.io/badge/Swift-4.1-orange.svg" alt="Swift 4.1" />
@@ -91,12 +91,12 @@ The sample projects are all set up to use the following test-only bundle ID: `co
 
 ### Cocoapods
 
-You can install the OathVideoPartnerSDK using CocoaPods. 
-To do this, add OathVideoPartnerSDK for your target in your `Podfile`:
+You can install the VerizonVideoPartnerSDK using CocoaPods. 
+To do this, add VerizonVideoPartnerSDK for your target in your `Podfile`:
 
 ```ruby
 target 'Target-Name' do
-    pod 'OathVideoPartnerSDK'
+    pod 'VerizonVideoPartnerSDK'
 end
 ```
 After that, open Terminal app into a folder with it and execute this command: 
@@ -110,7 +110,7 @@ pod install
 To use Carthage, all you need is to add this repository in your `Cartfile`:
 
 ```bash
-github "OathAdPlatforms/OathVideoPartnerSDK-iOS"
+github "VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS"
 ```
 
 And then you have to execute command:
@@ -136,7 +136,7 @@ Our modular approach makes it easy to add new renderers in the future, or to add
 
 Note, that new renderers must be registered with our back-end micro service. Reach [Video Support Team](mailto:video.support@oath.com) to start this process.
 
-You can visit our [tutorials](https://github.com/OathAdPlatforms/OneMobileSDK-playground-ios) to see examples of how to integrate our SDK and how to customize the player for your app.
+You can visit our [tutorials](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-playground-ios) to see examples of how to integrate our SDK and how to customize the player for your app.
 
 ### How the SDK Works
 
@@ -210,7 +210,7 @@ We also think that there should be more gestures that will help users interact w
 The complete implementation of the default player controls UX is open source and has been provided as an implementation example of this SDK. Feel free to inspect it, copy it, and modify it at will.
 
 The default iOS Controls UI implementation repo can be found here: 
-[Oath Video Partner SDK Controls for iOS](https://github.com/OathAdPlatforms/OneMobileSDK-controls-ios)
+[Oath Video Partner SDK Controls for iOS](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-controls-ios)
 
 ## Advertising Info and User Tracking
 

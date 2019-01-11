@@ -32,7 +32,7 @@ public enum Telemetry {
     
     public final class Station {
         public static let shared = Station()
-        private let queue = DispatchQueue(label: "com.onemobilesdk.telemetry_station")
+        private let queue = DispatchQueue(label: "com.VerizonVideoPartnerSDK.telemetry_station")
         
         private var channels: [UUID : Context] = [:]
         
