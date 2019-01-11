@@ -1,4 +1,4 @@
-source 'https://github.com/VerizonAdPlatforms/OneMobileSDK-releases-iOS.git'
+source 'https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-releases-iOS'
 
 target 'Tutorial' do
 	platform :ios, 9.0

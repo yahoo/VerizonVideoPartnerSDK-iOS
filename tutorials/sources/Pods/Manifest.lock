@@ -13,7 +13,7 @@ DEPENDENCIES:
   - VerizonVideoPartnerSDK
 
 SPEC REPOS:
-  https://github.com/VerizonAdPlatforms/OneMobileSDK-releases-iOS:
+  https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-releases-iOS:
     - OMSDK-Oath2
     - PlayerControls
     - PlayerCore
