@@ -406,12 +406,13 @@ public struct VVPSDK {
         }
         
         func setupVRMWithNewCore() {
+            let maxRedirectCount = 2
             let createRequest: (URL) -> (URLRequest) = {
                 .init(url: $0, timeoutInterval: hardTimeout)
             }
             let adStartProcessing = StartAdProcessingController(dispatch: dispatcher)
             let startGroupProcessing = StartVRMGroupProcessingController(dispatch: dispatcher)
-            let itemController = VRMItemController(dispatch: dispatcher)
+            let itemController = VRMItemController(maxRedirectCount: maxRedirectCount, dispatch: dispatcher)
             let itemFetchController = FetchVRMItemController(dispatch: dispatcher) { url in
                 return self.ephemeralSession.dataFuture(with: createRequest(url))
                            .map(Network.Parse.successResponseData)

@@ -6,11 +6,14 @@ import PlayerCore
 
 final class VRMItemController {
     
+    let maxRedirectCount: Int
     let dispatch: (PlayerCore.Action) -> Void
     
-    private var startedItems = Set<VRMCore.Item>()
+    private var startedCandidates = Set<ScheduledVRMItems.Candidate>()
+    private var wrapperError = Set<VRMCore.Item>()
     
-    init(dispatch: @escaping (PlayerCore.Action) -> Void ) {
+    init(maxRedirectCount: Int, dispatch: @escaping (PlayerCore.Action) -> Void ) {
+        self.maxRedirectCount = maxRedirectCount
         self.dispatch = dispatch
     }
     
@@ -18,17 +21,26 @@ final class VRMItemController {
         process(with: state.vrmScheduledItems.items)
     }
     
-    func process(with scheduledItems: Set<VRMCore.Item>) {
-        scheduledItems
-            .subtracting(startedItems)
-            .forEach { item in
-                startedItems.insert(item)
-                switch (item.source) {
-                case let .url(url):
-                    dispatch(VRMCore.startItemFetch(originalItem: item, url: url))
-                case let .vast(vastXML):
-                    dispatch(VRMCore.startItemParsing(originalItem: item, vastXML: vastXML))
+    func process(with scheduledItems: [VRMCore.Item: Set<ScheduledVRMItems.Candidate>]) {
+        scheduledItems.forEach { originalItem, queue in
+            guard queue.count <= maxRedirectCount else {
+                if wrapperError.contains(originalItem) == false {
+                    wrapperError.insert(originalItem)
+                    dispatch(VRMCore.tooManyIndirections(item: originalItem))
                 }
+                return
+            }
+            
+            queue.subtracting(startedCandidates)
+                .forEach { candidate in
+                    startedCandidates.insert(candidate)
+                    switch (candidate.source) {
+                    case let .url(url):
+                        dispatch(VRMCore.startItemFetch(originalItem: originalItem, url: url))
+                    case let .vast(vastXML):
+                        dispatch(VRMCore.startItemParsing(originalItem: originalItem, vastXML: vastXML))
+                    }
+            }
         }
     }
 }
