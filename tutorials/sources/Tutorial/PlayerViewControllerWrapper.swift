@@ -138,12 +138,17 @@ class PlayerViewControllerWrapper: UIViewController {
     
     private func render(player: Player) {
         typealias Controls = PlayerControls.ContentControlsViewController.Props.Controls
-        
+
         playerViewController?.customizeContentControlsProps = { [weak self] props in
             guard let strongSelf = self else { return props }
-            // Modifying content props only if content video can be played
             guard var contentPlayer = props.player else { return props }
-            guard var controls = contentPlayer.item.playable else { return props }
+            guard var controls = contentPlayer.item.playable else {
+                return .player(.init {
+                    $0.playlist = contentPlayer.playlist
+                    // overriding nonplayable video error message
+                    $0.item = .nonplayable("Unable to play video because of restricted, invalid or unknown reason!")
+                })
+            }
             
             func changeControlsLiveDot() {
                 controls.live.dotColor = strongSelf.props.controls.liveDotColor.map(Color.init)
@@ -258,7 +263,7 @@ class PlayerViewControllerWrapper: UIViewController {
                     return playbackError
                 case .unavailable(let unavailable):
                     struct VideoError: Swift.Error { let reason: String }
-                    return VideoError(reason: unavailable.reason)
+                    return VideoError(reason: "CUSTOM" + unavailable.reason)
                 }
             }()
         }

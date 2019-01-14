@@ -65,10 +65,10 @@ class AnalyticsObserver {
             deviceValue.setValue(sendURL, forProperty: "sendURL")
             
             guard let makeProcessor =
-                jsContext.globalObject.forProperty("onemobilesdk_analytics") else {
+                jsContext.globalObject.forProperty("VerizonVideoPartnerSDK_analytics") else {
                     return report(Issue(
                         type: "cannotExtractFunction",
-                        metadata: ["name" : "onemobilesdk_analytics" |> json]))
+                        metadata: ["name" : "VerizonVideoPartnerSDK_analytics" |> json]))
             }
             
             let processor = makeProcessor.call(withArguments: [context, deviceValue]) as JSValue

@@ -335,7 +335,7 @@
         <!--Player View Controller-->
         <scene sceneID="wdZ-8h-SuS">
             <objects>
-                <viewController id="mw1-k1-5o6" customClass="PlayerViewController" customModule="OathVideoPartnerSDK" sceneMemberID="viewController">
+                <viewController id="mw1-k1-5o6" customClass="PlayerViewController" customModule="VerizonVideoPartnerSDK" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eYU-aX-K1W">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
