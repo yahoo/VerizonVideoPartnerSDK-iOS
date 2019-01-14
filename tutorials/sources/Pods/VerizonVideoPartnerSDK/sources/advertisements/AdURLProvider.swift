@@ -30,7 +30,7 @@ struct AdURLProvider {
     
     typealias Request = VRMRequest<VRMProvider.Item, PlayerCore.Ad.VASTModel>
     
-    let queue = DispatchQueue(label: "com.VerizonVideoPartnerSDK.adurlprovider")
+    let queue = DispatchQueue(label: "com.onemobilesdk.adurlprovider")
     
     //swiftlint:disable function_body_length
     
