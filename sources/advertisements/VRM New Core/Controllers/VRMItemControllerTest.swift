@@ -20,7 +20,7 @@ class VRMItemControllerTest: XCTestCase {
         $0.url == $1.url && $0.originalItem == $1.originalItem
     }
     
-    let maxRedirectCount = 2
+    let maxRedirectCount = 3
     let url = URL(string: "http://test.com")!
     let vastXML = "VAST String"
     var vastItem: VRMCore.Item!

@@ -23,7 +23,7 @@ final class VRMItemController {
     
     func process(with scheduledItems: [VRMCore.Item: Set<ScheduledVRMItems.Candidate>]) {
         scheduledItems.forEach { originalItem, queue in
-            guard queue.count <= maxRedirectCount else {
+            guard queue.count < maxRedirectCount else {
                 if wrapperError.contains(originalItem) == false {
                     wrapperError.insert(originalItem)
                     dispatch(VRMCore.tooManyIndirections(item: originalItem))

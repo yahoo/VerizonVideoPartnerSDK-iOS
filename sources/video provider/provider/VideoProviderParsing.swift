@@ -59,8 +59,9 @@ extension VideoProvider.Parse {
         return try .init(prefetchingOffset: json.parse("prefetchingOffset"),
                          softTimeout: json.parse("softTimeout"),
                          hardTimeout: json.parse("hardTimeout"),
-                        startTimeout: json.parse("startTimeout"),
-                         maxDuration: json.parse("maxShowTime"))
+                         startTimeout: json.parse("startTimeout"),
+                         maxDuration: json.parse("maxShowTime"),
+                         maxVASTWrapperRedirectCount: 3)
     }
     
     static func videoResponse(from json: JSON) throws -> VideoProvider.Response.VideoResponse {
@@ -152,19 +153,19 @@ extension VideoProvider.Parse {
     
     static func brandedContentTracker(from json: JSON?) throws -> VideoProvider.Response.Video.BrandedContent.Tracker? {
         guard let json = json else { return nil }
-
+        
         func urls(by key: String) throws -> [URL] {
             guard let urlCandidates = json.parse(key) as [String]? else { return [] }
             return try urlCandidates.map(url)
         }
         
         return try VideoProvider.Response.Video.BrandedContent.Tracker(impression: urls(by: "impression"),
-                                                                   view: urls(by: "view"),
-                                                                   click: urls(by: "click"),
-                                                                   quartile1: urls(by: "quartile1"),
-                                                                   quartile2: urls(by: "quartile2"),
-                                                                   quartile3: urls(by: "quartile3"),
-                                                                   quartile4: urls(by: "quartile4"))
+                                                                       view: urls(by: "view"),
+                                                                       click: urls(by: "click"),
+                                                                       quartile1: urls(by: "quartile1"),
+                                                                       quartile2: urls(by: "quartile2"),
+                                                                       quartile3: urls(by: "quartile3"),
+                                                                       quartile4: urls(by: "quartile4"))
     }
     
     static func brandedContent(from json: JSON?) throws -> VideoProvider.Response.Video.BrandedContent? {
