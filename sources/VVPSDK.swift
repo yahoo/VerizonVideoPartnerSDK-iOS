@@ -237,7 +237,8 @@ public struct VVPSDK {
             softTimeout: videoResponse.adSettings.softTimeout,
             hardTimeout: videoResponse.adSettings.hardTimeout,
             startTimeout: videoResponse.adSettings.startTimeout,
-            maxDuration: videoResponse.adSettings.maxDuration)
+            maxDuration: videoResponse.adSettings.maxDuration,
+            maxVASTWrapperRedirectCount: videoResponse.adSettings.maxVASTWrapperRedirectCount)
         
         let vpaidSettings = PlayerCore.Model.VPAIDSettings(document: self.configuration.vpaid.document)
         let omSettings = PlayerCore.Model.OMSettings(serviceScriptURL: self.configuration.openMeasurement.script)
@@ -406,7 +407,7 @@ public struct VVPSDK {
         }
         
         func setupVRMWithNewCore() {
-            let maxRedirectCount = 2
+            let maxRedirectCount = player.model.adSettings.maxVASTWrapperRedirectCount
             let createRequest: (URL) -> (URLRequest) = {
                 .init(url: $0, timeoutInterval: hardTimeout)
             }

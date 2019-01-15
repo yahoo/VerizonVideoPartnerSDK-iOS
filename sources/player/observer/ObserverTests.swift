@@ -23,7 +23,8 @@ class ObserverTests: XCTestCase {
                                                     softTimeout: 2.5,
                                                     hardTimeout: 3.5,
                                                     startTimeout: 4,
-                                                    maxDuration: 90),
+                                                    maxDuration: 90,
+                                                    maxVASTWrapperRedirectCount: 3),
                                   vpaidSettings: .init(document: testUrl),
                                   omSettings: .init(serviceScriptURL: testUrl)))
         currentExpectation = expectation(description: "props update")

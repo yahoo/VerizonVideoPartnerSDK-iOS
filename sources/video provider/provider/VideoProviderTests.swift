@@ -351,7 +351,8 @@ class VideoProviderTests: XCTestCase {
         "softTimeout" : 0.5,
         "hardTimeout" : 2.5,
         "startTimeout": 3.5,
-        "maxShowTime": 90
+        "maxShowTime": 90,
+        "maxVASTWrapperRedirectCount": 3,
     ]
     
     static let fullResponse: JSON = [
@@ -384,6 +385,7 @@ class VideoProviderTests: XCTestCase {
         expect(value.adSettings.hardTimeout) == 2.5
         expect(value.adSettings.startTimeout) == 3.5
         expect(value.adSettings.maxDuration) == 90
+        expect(value.adSettings.maxVASTWrapperRedirectCount) == 3
         
         expect(try parse(VideoProviderTests.emptyResponse, .native)).to(throwError())
     }
