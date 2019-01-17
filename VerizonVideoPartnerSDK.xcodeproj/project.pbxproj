@@ -262,6 +262,10 @@
 		E22B6ADB21F0A95700D480A0 /* VVPSDK_Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22B6ADA21F0A94F00D480A0 /* VVPSDK_Version.swift */; };
 		E22B6ADC21F0A95700D480A0 /* VVPSDK_Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22B6ADA21F0A94F00D480A0 /* VVPSDK_Version.swift */; };
 		E22B6ADD21F0A9C200D480A0 /* VRMProcessingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22B6AD321EF768200D480A0 /* VRMProcessingController.swift */; };
+		E22B6AE521F0C6D100D480A0 /* VRMTimeoutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22B6AE421F0C6D100D480A0 /* VRMTimeoutController.swift */; };
+		E22B6AE621F0C6D100D480A0 /* VRMTimeoutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22B6AE421F0C6D100D480A0 /* VRMTimeoutController.swift */; };
+		E22B6AE821F0C72800D480A0 /* VRMTimeoutControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22B6AE721F0C72800D480A0 /* VRMTimeoutControllerTest.swift */; };
+		E22B6B0B21F209FC00D480A0 /* MockTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22B6B0A21F209FC00D480A0 /* MockTimer.swift */; };
 		E23168032127050400F5AD5B /* AdStartTimeoutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23168002126D67D00F5AD5B /* AdStartTimeoutController.swift */; };
 		E23168042127052E00F5AD5B /* AdStartTimeoutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23168002126D67D00F5AD5B /* AdStartTimeoutController.swift */; };
 		E23168A5212C4C9E00F5AD5B /* MaxShowTimeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2316874212C3B5D00F5AD5B /* MaxShowTimeController.swift */; };
@@ -604,6 +608,9 @@
 		E22B6AD321EF768200D480A0 /* VRMProcessingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VRMProcessingController.swift; sourceTree = "<group>"; };
 		E22B6AD821EF852800D480A0 /* VRMProcessingControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VRMProcessingControllerTest.swift; sourceTree = "<group>"; };
 		E22B6ADA21F0A94F00D480A0 /* VVPSDK_Version.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VVPSDK_Version.swift; path = sources/VVPSDK_Version.swift; sourceTree = "<group>"; };
+		E22B6AE421F0C6D100D480A0 /* VRMTimeoutController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VRMTimeoutController.swift; sourceTree = "<group>"; };
+		E22B6AE721F0C72800D480A0 /* VRMTimeoutControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VRMTimeoutControllerTest.swift; sourceTree = "<group>"; };
+		E22B6B0A21F209FC00D480A0 /* MockTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTimer.swift; sourceTree = "<group>"; };
 		E23168002126D67D00F5AD5B /* AdStartTimeoutController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdStartTimeoutController.swift; sourceTree = "<group>"; };
 		E2316874212C3B5D00F5AD5B /* MaxShowTimeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaxShowTimeController.swift; sourceTree = "<group>"; };
 		E231AA50212DBB3B008C5B6A /* MaxShowTimeControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaxShowTimeControllerTest.swift; sourceTree = "<group>"; };
@@ -786,6 +793,8 @@
 				E22B6A8A21D14D2D00D480A0 /* ParseVRMItemControllerTest.swift */,
 				E22B6AD321EF768200D480A0 /* VRMProcessingController.swift */,
 				E22B6AD821EF852800D480A0 /* VRMProcessingControllerTest.swift */,
+				E22B6AE421F0C6D100D480A0 /* VRMTimeoutController.swift */,
+				E22B6AE721F0C72800D480A0 /* VRMTimeoutControllerTest.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1201,6 +1210,7 @@
 				DEBAA7BE1E154D4100DFC359 /* Future.swift */,
 				DEBAA7C71E1571A100DFC359 /* Result.swift */,
 				50A5A4FF1E69958600C15E12 /* Timer.swift */,
+				E22B6B0A21F209FC00D480A0 /* MockTimer.swift */,
 				9A1469E521CE9549007315BA /* ActionComparator.swift */,
 			);
 			name = utils;
@@ -1712,6 +1722,7 @@
 				50C99D532010DAE90041B013 /* VRMDetector.swift in Sources */,
 				DEE069D61E840BDF00A95BE9 /* VideoProviderResponse.swift in Sources */,
 				DEB112371E30F0CE007E65BD /* Context.swift in Sources */,
+				E22B6AE621F0C6D100D480A0 /* VRMTimeoutController.swift in Sources */,
 				50A11DB21D59D7E000F4A068 /* Player_VideoEvents.swift in Sources */,
 				DE07CE091DD2353C00DAE3EC /* PlayerProperties.swift in Sources */,
 				DE3DA42C1E55D9A900D34880 /* VVPSDKPlugins.swift in Sources */,
@@ -1883,6 +1894,7 @@
 				DEF02B521D1EC0AD001F64EE /* VASTModel.swift in Sources */,
 				E257A9F521C927FF0016D35A /* VRMItemController.swift in Sources */,
 				DE684CD71E0C2F36007CE35C /* Action.swift in Sources */,
+				E22B6AE521F0C6D100D480A0 /* VRMTimeoutController.swift in Sources */,
 				DE22C78F1D11830300F47147 /* PlayerViewController_Binding.swift in Sources */,
 				E241041421C3FA8300036290 /* VRMRequestController.swift in Sources */,
 				067209BE21B6BD9A0086CDBE /* OpenMeasurementContext.swift in Sources */,
@@ -1909,6 +1921,7 @@
 				FEF072CB1F59A3D5006A0BDC /* PlayerDestructionTests.swift in Sources */,
 				A614D83720581451001FFD4E /* MidrollDetectorTests.swift in Sources */,
 				E257A9FB21C93F4A0016D35A /* VRMItemControllerTest.swift in Sources */,
+				E22B6AE821F0C72800D480A0 /* VRMTimeoutControllerTest.swift in Sources */,
 				50C4602E1C80C36D002AB8AB /* VideoTimeDetectorTests.swift in Sources */,
 				507A83C11D19799F0013B729 /* ExecuteOnceTests.swift in Sources */,
 				9A1469E621CE9549007315BA /* ActionComparator.swift in Sources */,
@@ -1936,6 +1949,7 @@
 				DEB1123F1E310BAE007E65BD /* ConfigurationParserTests.swift in Sources */,
 				505136181C91750C00629078 /* DecileDetectorTests.swift in Sources */,
 				DECB6CDD1CA2E7F000E7FC19 /* VideoProviderTests.swift in Sources */,
+				E22B6B0B21F209FC00D480A0 /* MockTimer.swift in Sources */,
 				505136191C917A3B00629078 /* QuartileDetectorTests.swift in Sources */,
 				0640B18D20C983F3007DCB3F /* VerifyBuldTests.swift in Sources */,
 				0672086F2125A7AF007C07D7 /* ObserverTests.swift in Sources */,

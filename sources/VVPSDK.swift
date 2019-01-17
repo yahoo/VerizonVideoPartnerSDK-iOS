@@ -416,21 +416,25 @@ public struct VVPSDK {
             let itemController = VRMItemController(maxRedirectCount: maxRedirectCount, dispatch: dispatcher)
             let itemFetchController = FetchVRMItemController(dispatch: dispatcher) { url in
                 return self.ephemeralSession.dataFuture(with: createRequest(url))
-                           .map(Network.Parse.successResponseData)
-                           .map(Network.Parse.string)
+                    .map(Network.Parse.successResponseData)
+                    .map(Network.Parse.string)
             }
             let itemParseController = ParseVRMItemController(dispatch: dispatcher,
                                                              vastMapper: vastMapper) { vastXML in
-                return Future(value: vastXML)
-                        .dispatch(on: DispatchQueue.global(qos: .userInitiated))
-                        .map(VASTParser.parseFrom)
-                
+                                                                return Future(value: vastXML)
+                                                                    .dispatch(on: DispatchQueue.global(qos: .userInitiated))
+                                                                    .map(VASTParser.parseFrom)
+                                                                
             }
             let vrmRequestController = VRMRequestController(dispatch: dispatcher,
                                                             groupsMapper: mapGroups) { url in
                                                                 return self.vrmProvider.requestAds(with: createRequest(url))
             }
             let processingController = VRMProcessingController(dispatch: dispatcher)
+            let createSoftTimeoutTimer = { Timer(duration: 0.5){ dispatcher(PlayerCore.softTimeout()) } }
+            let createHardTimeoutTimer = { Timer(duration: 3.2){ dispatcher(PlayerCore.hardTimeout()) } }
+            let timeoutController = VRMTimeoutController(softTimeoutTimerFactory: createSoftTimeoutTimer,
+                                                         hardTimeoutTimerFactory: createHardTimeoutTimer)
             
             _ = player.store.state.addObserver { state in
                 vrmRequestController.process(with: state)
@@ -439,6 +443,7 @@ public struct VVPSDK {
                 itemFetchController.process(with: state)
                 itemParseController.process(with: state)
                 processingController.process(with: state)
+                timeoutController.process(with: state)
             }
             
             _ = player.addObserver { playerProps in
@@ -457,7 +462,7 @@ public struct VVPSDK {
                                                     dispatcher: dispatcher)
         let adStartTimeout = player.model.adSettings.startTimeout
         let adStartTimeoutController = AdStartTimeoutController {
-            return Timer(duration: adStartTimeout) { dispatcher(adStartTimeoutReached()) }
+            Timer(duration: adStartTimeout) { dispatcher(adStartTimeoutReached()) }
         }
         _ = player.store.state.addObserver { state in
             timerController.process(state: state)
