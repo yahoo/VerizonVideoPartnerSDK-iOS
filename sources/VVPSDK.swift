@@ -430,6 +430,7 @@ public struct VVPSDK {
                                                             groupsMapper: mapGroups) { url in
                                                                 return self.vrmProvider.requestAds(with: createRequest(url))
             }
+            let processingController = VRMProcessingController(dispatch: dispatcher)
             
             _ = player.store.state.addObserver { state in
                 vrmRequestController.process(with: state)
@@ -437,6 +438,7 @@ public struct VVPSDK {
                 itemController.process(with: state)
                 itemFetchController.process(with: state)
                 itemParseController.process(with: state)
+                processingController.process(with: state)
             }
             
             _ = player.addObserver { playerProps in

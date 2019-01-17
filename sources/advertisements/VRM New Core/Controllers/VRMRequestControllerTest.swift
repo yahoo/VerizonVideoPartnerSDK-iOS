@@ -105,7 +105,7 @@ class VRMRequestControllerTest: XCTestCase {
         }
     }
     
-    func testRequestFailedDeispatch() {
+    func testRequestFailedDispatch() {
         let groupsMapper: VRMRequestController.GroupsMapper = { _ in
             return []
         }
