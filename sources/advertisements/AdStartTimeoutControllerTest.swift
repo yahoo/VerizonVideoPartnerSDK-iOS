@@ -7,14 +7,6 @@ import XCTest
 
 class AdStartTimeoutControllerTest: XCTestCase {
     
-    class MockTimer: VerizonVideoPartnerSDK.Cancellable {
-        var didCancelCalled = false
-        
-        func cancel() {
-            didCancelCalled = true
-        }
-    }
-    
     var sut: AdStartTimeoutController!
     
     func testAdStartTimeoutController() {
