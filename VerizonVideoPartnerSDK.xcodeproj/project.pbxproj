@@ -269,6 +269,9 @@
 		E22B6AE621F0C6D100D480A0 /* VRMTimeoutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22B6AE421F0C6D100D480A0 /* VRMTimeoutController.swift */; };
 		E22B6AE821F0C72800D480A0 /* VRMTimeoutControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22B6AE721F0C72800D480A0 /* VRMTimeoutControllerTest.swift */; };
 		E22B6B0B21F209FC00D480A0 /* MockTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22B6B0A21F209FC00D480A0 /* MockTimer.swift */; };
+		E22B6B1821F6327B00D480A0 /* FinishVRMGroupProcessingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22B6B1721F6327B00D480A0 /* FinishVRMGroupProcessingController.swift */; };
+		E22B6B1921F6327B00D480A0 /* FinishVRMGroupProcessingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22B6B1721F6327B00D480A0 /* FinishVRMGroupProcessingController.swift */; };
+		E22B6B1B21F6329A00D480A0 /* FinishVRMGroupProcessingControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22B6B1A21F6329A00D480A0 /* FinishVRMGroupProcessingControllerTest.swift */; };
 		E23168032127050400F5AD5B /* AdStartTimeoutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23168002126D67D00F5AD5B /* AdStartTimeoutController.swift */; };
 		E23168042127052E00F5AD5B /* AdStartTimeoutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23168002126D67D00F5AD5B /* AdStartTimeoutController.swift */; };
 		E23168A5212C4C9E00F5AD5B /* MaxShowTimeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2316874212C3B5D00F5AD5B /* MaxShowTimeController.swift */; };
@@ -616,6 +619,8 @@
 		E22B6AE421F0C6D100D480A0 /* VRMTimeoutController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VRMTimeoutController.swift; sourceTree = "<group>"; };
 		E22B6AE721F0C72800D480A0 /* VRMTimeoutControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VRMTimeoutControllerTest.swift; sourceTree = "<group>"; };
 		E22B6B0A21F209FC00D480A0 /* MockTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTimer.swift; sourceTree = "<group>"; };
+		E22B6B1721F6327B00D480A0 /* FinishVRMGroupProcessingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishVRMGroupProcessingController.swift; sourceTree = "<group>"; };
+		E22B6B1A21F6329A00D480A0 /* FinishVRMGroupProcessingControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishVRMGroupProcessingControllerTest.swift; sourceTree = "<group>"; };
 		E23168002126D67D00F5AD5B /* AdStartTimeoutController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdStartTimeoutController.swift; sourceTree = "<group>"; };
 		E2316874212C3B5D00F5AD5B /* MaxShowTimeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaxShowTimeController.swift; sourceTree = "<group>"; };
 		E231AA50212DBB3B008C5B6A /* MaxShowTimeControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaxShowTimeControllerTest.swift; sourceTree = "<group>"; };
@@ -790,6 +795,8 @@
 				06F8DBC021C2A2D40019021D /* StartAdProcessingControllerTest.swift */,
 				E241041821C4075300036290 /* StartVRMGroupProcessingController.swift */,
 				E241041B21C4078E00036290 /* StartVRMGroupProcessingControllerTest.swift */,
+				E22B6B1721F6327B00D480A0 /* FinishVRMGroupProcessingController.swift */,
+				E22B6B1A21F6329A00D480A0 /* FinishVRMGroupProcessingControllerTest.swift */,
 				E257A9F421C927FF0016D35A /* VRMItemController.swift */,
 				E257A9FA21C93F4A0016D35A /* VRMItemControllerTest.swift */,
 				E2B0061E21CD265000B72485 /* FetchVRMItemController.swift */,
@@ -1759,6 +1766,7 @@
 				50A11DC51D59D7E000F4A068 /* VASTParser.swift in Sources */,
 				50A11DC71D59D7E000F4A068 /* SkipRepeatsDecorator.swift in Sources */,
 				E23168042127052E00F5AD5B /* AdStartTimeoutController.swift in Sources */,
+				E22B6B1921F6327B00D480A0 /* FinishVRMGroupProcessingController.swift in Sources */,
 				50E5ADEA1EE08A76004104D6 /* PlayerTracer.swift in Sources */,
 				50A11DC81D59D7E000F4A068 /* DecileDetector.swift in Sources */,
 				E2D64A5C2090E8F600152ADE /* VideoImpression.swift in Sources */,
@@ -1819,6 +1827,7 @@
 				5087484E1C80783700F2511A /* TrackingPixelsGenerator.swift in Sources */,
 				E241041921C4075300036290 /* StartVRMGroupProcessingController.swift in Sources */,
 				504CA74A1C870225006D0ADF /* VideoLoadingDetector.swift in Sources */,
+				E22B6B1821F6327B00D480A0 /* FinishVRMGroupProcessingController.swift in Sources */,
 				DE1F30341C99A7D500F70BAB /* Stub.swift in Sources */,
 				DE22C78D1D0EFAA000F47147 /* Disposable.swift in Sources */,
 				E23168032127050400F5AD5B /* AdStartTimeoutController.swift in Sources */,
@@ -1930,6 +1939,7 @@
 				FEF072CB1F59A3D5006A0BDC /* PlayerDestructionTests.swift in Sources */,
 				A614D83720581451001FFD4E /* MidrollDetectorTests.swift in Sources */,
 				E257A9FB21C93F4A0016D35A /* VRMItemControllerTest.swift in Sources */,
+				E22B6B1B21F6329A00D480A0 /* FinishVRMGroupProcessingControllerTest.swift in Sources */,
 				E22B6AE821F0C72800D480A0 /* VRMTimeoutControllerTest.swift in Sources */,
 				50C4602E1C80C36D002AB8AB /* VideoTimeDetectorTests.swift in Sources */,
 				507A83C11D19799F0013B729 /* ExecuteOnceTests.swift in Sources */,
