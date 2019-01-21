@@ -68,13 +68,13 @@ The complexity of tutorial is increasing with its number :)
 So for beginning use Tutorial 1!
 
 <a name="tutorial-1"></a>
-## Tutorial 1: Playing Videos
+### Tutorial 1: Playing Videos
 
-This tutorial sample shows you how to quickly init the OVPSDK and play videos using all the default options and behaviors, with very little code. Playing a single video, a list of individual videos, or videos from an O2 Playlist are all done the same way. The only difference between playing a single video or multiple videos is that the SDK strings multiple videos together, connects up the previous and next player controls UX buttons, and if AutoPlay is on - plays them straight through.
+This tutorial sample shows you how to quickly init the VVPSDK and play videos using all the default options and behaviors, with very little code. Playing a single video, a list of individual videos, or videos from a Playlist are all done the same way. The only difference between playing a single video or multiple videos is that the SDK strings multiple videos together, connects up the previous and next player controls UX buttons, and if AutoPlay is on - plays them straight through.
 
 ### _Tutorial Sample:_
 
-> [Playing Videos](Tutorials)
+> [Playing Videos](/tutorials)
 
 #### Setting default player controls’ tint color
 
@@ -104,10 +104,10 @@ You can easily control the mute state of the `Player` object. In this sample, yo
 
 #### Disabling HLS (or forcing MP4 playback)
 
-Many (but not all) of the videos in the O2 video platform, have multiple renditions. There may be some set of circumstances where you do not want to use HLS (.m3u8) renditions, and therefore, want to force the alternate high resolution .mp4 rendition. As a result, our SDK has the ability to override or disable getting the default HLS rendition. On iOS and tvOS, this is not something that we specifically advocate, so we won't show you this code in this tutorial. If you believe you have a good need for avoiding the network and visual performance improvements that HLS provides, please email [Video Support Team](mailto:video.support@oath.com) and we will be happy to help you!
+Most (but not all) of the videos in the Verizon Video Partner network, have multiple renditions. There may be some set of circumstances where you do not want to use HLS (M3U8) renditions, and therefore, want to force the alternate high resolution MP4 rendition. As a result, our SDK has the ability to override or disable getting the default HLS rendition. On iOS and tvOS, this is not something that we specifically advocate, so we won't show you this code in this tutorial. If you believe you have a good need for avoiding the network and visual performance improvements that HLS provides, please email [Video Support Team](mailto:video.support@oath.com) and we will be happy to help you!
 
 <a name="tutorial-2"></a>
-## Tutorial 2: Customizing the Default Controls UX
+### Tutorial 2: Customizing the Default Controls UX
 
 This tutorial sample shows you how to further modify the default controls UX.
 
@@ -136,7 +136,7 @@ If you hide the title, and bottom element buttons such as CC/SAP, PiP, and AirPl
 
 #### Closed Captioning / SAP Settings button
 
-This new feature of the OVPSDK is generally dependent on having this information in the HLS stream. There are ways to filter out what CC languages and SAP audio tracks are available. Also, there’s a way to control what the choices are for a given video. One reason to control this may be to implement a “sticky” closed captioning setting. By default, turning CC on only applies the the current playing video. A next or previous video would not have CC on by default. If you wanted your app to support a sticky setting for this, you would do it yourself. This part of this tutorial will show you how to accomplish this.
+This new feature of the VVPSDK is generally dependent on having this information in the HLS stream. There are ways to filter out what CC languages and SAP audio tracks are available. Also, there’s a way to control what the choices are for a given video. One reason to control this may be to implement a “sticky” closed captioning setting. By default, turning CC on only applies the the current playing video. A next or previous video would not have CC on by default. If you wanted your app to support a sticky setting for this, you would do it yourself. This part of this tutorial will show you how to accomplish this.
 
 ### _Tutorial Sample:_
 
@@ -177,7 +177,7 @@ The 2.28 version of SDK now includes a new feature to set custom colors for each
 <a name="tutorial-3"></a>
 ## Tutorial 3: Observing the Player
 
-This tutorial sample shows you how to observe just about everything you can observe from OVPSDK `Player` objects. As you would suspect, many properties that can be observed, can also be set or manipulated.
+This tutorial sample shows you how to observe just about everything you can observe from VVPSDK `Player` objects. As you would suspect, many properties that can be observed, can also be set or manipulated.
 
 #### Current Playback State and Position
 
@@ -189,7 +189,7 @@ Determining the current state of the `Player` is a key need for apps … most ap
 
 #### Looping Playback
 
-If your app has some need to loop a `Player` (one video or many), such as running a kiosk-style interface, for example. This is an easy operation to accomplish with the OVPSDK. Look in this example, to see how to determine when playback finishes, and how to reset the video index back to the first video and start it over.
+If your app has some need to loop a `Player` (one video or many), such as running a kiosk-style interface, for example. This is an easy operation to accomplish with the VVPSDK. Look in this example, to see how to determine when playback finishes, and how to reset the video index back to the first video and start it over.
 
 ### _Tutorial Sample:_
 
@@ -211,11 +211,11 @@ There are many legitimate app UX circumstance, that can dictate the dynamicness 
 <a name="tutorial-4"></a>
 ## Tutorial 4: Error Handling in the SDK
 
-This tutorial sample shows you how to handle various different types of errors that can occur when using the OVPSDK and how to catch and identify them. How you handle these in your app is up to you. The SDK is designed to either return a valid SDK or Player instance otherwise it returns an error. There is no middle ground. If you don’t get a valid instance, you should look at the error result instead to determine why. This section describes some common issues.
+This tutorial sample shows you how to handle various different types of errors that can occur when using the VVPSDK and how to catch and identify them. How you handle these in your app is up to you. The SDK is designed to either return a valid SDK or Player instance otherwise it returns an error. There is no middle ground. If you don’t get a valid instance, you should look at the error result instead to determine why. This section describes some common issues.
 
 ### SDK Initialization Errors
 
-For various reasons, the SDK may fail to initialize. The most common reason for this, is you’re trying to use the OVPSDK without first having [onboarded your app’s bundle ID](##Onboarding\ your\ Apps\ for\ SDK\ Authentication). In this case, you’ll get an error that looks like something like this:
+For various reasons, the SDK may fail to initialize. The most common reason for this, is you’re trying to use the VVPSDK without first having [onboarded your app’s bundle ID](##Onboarding\ your\ Apps\ for\ SDK\ Authentication). In this case, you’ll get an error that looks like something like this:
 ```
 {
 	"error": "Not found - com.company.ungregisteredapp"
@@ -253,14 +253,14 @@ Only valid, playable video IDs are accepted, and have their metadata pulled into
 
 ### Specific Notes for tvOS Apps
 
-The OVPSDK supports tvOS with the same source framework as iOS. We are utilising `AVPlayerViewController` for both content and advertisement playback. Controls also used from this class. As expected - no customisation of UI is allowed for tvOS implementation.
+The VVPSDK supports tvOS with the same source framework as iOS. We are utilising `AVPlayerViewController` for both content and advertisement playback. Controls also used from this class. As expected - no customisation of UI is allowed for tvOS implementation.
 
 Because there is no way to tap on the screen, you cannot access the ad URL. Additionally, tvOS has no support for web views – so there would be no consistent way to render the ad URL.
 
 <a name="tutorial-5"></a>
 ## Tutorial 5: Playing Videos on tvOS
 
-This tutorial sample shows you how to do many of the same things as iOS as described above in [Tutorial 1](#tutorial-1), but for tvOS. In terms of the OVPSDK, the biggest difference is that you cannot use the default Custom Controls UX with tvOS – you must use the built-in `AVPlayerViewController` controls. With this, you get direct access to the advanced Siri Remote control features, for example.
+This tutorial sample shows you how to do many of the same things as iOS as described above in [Tutorial 1](#tutorial-1), but for tvOS. In terms of the VVPSDK, the biggest difference is that you cannot use the default Custom Controls UX with tvOS – you must use the built-in `AVPlayerViewController` controls. With this, you get direct access to the advanced Siri Remote control features, for example.
 
 ### _Tutorial Sample:_
 
@@ -271,16 +271,16 @@ This tutorial sample shows you how to do many of the same things as iOS as descr
 
 ### Player Controls on the iPhone X
 
-The OVPSDK also supports the iPhone X. Video, thumbnail and shadow are stretched to the entire view, when main controls and LIVE indicator are limited by the safe area.
+The VVPSDK also supports the iPhone X. Video, thumbnail and shadow are stretched to the entire view, when main controls and LIVE indicator are limited by the safe area.
 
 |Portrait|
 |--------|
-|<img width="302" alt="new-port" src="https://user-images.githubusercontent.com/31652265/36854565-feaaf04e-1d79-11e8-9db0-5359cc2ac0fe.png"> <img width="300" alt="newad-port" src="https://user-images.githubusercontent.com/31652265/36856781-82ec2724-1d7f-11e8-9124-05000b2355ab.png">|
+|<img width="340" alt="new-port" src="https://user-images.githubusercontent.com/31652265/36854565-feaaf04e-1d79-11e8-9db0-5359cc2ac0fe.png"> <img width="340" alt="newad-port" src="https://user-images.githubusercontent.com/31652265/36856781-82ec2724-1d7f-11e8-9124-05000b2355ab.png">|
 
 |Landscape|
 |--------|
-|<img width="600" alt="new-land" src="https://user-images.githubusercontent.com/31652265/36854733-5b511dbe-1d7a-11e8-8c2b-b47d16238b36.png">
-<img width="600" alt="newad-land" src="https://user-images.githubusercontent.com/31652265/36856788-8775270a-1d7f-11e8-8fa9-c375fd0b546b.png">|
+|<img width="650" alt="new-land" src="https://user-images.githubusercontent.com/31652265/36854733-5b511dbe-1d7a-11e8-8c2b-b47d16238b36.png">
+<img width="650" alt="newad-land" src="https://user-images.githubusercontent.com/31652265/36856788-8775270a-1d7f-11e8-8fa9-c375fd0b546b.png">|
 
 ### Home Indicator Auto Hidden setup
 
@@ -298,21 +298,21 @@ To see how it works, simply launch our Tutorials app on an iPhone X and play any
 
 ## Next Steps 
 
-### Getting O2 Video/Playlist IDs into your apps
+### Getting Video/Playlist IDs into your apps
 
-The OVPSDK operates on O2 video and playlist IDs. That said, it is the application’s responsibility to dynamically acquire video IDs and/or playlist IDs either via your own CMS (content management system) or perhaps via a direct O2 Search API call. Since apps are generally dynamic in their content (video or otherwise), you need to figure out how to deliver these content IDs into your app, so they can be passed to the SDK to play against. Although unadvised, the easiest possible approach is to hardcode one or more playlist ID[s] into an app, and let those playlists dynamically change their content via the O2 Portal. The upside to this is you don’t need a CMS or further server communications on your end to get video information into your app, and thus to the SDK. The downside, is that if any of those IDs are ever deleted, the app will virtually be useless in terms of O2 video playback.
+The VVPSDK operates on Verizon Video Partner network video and playlist IDs. That said, it is the application’s responsibility to dynamically acquire video IDs and/or playlist IDs either via your own CMS (content management system) or perhaps via a direct Search API call. Since apps are generally dynamic in their content (video or otherwise), you need to figure out how to deliver these content IDs into your app, so they can be passed to the SDK to play against. Although unadvised, the easiest possible approach is to hardcode one or more playlist ID[s] into an app, and let those playlists dynamically change their content via the Verizon Video Partner network Portal. The upside to this is you don’t need a CMS or further server communications on your end to get video information into your app, and thus to the SDK. The downside, is that if any of those IDs are ever deleted, the app will virtually be useless in terms of video playback.
 
-For more information about the O2 Search API, the O2 Portal, or creation and manipulation of playlists, please email the [Video Support Team](mailto:video.support@oath.com).
+For more information about the Search API, the Verizon Video Partner network Portal, or creation and manipulation of playlists, please email the [Video Support Team](mailto:video.support@oath.com).
 
-### Controlling Ads via your O2 Portal Account
+### Controlling Ads via your Portal Account
 
-You have some options with respect to ads and the OVPSDK. During early development, your developers are going to want ads disabled because they’re intrusive to the development process, and unnecessary. Before you launch, you will likely want to see test or Public Service Announcement (PSA) ads enabled all the time, so you can get a feel for how ads will impact your users in various parts of your app. And, as you launch, you’ll want to enable live production ads for your app, so you’re ready to go as soon as your app passes through the App Store submission process.
+You have some options with respect to ads and the VVPSDK. During early development, your developers are going to want ads disabled because they’re intrusive to the development process, and unnecessary. Before you launch, you will likely want to see test or Public Service Announcement (PSA) ads enabled all the time, so you can get a feel for how ads will impact your users in various parts of your app. And, as you launch, you’ll want to enable live production ads for your app, so you’re ready to go as soon as your app passes through the App Store submission process.
 
 To make changes to the ads settings for your app, please contact [Video Support Team](mailto:video.support@oath.com) and they’ll promptly assist you.
 
 ## FAQ
 
-### iOS hardware ringer
+### iOS Hardware Ringer
 
 By default the hardware ringer position (muted/unmuted) is respected - if it is in muted state the video will play without sound.
 To override this behavior you need to add following code before creating a player. 
