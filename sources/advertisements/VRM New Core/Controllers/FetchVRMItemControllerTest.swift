@@ -33,7 +33,6 @@ class FetchVRMItemControllerTest: XCTestCase {
         
         urlItem = VRMCore.Item(source: .url(url), metaInfo: metaInfo)
         fetchCandidate = VRMFetchItemQueue.Candidate(parentItem: urlItem,
-                                                          id: VRMCore.ID(),
                                                           url: url)
     }
     
