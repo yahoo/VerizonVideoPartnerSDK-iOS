@@ -10,6 +10,9 @@
     <a href="https://github.com/Cocoapods">
         <img src="https://img.shields.io/badge/CocoaPods-compatible-4BC51D.svg?style=flat" alt="CocoaPods Compatible" />
     </a>
+    <a href="https://github.com/Carthage/Carthage">
+        <img src="https://img.shields.io/badge/Carthage-unsupported-ff658d.svg?style=flat" alt="Carthage Unsupported" />
+    </a>
     <a href="https://github.com/apple/swift-package-manager">
         <img src="https://img.shields.io/badge/Swift%20Package%20Manager-n/a (unsupported for iOS)-ff658d.svg?style=flat" alt="Swift Package Manager Incompatible" />
     </a>
@@ -23,22 +26,22 @@ The SDK includes a complete video player controls UX (user experience), that inc
 
 ## Table of Contents
 
-- [Verizon Video Partner SDK for iOS and tvOS](#verizon-video-partner-sdk-for-ios-and-tvos)
-  - [Table of Contents](#table-of-contents)
-  - [Background](#background)
-    - [Main SDK Features](#main-sdk-features)
-    - [Default Video Player Controls UX](#default-video-player-controls-ux)
-  - [Install](#install)
-    - [Initial Requirements](#initial-requirements)
-    - [Onboard your Apps for SDK Authentication](#onboard-your-apps-for-sdk-authentication)
-    - [Cocoapods](#cocoapods)
-  - [Usage](#usage)
-    - [High-Level Architecture Overview](#high-level-architecture-overview)
-    - [How the SDK Works](#how-the-sdk-works)
-  - [Advertising Info and User Tracking](#advertising-info-and-user-tracking)
-  - [Contribute](#contribute)
-  - [Maintainers](#maintainers)
-  - [License](#license)
+[Verizon Video Partner SDK for iOS and tvOS](#verizon-video-partner-sdk-for-ios-and-tvos)
+- [Background](#background)
+  - [Main SDK Features](#main-sdk-features)
+  - [Default Video Player Controls UX](#default-video-player-controls-ux)
+- [Install](#install)
+  - [Initial Requirements](#initial-requirements)
+  - [Onboard your Apps for SDK Authentication](#onboard-your-apps-for-sdk-authentication)
+  - [Cocoapods](#cocoapods)
+- [Usage](#usage)
+  - [High-Level Architecture Overview](#high-level-architecture-overview)
+  - [How the SDK Works](#how-the-sdk-works)
+  - [Tutorials](#tutorials)
+- [Advertising Info and User Tracking](#advertising-info-and-user-tracking)
+- [Contribute](#contribute)
+- [Maintainers](#maintainers)
+- [License](#license)
 
 ## Background
 
@@ -171,8 +174,6 @@ Our modular approach makes it easy to add new renderers in the future, or to add
 
 Note, that new renderers must be registered with our back-end micro service. Reach [Video Support Team](mailto:video.support@oath.com) to start this process.
 
-**You can visit our [tutorials](/tutorials/) to see examples of how to integrate our SDK and how to customize the player for your app.**
-
 ### How the SDK Works
 
 At a very basic level, the VVPSDK controls only the video frame. Because of this, you are completely in control of your app’s design and UX (look and feel). You can control whether videos play in a small view, in-place over a thumbnail image, or at full-screen. Your app also has complete control over device rotation, use of view/navigation controllers, scrollers, and any transitions between them. The SDK does not dictate any overall visual design or behavior on your app.
@@ -196,6 +197,12 @@ More specifically, before a video plays, the SDK’s Ads Engine tries to fulfill
 The runtime circumstances and algorithm for getting an ad or not, are not in the scope of this documentation. Suffice to say, there are many considerations to this (e.g., content owner/seller rules, geolocation, frequency capping, etc.). For more information and details on how ads are served to the VVPSDK, please email the [Video Support Team](mailto:video.support@oath.com).
 
 **Note**: The SDK only operates with an active network connection; you will not be able to do anything without it.
+
+### Tutorials
+
+There is an extensive set of tutorial samples with documentation that fully demonstrate how to use most of the facets of the SDK.  These can be found here:
+
+> [SDK Tutorials](/tutorials/)
 
 ## Advertising Info and User Tracking
 
