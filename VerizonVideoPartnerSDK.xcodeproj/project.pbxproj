@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		061AFD6521F256CB0024BAC5 /* ContentPlaybackCycleDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061AFD6321F256CA0024BAC5 /* ContentPlaybackCycleDetector.swift */; };
+		061AFD6721F256ED0024BAC5 /* ContentPlaybackCycleDetectorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061AFD6421F256CA0024BAC5 /* ContentPlaybackCycleDetectorTests.swift */; };
+		061AFD7421F53BC30024BAC5 /* ContentPlaybackCycleDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061AFD6321F256CA0024BAC5 /* ContentPlaybackCycleDetector.swift */; };
 		061CFFFC211C7263002B5BE9 /* MuteDetectorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061CFFFB211C7263002B5BE9 /* MuteDetectorTests.swift */; };
 		061CFFFE211C7272002B5BE9 /* MuteDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061CFFFD211C7272002B5BE9 /* MuteDetector.swift */; };
 		061CFFFF211C7272002B5BE9 /* MuteDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061CFFFD211C7272002B5BE9 /* MuteDetector.swift */; };
@@ -53,9 +56,9 @@
 		501AB1DE2028934A00BAFA9C /* AdErrorDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501AB1DD2028934A00BAFA9C /* AdErrorDetector.swift */; };
 		501AB1DF2028934A00BAFA9C /* AdErrorDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501AB1DD2028934A00BAFA9C /* AdErrorDetector.swift */; };
 		501AB1E12028936F00BAFA9C /* AdErrorDetectorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501AB1E02028936F00BAFA9C /* AdErrorDetectorTests.swift */; };
-		501AB1E42029C69C00BAFA9C /* PlaybackCycleDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501AB1E32029C69C00BAFA9C /* PlaybackCycleDetector.swift */; };
-		501AB1E52029C69C00BAFA9C /* PlaybackCycleDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501AB1E32029C69C00BAFA9C /* PlaybackCycleDetector.swift */; };
-		501AB1E72029EE7700BAFA9C /* PlaybackCycleDetectorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501AB1E62029EE7700BAFA9C /* PlaybackCycleDetectorTests.swift */; };
+		501AB1E42029C69C00BAFA9C /* AdPlaybackCycleDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501AB1E32029C69C00BAFA9C /* AdPlaybackCycleDetector.swift */; };
+		501AB1E52029C69C00BAFA9C /* AdPlaybackCycleDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501AB1E32029C69C00BAFA9C /* AdPlaybackCycleDetector.swift */; };
+		501AB1E72029EE7700BAFA9C /* AdPlaybackCycleDetectorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501AB1E62029EE7700BAFA9C /* AdPlaybackCycleDetectorTests.swift */; };
 		501AB1EA2029F5A900BAFA9C /* SlotOpportunityDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501AB1E92029F5A900BAFA9C /* SlotOpportunityDetector.swift */; };
 		501AB1EB2029F5A900BAFA9C /* SlotOpportunityDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501AB1E92029F5A900BAFA9C /* SlotOpportunityDetector.swift */; };
 		501AB1ED2029F5C700BAFA9C /* SlotOpportunityDetectorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501AB1EC2029F5C700BAFA9C /* SlotOpportunityDetectorTests.swift */; };
@@ -431,6 +434,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		061AFD6321F256CA0024BAC5 /* ContentPlaybackCycleDetector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContentPlaybackCycleDetector.swift; path = "playback cycle/ContentPlaybackCycleDetector.swift"; sourceTree = "<group>"; };
+		061AFD6421F256CA0024BAC5 /* ContentPlaybackCycleDetectorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContentPlaybackCycleDetectorTests.swift; path = "playback cycle/ContentPlaybackCycleDetectorTests.swift"; sourceTree = "<group>"; };
 		061CFFFB211C7263002B5BE9 /* MuteDetectorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MuteDetectorTests.swift; sourceTree = "<group>"; };
 		061CFFFD211C7272002B5BE9 /* MuteDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MuteDetector.swift; sourceTree = "<group>"; };
 		062E9B3D20F5097C00AF1D54 /* PlayerViewController_Clickthrough.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PlayerViewController_Clickthrough.swift; path = "sources/custom controls/PlayerViewController_Clickthrough.swift"; sourceTree = "<group>"; };
@@ -463,8 +468,8 @@
 		501AB1DA202892E800BAFA9C /* AdClickDetectorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdClickDetectorTests.swift; sourceTree = "<group>"; };
 		501AB1DD2028934A00BAFA9C /* AdErrorDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdErrorDetector.swift; sourceTree = "<group>"; };
 		501AB1E02028936F00BAFA9C /* AdErrorDetectorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdErrorDetectorTests.swift; sourceTree = "<group>"; };
-		501AB1E32029C69C00BAFA9C /* PlaybackCycleDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PlaybackCycleDetector.swift; path = "playback cycle/PlaybackCycleDetector.swift"; sourceTree = "<group>"; };
-		501AB1E62029EE7700BAFA9C /* PlaybackCycleDetectorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PlaybackCycleDetectorTests.swift; path = "playback cycle/PlaybackCycleDetectorTests.swift"; sourceTree = "<group>"; };
+		501AB1E32029C69C00BAFA9C /* AdPlaybackCycleDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AdPlaybackCycleDetector.swift; path = "playback cycle/AdPlaybackCycleDetector.swift"; sourceTree = "<group>"; };
+		501AB1E62029EE7700BAFA9C /* AdPlaybackCycleDetectorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AdPlaybackCycleDetectorTests.swift; path = "playback cycle/AdPlaybackCycleDetectorTests.swift"; sourceTree = "<group>"; };
 		501AB1E92029F5A900BAFA9C /* SlotOpportunityDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlotOpportunityDetector.swift; sourceTree = "<group>"; };
 		501AB1EC2029F5C700BAFA9C /* SlotOpportunityDetectorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlotOpportunityDetectorTests.swift; sourceTree = "<group>"; };
 		501C8BD61D1C0B8200C52AB3 /* ContextStartedDetector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContextStartedDetector.swift; path = "context started/ContextStartedDetector.swift"; sourceTree = "<group>"; };
@@ -835,8 +840,10 @@
 		501AB1E22029C67500BAFA9C /* playback cycle */ = {
 			isa = PBXGroup;
 			children = (
-				501AB1E32029C69C00BAFA9C /* PlaybackCycleDetector.swift */,
-				501AB1E62029EE7700BAFA9C /* PlaybackCycleDetectorTests.swift */,
+				501AB1E32029C69C00BAFA9C /* AdPlaybackCycleDetector.swift */,
+				501AB1E62029EE7700BAFA9C /* AdPlaybackCycleDetectorTests.swift */,
+				061AFD6321F256CA0024BAC5 /* ContentPlaybackCycleDetector.swift */,
+				061AFD6421F256CA0024BAC5 /* ContentPlaybackCycleDetectorTests.swift */,
 			);
 			name = "playback cycle";
 			sourceTree = "<group>";
@@ -1742,7 +1749,7 @@
 				06B13EF32090AB13009A6645 /* AdViewTimeDetector.swift in Sources */,
 				50C99D4B2010B4A00041B013 /* Observer.swift in Sources */,
 				502288F721CD142C0045B868 /* VRMItemController.swift in Sources */,
-				501AB1E52029C69C00BAFA9C /* PlaybackCycleDetector.swift in Sources */,
+				501AB1E52029C69C00BAFA9C /* AdPlaybackCycleDetector.swift in Sources */,
 				50A11DC01D59D7E000F4A068 /* VVP.swift in Sources */,
 				50A5A5011E69958600C15E12 /* Timer.swift in Sources */,
 				50C99D2F200CDF770041B013 /* MidrollDetector.swift in Sources */,
@@ -1756,6 +1763,7 @@
 				50A11DC81D59D7E000F4A068 /* DecileDetector.swift in Sources */,
 				E2D64A5C2090E8F600152ADE /* VideoImpression.swift in Sources */,
 				50A11DCA1D59D7E000F4A068 /* QuartileDetector.swift in Sources */,
+				061AFD7421F53BC30024BAC5 /* ContentPlaybackCycleDetector.swift in Sources */,
 				50A11DCB1D59D7E000F4A068 /* ApplyDecorator.swift in Sources */,
 				DE8416A21F4493FF00E57971 /* PlayerInterface.swift in Sources */,
 				50A11DD91D59D7E000F4A068 /* TrackingPixelsReporter.swift in Sources */,
@@ -1817,6 +1825,7 @@
 				DEB112391E30F12B007E65BD /* Configuration.swift in Sources */,
 				50D7475C1CE389EF00CB91D4 /* Network.swift in Sources */,
 				50C99D4A2010B4A00041B013 /* Observer.swift in Sources */,
+				061AFD6521F256CB0024BAC5 /* ContentPlaybackCycleDetector.swift in Sources */,
 				A61B687C2029BB98007CFB32 /* Metrics.swift in Sources */,
 				E22B6A8521D14D1F00D480A0 /* ParseVRMItemController.swift in Sources */,
 				504CA7581C874A5D006D0ADF /* Player_VideoEvents.swift in Sources */,
@@ -1854,7 +1863,7 @@
 				50E5ADE91EE08A76004104D6 /* PlayerTracer.swift in Sources */,
 				06419E2120EF7950007FE2F0 /* VPAIDProps.swift in Sources */,
 				DE4C51C51C8094FB00BFFB0B /* TrackingPixelsReporter.swift in Sources */,
-				501AB1E42029C69C00BAFA9C /* PlaybackCycleDetector.swift in Sources */,
+				501AB1E42029C69C00BAFA9C /* AdPlaybackCycleDetector.swift in Sources */,
 				DE4C51C61C8094FE00BFFB0B /* MetricsSender.swift in Sources */,
 				DE1FD9D31CE777C500C0B7BC /* ProcessAdItem.swift in Sources */,
 				067209BC21B6BD9A0086CDBE /* OpenMeasurementServiceScript.swift in Sources */,
@@ -1938,7 +1947,7 @@
 				DE0031531ECF51BF007FE000 /* AdURLProviderTests.swift in Sources */,
 				508748261C80750100F2511A /* Recorder.swift in Sources */,
 				E231AA51212DBB3B008C5B6A /* MaxShowTimeControllerTest.swift in Sources */,
-				501AB1E72029EE7700BAFA9C /* PlaybackCycleDetectorTests.swift in Sources */,
+				501AB1E72029EE7700BAFA9C /* AdPlaybackCycleDetectorTests.swift in Sources */,
 				06F8DBC621C2A2F50019021D /* StartAdProcessingControllerTest.swift in Sources */,
 				50B5EF531E16B11900EA88E3 /* AdManagerPresenterTests.swift in Sources */,
 				E2629D07211228FA006ED117 /* TelemetryMetricsTest.swift in Sources */,
@@ -1964,6 +1973,7 @@
 				061CFFFC211C7263002B5BE9 /* MuteDetectorTests.swift in Sources */,
 				508A597E2010F97B00641398 /* VRMDetectorTests.swift in Sources */,
 				065F37262099F53200813113 /* VideoActionsDetectorsTests.swift in Sources */,
+				061AFD6721F256ED0024BAC5 /* ContentPlaybackCycleDetectorTests.swift in Sources */,
 				DEF969421CF06930000788AD /* VideoContextPresenterTests.swift in Sources */,
 				067209EB21B6BF3E0086CDBE /* OpenMeasurementControllerTests.swift in Sources */,
 				501AB1E12028936F00BAFA9C /* AdErrorDetectorTests.swift in Sources */,

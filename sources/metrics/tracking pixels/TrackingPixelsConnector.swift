@@ -26,7 +26,7 @@ extension TrackingPixels {
         let adErrorDetector = Detectors.AdError()
         let adClickDetector = Detectors.AdClick()
         let adViewTimeDetector = Detectors.AdViewTime()
-        let adPlaybackCycleDetector = Detectors.PlaybackCycle()
+        let adPlaybackCycleDetector = Detectors.AdPlaybackCycle()
         let adSlotOpportunityDetector = Detectors.SlotOpportunity()
         let muteDetector = Detectors.Mute()
         let adMaxShowTimerDetector = Detectors.AdMaxShowTimeDetector()

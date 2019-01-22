@@ -4,13 +4,13 @@
 import XCTest
 @testable import VerizonVideoPartnerSDK
 
-class PlaybackCycleDetectorTests: XCTestCase {
-    var sut: Detectors.PlaybackCycle!
+class ContentPlaybackCycleDetectorTests: XCTestCase {
+    var sut: Detectors.ContentPlaybackCycle!
     
     override func setUp() {
         super.setUp()
         
-        sut = Detectors.PlaybackCycle()
+        sut = Detectors.ContentPlaybackCycle()
     }
     
     override func tearDown() {

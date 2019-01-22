@@ -4,7 +4,7 @@
 import Foundation
 
 extension Detectors {
-    final class PlaybackCycle {
+    final class ContentPlaybackCycle {
         enum Result { case beginPlaying, endPlaying, nothing }
         
         var beginRecorded = false
@@ -14,7 +14,7 @@ extension Detectors {
             case (false, true, false):
                 beginRecorded = true
                 return .beginPlaying
-            case (true, false, true):
+            case (true, _, true):
                 beginRecorded = false
                 return .endPlaying
             default: return .nothing

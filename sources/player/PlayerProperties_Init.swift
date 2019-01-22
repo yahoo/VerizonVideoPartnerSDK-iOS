@@ -198,7 +198,7 @@ extension Player.Properties {
                 averageBitrate: state.averageBitrate.ad,
                 time: time(from: state.duration.ad,
                            currentTime: state.currentTime.ad,
-                           isFinished: state.adTracker.isFinished), 
+                           isFinished: state.adTracker.isForceFinished), 
                 bufferInfo: .init(progress: 0, time: CMTime.zero, milliseconds: 0),
                 pictureInPictureMode: .unsupported,
                 controlsAnimationSupport: false,

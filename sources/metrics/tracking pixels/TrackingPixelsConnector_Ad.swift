@@ -138,7 +138,7 @@ extension TrackingPixels.Connector {
             let input = Detectors.AdViewTime.Input(
                 duration: state.duration.ad?.seconds,
                 currentTime: state.currentTime.ad.seconds,
-                isAdFinished: state.adTracker.isFinished,
+                isAdFinished: state.adTracker.isForceFinished,
                 isSessionCompleted: state.playerSession.isCompleted,
                 videoIndex: state.playlist.currentIndex,
                 vvuid: state.playbackSession.id.uuidString)
@@ -323,9 +323,10 @@ extension TrackingPixels.Connector {
         case .mp4:
             /* Playback Cycle Detector */ do {
                 let result = adPlaybackCycleDetector.process(streamPlaying: state.rate.adRate.stream,
-                                                             isFinished: state.adTracker.isFinished)
+                                                             isSuccessfullyCompleted: state.adTracker.isSuccessfullyCompleted,
+                                                             isForceFinished: state.adTracker.isForceFinished)
                 switch result {
-                case .beginPlaying:
+                case .start:
                     report { payload in
                         reporter.sendBeacon(urls: payload.pixels.start)
                         engineFlow(stage: .started, payload: payload)
@@ -337,7 +338,7 @@ extension TrackingPixels.Connector {
                     let volume: Float = state.mute.player ? 0 : 1
                     openMeasurementVideoEvents?.start(CGFloat(duration), CGFloat(volume))
                     
-                case .endPlaying:
+                case .complete:
                     guard let holder = state.adInfoHolder else { return }
                     reporter.sendBeacon(urls: holder.pixels.complete)
                     openMeasurementVideoEvents?.complete()
@@ -359,7 +360,7 @@ extension TrackingPixels.Connector {
             
             /* Mute/Unmute Detector */ do {
                 let result = muteDetector.process(isMuted: state.mute.player,
-                                                  isNotFinished: !state.adTracker.isFinished)
+                                                  isNotFinished: !state.adTracker.isForceFinished)
                 report { payload in
                     switch result {
                     case .mute:
@@ -400,7 +401,7 @@ extension TrackingPixels.Connector {
                 }()
                 let result = openMeasurementMuteDetector.process(
                     isMuted: state.mute.player,
-                    isNotFinished: !state.adTracker.isFinished,
+                    isNotFinished: !state.adTracker.isForceFinished,
                     isOMActive: isOMActive)
                 switch result {
                 case .mute:

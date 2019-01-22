@@ -32,7 +32,6 @@ class ParseVRMItemControllerTest: XCTestCase {
         
         vastItem = VRMCore.Item(source: .vast(vastXML), metaInfo: metaInfo)
         parseCandidate = VRMParseItemQueue.Candidate(parentItem: vastItem,
-                                                     id: VRMCore.ID(),
                                                      vastXML: vastXML)
     }
     
