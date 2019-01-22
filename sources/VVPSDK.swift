@@ -413,6 +413,7 @@ public struct VVPSDK {
             }
             let adStartProcessing = StartAdProcessingController(dispatch: dispatcher)
             let startGroupProcessing = StartVRMGroupProcessingController(dispatch: dispatcher)
+            let finishGroupProcessing = FinishVRMGroupProcessingController(dispatch: dispatcher)
             let itemController = VRMItemController(maxRedirectCount: maxRedirectCount, dispatch: dispatcher)
             let itemFetchController = FetchVRMItemController(dispatch: dispatcher) { url in
                 return self.ephemeralSession.dataFuture(with: createRequest(url))
@@ -431,14 +432,15 @@ public struct VVPSDK {
                                                                 return self.vrmProvider.requestAds(with: createRequest(url))
             }
             let processingController = VRMProcessingController(dispatch: dispatcher)
-            let createSoftTimeoutTimer = { Timer(duration: 0.5){ dispatcher(PlayerCore.softTimeout()) } }
-            let createHardTimeoutTimer = { Timer(duration: 3.2){ dispatcher(PlayerCore.hardTimeout()) } }
+            let createSoftTimeoutTimer = { Timer(duration: 0.5){ dispatcher(PlayerCore.VRMCore.softTimeoutReached()) } }
+            let createHardTimeoutTimer = { Timer(duration: 3.2){ dispatcher(PlayerCore.VRMCore.hardTimeoutReached()) } }
             let timeoutController = VRMTimeoutController(softTimeoutTimerFactory: createSoftTimeoutTimer,
                                                          hardTimeoutTimerFactory: createHardTimeoutTimer)
             
             _ = player.store.state.addObserver { state in
                 vrmRequestController.process(with: state)
                 startGroupProcessing.process(with: state)
+                finishGroupProcessing.process(with: state)
                 itemController.process(with: state)
                 itemFetchController.process(with: state)
                 itemParseController.process(with: state)

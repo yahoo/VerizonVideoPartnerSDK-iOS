@@ -32,7 +32,8 @@ class StartVRMGroupProcessingControllerTest: XCTestCase {
     func testDispatchFirstGroup() {
         recorder.record {
             sut.process(with: nil,
-                        groupsQueue: [firstGroup, secondGroup])
+                        groupsQueue: [firstGroup, secondGroup],
+                        isMaxAdSearchReached: false)
         }
     
         recorder.verify {
@@ -43,7 +44,8 @@ class StartVRMGroupProcessingControllerTest: XCTestCase {
     func testStartLastGroup() {
         recorder.record {
             sut.process(with: nil,
-                        groupsQueue: [secondGroup])
+                        groupsQueue: [secondGroup],
+                        isMaxAdSearchReached: false)
         }
         
         recorder.verify {
@@ -54,7 +56,8 @@ class StartVRMGroupProcessingControllerTest: XCTestCase {
     func testNonEmptyCurrentGroup() {
         recorder.record {
             sut.process(with: firstGroup,
-                        groupsQueue: [secondGroup])
+                        groupsQueue: [secondGroup],
+                        isMaxAdSearchReached: false)
         }
         
         recorder.verify {}
@@ -63,7 +66,18 @@ class StartVRMGroupProcessingControllerTest: XCTestCase {
     func testEmptyCurrentGroupAndQueue() {
         recorder.record {
             sut.process(with: nil,
-                        groupsQueue: [])
+                        groupsQueue: [],
+                        isMaxAdSearchReached: false)
+        }
+        
+        recorder.verify {}
+    }
+    
+    func testMaxAdSearchTimeout() {
+        recorder.record {
+            sut.process(with: nil,
+                        groupsQueue: [secondGroup],
+                        isMaxAdSearchReached: true)
         }
         
         recorder.verify {}

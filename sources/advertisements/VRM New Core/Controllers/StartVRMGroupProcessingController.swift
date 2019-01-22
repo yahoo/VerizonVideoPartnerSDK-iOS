@@ -14,13 +14,16 @@ final class StartVRMGroupProcessingController {
     
     func process(with state: PlayerCore.State) {
         process(with: state.vrmCurrentGroup.currentGroup,
-                groupsQueue: state.vrmGroupsQueue.groupsQueue)
+                groupsQueue: state.vrmGroupsQueue.groupsQueue,
+            isMaxAdSearchReached: state.vrmMaxAdSearchTimeout.isReached)
     }
     
     func process(with currentGroup: VRMCore.Group?,
-                 groupsQueue: [VRMCore.Group]) {
+                 groupsQueue: [VRMCore.Group],
+        isMaxAdSearchReached: Bool) {
         guard currentGroup == nil,
-            let nextGroup = groupsQueue.first else { return }
+            let nextGroup = groupsQueue.first,
+            isMaxAdSearchReached == false else { return }
         
         dispatch(VRMCore.startGroupProcessing(group: nextGroup))
     }
