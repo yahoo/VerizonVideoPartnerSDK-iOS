@@ -28,7 +28,7 @@ final class VRMProcessingController {
                 if currentGroup == nil || currentGroup?.items.contains(item) == false {
                     dispatch(VRMCore.timeoutError(item: item))
                 } else if case .inline(let vast) = result.vastModel {
-                    dispatch(VRMCore.selectInlineVAST(originalItem: item, inlineVAST: vast))
+                    dispatch(VRMCore.selectInlineVAST(item: item, inlineVAST: vast))
                 } else if case .wrapper(let wrapper) = result.vastModel {
                     dispatch(VRMCore.unwrapItem(item: item, url: wrapper.tagURL))
                 } else {

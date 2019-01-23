@@ -291,6 +291,9 @@
 		E257A9FB21C93F4A0016D35A /* VRMItemControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E257A9FA21C93F4A0016D35A /* VRMItemControllerTest.swift */; };
 		E2629D07211228FA006ED117 /* TelemetryMetricsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2629D06211228FA006ED117 /* TelemetryMetricsTest.swift */; };
 		E2629D3C21147ECE006ED117 /* NoVpaidUrlFixture.json in Resources */ = {isa = PBXBuildFile; fileRef = E2629D3521147ECE006ED117 /* NoVpaidUrlFixture.json */; };
+		E287B08C21F884A900FC49AA /* VRMSelectFinalResultController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E287B08B21F884A900FC49AA /* VRMSelectFinalResultController.swift */; };
+		E287B08D21F884A900FC49AA /* VRMSelectFinalResultController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E287B08B21F884A900FC49AA /* VRMSelectFinalResultController.swift */; };
+		E287B0A621F8A67F00FC49AA /* VRMSelectFinalResultControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E287B0A521F8A67F00FC49AA /* VRMSelectFinalResultControllerTest.swift */; };
 		E2B0061F21CD265000B72485 /* FetchVRMItemController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B0061E21CD265000B72485 /* FetchVRMItemController.swift */; };
 		E2B0062021CD265000B72485 /* FetchVRMItemController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B0061E21CD265000B72485 /* FetchVRMItemController.swift */; };
 		E2B0062821CD4A2B00B72485 /* FetchVRMItemControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B0062521CD49EB00B72485 /* FetchVRMItemControllerTest.swift */; };
@@ -635,6 +638,8 @@
 		E257A9FA21C93F4A0016D35A /* VRMItemControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VRMItemControllerTest.swift; sourceTree = "<group>"; };
 		E2629D06211228FA006ED117 /* TelemetryMetricsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TelemetryMetricsTest.swift; path = sources/telemetry/TelemetryMetricsTest.swift; sourceTree = "<group>"; };
 		E2629D3521147ECE006ED117 /* NoVpaidUrlFixture.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = NoVpaidUrlFixture.json; sourceTree = "<group>"; };
+		E287B08B21F884A900FC49AA /* VRMSelectFinalResultController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VRMSelectFinalResultController.swift; sourceTree = "<group>"; };
+		E287B0A521F8A67F00FC49AA /* VRMSelectFinalResultControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VRMSelectFinalResultControllerTest.swift; sourceTree = "<group>"; };
 		E2B0061E21CD265000B72485 /* FetchVRMItemController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchVRMItemController.swift; sourceTree = "<group>"; };
 		E2B0062521CD49EB00B72485 /* FetchVRMItemControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchVRMItemControllerTest.swift; sourceTree = "<group>"; };
 		E2D649A7208A431D00152ADE /* VideoImpressionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoImpressionTest.swift; sourceTree = "<group>"; };
@@ -807,6 +812,8 @@
 				E22B6AD821EF852800D480A0 /* VRMProcessingControllerTest.swift */,
 				E22B6AE421F0C6D100D480A0 /* VRMTimeoutController.swift */,
 				E22B6AE721F0C72800D480A0 /* VRMTimeoutControllerTest.swift */,
+				E287B08B21F884A900FC49AA /* VRMSelectFinalResultController.swift */,
+				E287B0A521F8A67F00FC49AA /* VRMSelectFinalResultControllerTest.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1799,6 +1806,7 @@
 				50A11DE11D59D7E000F4A068 /* AdURLProvider.swift in Sources */,
 				50A11DE21D59D7E000F4A068 /* Rethrow.swift in Sources */,
 				50A11DE51D59D7E000F4A068 /* Pipeline.swift in Sources */,
+				E287B08D21F884A900FC49AA /* VRMSelectFinalResultController.swift in Sources */,
 				50A11DE61D59D7E000F4A068 /* VASTModel.swift in Sources */,
 				50A11DEB1D59D7E000F4A068 /* AdMetrics.swift in Sources */,
 				E2B0062021CD265000B72485 /* FetchVRMItemController.swift in Sources */,
@@ -1877,6 +1885,7 @@
 				DE1FD9D31CE777C500C0B7BC /* ProcessAdItem.swift in Sources */,
 				067209BC21B6BD9A0086CDBE /* OpenMeasurementServiceScript.swift in Sources */,
 				06419E1A20EF7433007FE2F0 /* WebviewViewController.swift in Sources */,
+				E287B08C21F884A900FC49AA /* VRMSelectFinalResultController.swift in Sources */,
 				50D36F121F334BA700DE7085 /* HeartbeatDetector.swift in Sources */,
 				50A11E091D59D9F000F4A068 /* OpenSafariUtil.swift in Sources */,
 				DEB1123C1E30F56C007E65BD /* ConfigurationParser.swift in Sources */,
@@ -1955,6 +1964,7 @@
 				DEB112331E30E5ED007E65BD /* VideoLoadingDetectorTests.swift in Sources */,
 				06BF5394209B471A00B98A6D /* UserActionsDetectorTests.swift in Sources */,
 				DE0031531ECF51BF007FE000 /* AdURLProviderTests.swift in Sources */,
+				E287B0A621F8A67F00FC49AA /* VRMSelectFinalResultControllerTest.swift in Sources */,
 				508748261C80750100F2511A /* Recorder.swift in Sources */,
 				E231AA51212DBB3B008C5B6A /* MaxShowTimeControllerTest.swift in Sources */,
 				501AB1E72029EE7700BAFA9C /* AdPlaybackCycleDetectorTests.swift in Sources */,
