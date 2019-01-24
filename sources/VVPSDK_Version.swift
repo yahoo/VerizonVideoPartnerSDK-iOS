@@ -8,4 +8,8 @@ extension VVPSDK {
     public static var version: String {
         return "1.1.0"
     }
+    
+    static var backendVersion: String {
+        return "2.32"
+    }
 }
