@@ -349,6 +349,8 @@ public struct VVPSDK {
         let dispatcher: (PlayerCore.Action) -> Void = { [weak player] in player?.store.dispatch(action: $0) }
         let softTimeout = player.model.adSettings.softTimeout
         let hardTimeout = player.model.adSettings.hardTimeout
+        let isVPAIDAllowed = player.model.isVPAIDAllowed
+        let isOpenMeasurementEnabled = player.model.isOpenMeasurementAllowed
         
         func setupVRMWithOldCore() {
             let vastTagProcessor = VASTTagProcessor(session: ephemeralSession,
@@ -357,8 +359,6 @@ public struct VVPSDK {
                 innerParse: vastTagProcessor.parseTag,
                 innerFetch: vastTagProcessor.fetchTag)
             let adProxy = AdVRMEngine(dispatcher: dispatcher)
-            let isVPAIDAllowed = player.model.isVPAIDAllowed
-            let isOpenMeasurementEnabled = player.model.isOpenMeasurementAllowed
             let provider = AdURLProvider(
                 groupsFetch: adProxy.requestAds(using: vrmProvider.requestAds),
                 processItem: adProxy.processItem(using: vastWrapperProcessor.parseTag(from:),
@@ -422,21 +422,20 @@ public struct VVPSDK {
             }
             let itemParseController = ParseVRMItemController(dispatch: dispatcher,
                                                              vastMapper: vastMapper) { vastXML in
-                                                                return Future(value: vastXML)
-                                                                    .dispatch(on: DispatchQueue.global(qos: .userInitiated))
-                                                                    .map(VASTParser.parseFrom)
-                                                                
+                                                                Future(value: vastXML).map(VASTParser.parseFrom)
             }
             let vrmRequestController = VRMRequestController(dispatch: dispatcher,
                                                             groupsMapper: mapGroups) { url in
-                                                                return self.vrmProvider.requestAds(with: createRequest(url))
+                                                                self.vrmProvider.requestAds(with: createRequest(url))
             }
             let processingController = VRMProcessingController(dispatch: dispatcher)
             let createSoftTimeoutTimer = { Timer(duration: 0.5){ dispatcher(PlayerCore.VRMCore.softTimeoutReached()) } }
             let createHardTimeoutTimer = { Timer(duration: 3.2){ dispatcher(PlayerCore.VRMCore.hardTimeoutReached()) } }
             let timeoutController = VRMTimeoutController(softTimeoutTimerFactory: createSoftTimeoutTimer,
                                                          hardTimeoutTimerFactory: createHardTimeoutTimer)
-            
+            let selectFinalResult = VRMSelectFinalResultController(dispatch: dispatcher)
+            let playFinalResult = FinalResultDispatchController(dispatch: dispatcher,
+                                                              isOpenMeasurementEnabled: isOpenMeasurementEnabled)
             _ = player.store.state.addObserver { state in
                 vrmRequestController.process(with: state)
                 startGroupProcessing.process(with: state)
@@ -446,6 +445,8 @@ public struct VVPSDK {
                 itemParseController.process(with: state)
                 processingController.process(with: state)
                 timeoutController.process(with: state)
+                selectFinalResult.process(with: state)
+                playFinalResult.process(with: state)
             }
             
             _ = player.addObserver { playerProps in
