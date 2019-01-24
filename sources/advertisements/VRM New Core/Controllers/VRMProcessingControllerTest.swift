@@ -12,7 +12,7 @@ class VRMProcessingControllerTest: XCTestCase {
         $0.item == $1.item
     }
     let selectInlineAdActionComparator = ActionComparator<VRMCore.SelectInlineItem> {
-        $0.originalItem == $1.originalItem && $0.inlineVAST == $1.inlineVAST
+        $0.item == $1.item && $0.inlineVAST == $1.inlineVAST
     }
     let unwrapItemActionComparator = ActionComparator<VRMCore.UnwrapItem> {
         $0.item == $1.item && $0.url == $1.url
@@ -94,7 +94,7 @@ class VRMProcessingControllerTest: XCTestCase {
         }
         
         recorder.verify {
-            sut.dispatch(VRMCore.selectInlineVAST(originalItem: urlItem, inlineVAST: adModel))
+            sut.dispatch(VRMCore.selectInlineVAST(item: urlItem, inlineVAST: adModel))
         }
     }
     
