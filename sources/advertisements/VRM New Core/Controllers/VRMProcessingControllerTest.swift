@@ -59,9 +59,26 @@ class VRMProcessingControllerTest: XCTestCase {
         recorder.record {
             let result = VRMParsingResult.Result(vastModel: inline)
             sut.process(parsingResultQueue: [vastItem: result],
-                        currentGroup: nil)
+                        currentGroup: nil,
+                        timeout: .none)
             sut.process(parsingResultQueue: [vastItem: result],
-                        currentGroup: nil)
+                        currentGroup: nil,
+                        timeout: .none)
+        }
+        
+        recorder.verify {
+            sut.dispatch(VRMCore.timeoutError(item: vastItem))
+        }
+        
+        let group = VRMCore.Group(items: [urlItem, vastItem])
+        recorder.record {
+            let result = VRMParsingResult.Result(vastModel: inline)
+            sut.process(parsingResultQueue: [vastItem: result],
+                        currentGroup: group,
+                        timeout: .hard)
+            sut.process(parsingResultQueue: [vastItem: result],
+                        currentGroup: group,
+                        timeout: .hard)
         }
         
         recorder.verify {
@@ -75,7 +92,8 @@ class VRMProcessingControllerTest: XCTestCase {
         let group = VRMCore.Group(items: [urlItem])
         recorder.record {
             sut.process(parsingResultQueue: [vastItem: .init(vastModel: inline)],
-                        currentGroup: group)
+                        currentGroup: group,
+                        timeout: .none)
         }
         
         recorder.verify {
@@ -90,7 +108,8 @@ class VRMProcessingControllerTest: XCTestCase {
         let group = VRMCore.Group(items: [urlItem])
         recorder.record {
             sut.process(parsingResultQueue: [urlItem: .init(vastModel: inline)],
-                        currentGroup: group)
+                        currentGroup: group,
+                        timeout: .soft)
         }
         
         recorder.verify {
@@ -105,7 +124,8 @@ class VRMProcessingControllerTest: XCTestCase {
         let group = VRMCore.Group(items: [urlItem])
         recorder.record {
             sut.process(parsingResultQueue: [urlItem: .init(vastModel: wrapper)],
-                        currentGroup: group)
+                        currentGroup: group,
+                        timeout: .none)
         }
         
         recorder.verify {

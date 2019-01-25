@@ -15,24 +15,24 @@ final class VRMProcessingController {
     
     func process(with state: PlayerCore.State) {
         process(parsingResultQueue: state.vrmParsingResult.parsedVASTs,
-                currentGroup: state.vrmCurrentGroup.currentGroup)
+                currentGroup: state.vrmCurrentGroup.currentGroup,
+                timeout: state.vrmProcessingTimeout)
     }
     
     func process(parsingResultQueue: [VRMCore.Item: VRMParsingResult.Result],
-                 currentGroup: VRMCore.Group?) {
+                 currentGroup: VRMCore.Group?,
+                 timeout: VRMProcessingTimeout) {
         parsingResultQueue
             .filter { _, result in
                 dispatchedResults.contains(result) == false
             }.forEach { item, result in
                 
-                if currentGroup == nil || currentGroup?.items.contains(item) == false {
+                if currentGroup == nil || currentGroup?.items.contains(item) == false || timeout == .hard {
                     dispatch(VRMCore.timeoutError(item: item))
                 } else if case .inline(let vast) = result.vastModel {
                     dispatch(VRMCore.selectInlineVAST(item: item, inlineVAST: vast))
                 } else if case .wrapper(let wrapper) = result.vastModel {
                     dispatch(VRMCore.unwrapItem(item: item, url: wrapper.tagURL))
-                } else {
-                    fatalError("there is no any other cases")
                 }
                 
                 dispatchedResults.insert(result)

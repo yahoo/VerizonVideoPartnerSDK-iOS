@@ -7,6 +7,9 @@ import PlayerCore
 final class FinishVRMGroupProcessingController {
     let dispatch: (PlayerCore.Action) -> ()
     private var finishedGroupIds = Set<VRMCore.Group.ID>()
+    private var triedItems = Set<VRMCore.Item>()
+    private var isMaxAdSearchTimeTracked = false
+    
     
     init(dispatch: @escaping (PlayerCore.Action) -> ()) {
         self.dispatch = dispatch
@@ -17,31 +20,53 @@ final class FinishVRMGroupProcessingController {
             .union(state.vrmFetchingError.erroredItems)
             .union(state.vrmParsingError.erroredItems)
             .union(state.vrmRedirectError.erroredItems)
-        let processedItems = Set(state.vrmParsingResult.parsedVASTs.keys.map({$0}))
+        let processedItems = Set(state.vrmProcessingResult.processedAds.map({$0.item}))
         
         process(with: state.vrmProcessingTimeout,
                 isMaxSearchTimeReached: state.vrmMaxAdSearchTimeout.isReached,
                 currentGroup: state.vrmCurrentGroup.currentGroup,
                 erroredItems: allErroredItems,
-                processedItems: processedItems)
+                processedItems: processedItems,
+                finalResult: state.vrmFinalResult.result)
     }
     
     func process(with timeout: VRMProcessingTimeout,
                  isMaxSearchTimeReached: Bool,
                  currentGroup: VRMCore.Group?,
                  erroredItems: Set<VRMCore.Item>,
-                 processedItems: Set<VRMCore.Item>) {
+                 processedItems: Set<VRMCore.Item>,
+                 finalResult: VRMCore.Result?) {
         guard let currentGroup = currentGroup,
             finishedGroupIds.contains(currentGroup.id) == false else {
-                return
+            return
         }
         
-        let allItemFinished = Set(currentGroup.items).isSubset(of: erroredItems.union(processedItems))
-        if timeout == .hard ||
-            isMaxSearchTimeReached ||
-            allItemFinished {
+        func finishGroup() {
             finishedGroupIds.insert(currentGroup.id)
             dispatch(VRMCore.finishCurrentGroupProcessing())
+        }
+        
+        guard isMaxSearchTimeReached == false else {
+            if isMaxAdSearchTimeTracked == false {
+                isMaxAdSearchTimeTracked = true
+                finishGroup()
+            }
+            return
+        }
+        
+        isMaxAdSearchTimeTracked = false
+        
+        if let finalResult = finalResult {
+            triedItems.insert(finalResult.item)
+        }
+        
+        let triedAllProcessedItemsAfterHardTimeout = timeout == .hard &&
+                                                     finalResult == nil &&
+                                                     processedItems.isSubset(of: triedItems)
+        let allItemsInGroupAlreadyFailed = Set(currentGroup.items).isSubset(of: erroredItems)
+        
+        if triedAllProcessedItemsAfterHardTimeout || allItemsInGroupAlreadyFailed {
+            finishGroup()
         }
     }
 }
