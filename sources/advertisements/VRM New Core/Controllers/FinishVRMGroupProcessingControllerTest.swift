@@ -6,7 +6,7 @@ import XCTest
 @testable import PlayerCore
 
 class FinishVRMGroupProcessingControllerTest: XCTestCase {
-
+    
     let recorder = Recorder()
     
     var sut: FinishVRMGroupProcessingController!
@@ -16,11 +16,12 @@ class FinishVRMGroupProcessingControllerTest: XCTestCase {
     var vastItem: VRMCore.Item!
     var urlItem: VRMCore.Item!
     var group: VRMCore.Group!
-
+    var adModel: PlayerCore.Ad.VASTModel!
+    var result: VRMCore.Result!
     
     override func setUp() {
         super.setUp()
-        let actionComparator = ActionComparator<VRMCore.FinishCurrentGroupProcessing> {_,_ in
+        let actionComparator = ActionComparator<VRMCore.FinishCurrentGroupProcessing> { _,_ in
             return true
         }
         let dispatcher = recorder.hook("hook", cmp: actionComparator.compare)
@@ -36,6 +37,14 @@ class FinishVRMGroupProcessingControllerTest: XCTestCase {
         vastItem = VRMCore.Item(source: .vast(vastXML), metaInfo: metaInfo)
         urlItem = VRMCore.Item(source: .url(url), metaInfo: metaInfo)
         group = VRMCore.Group(items: [urlItem, vastItem])
+        
+        adModel = .init(adVerifications: [],
+                        mediaFiles: [],
+                        clickthrough: nil,
+                        adParameters: nil,
+                        pixels: .init(),
+                        id: "id1")
+        result = VRMCore.Result(item: urlItem, inlineVAST: adModel)
     }
     
     override func tearDown() {
@@ -44,19 +53,28 @@ class FinishVRMGroupProcessingControllerTest: XCTestCase {
         super.tearDown()
     }
     
-    func testDoubleDispatchHardTimeout() {
+    func testTriedAllProcessedItems() {
         recorder.record {
             sut.process(with: .hard,
                         isMaxSearchTimeReached: false,
                         currentGroup: group,
-                        erroredItems: [],
-                        processedItems: [])
+                        erroredItems: Set(),
+                        processedItems: Set([result.item]),
+                        finalResult: nil)
             
             sut.process(with: .hard,
                         isMaxSearchTimeReached: false,
                         currentGroup: group,
-                        erroredItems: [],
-                        processedItems: [])
+                        erroredItems: Set(),
+                        processedItems: Set([result.item]),
+                        finalResult: result)
+            
+            sut.process(with: .hard,
+                        isMaxSearchTimeReached: false,
+                        currentGroup: group,
+                        erroredItems: Set(),
+                        processedItems: Set([result.item]),
+                        finalResult: nil)
         }
         
         recorder.verify {
@@ -64,39 +82,60 @@ class FinishVRMGroupProcessingControllerTest: XCTestCase {
         }
     }
     
-    func testDoubleDispatchMaxAdSearchTime() {
+    func testDispatchMaxAdSearchTime() {
         recorder.record {
-            sut.process(with: .none,
+            sut.process(with: .soft,
                         isMaxSearchTimeReached: true,
                         currentGroup: group,
-                        erroredItems: [],
-                        processedItems: [])
+                        erroredItems: Set([vastItem]),
+                        processedItems: Set([urlItem]),
+                        finalResult: nil)
             
-            sut.process(with: .none,
+            group = VRMCore.Group(items: [vastItem, urlItem])
+            
+            sut.process(with: .soft,
+                        isMaxSearchTimeReached: false,
+                        currentGroup: group,
+                        erroredItems: Set([vastItem]),
+                        processedItems: Set([urlItem]),
+                        finalResult: nil)
+            
+            sut.process(with: .soft,
+                        isMaxSearchTimeReached: false,
+                        currentGroup: group,
+                        erroredItems: Set([vastItem]),
+                        processedItems: Set([urlItem]),
+                        finalResult: nil)
+            
+            sut.process(with: .soft,
                         isMaxSearchTimeReached: true,
                         currentGroup: group,
-                        erroredItems: [],
-                        processedItems: [])
+                        erroredItems: Set([vastItem]),
+                        processedItems: Set([urlItem]),
+                        finalResult: result)
         }
         
         recorder.verify {
             sut.dispatch(VRMCore.finishCurrentGroupProcessing())
+            sut.dispatch(VRMCore.finishCurrentGroupProcessing())
         }
     }
     
-    func testDoubleDispatchAllItemsInGroupAlreadyProcessed() {
+    func testDoubleDispatchAllItemsInGroupAlreadyFailed() {
         recorder.record {
-            sut.process(with: .none,
+            sut.process(with: .soft,
                         isMaxSearchTimeReached: false,
                         currentGroup: group,
-                        erroredItems: [urlItem],
-                        processedItems: [vastItem])
+                        erroredItems: Set(group.items),
+                        processedItems: Set(),
+                        finalResult: nil)
             
-            sut.process(with: .none,
+            sut.process(with: .soft,
                         isMaxSearchTimeReached: false,
                         currentGroup: group,
-                        erroredItems: [urlItem],
-                        processedItems: [vastItem])
+                        erroredItems: Set(group.items),
+                        processedItems: Set(),
+                        finalResult: nil)
         }
         
         recorder.verify {
@@ -106,29 +145,33 @@ class FinishVRMGroupProcessingControllerTest: XCTestCase {
     
     func testNoDispatch() {
         recorder.record {
-            sut.process(with: .soft,
+            sut.process(with: .none,
                         isMaxSearchTimeReached: false,
                         currentGroup: group,
-                        erroredItems: [],
-                        processedItems: [])
+                        erroredItems: Set(),
+                        processedItems: Set(),
+                        finalResult: nil)
             
-            sut.process(with: .soft,
+            sut.process(with: .none,
                         isMaxSearchTimeReached: false,
                         currentGroup: group,
-                        erroredItems: [urlItem],
-                        processedItems: [])
-            
-            sut.process(with: .soft,
-                        isMaxSearchTimeReached: false,
-                        currentGroup: group,
-                        erroredItems: [],
-                        processedItems: [urlItem])
+                        erroredItems: Set([vastItem]),
+                        processedItems: Set([result.item]),
+                        finalResult: nil)
             
             sut.process(with: .hard,
-                        isMaxSearchTimeReached: true,
-                        currentGroup: nil,
-                        erroredItems: [],
-                        processedItems: [])
+                        isMaxSearchTimeReached: false,
+                        currentGroup: group,
+                        erroredItems: Set([vastItem]),
+                        processedItems: Set([result.item]),
+                        finalResult: nil)
+            
+            sut.process(with: .hard,
+                        isMaxSearchTimeReached: false,
+                        currentGroup: group,
+                        erroredItems: Set([vastItem]),
+                        processedItems: Set([result.item]),
+                        finalResult: result)
         }
         
         recorder.verify {
