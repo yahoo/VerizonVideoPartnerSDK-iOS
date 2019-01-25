@@ -61,7 +61,7 @@ extension VideoProvider.Parse {
                          hardTimeout: json.parse("hardTimeout"),
                          startTimeout: json.parse("startTimeout"),
                          maxDuration: json.parse("maxShowTime"),
-                         maxVASTWrapperRedirectCount: 3)
+                         maxVASTWrapperRedirectCount: json.parse("maxVASTWrapperRedirectCount"))
     }
     
     static func videoResponse(from json: JSON) throws -> VideoProvider.Response.VideoResponse {

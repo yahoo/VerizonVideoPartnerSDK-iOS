@@ -40,11 +40,11 @@ final class VRMSelectFinalResultController {
         
         let filteredItems = processingResults.subtracting(firedResults)
         if let topPriorityItem = topPriorityItem {
-           filteredItems
+            filteredItems
                 .first { $0.item == topPriorityItem }
                 .flatMap { result in
                     dispatchResult(result: result)
-                }
+            }
         } else {
             for item in currentGroup.items {
                 if let result = filteredItems.first(where: { $0.item == item }) {
