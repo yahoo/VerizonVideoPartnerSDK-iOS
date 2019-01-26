@@ -10,7 +10,9 @@ class StartVRMGroupProcessingControllerTest: XCTestCase {
     let recorder = Recorder()
     let firstGroup = VRMCore.Group(items: [])
     let secondGroup = VRMCore.Group(items: [])
+    let id = UUID()
     
+    var request: VRMRequestStatus.Request!
     var sut: StartVRMGroupProcessingController!
     
     override func setUp() {
@@ -19,8 +21,8 @@ class StartVRMGroupProcessingControllerTest: XCTestCase {
             $0.group == $1.group
         }
         let dispatch = recorder.hook("dispatch", cmp: actionComparator.compare)
-        
         sut = StartVRMGroupProcessingController(dispatch: dispatch)
+        request = .request(url: URL(string:"http://test.com")!, id: id)
     }
     
     override func tearDown() {
@@ -33,7 +35,9 @@ class StartVRMGroupProcessingControllerTest: XCTestCase {
         recorder.record {
             sut.process(with: nil,
                         groupsQueue: [firstGroup, secondGroup],
-                        isMaxAdSearchReached: false)
+                        isMaxAdSearchReached: false,
+                        vrmRequest: request,
+                        hasReceivedVRMResponse: true)
         }
     
         recorder.verify {
@@ -45,7 +49,9 @@ class StartVRMGroupProcessingControllerTest: XCTestCase {
         recorder.record {
             sut.process(with: nil,
                         groupsQueue: [secondGroup],
-                        isMaxAdSearchReached: false)
+                        isMaxAdSearchReached: false,
+                        vrmRequest: request,
+                        hasReceivedVRMResponse: true)
         }
         
         recorder.verify {
@@ -57,29 +63,56 @@ class StartVRMGroupProcessingControllerTest: XCTestCase {
         recorder.record {
             sut.process(with: firstGroup,
                         groupsQueue: [secondGroup],
-                        isMaxAdSearchReached: false)
+                        isMaxAdSearchReached: false,
+                        vrmRequest: request,
+                        hasReceivedVRMResponse: true)
         }
         
         recorder.verify {}
     }
-    
-    func testEmptyCurrentGroupAndQueue() {
-        recorder.record {
-            sut.process(with: nil,
-                        groupsQueue: [],
-                        isMaxAdSearchReached: false)
-        }
-        
-        recorder.verify {}
-    }
+
     
     func testMaxAdSearchTimeout() {
         recorder.record {
             sut.process(with: nil,
                         groupsQueue: [secondGroup],
-                        isMaxAdSearchReached: true)
+                        isMaxAdSearchReached: true,
+                        vrmRequest: request,
+                        hasReceivedVRMResponse: true)
         }
         
         recorder.verify {}
+    }
+    
+    func testNoMoreGroupForProcessing() {
+        let actionComparator = ActionComparator<VRMCore.NoGroupsToProcess> {
+            $0.id == $1.id
+        }
+        let dispatch = recorder.hook("testNoMoreGroupForProcessing", cmp: actionComparator.compare)
+        sut = StartVRMGroupProcessingController(dispatch: dispatch)
+        
+        recorder.record {
+            sut.process(with: nil,
+                        groupsQueue: [],
+                        isMaxAdSearchReached: false,
+                        vrmRequest: request,
+                        hasReceivedVRMResponse: false)
+            
+            sut.process(with: nil,
+                        groupsQueue: [],
+                        isMaxAdSearchReached: false,
+                        vrmRequest: request,
+                        hasReceivedVRMResponse: true)
+            
+            sut.process(with: nil,
+                        groupsQueue: [],
+                        isMaxAdSearchReached: false,
+                        vrmRequest: request,
+                        hasReceivedVRMResponse: true)
+        }
+        
+        recorder.verify {
+            sut.dispatch(VRMCore.noGroupsToProcess(id: id))
+        }
     }
 }
