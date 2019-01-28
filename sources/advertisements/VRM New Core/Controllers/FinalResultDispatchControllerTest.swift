@@ -40,9 +40,11 @@ class FinalResultDispatchControllerTest: XCTestCase {
         let result = VRMCore.Result(item: item, inlineVAST: inlineVAST)
         
         recorder.record {
-            sut.process(with: nil)
-            sut.process(with: result)
-            sut.process(with: result)
+            let uuid = UUID()
+            sut.process(with: nil, requestID: nil)
+            sut.process(with: nil, requestID: uuid)
+            sut.process(with: result, requestID: uuid)
+            sut.process(with: result, requestID: uuid)
         }
         
         recorder.verify {

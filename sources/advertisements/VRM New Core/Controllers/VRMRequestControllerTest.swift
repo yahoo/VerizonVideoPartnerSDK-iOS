@@ -79,8 +79,8 @@ class VRMRequestControllerTest: XCTestCase {
         
         recorder.record {
             let requestId = UUID()
-            sut.process(with: .request(url: vrmURL, id: requestId))
-            sut.process(with: .request(url: vrmURL, id: requestId))
+            sut.process(with: .init(url: vrmURL, id: requestId))
+            sut.process(with: .init(url: vrmURL, id: requestId))
         }
         
         recorder.verify {
@@ -90,8 +90,8 @@ class VRMRequestControllerTest: XCTestCase {
         }
         
         recorder.record {
-            sut.process(with: .request(url: vrmURL, id: UUID()))
-            sut.process(with: .request(url: vrmURL, id: UUID()))
+            sut.process(with: .init(url: vrmURL, id: UUID()))
+            sut.process(with: .init(url: vrmURL, id: UUID()))
         }
         
         recorder.verify {
@@ -120,7 +120,7 @@ class VRMRequestControllerTest: XCTestCase {
         
         let requestID = UUID()
         recorder.record {
-            sut.process(with: .request(url: vrmURL, id: requestID))
+            sut.process(with: .init(url: vrmURL, id: requestID))
         }
         
         recorder.verify {

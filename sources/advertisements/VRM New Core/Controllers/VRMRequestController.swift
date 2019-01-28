@@ -53,17 +53,17 @@ final class VRMRequestController {
         process(with: state.vrmRequestStatus.request)
     }
     
-    func process(with requestStatus: PlayerCore.VRMRequestStatus.Request) {
+    func process(with request: PlayerCore.VRMRequestStatus.Request?) {
         
-        if case let .request(url, id) = requestStatus,
-            firedRequests.contains(id) == false {
+        if let request = request,
+            firedRequests.contains(request.id) == false {
             
-            firedRequests.insert(id)
+            firedRequests.insert(request.id)
             weak var weakSelf = self
-            fetchVRMResponse(url).onComplete { response in
+            fetchVRMResponse(request.url).onComplete { response in
                 guard let response = response,
                     let `self` = weakSelf else {
-                        weakSelf?.dispatch(VRMCore.adResponseFetchFailed(requestID: id))
+                        weakSelf?.dispatch(VRMCore.adResponseFetchFailed(requestID: request.id))
                         return
                 }
                 weakSelf?.dispatch(VRMCore.adResponse(transactionId: response.transactionId,

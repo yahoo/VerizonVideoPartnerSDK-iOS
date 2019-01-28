@@ -24,7 +24,7 @@ final class StartVRMGroupProcessingController {
     func process(with currentGroup: VRMCore.Group?,
                  groupsQueue: [VRMCore.Group],
                  isMaxAdSearchReached: Bool,
-                 vrmRequest: VRMRequestStatus.Request,
+                 vrmRequest: VRMRequestStatus.Request?,
                  hasReceivedVRMResponse: Bool) {
         guard currentGroup == nil,
             hasReceivedVRMResponse,
@@ -32,10 +32,10 @@ final class StartVRMGroupProcessingController {
         
         if let nextGroup = groupsQueue.first {
             dispatch(VRMCore.startGroupProcessing(group: nextGroup))
-        } else if case let .request(_, id) = vrmRequest,
-            trackedRequests.contains(id) == false {
-            trackedRequests.insert(id)
-            dispatch(VRMCore.noGroupsToProcess(id: id))
+        } else if let request = vrmRequest,
+            trackedRequests.contains(request.id) == false {
+            trackedRequests.insert(request.id)
+            dispatch(VRMCore.noGroupsToProcess(id: request.id))
         }
     }
 }
