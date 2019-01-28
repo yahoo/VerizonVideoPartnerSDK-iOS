@@ -146,8 +146,7 @@ extension MidrollDetector.Action: Equatable {
         case (.prefetch(let lhsMidroll), .prefetch(let rhsMidroll)):
             return lhsMidroll == rhsMidroll
         case (.play(let lhsPrefetchedModel, let lhsPrefetchedMidroll), .play(let rhsPrefetchedModel, let rhsPrefetchedMidroll)):
-            return lhsPrefetchedModel?.videos.first == rhsPrefetchedModel?.videos.first
-                && lhsPrefetchedMidroll == rhsPrefetchedMidroll
+            return lhsPrefetchedModel == rhsPrefetchedModel && lhsPrefetchedMidroll == rhsPrefetchedMidroll
         default: return false
         }
     }

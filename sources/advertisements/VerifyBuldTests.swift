@@ -12,12 +12,10 @@ class VerifyBuldTests: XCTestCase {
         let url = URL(string: "https://example.com")!
         let model = PlayerCore.Ad.VASTModel(
             adVerifications: [],
-            videos: [.vpaid(Ad.VASTModel.MediaFile(url: url,
-                                                 width: 100,
-                                                 height: 100,
-                                                 scalable: false,
-                                                 maintainAspectRatio: true))
-            ],
+            mp4MediaFiles: [],
+            vpaidMediaFiles: [Ad.VASTModel.VPAIDMediaFile(url: url,
+                                                          scalable: false,
+                                                          maintainAspectRatio: true)],
             clickthrough: nil,
             adParameters: "",
             pixels: AdPixels(impression: [],
