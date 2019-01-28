@@ -86,7 +86,7 @@ final class AdURLProviderProcess {
     
     private func descriptionFor(result: PlayerCore.Ad.VASTModel) -> JSON {
         return [
-            "media file": result.mediaFiles.first?.url.absoluteString ?? NSNull(),
+            "media file": result.videos.first?.url.absoluteString ?? NSNull(),
             "click": result.clickthrough?.absoluteString ?? NSNull(),
             "id": result.id ?? NSNull()
         ]

@@ -95,8 +95,8 @@ func select(model: PlayerCore.Ad.VASTModel,
             info: VRMMetaInfo,
             requestDate: Date,
             isVPAIDAllowed: Bool) -> PlayerCore.Ad.VASTModel? {
-    let mediaFiles = model.mediaFiles.filter {
-        guard case .vpaid = $0.type else { return true }
+    let mediaFiles = model.videos.filter {
+        guard case .vpaid = $0 else { return true }
         return isVPAIDAllowed
     }
     guard !mediaFiles.isEmpty else {

@@ -46,7 +46,7 @@ enum VASTParser {
         var clickthroughURL: URL?
         var pixels = PlayerCore.AdPixels()
         var adParameters: String?
-        var mediaFile: [PlayerCore.Ad.VASTModel.MediaFile] = []
+        var videos: [PlayerCore.Ad.VASTModel.VideoType] = []
     }
     
     struct AdVerification {
@@ -230,19 +230,6 @@ enum VASTParser {
                                 
                             case "MediaFile":
                                 guard let typeAttr = attr["type"] else { break }
-                                let videoType: PlayerCore.Ad.VASTModel.MediaFile.VideoType? = {
-                                    switch typeAttr {
-                                    case "video/mp4":
-                                        return .mp4
-                                    case "application/javascript":
-                                        guard
-                                            let apiFramework = attr["apiFramework"],
-                                            apiFramework == "VPAID" else { return nil }
-                                        return .vpaid
-                                    default: return nil
-                                    }
-                                }()
-                                guard let type = videoType else { break }
                                 guard
                                     let delivery = attr["delivery"],
                                     delivery == "progressive" else { break }
@@ -260,12 +247,25 @@ enum VASTParser {
                                     guard let url = url else { return }
                                     let mediaFile = PlayerCore.Ad.VASTModel.MediaFile(
                                         url: url,
-                                        type: type,
                                         width: width,
                                         height: height,
                                         scalable: scalable ?? false,
                                         maintainAspectRatio: maintainAspectRatio ?? true)
-                                    inlineContext.mediaFile.append(mediaFile)
+                                    let videoType: PlayerCore.Ad.VASTModel.VideoType? = {
+                                        switch typeAttr {
+                                        case "video/mp4":
+                                            return .mp4(mediaFile)
+                                        case "application/javascript":
+                                            guard
+                                                let apiFramework = attr["apiFramework"],
+                                                apiFramework == "VPAID" else { return nil }
+                                            return .vpaid(mediaFile)
+                                        default: return nil
+                                        }
+                                    }()
+                                    if let type = videoType {
+                                        inlineContext.videos.append(type)
+                                    }
                                     delegateStack.pop()
                                 }))
                                 
@@ -450,7 +450,7 @@ enum VASTParser {
                                 to: { context in
                                     delegateStack.pop()
                                     guard result == nil else { fatalError("Result overwrite detected") }
-                                    guard context.mediaFile.isEmpty == false else { return }
+                                    guard context.videos.isEmpty == false else { return }
                                     let adVerifications: [PlayerCore.Ad.VASTModel.AdVerification] = {
                                         guard context.adVerifications.isEmpty == false else { return [] }
                                         return context.adVerifications.compactMap {
@@ -463,7 +463,7 @@ enum VASTParser {
                                         }
                                     }()
                                     let model = PlayerCore.Ad.VASTModel(adVerifications: adVerifications,
-                                                                        mediaFiles: context.mediaFile,
+                                                                        videos: context.videos,
                                                                         clickthrough: context.clickthroughURL,
                                                                         adParameters: context.adParameters,
                                                                         pixels: context.pixels,

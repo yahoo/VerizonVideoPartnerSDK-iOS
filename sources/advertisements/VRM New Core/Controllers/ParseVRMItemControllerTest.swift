@@ -43,7 +43,7 @@ class ParseVRMItemControllerTest: XCTestCase {
     
     func testSuccessfulParse() {
         let result = PlayerCore.Ad.VASTModel(adVerifications: [],
-                                             mediaFiles: [],
+                                             videos: [],
                                              clickthrough: nil,
                                              adParameters: nil,
                                              pixels: AdPixels(),

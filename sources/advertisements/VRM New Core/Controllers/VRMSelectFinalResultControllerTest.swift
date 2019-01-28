@@ -27,14 +27,14 @@ class VRMSelectFinalResultControllerTest: XCTestCase {
         sut = VRMSelectFinalResultController(dispatch: dispatch)
         
         adModel1 = .init(adVerifications: [],
-                        mediaFiles: [],
+                        videos: [],
                         clickthrough: nil,
                         adParameters: nil,
                         pixels: .init(),
                         id: "id1")
         
         adModel2 = .init(adVerifications: [],
-                         mediaFiles: [],
+                         videos: [],
                          clickthrough: nil,
                          adParameters: nil,
                          pixels: .init(),

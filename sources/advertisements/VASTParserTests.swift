@@ -25,7 +25,7 @@ class VASTParserTests: XCTestCase {
         let vast = getVAST(atPath: "VAST1")
         guard let model = VASTParser.parseFrom(string: vast) else { return XCTFail() }
         guard case let .inline(inlineModel) = model else { return XCTFail() }
-        guard let url = inlineModel.mediaFiles.first?.url.absoluteString else { return XCTFail() }
+        guard let url = inlineModel.videos.first?.url.absoluteString else { return XCTFail() }
         XCTAssertEqual(url,
             "https://dev.example.com/videos/2018/video_example_1280x720.mp4")
         XCTAssertEqual(inlineModel.id, "4203085")
@@ -36,7 +36,7 @@ class VASTParserTests: XCTestCase {
         guard let model = VASTParser.parseFrom(string: vast) else { return XCTFail() }
         guard case let .inline(inlineModel) = model else { return XCTFail() }
         
-        XCTAssertEqual(inlineModel.mediaFiles.first?.url.absoluteString,
+        XCTAssertEqual(inlineModel.videos.first?.url.absoluteString,
                        "http://localhost:3000/adasset/1331/229/7969/lo.mp4")
     }
     
@@ -62,7 +62,7 @@ class VASTParserTests: XCTestCase {
         guard let model = VASTParser.parseFrom(string: vast) else { return XCTFail("Failed to parse VAST VPAID xml") }
         guard case let .inline(vpaidModel) = model else { return XCTFail() }
         let expectedURLString = "http://localhost:3000/vpaid/6/video.js"
-        XCTAssertEqual(vpaidModel.mediaFiles.first?.url.absoluteString, expectedURLString)
+        XCTAssertEqual(vpaidModel.videos.first?.url.absoluteString, expectedURLString)
     }
     
     func testParseAdVerification() {

@@ -37,7 +37,7 @@ class VRMProcessingControllerTest: XCTestCase {
                                                   adVerifications: [],
                                                   pixels: .init()))
         adModel = .init(adVerifications: [],
-                        mediaFiles: [],
+                        videos: [],
                         clickthrough: nil,
                         adParameters: nil,
                         pixels: .init(),
