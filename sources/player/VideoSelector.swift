@@ -1,7 +1,7 @@
 //  Copyright © 2018 Oath Inc
 //  Licensed under the terms of the MIT License. See LICENSE.md file in project root for terms.
 
-struct VideoSelector {
+struct VideoSelector: Equatable {
     let index: Int
     
     init(index: Int, currentIndex: Int?, playlistCount: Int) throws {

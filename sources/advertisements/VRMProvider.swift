@@ -50,8 +50,8 @@ struct VRMProvider {
         throw Error.CannotExtractAdEngineFromJSON(json)
     }
     
-    enum Item {
-        struct MetaInfo {
+    enum Item: Hashable {
+        struct MetaInfo: Hashable {
             let engineType: String?
             let ruleId: String?
             let ruleCompanyId: String?

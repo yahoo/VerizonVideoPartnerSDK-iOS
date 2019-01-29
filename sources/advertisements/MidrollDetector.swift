@@ -48,7 +48,7 @@ func playAction(input: MidrollDetector.Input,
 class MidrollDetector {
     typealias Midroll = PlayerCore.Ad.Midroll
     
-    enum Action {
+    enum Action: Hashable {
         case prefetch(Midroll)
         case play(PlayerCore.Ad.VASTModel?, Midroll)
     }
@@ -136,18 +136,5 @@ extension MidrollDetector.Input {
         midrolls = item.midrolls
         isPlayMidrollAllowed = item.content.isPaused == false && item.content.isSeeking == false
         hasActiveAds = item.hasActiveAds
-    }
-}
-
-
-extension MidrollDetector.Action: Equatable {
-    static func ==(lhs: MidrollDetector.Action, rhs: MidrollDetector.Action) -> Bool {
-        switch (lhs, rhs) {
-        case (.prefetch(let lhsMidroll), .prefetch(let rhsMidroll)):
-            return lhsMidroll == rhsMidroll
-        case (.play(let lhsPrefetchedModel, let lhsPrefetchedMidroll), .play(let rhsPrefetchedModel, let rhsPrefetchedMidroll)):
-            return lhsPrefetchedModel == rhsPrefetchedModel && lhsPrefetchedMidroll == rhsPrefetchedMidroll
-        default: return false
-        }
     }
 }
