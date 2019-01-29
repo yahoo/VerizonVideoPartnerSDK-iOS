@@ -17,17 +17,20 @@ final class FinalResultDispatchController {
     }
     
     func process(with state: PlayerCore.State) {
-        process(with: state.vrmFinalResult.result)
+        process(with: state.vrmFinalResult.result,
+                requestID: state.vrmRequestStatus.request?.id)
     }
     
-    func process(with finalResult: VRMCore.Result?) {
+    func process(with finalResult: VRMCore.Result?,
+                 requestID: UUID?) {
         guard let finalResult = finalResult,
+            let requestID = requestID,
             firedResults.contains(finalResult) == false else {
                 return
         }
         firedResults.insert(finalResult)
         dispatch(PlayerCore.playAd(model: finalResult.inlineVAST,
-                                   id: UUID(),
+                                   id: requestID,
                                    isOpenMeasurementEnabled: isOpenMeasurementEnabled))
     }
 }

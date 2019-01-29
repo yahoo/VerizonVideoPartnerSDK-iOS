@@ -22,7 +22,7 @@ class StartVRMGroupProcessingControllerTest: XCTestCase {
         }
         let dispatch = recorder.hook("dispatch", cmp: actionComparator.compare)
         sut = StartVRMGroupProcessingController(dispatch: dispatch)
-        request = .request(url: URL(string:"http://test.com")!, id: id)
+        request = VRMRequestStatus.Request(url: URL(string:"http://test.com")!, id: id)
     }
     
     override func tearDown() {

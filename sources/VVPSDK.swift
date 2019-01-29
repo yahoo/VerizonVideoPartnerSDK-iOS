@@ -408,15 +408,17 @@ public struct VVPSDK {
         
         func setupVRMWithNewCore() {
             let maxRedirectCount = player.model.adSettings.maxVASTWrapperRedirectCount
+            let prefetchOffset = player.model.adSettings.prefetchingOffset
+            
             let createRequest: (URL) -> (URLRequest) = {
                 .init(url: $0, timeoutInterval: hardTimeout)
             }
-            let adStartProcessing = StartAdProcessingController(dispatch: dispatcher)
+            let adStartProcessing = StartAdProcessingController(prefetchOffset: prefetchOffset, dispatch: dispatcher)
             let startGroupProcessing = StartVRMGroupProcessingController(dispatch: dispatcher)
             let finishGroupProcessing = FinishVRMGroupProcessingController(dispatch: dispatcher)
             let itemController = VRMItemController(maxRedirectCount: maxRedirectCount, dispatch: dispatcher)
             let itemFetchController = FetchVRMItemController(dispatch: dispatcher) { url in
-                return self.ephemeralSession.dataFuture(with: createRequest(url))
+                self.ephemeralSession.dataFuture(with: createRequest(url))
                     .map(Network.Parse.successResponseData)
                     .map(Network.Parse.string)
             }
@@ -435,7 +437,7 @@ public struct VVPSDK {
                                                          hardTimeoutTimerFactory: createHardTimeoutTimer)
             let selectFinalResult = VRMSelectFinalResultController(dispatch: dispatcher)
             let playFinalResult = FinalResultDispatchController(dispatch: dispatcher,
-                                                              isOpenMeasurementEnabled: isOpenMeasurementEnabled)
+                                                                isOpenMeasurementEnabled: isOpenMeasurementEnabled)
             _ = player.store.state.addObserver { state in
                 vrmRequestController.process(with: state)
                 startGroupProcessing.process(with: state)
