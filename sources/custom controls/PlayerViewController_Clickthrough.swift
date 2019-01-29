@@ -21,11 +21,13 @@ extension PlayerViewController {
             guard let item = props.playbackItem else { return }
             guard item.isClickThroughToggled, !isClickthroughActive else { return }
             switch item.adCreative {
-            case .mp4(let creative):
+            case .mp4(let creatives):
+                guard let creative = creatives.first else { return }
                 isAdVPAID = false
                 guard let url = creative.clickthrough else { return }
                 showSafari(url, self)
-            case .vpaid(let creative):
+            case .vpaid(let creatives):
+                guard let creative = creatives.first else { return }
                 isAdVPAID = true
                 guard let url = item.vpaidClickthrough ?? creative.clickthrough else { return safariFinishHandler(isAdVPAID) }
                 showSafari(url, self)

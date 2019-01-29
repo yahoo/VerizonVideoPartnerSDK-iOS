@@ -36,9 +36,11 @@ class MidrollDetectorTests: QuickSpec {
                         case (let targetAdRequest as AdRequest, let recordAdRequest as AdRequest):
                             return targetAdRequest.id == recordAdRequest.id
                         case (let targetShowAd as ShowAd, let recordShowAd as ShowAd):
-                            guard case .mp4(let targetShowCreative) = targetShowAd.creative else { return false }
-                            guard case .mp4(let recordShowAdCreative) = recordShowAd.creative else { return false }
-                            return targetShowCreative.url == recordShowAdCreative.url
+                            guard case .mp4(let targetShowAdCreatives) = targetShowAd.creative,
+                                case .mp4(let recordShowAdCreatives) = recordShowAd.creative else { return false }
+                            guard let targetShowAdCreative = targetShowAdCreatives.first,
+                                let recordShowAdCreative = recordShowAdCreatives.first else { return false }
+                            return targetShowAdCreative.url == recordShowAdCreative.url
                         case (let targetSkipAd as SkipAd, let recordSkipAd as SkipAd):
                             return targetSkipAd.id == recordSkipAd.id
                         default: return false

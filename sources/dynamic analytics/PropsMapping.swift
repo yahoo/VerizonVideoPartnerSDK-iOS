@@ -268,7 +268,8 @@ func json(for status: Player.Properties.PlaybackItem.Video.Status) -> JSøN {
 func json(for adModel: AdCreative) -> JSøN {
     let object: [String: JSøN]
     switch adModel {
-    case .mp4(let model):
+    case .mp4(let creatives):
+        guard let model = creatives.first else { return .null }
         object = [
             "clickthrough": model.clickthrough |> json,
             "maintainAspectRatio": model.maintainAspectRatio |> json,
@@ -276,7 +277,8 @@ func json(for adModel: AdCreative) -> JSøN {
             "scalable": model.scalable |> json,
             "pixels": model.pixels |> json,
             "id": model.id |> json]
-    case .vpaid(let model):
+    case .vpaid(let creatives):
+        guard let model = creatives.first else { return .null }
         object = [
             "adParameters": model.adParameters |> json,
             "mediaFile": model.url |> json,
