@@ -50,13 +50,12 @@ class MidrollDetectorTests: QuickSpec {
                         return Future {
                             model = PlayerCore.Ad.VASTModel(
                                 adVerifications: [],
-                                mediaFiles: [PlayerCore.Ad.VASTModel.MediaFile(
-                                    url: url,
-                                    type: .mp4,
-                                    width: 300,
-                                    height: 400,
-                                    scalable: false,
-                                    maintainAspectRatio: true)],
+                                mp4MediaFiles: [.init(url: URL(string:"http://test.mp4")!,
+                                                      width: 1,
+                                                      height: 1,
+                                                      scalable: true,
+                                                      maintainAspectRatio: true)],
+                                vpaidMediaFiles: [],
                                 clickthrough: nil,
                                 adParameters: nil,
                                 pixels: .init(),
@@ -171,7 +170,7 @@ class MidrollDetectorTests: QuickSpec {
                             type: .midroll))
                         _ = midrollDetector.requestAd(midroll.url)
                         expect(midrollDetector.state.lastPrefetchedMidroll) == midroll
-                        expect(midrollDetector.state.prefetchedModel?.mediaFiles.first?.url) == model.mediaFiles.first?.url
+                        expect(midrollDetector.state.prefetchedModel) == model
                     }
                 }
                 
@@ -196,7 +195,7 @@ class MidrollDetectorTests: QuickSpec {
                             midrollDetector.process(input: input)
                             
                             guard let model = model else { return XCTFail("Got nil ad model") }
-                            expect(midrollDetector.state.prefetchedModel?.mediaFiles.first?.url) == model.mediaFiles.first?.url
+                            expect(midrollDetector.state.prefetchedModel) == model
                             
                             midrollDetector.process(input: input)
                         }
@@ -221,7 +220,7 @@ class MidrollDetectorTests: QuickSpec {
                             midrollDetector.process(input: input)
                             
                             guard let model = model else { return XCTFail("Got nil ad model") }
-                            expect(midrollDetector.state.prefetchedModel?.mediaFiles.first?.url) == model.mediaFiles.first?.url
+                            expect(midrollDetector.state.prefetchedModel) == model
                             
                             midrollDetector.process(input: input)
                         }
@@ -246,7 +245,7 @@ class MidrollDetectorTests: QuickSpec {
                             midrollDetector.process(input: input)
                             
                             guard let model = model else { return XCTFail("Got nil ad model") }
-                            expect(midrollDetector.state.prefetchedModel?.mediaFiles.first?.url) == model.mediaFiles.first?.url
+                            expect(midrollDetector.state.prefetchedModel) == model
                             
                             midrollDetector.process(input: input)
                         }
@@ -272,7 +271,7 @@ class MidrollDetectorTests: QuickSpec {
                             midrollDetector.process(input: input)
                             expect(midrollDetector.state.lastPrefetchedMidroll) == input.midrolls[1]
                             if let model = model {
-                                expect(midrollDetector.state.prefetchedModel?.mediaFiles.first?.url) == model.mediaFiles.first?.url
+                                expect(midrollDetector.state.prefetchedModel) == model
                             } else { return XCTFail("Got nil ad model") }
                             // should play 2
                             midrollDetector.process(input: input)
@@ -281,7 +280,7 @@ class MidrollDetectorTests: QuickSpec {
                             midrollDetector.process(input: input)
                             expect(midrollDetector.state.lastPrefetchedMidroll) == input.midrolls[2]
                             if let model = model {
-                                expect(midrollDetector.state.prefetchedModel?.mediaFiles.first?.url) == model.mediaFiles.first?.url
+                                expect(midrollDetector.state.prefetchedModel) == model
                             } else { return XCTFail("Got nil ad model") }
                             // should play 3
                             input.currentTime = 20
@@ -323,7 +322,7 @@ class MidrollDetectorTests: QuickSpec {
                             midrollDetector.process(input: input)
                             expect(midrollDetector.state.lastPrefetchedMidroll) == input.midrolls[1]
                             if let model = model {
-                                expect(midrollDetector.state.prefetchedModel?.mediaFiles.first?.url) == model.mediaFiles.first?.url
+                                expect(midrollDetector.state.prefetchedModel) == model
                             } else { return XCTFail("Got nil ad model") }
                             // should play 2
                             midrollDetector.process(input: input)
@@ -332,7 +331,7 @@ class MidrollDetectorTests: QuickSpec {
                             midrollDetector.process(input: input)
                             expect(midrollDetector.state.lastPrefetchedMidroll) == input.midrolls[2]
                             if let model = model {
-                                expect(midrollDetector.state.prefetchedModel?.mediaFiles.first?.url) == model.mediaFiles.first?.url
+                                expect(midrollDetector.state.prefetchedModel) == model
                             } else { return XCTFail("Got nil ad model") }
                             // should play 1
                             input.currentTime = 10

@@ -28,12 +28,12 @@ class FinalResultDispatchControllerTest: XCTestCase {
                                                                    name: nil,
                                                                    cpm: nil))
         let inlineVAST = PlayerCore.Ad.VASTModel(adVerifications: [],
-                                                 mediaFiles: [.init(url: URL(string:"http://test.mp4")!,
-                                                                    type: .mp4,
-                                                                    width: 1,
-                                                                    height: 1,
-                                                                    scalable: true,
-                                                                    maintainAspectRatio: true)],
+                                                 mp4MediaFiles: [.init(url: URL(string:"http://test.mp4")!,
+                                                                        width: 1,
+                                                                        height: 1,
+                                                                        scalable: true,
+                                                                        maintainAspectRatio: true)],
+                                                 vpaidMediaFiles: [],
                                                  clickthrough: nil,
                                                  adParameters: "",
                                                  pixels: .init(), id: nil)

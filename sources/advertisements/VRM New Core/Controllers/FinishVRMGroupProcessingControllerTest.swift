@@ -39,7 +39,8 @@ class FinishVRMGroupProcessingControllerTest: XCTestCase {
         group = VRMCore.Group(items: [urlItem, vastItem])
         
         adModel = .init(adVerifications: [],
-                        mediaFiles: [],
+                        mp4MediaFiles: [],
+                        vpaidMediaFiles: [],
                         clickthrough: nil,
                         adParameters: nil,
                         pixels: .init(),
