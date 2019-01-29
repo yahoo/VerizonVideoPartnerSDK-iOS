@@ -10,7 +10,7 @@ extension Detectors {
         var isProcessed = false
         var timePlayed: Double = 0
         
-        struct Result {
+        struct Result: Hashable {
             let duration: Double
             let time: Double
             let videoIndex: Int

@@ -221,7 +221,6 @@
 		DE4C51C61C8094FE00BFFB0B /* MetricsSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4C51531C80731B00BFFB0B /* MetricsSender.swift */; };
 		DE4C51D71C80957B00BFFB0B /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4C51D51C80957B00BFFB0B /* Player.swift */; };
 		DE4C51E11C80D43200BFFB0B /* TrackingPixelsConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4C51E01C80D43200BFFB0B /* TrackingPixelsConnector.swift */; };
-		DE5F27E11F44501E00011E2C /* PlayerActionsJSONTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5F27E01F44501E00011E2C /* PlayerActionsJSONTests.swift */; };
 		DE684CD71E0C2F36007CE35C /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE684CD61E0C2F36007CE35C /* Action.swift */; };
 		DE684CD81E0C2F36007CE35C /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE684CD61E0C2F36007CE35C /* Action.swift */; };
 		DE684CDC1E0EBFC3007CE35C /* SystemPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5067F5FE1D49120E00FEC27C /* SystemPlayerViewController.swift */; };
@@ -591,7 +590,6 @@
 		DE4C51D51C80957B00BFFB0B /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Player.swift; sourceTree = "<group>"; };
 		DE4C51D61C80957B00BFFB0B /* ObserverTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ObserverTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		DE4C51E01C80D43200BFFB0B /* TrackingPixelsConnector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackingPixelsConnector.swift; sourceTree = "<group>"; };
-		DE5F27E01F44501E00011E2C /* PlayerActionsJSONTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerActionsJSONTests.swift; sourceTree = "<group>"; };
 		DE611A791E9D40F200D253B2 /* PlayerControls.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = PlayerControls.xcodeproj; path = PlayerControls/PlayerControls/PlayerControls.xcodeproj; sourceTree = "<group>"; };
 		DE684CD61E0C2F36007CE35C /* Action.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
 		DE79CE201E979F9700C3A660 /* AdURLProviderProcess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdURLProviderProcess.swift; sourceTree = "<group>"; };
@@ -1009,7 +1007,6 @@
 			children = (
 				50E5ADE71EE0428A004104D6 /* PlayerTracer.playground */,
 				50E5ADE81EE08A76004104D6 /* PlayerTracer.swift */,
-				DE5F27E01F44501E00011E2C /* PlayerActionsJSONTests.swift */,
 			);
 			name = tracer;
 			sourceTree = "<group>";
@@ -1998,7 +1995,6 @@
 				E22B6AD921EF852800D480A0 /* VRMProcessingControllerTest.swift in Sources */,
 				FE940A001F3DD56600A867CD /* IntentDetectorTests.swift in Sources */,
 				50A12D031CE639160088A74E /* NetworkTests.swift in Sources */,
-				DE5F27E11F44501E00011E2C /* PlayerActionsJSONTests.swift in Sources */,
 				50D747891CE624E200CB91D4 /* VRMRequestTests.swift in Sources */,
 				061CFFFC211C7263002B5BE9 /* MuteDetectorTests.swift in Sources */,
 				508A597E2010F97B00641398 /* VRMDetectorTests.swift in Sources */,

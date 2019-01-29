@@ -108,12 +108,3 @@ class AdViewTimeDetectorTests: XCTestCase {
     }
     
 }
-
-extension Detectors.AdViewTime.Result: Equatable {
-    public static func ==(lhs: Detectors.AdViewTime.Result, rhs: Detectors.AdViewTime.Result) -> Bool {
-        return lhs.duration == rhs.duration
-            && lhs.time == rhs.time
-            && lhs.videoIndex == rhs.videoIndex
-            && lhs.vvuid == rhs.vvuid
-    }
-}

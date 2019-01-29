@@ -71,19 +71,3 @@ final class AdManager<Result> {
         }
     }
 }
-
-extension VRMProvider.Item: Hashable {
-    var hashValue: Int {
-        switch self {
-        case let .vast(string, _): return string.hashValue
-        case let .url(url, _): return url.hashValue
-        }
-    }
-}
-
-func == (left: VRMProvider.Item, right: VRMProvider.Item) -> Bool {
-    switch (left, right) {
-    case (let .vast(lh, _), let .vast(rh, _)): return lh == rh
-    case (let .url(lh, _), let .url(rh, _)): return lh == rh
-    default: return false }
-}
