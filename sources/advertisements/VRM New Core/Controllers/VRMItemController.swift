@@ -18,10 +18,16 @@ final class VRMItemController {
     }
     
     func process(with state: PlayerCore.State) {
-        process(with: state.vrmScheduledItems.items)
+        process(with: state.vrmScheduledItems.items,
+                isMaxAdSearchTimeReached: state.vrmMaxAdSearchTimeout.isReached)
     }
     
-    func process(with scheduledItems: [VRMCore.Item: Set<ScheduledVRMItems.Candidate>]) {
+    func process(with scheduledItems: [VRMCore.Item: Set<ScheduledVRMItems.Candidate>],
+                 isMaxAdSearchTimeReached: Bool) {
+        guard isMaxAdSearchTimeReached == false else {
+            return
+        }
+        
         scheduledItems.forEach { originalItem, queue in
             guard queue.count < maxRedirectCount else {
                 if wrapperError.contains(originalItem) == false {

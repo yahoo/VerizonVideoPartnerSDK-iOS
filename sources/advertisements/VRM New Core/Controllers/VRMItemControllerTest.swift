@@ -47,13 +47,25 @@ class VRMItemControllerTest: XCTestCase {
         super.tearDown()
     }
     
+    func testMaxAdSearchTimeout() {
+        let dispatch = recorder.hook("testMaxAdSearchTimeout", cmp: fetchActionComparator.compare)
+        
+        sut = VRMItemController(maxRedirectCount: maxRedirectCount, dispatch: dispatch)
+        
+        recorder.record {
+            sut.process(with: [urlItem: Set([.init(source: urlItem.source)])], isMaxAdSearchTimeReached: true)
+        }
+        
+        recorder.verify {}
+    }
+    
     func testStartItemsFetching() {
         let dispatch = recorder.hook("compareFetchActions", cmp: fetchActionComparator.compare)
         
         sut = VRMItemController(maxRedirectCount: maxRedirectCount, dispatch: dispatch)
         
         recorder.record {
-            sut.process(with: [urlItem: Set([.init(source: urlItem.source)])])
+            sut.process(with: [urlItem: Set([.init(source: urlItem.source)])], isMaxAdSearchTimeReached: false)
         }
         
         recorder.verify {
@@ -67,7 +79,7 @@ class VRMItemControllerTest: XCTestCase {
         sut = VRMItemController(maxRedirectCount: maxRedirectCount, dispatch: dispatch)
         
         recorder.record {
-            sut.process(with: [vastItem: Set([.init(source: vastItem.source)])])
+            sut.process(with: [vastItem: Set([.init(source: vastItem.source)])], isMaxAdSearchTimeReached: false)
         }
         
         recorder.verify {
@@ -82,8 +94,8 @@ class VRMItemControllerTest: XCTestCase {
         
         recorder.record {
             let scheduledQueue: [VRMCore.Item: Set<ScheduledVRMItems.Candidate>] = [vastItem: Set(arrayLiteral: .init(source: vastItem.source))]
-            sut.process(with: scheduledQueue)
-            sut.process(with: scheduledQueue)
+            sut.process(with: scheduledQueue, isMaxAdSearchTimeReached: false)
+            sut.process(with: scheduledQueue, isMaxAdSearchTimeReached: false)
         }
         
         recorder.verify {
@@ -100,7 +112,7 @@ class VRMItemControllerTest: XCTestCase {
         let second = ScheduledVRMItems.Candidate(source: .url(url))
         
         recorder.record {
-            sut.process(with: [vastItem: Set([first])])
+            sut.process(with: [vastItem: Set([first])], isMaxAdSearchTimeReached: false)
         }
         
         recorder.verify {
@@ -110,7 +122,7 @@ class VRMItemControllerTest: XCTestCase {
         compare = fetchActionComparator.compare
         
         recorder.record {
-            sut.process(with: [vastItem: Set([first, second])])
+            sut.process(with: [vastItem: Set([first, second])], isMaxAdSearchTimeReached: false)
         }
         
         recorder.verify {
@@ -128,8 +140,8 @@ class VRMItemControllerTest: XCTestCase {
                                                                          .init(source: .url(URL(string:"http://test1.com")!)),
                                                                          .init(source: .url(URL(string:"http://test2.com")!))])
         recorder.record {
-            sut.process(with: [urlItem: queueWithTooManyWrappers])
-            sut.process(with: [urlItem: queueWithTooManyWrappers])
+            sut.process(with: [urlItem: queueWithTooManyWrappers], isMaxAdSearchTimeReached: false)
+            sut.process(with: [urlItem: queueWithTooManyWrappers], isMaxAdSearchTimeReached: false)
         }
         
         recorder.verify {
@@ -141,7 +153,8 @@ class VRMItemControllerTest: XCTestCase {
         
         recorder.record {
             sut.process(with: [urlItem: queueWithTooManyWrappers,
-                               vastItem: correctQueue])
+                               vastItem: correctQueue],
+                        isMaxAdSearchTimeReached: false)
         }
         
         recorder.verify {
