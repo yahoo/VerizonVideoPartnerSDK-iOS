@@ -2,6 +2,7 @@
 //  Licensed under the terms of the MIT License. See LICENSE.md file in project root for terms.
 
 import XCTest
+import Nimble
 @testable import VerizonVideoPartnerSDK
 
 class DictionaryParseJSONTests: XCTestCase {
@@ -66,5 +67,36 @@ class DictionaryParseJSONTests: XCTestCase {
             XCTAssertEqual(object.field2, "value2")
             XCTAssertEqual(object.field3, nil)
         } catch { XCTFail() }
+    }
+    
+    func testParseIntValueAsDoubleShouldBeAllowed() {
+        let intValue = 1
+        let json = ["value": intValue]
+        
+        let doubleValue: Double? = try? json.parse("value")
+        expect(doubleValue) == 1.0
+    }
+    
+    func testParseIntValueAsIntShouldBeAllowed() {
+        let intValue = 1
+        let json = ["value": intValue]
+        
+        let parsedInt: Int? = try? json.parse("value")
+        expect(parsedInt) == 1
+    }
+    
+    func testParseDoubleAsIntShouldBeRejected() {
+        let doubleValue = 1.5
+        let json = ["value": doubleValue]
+        
+        expect(try json.parse("value") as Int).to(throwError())
+    }
+    
+    func testParseDoubleAsDoubleShouldBeAllowed() {
+        let doubleValue = 1.5
+        let json = ["value": doubleValue]
+        
+        let parsedInt: Double? = try? json.parse("value")
+        expect(parsedInt) == 1.5
     }
 }
