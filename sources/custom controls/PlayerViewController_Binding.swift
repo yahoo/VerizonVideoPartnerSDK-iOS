@@ -225,7 +225,8 @@ extension PlayerViewController {
             }
             
             func adRenderer() -> Props.RendererProps? {
-                guard case .mp4(let creative) = item.adCreative, item.hasActiveAds else { return nil }
+                guard case .mp4(let creatives) = item.adCreative, item.hasActiveAds,
+                    let creative = creatives.first else { return nil }
                 func rate() -> Float {
                     return item.ad.isPlaying ? 1 : 0
                 }
@@ -260,7 +261,8 @@ extension PlayerViewController {
             }
             
             func vpaidProps() -> VPAIDProps? {
-                guard case .vpaid(let creative) = item.adCreative, item.hasActiveAds else { return nil }
+                guard case .vpaid(let creatives) = item.adCreative, item.hasActiveAds,
+                    let creative = creatives.first else { return nil }
                 func rate() -> Float {
                     return item.ad.isPlaying ? 1 : 0
                 }
