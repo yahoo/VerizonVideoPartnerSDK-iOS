@@ -61,10 +61,12 @@ class VRMProcessingControllerTest: XCTestCase {
             let result = VRMParsingResult.Result(vastModel: inline)
             sut.process(parsingResultQueue: [vastItem: result],
                         currentGroup: nil,
-                        timeout: .none)
+                        timeout: .none,
+                        isMaxAdSearchTimeoutReached: false)
             sut.process(parsingResultQueue: [vastItem: result],
                         currentGroup: nil,
-                        timeout: .none)
+                        timeout: .none,
+                        isMaxAdSearchTimeoutReached: false)
         }
         
         recorder.verify {
@@ -76,10 +78,12 @@ class VRMProcessingControllerTest: XCTestCase {
             let result = VRMParsingResult.Result(vastModel: inline)
             sut.process(parsingResultQueue: [vastItem: result],
                         currentGroup: group,
-                        timeout: .hard)
+                        timeout: .hard,
+                        isMaxAdSearchTimeoutReached: false)
             sut.process(parsingResultQueue: [vastItem: result],
                         currentGroup: group,
-                        timeout: .hard)
+                        timeout: .hard,
+                        isMaxAdSearchTimeoutReached: false)
         }
         
         recorder.verify {
@@ -94,7 +98,8 @@ class VRMProcessingControllerTest: XCTestCase {
         recorder.record {
             sut.process(parsingResultQueue: [vastItem: .init(vastModel: inline)],
                         currentGroup: group,
-                        timeout: .none)
+                        timeout: .none,
+                        isMaxAdSearchTimeoutReached: false)
         }
         
         recorder.verify {
@@ -110,7 +115,8 @@ class VRMProcessingControllerTest: XCTestCase {
         recorder.record {
             sut.process(parsingResultQueue: [urlItem: .init(vastModel: inline)],
                         currentGroup: group,
-                        timeout: .soft)
+                        timeout: .soft,
+                        isMaxAdSearchTimeoutReached: false)
         }
         
         recorder.verify {
@@ -126,11 +132,27 @@ class VRMProcessingControllerTest: XCTestCase {
         recorder.record {
             sut.process(parsingResultQueue: [urlItem: .init(vastModel: wrapper)],
                         currentGroup: group,
-                        timeout: .none)
+                        timeout: .none,
+                        isMaxAdSearchTimeoutReached: false)
         }
         
         recorder.verify {
             sut.dispatch(VRMCore.unwrapItem(item: urlItem, url: wrapperUrl))
         }
+    }
+    
+    func testMaxAdSearchTime() {
+        let sut = VRMProcessingController(dispatch: recorder.hook("testMaxAdSearchTime",
+                                                                  cmp: unwrapItemActionComparator.compare))
+        
+        let group = VRMCore.Group(items: [urlItem])
+        recorder.record {
+            sut.process(parsingResultQueue: [urlItem: .init(vastModel: wrapper)],
+                        currentGroup: group,
+                        timeout: .none,
+                        isMaxAdSearchTimeoutReached: true)
+        }
+        
+        recorder.verify {}
     }
 }

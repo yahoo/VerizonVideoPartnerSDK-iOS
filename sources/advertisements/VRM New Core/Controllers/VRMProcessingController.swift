@@ -16,12 +16,18 @@ final class VRMProcessingController {
     func process(with state: PlayerCore.State) {
         process(parsingResultQueue: state.vrmParsingResult.parsedVASTs,
                 currentGroup: state.vrmCurrentGroup.currentGroup,
-                timeout: state.vrmProcessingTimeout)
+                timeout: state.vrmProcessingTimeout,
+                isMaxAdSearchTimeoutReached: state.vrmMaxAdSearchTimeout.isReached)
     }
     
     func process(parsingResultQueue: [VRMCore.Item: VRMParsingResult.Result],
                  currentGroup: VRMCore.Group?,
-                 timeout: VRMProcessingTimeout) {
+                 timeout: VRMProcessingTimeout,
+                 isMaxAdSearchTimeoutReached: Bool) {
+        guard isMaxAdSearchTimeoutReached == false else {
+            return
+        }
+        
         parsingResultQueue
             .filter { _, result in
                 dispatchedResults.contains(result) == false

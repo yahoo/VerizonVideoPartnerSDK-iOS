@@ -7,16 +7,11 @@ import XCTest
 
 
 class VRMTimeoutControllerTest: XCTestCase {
-    let recorder = Recorder()
-    
     var numberOfSoftInitCall: Int!
     var numberOfHardInitCall: Int!
     
     var softTimer: MockTimer!
     var hardTimer: MockTimer!
-    
-    var softFactory: (() -> Cancellable)!
-    var hardFactory: (() -> Cancellable)!
     
     var sut: VRMTimeoutController!
     
@@ -24,11 +19,11 @@ class VRMTimeoutControllerTest: XCTestCase {
         super.setUp()
         softTimer = MockTimer()
         hardTimer = MockTimer()
-        softFactory = {
+        let softFactory: () -> Cancellable = {
             self.numberOfSoftInitCall += 1
             return self.softTimer
         }
-        hardFactory = {
+        let hardFactory: () -> Cancellable = {
             self.numberOfHardInitCall += 1
             return self.hardTimer
         }

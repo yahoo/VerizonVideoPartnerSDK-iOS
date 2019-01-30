@@ -409,7 +409,7 @@ public struct VVPSDK {
         func setupVRMWithNewCore() {
             let maxRedirectCount = player.model.adSettings.maxVASTWrapperRedirectCount
             let prefetchOffset = player.model.adSettings.prefetchingOffset
-            
+            let maxAdSearchTime: TimeInterval = 9
             let createRequest: (URL) -> (URLRequest) = {
                 .init(url: $0, timeoutInterval: hardTimeout)
             }
@@ -431,13 +431,19 @@ public struct VVPSDK {
                                                                 self.vrmProvider.requestAds(with: createRequest(url))
             }
             let processingController = VRMProcessingController(dispatch: dispatcher)
-            let createSoftTimeoutTimer = { Timer(duration: 0.5){ dispatcher(PlayerCore.VRMCore.softTimeoutReached()) } }
-            let createHardTimeoutTimer = { Timer(duration: 3.2){ dispatcher(PlayerCore.VRMCore.hardTimeoutReached()) } }
+            let createSoftTimeoutTimer = { Timer(duration: softTimeout){ dispatcher(PlayerCore.VRMCore.softTimeoutReached()) } }
+            let createHardTimeoutTimer = { Timer(duration: hardTimeout){ dispatcher(PlayerCore.VRMCore.hardTimeoutReached()) } }
             let timeoutController = VRMTimeoutController(softTimeoutTimerFactory: createSoftTimeoutTimer,
                                                          hardTimeoutTimerFactory: createHardTimeoutTimer)
             let selectFinalResult = VRMSelectFinalResultController(dispatch: dispatcher)
             let playFinalResult = FinalResultDispatchController(dispatch: dispatcher,
                                                                 isOpenMeasurementEnabled: isOpenMeasurementEnabled)
+            let maxAdSearchTimeController = MaxAdSearchTimeController { requestID in
+                Timer(duration: maxAdSearchTime) {
+                    dispatcher(PlayerCore.VRMCore.maxSearchTimeoutReached(requestID: requestID))
+                }
+            }
+            
             _ = player.store.state.addObserver { state in
                 vrmRequestController.process(with: state)
                 startGroupProcessing.process(with: state)
@@ -449,6 +455,7 @@ public struct VVPSDK {
                 timeoutController.process(with: state)
                 selectFinalResult.process(with: state)
                 playFinalResult.process(with: state)
+                maxAdSearchTimeController.process(with: state)
             }
             
             _ = player.addObserver { playerProps in

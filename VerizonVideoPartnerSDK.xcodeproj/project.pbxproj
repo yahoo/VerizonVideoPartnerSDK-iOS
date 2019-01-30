@@ -302,6 +302,9 @@
 		E2D649A8208A431D00152ADE /* VideoImpressionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D649A7208A431D00152ADE /* VideoImpressionTest.swift */; };
 		E2D64A5C2090E8F600152ADE /* VideoImpression.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E4F7032089020E00182CDF /* VideoImpression.swift */; };
 		E2E4F7042089020E00182CDF /* VideoImpression.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E4F7032089020E00182CDF /* VideoImpression.swift */; };
+		E2FE09552200AC14005E91C0 /* MaxAdSearchTimeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FE09542200AC14005E91C0 /* MaxAdSearchTimeController.swift */; };
+		E2FE09562200AC14005E91C0 /* MaxAdSearchTimeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FE09542200AC14005E91C0 /* MaxAdSearchTimeController.swift */; };
+		E2FE095B2200AD01005E91C0 /* MaxAdSearchTimeControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FE095A2200AD01005E91C0 /* MaxAdSearchTimeControllerTest.swift */; };
 		FE940A001F3DD56600A867CD /* IntentDetectorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9409FF1F3DD56600A867CD /* IntentDetectorTests.swift */; };
 		FE95D45B1F3CC380008B1D54 /* IntentDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE95D45A1F3CC380008B1D54 /* IntentDetector.swift */; };
 		FE95D45C1F3CC380008B1D54 /* IntentDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE95D45A1F3CC380008B1D54 /* IntentDetector.swift */; };
@@ -647,6 +650,8 @@
 		E2B0062521CD49EB00B72485 /* FetchVRMItemControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchVRMItemControllerTest.swift; sourceTree = "<group>"; };
 		E2D649A7208A431D00152ADE /* VideoImpressionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoImpressionTest.swift; sourceTree = "<group>"; };
 		E2E4F7032089020E00182CDF /* VideoImpression.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoImpression.swift; sourceTree = "<group>"; };
+		E2FE09542200AC14005E91C0 /* MaxAdSearchTimeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaxAdSearchTimeController.swift; sourceTree = "<group>"; };
+		E2FE095A2200AD01005E91C0 /* MaxAdSearchTimeControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaxAdSearchTimeControllerTest.swift; sourceTree = "<group>"; };
 		FE9409FF1F3DD56600A867CD /* IntentDetectorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntentDetectorTests.swift; sourceTree = "<group>"; };
 		FE95D45A1F3CC380008B1D54 /* IntentDetector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntentDetector.swift; sourceTree = "<group>"; };
 		FEEB8E561F4C92F0003507BE /* ErrorDetector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorDetector.swift; sourceTree = "<group>"; };
@@ -819,6 +824,8 @@
 				E287B0A521F8A67F00FC49AA /* VRMSelectFinalResultControllerTest.swift */,
 				E287B0B921FA097100FC49AA /* FinalResultDispatchController.swift */,
 				E287B0BF21FA099900FC49AA /* FinalResultDispatchControllerTest.swift */,
+				E2FE09542200AC14005E91C0 /* MaxAdSearchTimeController.swift */,
+				E2FE095A2200AD01005E91C0 /* MaxAdSearchTimeControllerTest.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1760,6 +1767,7 @@
 				50A11DBC1D59D7E000F4A068 /* VideoTimeDetector.swift in Sources */,
 				FEEB8E5A1F4C92F4003507BE /* ErrorDetector.swift in Sources */,
 				50A11DBD1D59D7E000F4A068 /* VRMProvider.swift in Sources */,
+				E2FE09562200AC14005E91C0 /* MaxAdSearchTimeController.swift in Sources */,
 				501AB1DF2028934A00BAFA9C /* AdErrorDetector.swift in Sources */,
 				DEBAA7C91E1571A100DFC359 /* Result.swift in Sources */,
 				50A11DBE1D59D7E000F4A068 /* VideoContextPresenter.swift in Sources */,
@@ -1901,6 +1909,7 @@
 				069DC48420EA9EC400D70B28 /* VPAIDEvents.swift in Sources */,
 				50C99D522010DAE90041B013 /* VRMDetector.swift in Sources */,
 				FE95D45B1F3CC380008B1D54 /* IntentDetector.swift in Sources */,
+				E2FE09552200AC14005E91C0 /* MaxAdSearchTimeController.swift in Sources */,
 				500B20EA1D1AB8D50012C3CB /* ExecuteOnce.swift in Sources */,
 				504CA7521C8731A1006D0ADF /* VideoActionsDetector.swift in Sources */,
 				DE4539421D09644D00317632 /* XMLParser.swift in Sources */,
@@ -1952,6 +1961,7 @@
 				50C4602B1C80B791002AB8AB /* PlaylistStatisticDetectorTests.swift in Sources */,
 				501AB1DB202892E800BAFA9C /* AdClickDetectorTests.swift in Sources */,
 				FEF072CB1F59A3D5006A0BDC /* PlayerDestructionTests.swift in Sources */,
+				E2FE095B2200AD01005E91C0 /* MaxAdSearchTimeControllerTest.swift in Sources */,
 				A614D83720581451001FFD4E /* MidrollDetectorTests.swift in Sources */,
 				E257A9FB21C93F4A0016D35A /* VRMItemControllerTest.swift in Sources */,
 				E22B6B1B21F6329A00D480A0 /* FinishVRMGroupProcessingControllerTest.swift in Sources */,
