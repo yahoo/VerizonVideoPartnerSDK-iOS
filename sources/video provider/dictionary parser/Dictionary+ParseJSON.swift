@@ -23,6 +23,18 @@ extension Parsable {
     }
 }
 
+extension Parsable where Self == Double {
+    static func parse(from object: Any) throws -> Double {
+        if let doubleResult = object as? Double {
+            return doubleResult
+        } else if let intResult = object as? Int {
+            return Double(intResult)
+        } else {
+            throw ParseError.cannotConvert(value: object, toType: Self.self)
+        }
+    }
+}
+
 extension String: Parsable {}
 extension Int: Parsable {}
 extension Int64: Parsable {}
