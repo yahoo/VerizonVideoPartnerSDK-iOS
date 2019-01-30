@@ -237,6 +237,7 @@ public struct VVPSDK {
             softTimeout: videoResponse.adSettings.softTimeout,
             hardTimeout: videoResponse.adSettings.hardTimeout,
             startTimeout: videoResponse.adSettings.startTimeout,
+            maxSearchTime: videoResponse.adSettings.maxSearchTime,
             maxDuration: videoResponse.adSettings.maxDuration,
             maxVASTWrapperRedirectCount: videoResponse.adSettings.maxVASTWrapperRedirectCount)
         

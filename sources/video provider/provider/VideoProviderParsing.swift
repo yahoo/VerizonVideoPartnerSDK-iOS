@@ -60,6 +60,7 @@ extension VideoProvider.Parse {
                          softTimeout: json.parse("softTimeout"),
                          hardTimeout: json.parse("hardTimeout"),
                          startTimeout: json.parse("startTimeout"),
+                         maxSearchTime: json.parse("maxSearchTime"),
                          maxDuration: json.parse("maxShowTime"),
                          maxVASTWrapperRedirectCount: json.parse("maxVASTWrapperRedirectCount"))
     }
