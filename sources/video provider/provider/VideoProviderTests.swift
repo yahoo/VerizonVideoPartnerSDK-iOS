@@ -351,6 +351,7 @@ class VideoProviderTests: XCTestCase {
         "softTimeout" : 0.5,
         "hardTimeout" : 2.5,
         "startTimeout": 3.5,
+        "maxSearchTime" : 9.0,
         "maxShowTime": 90,
         "maxVASTWrapperRedirectCount": 3,
     ]
@@ -386,6 +387,7 @@ class VideoProviderTests: XCTestCase {
         expect(value.adSettings.startTimeout) == 3.5
         expect(value.adSettings.maxDuration) == 90
         expect(value.adSettings.maxVASTWrapperRedirectCount) == 3
+        expect(value.adSettings.maxSearchTime) == 9.0
         
         expect(try parse(VideoProviderTests.emptyResponse, .native)).to(throwError())
     }

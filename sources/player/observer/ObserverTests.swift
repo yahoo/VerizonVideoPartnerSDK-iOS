@@ -23,6 +23,7 @@ class ObserverTests: XCTestCase {
                                                     softTimeout: 2.5,
                                                     hardTimeout: 3.5,
                                                     startTimeout: 4,
+                                                    maxSearchTime: 9,
                                                     maxDuration: 90,
                                                     maxVASTWrapperRedirectCount: 3),
                                   vpaidSettings: .init(document: testUrl),
