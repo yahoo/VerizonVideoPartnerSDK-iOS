@@ -7,7 +7,9 @@ import XCTest
 
 class VRMProcessingControllerTest: XCTestCase {
     
+    let maxRedirectCount = 3
     let recorder = Recorder()
+    
     let timeoutActionComparator = ActionComparator<VRMCore.TimeoutError> {
         $0.item == $1.item
     }
@@ -16,6 +18,9 @@ class VRMProcessingControllerTest: XCTestCase {
     }
     let unwrapItemActionComparator = ActionComparator<VRMCore.UnwrapItem> {
         $0.item == $1.item && $0.url == $1.url
+    }
+    let wrapperErrorActionComparator = ActionComparator<VRMCore.TooManyIndirections> {
+        $0.item == $1.item
     }
     
     let wrapperUrl = URL(string: "http://test.com")!
@@ -55,15 +60,18 @@ class VRMProcessingControllerTest: XCTestCase {
     }
     
     func testTimeoutItemAndDoublDispatch() {
-        let sut = VRMProcessingController(dispatch: recorder.hook("testTimeoutItem", cmp: timeoutActionComparator.compare))
+        let sut = VRMProcessingController(maxRedirectCount: maxRedirectCount,
+                                          dispatch: recorder.hook("testTimeoutItem", cmp: timeoutActionComparator.compare))
         
         recorder.record {
             let result = VRMParsingResult.Result(vastModel: inline)
             sut.process(parsingResultQueue: [vastItem: result],
+                        scheduledVRMItems: [:],
                         currentGroup: nil,
                         timeout: .none,
                         isMaxAdSearchTimeoutReached: false)
             sut.process(parsingResultQueue: [vastItem: result],
+                        scheduledVRMItems: [:],
                         currentGroup: nil,
                         timeout: .none,
                         isMaxAdSearchTimeoutReached: false)
@@ -77,10 +85,12 @@ class VRMProcessingControllerTest: XCTestCase {
         recorder.record {
             let result = VRMParsingResult.Result(vastModel: inline)
             sut.process(parsingResultQueue: [vastItem: result],
+                        scheduledVRMItems: [:],
                         currentGroup: group,
                         timeout: .hard,
                         isMaxAdSearchTimeoutReached: false)
             sut.process(parsingResultQueue: [vastItem: result],
+                        scheduledVRMItems: [:],
                         currentGroup: group,
                         timeout: .hard,
                         isMaxAdSearchTimeoutReached: false)
@@ -92,11 +102,13 @@ class VRMProcessingControllerTest: XCTestCase {
     }
     
     func testItemFromAnotherGroup() {
-        let sut = VRMProcessingController(dispatch: recorder.hook("testItemFromAnotherGroup", cmp: timeoutActionComparator.compare))
+        let sut = VRMProcessingController(maxRedirectCount: maxRedirectCount,
+                                          dispatch: recorder.hook("testItemFromAnotherGroup", cmp: timeoutActionComparator.compare))
         
         let group = VRMCore.Group(items: [urlItem])
         recorder.record {
             sut.process(parsingResultQueue: [vastItem: .init(vastModel: inline)],
+                        scheduledVRMItems: [:],
                         currentGroup: group,
                         timeout: .none,
                         isMaxAdSearchTimeoutReached: false)
@@ -108,12 +120,13 @@ class VRMProcessingControllerTest: XCTestCase {
     }
     
     func testSelectInlineModel() {
-        let sut = VRMProcessingController(dispatch: recorder.hook("testSelectInlineModel",
-                                                                  cmp: selectInlineAdActionComparator.compare))
+        let sut = VRMProcessingController(maxRedirectCount: maxRedirectCount,
+                                          dispatch: recorder.hook("testSelectInlineModel", cmp: selectInlineAdActionComparator.compare))
         
         let group = VRMCore.Group(items: [urlItem])
         recorder.record {
             sut.process(parsingResultQueue: [urlItem: .init(vastModel: inline)],
+                        scheduledVRMItems: [:],
                         currentGroup: group,
                         timeout: .soft,
                         isMaxAdSearchTimeoutReached: false)
@@ -125,12 +138,12 @@ class VRMProcessingControllerTest: XCTestCase {
     }
     
     func testWrapperModel() {
-        let sut = VRMProcessingController(dispatch: recorder.hook("testWrapperModel",
-                                                                  cmp: unwrapItemActionComparator.compare))
-        
+        let sut = VRMProcessingController(maxRedirectCount: maxRedirectCount,
+                                          dispatch: recorder.hook("testWrapperModel", cmp: unwrapItemActionComparator.compare))
         let group = VRMCore.Group(items: [urlItem])
         recorder.record {
             sut.process(parsingResultQueue: [urlItem: .init(vastModel: wrapper)],
+                        scheduledVRMItems: [urlItem: Set()],
                         currentGroup: group,
                         timeout: .none,
                         isMaxAdSearchTimeoutReached: false)
@@ -142,17 +155,47 @@ class VRMProcessingControllerTest: XCTestCase {
     }
     
     func testMaxAdSearchTime() {
-        let sut = VRMProcessingController(dispatch: recorder.hook("testMaxAdSearchTime",
-                                                                  cmp: unwrapItemActionComparator.compare))
+        let sut = VRMProcessingController(maxRedirectCount: maxRedirectCount,
+                                          dispatch: recorder.hook("testMaxAdSearchTime", cmp: unwrapItemActionComparator.compare))
         
         let group = VRMCore.Group(items: [urlItem])
         recorder.record {
             sut.process(parsingResultQueue: [urlItem: .init(vastModel: wrapper)],
+                        scheduledVRMItems: [:],
                         currentGroup: group,
                         timeout: .none,
                         isMaxAdSearchTimeoutReached: true)
         }
         
         recorder.verify {}
+    }
+    
+    func testMaxRedirectCount() {
+        let queueWithTooManyWrappers = Set<ScheduledVRMItems.Candidate>([.init(source: urlItem.source),
+                                                                         .init(source: .url(URL(string:"http://test1.com")!))])
+        let parsingQueue: [VRMCore.Item: VRMParsingResult.Result] = [urlItem: .init(vastModel: wrapper)]
+        
+        let hook = recorder.hook("testMaxRedirectCount", cmp: wrapperErrorActionComparator.compare)
+        let sut = VRMProcessingController(maxRedirectCount: maxRedirectCount, dispatch: hook)
+        let group = VRMCore.Group(items: [urlItem])
+        
+        
+        recorder.record {
+            sut.process(parsingResultQueue:parsingQueue,
+                        scheduledVRMItems: [urlItem: queueWithTooManyWrappers],
+                        currentGroup: group,
+                        timeout: .none,
+                        isMaxAdSearchTimeoutReached: false)
+            
+            sut.process(parsingResultQueue: parsingQueue,
+                        scheduledVRMItems: [urlItem: queueWithTooManyWrappers],
+                        currentGroup: group,
+                        timeout: .none,
+                        isMaxAdSearchTimeoutReached: false)
+        }
+        
+        recorder.verify {
+            sut.dispatch(VRMCore.tooManyIndirections(item: urlItem))
+        }
     }
 }

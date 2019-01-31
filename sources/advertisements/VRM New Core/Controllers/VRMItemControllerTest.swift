@@ -20,7 +20,6 @@ class VRMItemControllerTest: XCTestCase {
         $0.url == $1.url && $0.originalItem == $1.originalItem
     }
     
-    let maxRedirectCount = 3
     let url = URL(string: "http://test.com")!
     let vastXML = "VAST String"
     var vastItem: VRMCore.Item!
@@ -50,7 +49,7 @@ class VRMItemControllerTest: XCTestCase {
     func testMaxAdSearchTimeout() {
         let dispatch = recorder.hook("testMaxAdSearchTimeout", cmp: fetchActionComparator.compare)
         
-        sut = VRMItemController(maxRedirectCount: maxRedirectCount, dispatch: dispatch)
+        sut = VRMItemController(dispatch: dispatch)
         
         recorder.record {
             sut.process(with: [urlItem: Set([.init(source: urlItem.source)])], isMaxAdSearchTimeReached: true)
@@ -62,7 +61,7 @@ class VRMItemControllerTest: XCTestCase {
     func testStartItemsFetching() {
         let dispatch = recorder.hook("compareFetchActions", cmp: fetchActionComparator.compare)
         
-        sut = VRMItemController(maxRedirectCount: maxRedirectCount, dispatch: dispatch)
+        sut = VRMItemController(dispatch: dispatch)
         
         recorder.record {
             sut.process(with: [urlItem: Set([.init(source: urlItem.source)])], isMaxAdSearchTimeReached: false)
@@ -76,7 +75,7 @@ class VRMItemControllerTest: XCTestCase {
     func testStartItemsParsing() {
         let dispatch = recorder.hook("testStartItemsParsing", cmp: parseActionComparator.compare)
         
-        sut = VRMItemController(maxRedirectCount: maxRedirectCount, dispatch: dispatch)
+        sut = VRMItemController(dispatch: dispatch)
         
         recorder.record {
             sut.process(with: [vastItem: Set([.init(source: vastItem.source)])], isMaxAdSearchTimeReached: false)
@@ -90,7 +89,7 @@ class VRMItemControllerTest: XCTestCase {
     func testDoubleDispatch() {
         let dispatch = recorder.hook("testDoubleDispatch", cmp: parseActionComparator.compare)
         
-        sut = VRMItemController(maxRedirectCount: maxRedirectCount, dispatch: dispatch)
+        sut = VRMItemController(dispatch: dispatch)
         
         recorder.record {
             let scheduledQueue: [VRMCore.Item: Set<ScheduledVRMItems.Candidate>] = [vastItem: Set(arrayLiteral: .init(source: vastItem.source))]
@@ -107,7 +106,7 @@ class VRMItemControllerTest: XCTestCase {
         var compare = parseActionComparator.compare
         let dispatch = recorder.hook("testProcessWrapper", cmp: { compare($0,$1) })
         
-        sut = VRMItemController(maxRedirectCount: maxRedirectCount, dispatch: dispatch)
+        sut = VRMItemController(dispatch: dispatch)
         let first = ScheduledVRMItems.Candidate(source: vastItem.source)
         let second = ScheduledVRMItems.Candidate(source: .url(url))
         
@@ -127,38 +126,6 @@ class VRMItemControllerTest: XCTestCase {
         
         recorder.verify {
             sut.dispatch(VRMCore.startItemFetch(originalItem: vastItem, url: url))
-        }
-    }
-    
-    func testMaxRedirectAndNextGroupProcess() {
-        var compare = wrapperErrorActionComparator.compare
-        let dispatch = recorder.hook("testMaxRedirect", cmp: { compare($0,$1) })
-        
-        sut = VRMItemController(maxRedirectCount: maxRedirectCount, dispatch: dispatch)
-        
-        let queueWithTooManyWrappers = Set<ScheduledVRMItems.Candidate>([.init(source: urlItem.source),
-                                                                         .init(source: .url(URL(string:"http://test1.com")!)),
-                                                                         .init(source: .url(URL(string:"http://test2.com")!))])
-        recorder.record {
-            sut.process(with: [urlItem: queueWithTooManyWrappers], isMaxAdSearchTimeReached: false)
-            sut.process(with: [urlItem: queueWithTooManyWrappers], isMaxAdSearchTimeReached: false)
-        }
-        
-        recorder.verify {
-            sut.dispatch(VRMCore.tooManyIndirections(item: urlItem))
-        }
-        
-        let correctQueue = Set<ScheduledVRMItems.Candidate>([.init(source: vastItem.source)])
-        compare = parseActionComparator.compare
-        
-        recorder.record {
-            sut.process(with: [urlItem: queueWithTooManyWrappers,
-                               vastItem: correctQueue],
-                        isMaxAdSearchTimeReached: false)
-        }
-        
-        recorder.verify {
-            sut.dispatch(VRMCore.startItemParsing(originalItem: vastItem, vastXML: vastXML))
         }
     }
 }

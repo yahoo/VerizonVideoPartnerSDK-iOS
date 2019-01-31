@@ -6,14 +6,12 @@ import PlayerCore
 
 final class VRMItemController {
     
-    let maxRedirectCount: Int
     let dispatch: (PlayerCore.Action) -> Void
     
     private var startedCandidates = Set<ScheduledVRMItems.Candidate>()
     private var wrapperError = Set<VRMCore.Item>()
     
-    init(maxRedirectCount: Int, dispatch: @escaping (PlayerCore.Action) -> Void ) {
-        self.maxRedirectCount = maxRedirectCount
+    init(dispatch: @escaping (PlayerCore.Action) -> Void ) {
         self.dispatch = dispatch
     }
     
@@ -29,14 +27,6 @@ final class VRMItemController {
         }
         
         scheduledItems.forEach { originalItem, queue in
-            guard queue.count < maxRedirectCount else {
-                if wrapperError.contains(originalItem) == false {
-                    wrapperError.insert(originalItem)
-                    dispatch(VRMCore.tooManyIndirections(item: originalItem))
-                }
-                return
-            }
-            
             queue.subtracting(startedCandidates)
                 .forEach { candidate in
                     startedCandidates.insert(candidate)
