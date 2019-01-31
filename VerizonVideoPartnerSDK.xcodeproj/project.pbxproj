@@ -31,6 +31,9 @@
 		067209EB21B6BF3E0086CDBE /* OpenMeasurementControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067209B921B6BD9A0086CDBE /* OpenMeasurementControllerTests.swift */; };
 		067209EC21B6BF440086CDBE /* BufferingDetectorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067209D321B6BE320086CDBE /* BufferingDetectorTests.swift */; };
 		067209F221B6CCAE0086CDBE /* BufferingDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067209D221B6BE320086CDBE /* BufferingDetector.swift */; };
+		068B16A4220223FD003ABD69 /* MP4AdCreativeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068B16A1220223FD003ABD69 /* MP4AdCreativeController.swift */; };
+		068B16A5220223FD003ABD69 /* MP4AdCreativeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068B16A1220223FD003ABD69 /* MP4AdCreativeController.swift */; };
+		068B16A622022429003ABD69 /* MP4AdCreativeControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068B16A0220223FD003ABD69 /* MP4AdCreativeControllerTest.swift */; };
 		069DC3E820EA9BA600D70B28 /* VPAIDEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069DC3E620EA9BA600D70B28 /* VPAIDEvents.swift */; };
 		069DC48420EA9EC400D70B28 /* VPAIDEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069DC3E620EA9BA600D70B28 /* VPAIDEvents.swift */; };
 		06B13EF22090AB13009A6645 /* AdViewTimeDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B13EF12090AB12009A6645 /* AdViewTimeDetector.swift */; };
@@ -464,6 +467,8 @@
 		067209D921B6BE710086CDBE /* VASTVerificationInExtension.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = VASTVerificationInExtension.xml; sourceTree = "<group>"; };
 		067209DA21B6BE710086CDBE /* VASTWrapperWithExtension.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = VASTWrapperWithExtension.xml; sourceTree = "<group>"; };
 		067209E221B6BF070086CDBE /* OMSDK_Oath2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OMSDK_Oath2.framework; sourceTree = "<group>"; };
+		068B16A0220223FD003ABD69 /* MP4AdCreativeControllerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MP4AdCreativeControllerTest.swift; sourceTree = "<group>"; };
+		068B16A1220223FD003ABD69 /* MP4AdCreativeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MP4AdCreativeController.swift; sourceTree = "<group>"; };
 		069DC3E620EA9BA600D70B28 /* VPAIDEvents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPAIDEvents.swift; sourceTree = "<group>"; };
 		06B13EF12090AB12009A6645 /* AdViewTimeDetector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdViewTimeDetector.swift; sourceTree = "<group>"; };
 		06B13EF42090AB1B009A6645 /* AdViewTimeDetectorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdViewTimeDetectorTests.swift; sourceTree = "<group>"; };
@@ -736,6 +741,15 @@
 				067209B821B6BD9A0086CDBE /* OpenMeasurementServiceScript.swift */,
 			);
 			path = "open measurement";
+			sourceTree = "<group>";
+		};
+		068B169C2202238B003ABD69 /* creative controllers */ = {
+			isa = PBXGroup;
+			children = (
+				068B16A1220223FD003ABD69 /* MP4AdCreativeController.swift */,
+				068B16A0220223FD003ABD69 /* MP4AdCreativeControllerTest.swift */,
+			);
+			path = "creative controllers";
 			sourceTree = "<group>";
 		};
 		069DC3DF20EA9B8C00D70B28 /* vpaid event */ = {
@@ -1050,6 +1064,7 @@
 		DE1FB28A1CE359B300B99941 /* advertisements */ = {
 			isa = PBXGroup;
 			children = (
+				068B169C2202238B003ABD69 /* creative controllers */,
 				06F8DBB621C2A2A00019021D /* VRM New Core */,
 				DE1FD9D01CE7759E00C0B7BC /* process ad item */,
 				DE1685D71CE7308500492A90 /* vast parser */,
@@ -1823,6 +1838,7 @@
 				50A11DE61D59D7E000F4A068 /* VASTModel.swift in Sources */,
 				50A11DEB1D59D7E000F4A068 /* AdMetrics.swift in Sources */,
 				E2B0062021CD265000B72485 /* FetchVRMItemController.swift in Sources */,
+				068B16A5220223FD003ABD69 /* MP4AdCreativeController.swift in Sources */,
 				50E6E456208F94EF003B0F4E /* UserActionInitiated.swift in Sources */,
 				50A11DEC1D59D7E000F4A068 /* VASTWrapperProcessor.swift in Sources */,
 				50D629D420237BA5000B2F8F /* TrackingPixelsConnector_Ad.swift in Sources */,
@@ -1866,6 +1882,7 @@
 				DE4C51E11C80D43200BFFB0B /* TrackingPixelsConnector.swift in Sources */,
 				50D629D320237BA5000B2F8F /* TrackingPixelsConnector_Ad.swift in Sources */,
 				DE07F0511EF9956B00C8E9F2 /* ReporterTracer.swift in Sources */,
+				068B16A4220223FD003ABD69 /* MP4AdCreativeController.swift in Sources */,
 				DE3DA42B1E55D9A900D34880 /* VVPSDKPlugins.swift in Sources */,
 				50FEC3FF1DDF58A20013DA99 /* NonEmptyString.swift in Sources */,
 				DE4C51C41C80918E00BFFB0B /* VideoTimeDetector.swift in Sources */,
@@ -2001,6 +2018,7 @@
 				0672086F2125A7AF007C07D7 /* ObserverTests.swift in Sources */,
 				E241041C21C4078E00036290 /* StartVRMGroupProcessingControllerTest.swift in Sources */,
 				508748271C80753800F2511A /* DictionaryParseJSONTests.swift in Sources */,
+				068B16A622022429003ABD69 /* MP4AdCreativeControllerTest.swift in Sources */,
 				505136171C90A35100629078 /* UserActionInitiatedTests.swift in Sources */,
 				E22B6AD921EF852800D480A0 /* VRMProcessingControllerTest.swift in Sources */,
 				FE940A001F3DD56600A867CD /* IntentDetectorTests.swift in Sources */,
