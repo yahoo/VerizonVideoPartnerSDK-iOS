@@ -17,12 +17,13 @@ final class MP4AdCreativeController {
     func process(state: State) {
         process(adCreative: state.selectedAdCreative,
                 viewport: state.viewport.dimensions,
-                id: UUID())
+                id: state.vrmRequestStatus.request?.id)
     }
     
-    func process(adCreative: PlayerCore.AdCreative, viewport: CGSize?, id: UUID) {
-        guard let dimensions = viewport else { return }
-        guard case .mp4(let creatives) = adCreative else { return }
+    func process(adCreative: PlayerCore.AdCreative, viewport: CGSize?, id: UUID?) {
+        guard let dimensions = viewport, let id = id,
+            case .mp4(let creatives) = adCreative else { return }
+        
         guard processedCreatives.contains(adCreative) == false else { return }
         processedCreatives.insert(adCreative)
         
@@ -31,16 +32,13 @@ final class MP4AdCreativeController {
             dispatch(PlayerCore.showMP4Ad(creative: creative, id: id))
             return
         }
-        var diff: CGFloat = CGFloat.greatestFiniteMagnitude;
-        var result: PlayerCore.AdCreative.MP4? = nil
-        for creative in creatives {
-            let newDiff = abs(dimensions.width * dimensions.height - CGFloat(creative.width) * CGFloat(creative.height));
-            if newDiff < diff {
-                diff = newDiff;
-                result = creative;
-            }
-        }
-        guard let adCreative = result else { return }
-        dispatch(PlayerCore.showMP4Ad(creative: adCreative, id: id))
+        
+        creatives
+            .sorted {
+                let firstDiff = abs(dimensions.width * dimensions.height - CGFloat($0.width) * CGFloat($0.height))
+                let secondDiff = abs(dimensions.width * dimensions.height - CGFloat($1.width) * CGFloat($1.height))
+                return firstDiff < secondDiff }
+            .first
+            .flatMap { dispatch(PlayerCore.showMP4Ad(creative: $0, id: id)) }
     }
 }
