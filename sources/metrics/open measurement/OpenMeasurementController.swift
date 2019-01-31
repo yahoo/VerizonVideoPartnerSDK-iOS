@@ -41,15 +41,8 @@ extension OpenMeasurement {
                 return
             }
             do {
-                let sdkVersion: String = {
-                    guard let sdkInfo = Bundle(identifier: "com.Verizon.VideoPartnerSDK")?.infoDictionary else {
-                        fatalError("Couldn't find sdk bundle")
-                    }
-                    return sdkInfo["CFBundleShortVersionString"] as! String
-                }()
-                
                 let input = OpenMeasurement.Input(partnerBundleName: "Oath2",
-                                                  partnerVersion: sdkVersion,
+                                                  partnerVersion: VVPSDK.version,
                                                   jsServiceScript: serviceScript,
                                                   adVerifications: adVerifications)
                 let output = try createOMContext(input)
