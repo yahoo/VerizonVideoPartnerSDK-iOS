@@ -352,7 +352,6 @@ public struct VVPSDK {
         let softTimeout = player.model.adSettings.softTimeout
         let hardTimeout = player.model.adSettings.hardTimeout
         let isVPAIDAllowed = player.model.isVPAIDAllowed
-        let isOpenMeasurementEnabled = player.model.isOpenMeasurementAllowed
         
         func setupVRMWithOldCore() {
             let vastTagProcessor = VASTTagProcessor(session: ephemeralSession,
@@ -377,8 +376,7 @@ public struct VVPSDK {
             
             _ = player.addObserver { playerProps in
                 guard let detectorInput = MidrollDetector.Input(playerProps: playerProps,
-                                                                isVPAIDAllowed: isVPAIDAllowed,
-                                                                isOpenMeasurementEnabled: isOpenMeasurementEnabled) else { return }
+                                                                isVPAIDAllowed: isVPAIDAllowed) else { return }
                 midrollDetector.process(input: detectorInput)
                 
                 
@@ -389,7 +387,7 @@ public struct VVPSDK {
             
             weak var player = player
             adManager.actions.skipPreroll = { player?.skipAd(id: $0) }
-            adManager.actions.startPreroll = { player?.playAd(model: $0, isOpenMeasurementEnabled: isOpenMeasurementEnabled) }
+            adManager.actions.startPreroll = { player?.playAd(model: $0) }
             let _ = player?.addObserver { playerProps in
                 guard let item = playerProps.playbackItem else { return }
                 
