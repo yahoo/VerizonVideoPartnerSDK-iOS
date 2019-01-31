@@ -243,6 +243,7 @@ public struct VVPSDK {
         
         let vpaidSettings = PlayerCore.Model.VPAIDSettings(document: self.configuration.vpaid.document)
         let omSettings = PlayerCore.Model.OMSettings(serviceScriptURL: self.configuration.openMeasurement.script)
+        
         let playerModel = PlayerCore.Model(playlist: videoModels,
                                            autoplay: videoResponse.autoplay,
                                            controlsAnimationSupported: videoResponse.features.isControlsAnimationEnabled,
@@ -437,13 +438,14 @@ public struct VVPSDK {
             let timeoutController = VRMTimeoutController(softTimeoutTimerFactory: createSoftTimeoutTimer,
                                                          hardTimeoutTimerFactory: createHardTimeoutTimer)
             let selectFinalResult = VRMSelectFinalResultController(dispatch: dispatcher)
-            let playFinalResult = FinalResultDispatchController(dispatch: dispatcher,
-                                                                isOpenMeasurementEnabled: isOpenMeasurementEnabled)
             let maxAdSearchTimeController = MaxAdSearchTimeController { requestID in
                 Timer(duration: maxAdSearchTime) {
                     dispatcher(PlayerCore.VRMCore.maxSearchTimeoutReached(requestID: requestID))
                 }
             }
+            
+            let mp4AdCreativeController = MP4AdCreativeController(dispatch: dispatcher)
+            let vpaidAdCreativeController = VPAIDAdCreativeController(dispatch: dispatcher)
             
             _ = player.store.state.addObserver { state in
                 vrmRequestController.process(with: state)
@@ -455,8 +457,9 @@ public struct VVPSDK {
                 processingController.process(with: state)
                 timeoutController.process(with: state)
                 selectFinalResult.process(with: state)
-                playFinalResult.process(with: state)
                 maxAdSearchTimeController.process(with: state)
+                mp4AdCreativeController.process(state: state)
+                vpaidAdCreativeController.process(state: state)
             }
             
             _ = player.addObserver { playerProps in

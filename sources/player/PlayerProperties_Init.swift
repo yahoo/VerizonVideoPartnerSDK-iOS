@@ -230,7 +230,8 @@ extension Player.Properties {
                 midrolls: state.ad.midrolls.filter {
                     state.ad.playedAds.contains($0.id) == false
                 },
-                adCreative: state.ad.adCreative,
+                mp4AdCreative: state.ad.mp4AdCreative,
+                vpaidAdCreative: state.ad.vpaidAdCreative,
                 isAdPlaying: isAdPlaying,
                 content: content,
                 ad: ad,

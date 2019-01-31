@@ -21,10 +21,11 @@ final class MP4AdCreativeController {
     }
     
     func process(adCreative: PlayerCore.AdCreative, viewport: CGSize?, id: UUID?) {
-        guard let dimensions = viewport, let id = id,
-            case .mp4(let creatives) = adCreative else { return }
+        guard case .mp4(let creatives) = adCreative,
+            processedCreatives.contains(adCreative) == false,
+            let dimensions = viewport,
+            let id = id else { return }
         
-        guard processedCreatives.contains(adCreative) == false else { return }
         processedCreatives.insert(adCreative)
         
         guard creatives.count > 1 else {

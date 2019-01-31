@@ -219,7 +219,7 @@ extension TrackingPixels.Connector {
             }
         }
         
-        switch state.ad.adCreative {
+        switch state.selectedAdCreative {
         case .vpaid:
             let events = vpaidEventsDetector.process(events: state.vpaid.events)
             guard !events.isEmpty else { return }

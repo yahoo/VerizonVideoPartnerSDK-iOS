@@ -214,13 +214,13 @@ public final class PlayerViewController: UIViewController {
         adRenderer?.viewController.view.isHidden = {
             guard case .ad = props.activeContext else { return true }
             guard let item = player?.store.props.playbackItem else { return true }
-            guard case .mp4 = item.adCreative else { return true }
+            guard item.mp4AdCreative != nil else { return true }
             return false
         }()
         vpaidViewController?.view.isHidden = {
             guard case .ad = props.activeContext else { return true }
             guard let item = player?.store.props.playbackItem else { return true }
-            guard case .vpaid = item.adCreative else { return true }
+            guard item.vpaidAdCreative != nil else { return true }
             return false
         }()
     }
