@@ -26,6 +26,25 @@ extension TrackingPixels.Connector {
             }
         }
         
+        adRequestDetector.process(with: state).flatMap { result in
+            reporter.adVRMRequest(videoIndex: state.playlist.currentIndex,
+                                  type: adType,
+                                  sequenceNumber: state.vrmRequestStatus.requestsFired,
+                                  transactionId: result.transactionId,
+                                  videoViewUID: state.playbackSession.id.uuidString)
+        }
+        
+        adEngineRequestDetector.process(state: state).forEach { result in
+            reporter.adEngineRequest(videoIndex: state.playlist.currentIndex,
+                                     info: result.adInfo,
+                                     type: adType,
+                                     transactionId: result.transactionId,
+                                     videoViewUID: state.playbackSession.id.uuidString)
+            reporter.adServerRequest(info: result.adInfo,
+                                     videoIndex: state.playlist.currentIndex,
+                                     videoViewUID: state.playbackSession.id.uuidString)
+        }
+        
         vrmDetector.process(state: state.adVRMManager).forEach { result in
             switch result {
             case .completeRequest(let complete):
