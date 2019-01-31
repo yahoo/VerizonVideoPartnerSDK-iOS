@@ -410,14 +410,14 @@ public struct VVPSDK {
         func setupVRMWithNewCore() {
             let maxRedirectCount = player.model.adSettings.maxVASTWrapperRedirectCount
             let prefetchOffset = player.model.adSettings.prefetchingOffset
-            let maxAdSearchTime: TimeInterval = 9
+            let maxAdSearchTime = player.model.adSettings.maxSearchTime
             let createRequest: (URL) -> (URLRequest) = {
                 .init(url: $0, timeoutInterval: hardTimeout)
             }
             let adStartProcessing = StartAdProcessingController(prefetchOffset: prefetchOffset, dispatch: dispatcher)
             let startGroupProcessing = StartVRMGroupProcessingController(dispatch: dispatcher)
             let finishGroupProcessing = FinishVRMGroupProcessingController(dispatch: dispatcher)
-            let itemController = VRMItemController(maxRedirectCount: maxRedirectCount, dispatch: dispatcher)
+            let itemController = VRMItemController(dispatch: dispatcher)
             let itemFetchController = FetchVRMItemController(dispatch: dispatcher) { url in
                 self.ephemeralSession.dataFuture(with: createRequest(url))
                     .map(Network.Parse.successResponseData)
@@ -431,7 +431,7 @@ public struct VVPSDK {
                                                             groupsMapper: mapGroups) { url in
                                                                 self.vrmProvider.requestAds(with: createRequest(url))
             }
-            let processingController = VRMProcessingController(dispatch: dispatcher)
+            let processingController = VRMProcessingController(maxRedirectCount: maxRedirectCount, dispatch: dispatcher)
             let createSoftTimeoutTimer = { Timer(duration: softTimeout){ dispatcher(PlayerCore.VRMCore.softTimeoutReached()) } }
             let createHardTimeoutTimer = { Timer(duration: hardTimeout){ dispatcher(PlayerCore.VRMCore.hardTimeoutReached()) } }
             let timeoutController = VRMTimeoutController(softTimeoutTimerFactory: createSoftTimeoutTimer,

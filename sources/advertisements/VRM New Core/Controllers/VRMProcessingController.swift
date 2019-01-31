@@ -6,21 +6,26 @@ import PlayerCore
 
 final class VRMProcessingController {
     
+    let maxRedirectCount: Int
     let dispatch: (PlayerCore.Action) -> Void
+    
     private var dispatchedResults = Set<VRMParsingResult.Result>()
     
-    init(dispatch: @escaping (PlayerCore.Action) -> Void) {
+    init(maxRedirectCount: Int,dispatch: @escaping (PlayerCore.Action) -> Void) {
+        self.maxRedirectCount = maxRedirectCount
         self.dispatch = dispatch
     }
     
     func process(with state: PlayerCore.State) {
         process(parsingResultQueue: state.vrmParsingResult.parsedVASTs,
+                scheduledVRMItems: state.vrmScheduledItems.items,
                 currentGroup: state.vrmCurrentGroup.currentGroup,
                 timeout: state.vrmProcessingTimeout,
                 isMaxAdSearchTimeoutReached: state.vrmMaxAdSearchTimeout.isReached)
     }
     
     func process(parsingResultQueue: [VRMCore.Item: VRMParsingResult.Result],
+                 scheduledVRMItems: [VRMCore.Item: Set<ScheduledVRMItems.Candidate>],
                  currentGroup: VRMCore.Group?,
                  timeout: VRMProcessingTimeout,
                  isMaxAdSearchTimeoutReached: Bool) {
@@ -33,12 +38,23 @@ final class VRMProcessingController {
                 dispatchedResults.contains(result) == false
             }.forEach { item, result in
                 
-                if currentGroup == nil || currentGroup?.items.contains(item) == false || timeout == .hard {
+                if currentGroup == nil ||
+                    currentGroup?.items.contains(item) == false ||
+                    timeout == .hard {
                     dispatch(VRMCore.timeoutError(item: item))
                 } else if case .inline(let vast) = result.vastModel {
                     dispatch(VRMCore.selectInlineVAST(item: item, inlineVAST: vast))
                 } else if case .wrapper(let wrapper) = result.vastModel {
-                    dispatch(VRMCore.unwrapItem(item: item, url: wrapper.tagURL))
+                    guard let count = scheduledVRMItems[item]?.count else {
+                        assertionFailure("try to unwrap item, which wasn't started")
+                        return
+                    }
+                    
+                    if (count + 1) < maxRedirectCount {
+                        dispatch(VRMCore.unwrapItem(item: item, url: wrapper.tagURL))
+                    } else {
+                        dispatch(VRMCore.tooManyIndirections(item: item))
+                    }
                 }
                 
                 dispatchedResults.insert(result)
