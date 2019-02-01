@@ -20,6 +20,9 @@ extension TrackingPixels {
         let videoImpressionDetector = Detectors.VideoImpression()
         
         let vrmDetector = Detectors.VRMDetector()
+        let adRequestDetector = Detectors.VRMRequestDetector()
+        let adEngineRequestDetector = Detectors.AdEngineRequestDetector()
+        
         let adVideoLoadingDetector = Detectors.VideoLoading()
         let adQuartileDetector = Detectors.Quartile()
         let adUserActionsDetector = Detectors.UserActions()
