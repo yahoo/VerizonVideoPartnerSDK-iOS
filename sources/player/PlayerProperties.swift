@@ -64,7 +64,8 @@ extension Player {
                 public let midrollPrefetchingOffset: Int
                 public let playedAds: Set<UUID>
                 public let midrolls: [PlayerCore.Ad.Midroll]
-                let adCreative: PlayerCore.AdCreative
+                let mp4AdCreative: PlayerCore.AdCreative.MP4?
+                let vpaidAdCreative: PlayerCore.AdCreative.VPAID?
                 
                 public let isAdPlaying: Bool
                 public let content: Video

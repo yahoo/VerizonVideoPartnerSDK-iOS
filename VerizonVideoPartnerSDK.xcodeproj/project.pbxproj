@@ -31,6 +31,7 @@
 		067209EB21B6BF3E0086CDBE /* OpenMeasurementControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067209B921B6BD9A0086CDBE /* OpenMeasurementControllerTests.swift */; };
 		067209EC21B6BF440086CDBE /* BufferingDetectorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067209D321B6BE320086CDBE /* BufferingDetectorTests.swift */; };
 		067209F221B6CCAE0086CDBE /* BufferingDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067209D221B6BE320086CDBE /* BufferingDetector.swift */; };
+		068B16522201E15C003ABD69 /* VPAIDAdCreativeControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E287B0BF21FA099900FC49AA /* VPAIDAdCreativeControllerTest.swift */; };
 		068B16A4220223FD003ABD69 /* MP4AdCreativeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068B16A1220223FD003ABD69 /* MP4AdCreativeController.swift */; };
 		068B16A5220223FD003ABD69 /* MP4AdCreativeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068B16A1220223FD003ABD69 /* MP4AdCreativeController.swift */; };
 		068B16A622022429003ABD69 /* MP4AdCreativeControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068B16A0220223FD003ABD69 /* MP4AdCreativeControllerTest.swift */; };
@@ -43,6 +44,7 @@
 		06BF5394209B471A00B98A6D /* UserActionsDetectorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BF5393209B471A00B98A6D /* UserActionsDetectorTests.swift */; };
 		06BF53D4209B59E300B98A6D /* UserActionsDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BF5391209B470F00B98A6D /* UserActionsDetector.swift */; };
 		06BF541F20A078FE00B98A6D /* VASTVpaid.xml in Resources */ = {isa = PBXBuildFile; fileRef = 06BF541620A062E300B98A6D /* VASTVpaid.xml */; };
+		06D14E342203699000195483 /* AdCreativeTestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06D14E2F2203696700195483 /* AdCreativeTestData.swift */; };
 		06E5F33321C2C9FD0099D733 /* Autogeneratable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06E5F33221C2C9D40099D733 /* Autogeneratable.swift */; };
 		06E5F33521C2CA750099D733 /* PlayerCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06E5F31D21C2C7F80099D733 /* PlayerCore.framework */; };
 		06E5F33621C2CA750099D733 /* VideoRenderer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06E5F31521C2C7EB0099D733 /* VideoRenderer.framework */; };
@@ -296,9 +298,8 @@
 		E287B08C21F884A900FC49AA /* VRMSelectFinalResultController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E287B08B21F884A900FC49AA /* VRMSelectFinalResultController.swift */; };
 		E287B08D21F884A900FC49AA /* VRMSelectFinalResultController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E287B08B21F884A900FC49AA /* VRMSelectFinalResultController.swift */; };
 		E287B0A621F8A67F00FC49AA /* VRMSelectFinalResultControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E287B0A521F8A67F00FC49AA /* VRMSelectFinalResultControllerTest.swift */; };
-		E287B0BA21FA097100FC49AA /* FinalResultDispatchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E287B0B921FA097100FC49AA /* FinalResultDispatchController.swift */; };
-		E287B0BB21FA097100FC49AA /* FinalResultDispatchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E287B0B921FA097100FC49AA /* FinalResultDispatchController.swift */; };
-		E287B0C021FA099900FC49AA /* FinalResultDispatchControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E287B0BF21FA099900FC49AA /* FinalResultDispatchControllerTest.swift */; };
+		E287B0BA21FA097100FC49AA /* VPAIDAdCreativeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E287B0B921FA097100FC49AA /* VPAIDAdCreativeController.swift */; };
+		E287B0BB21FA097100FC49AA /* VPAIDAdCreativeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E287B0B921FA097100FC49AA /* VPAIDAdCreativeController.swift */; };
 		E2B0061F21CD265000B72485 /* FetchVRMItemController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B0061E21CD265000B72485 /* FetchVRMItemController.swift */; };
 		E2B0062021CD265000B72485 /* FetchVRMItemController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B0061E21CD265000B72485 /* FetchVRMItemController.swift */; };
 		E2B0062821CD4A2B00B72485 /* FetchVRMItemControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B0062521CD49EB00B72485 /* FetchVRMItemControllerTest.swift */; };
@@ -475,6 +476,7 @@
 		06BF5391209B470F00B98A6D /* UserActionsDetector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserActionsDetector.swift; sourceTree = "<group>"; };
 		06BF5393209B471A00B98A6D /* UserActionsDetectorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserActionsDetectorTests.swift; sourceTree = "<group>"; };
 		06BF541620A062E300B98A6D /* VASTVpaid.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = VASTVpaid.xml; sourceTree = "<group>"; };
+		06D14E2F2203696700195483 /* AdCreativeTestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdCreativeTestData.swift; sourceTree = "<group>"; };
 		06E5F33221C2C9D40099D733 /* Autogeneratable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Autogeneratable.swift; sourceTree = "<group>"; };
 		06E6F4CC213DA6FF008BAA23 /* PlayerCore.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = PlayerCore.xcodeproj; path = PlayerCore/PlayerCore.xcodeproj; sourceTree = "<group>"; };
 		06F8DBC021C2A2D40019021D /* StartAdProcessingControllerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartAdProcessingControllerTest.swift; sourceTree = "<group>"; };
@@ -649,8 +651,8 @@
 		E2629D3521147ECE006ED117 /* NoVpaidUrlFixture.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = NoVpaidUrlFixture.json; sourceTree = "<group>"; };
 		E287B08B21F884A900FC49AA /* VRMSelectFinalResultController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VRMSelectFinalResultController.swift; sourceTree = "<group>"; };
 		E287B0A521F8A67F00FC49AA /* VRMSelectFinalResultControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VRMSelectFinalResultControllerTest.swift; sourceTree = "<group>"; };
-		E287B0B921FA097100FC49AA /* FinalResultDispatchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalResultDispatchController.swift; sourceTree = "<group>"; };
-		E287B0BF21FA099900FC49AA /* FinalResultDispatchControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalResultDispatchControllerTest.swift; sourceTree = "<group>"; };
+		E287B0B921FA097100FC49AA /* VPAIDAdCreativeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPAIDAdCreativeController.swift; sourceTree = "<group>"; };
+		E287B0BF21FA099900FC49AA /* VPAIDAdCreativeControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPAIDAdCreativeControllerTest.swift; sourceTree = "<group>"; };
 		E2B0061E21CD265000B72485 /* FetchVRMItemController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchVRMItemController.swift; sourceTree = "<group>"; };
 		E2B0062521CD49EB00B72485 /* FetchVRMItemControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchVRMItemControllerTest.swift; sourceTree = "<group>"; };
 		E2D649A7208A431D00152ADE /* VideoImpressionTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoImpressionTest.swift; sourceTree = "<group>"; };
@@ -746,8 +748,11 @@
 		068B169C2202238B003ABD69 /* creative controllers */ = {
 			isa = PBXGroup;
 			children = (
+				06D14E2F2203696700195483 /* AdCreativeTestData.swift */,
 				068B16A1220223FD003ABD69 /* MP4AdCreativeController.swift */,
 				068B16A0220223FD003ABD69 /* MP4AdCreativeControllerTest.swift */,
+				E287B0B921FA097100FC49AA /* VPAIDAdCreativeController.swift */,
+				E287B0BF21FA099900FC49AA /* VPAIDAdCreativeControllerTest.swift */,
 			);
 			path = "creative controllers";
 			sourceTree = "<group>";
@@ -836,8 +841,6 @@
 				E22B6AE721F0C72800D480A0 /* VRMTimeoutControllerTest.swift */,
 				E287B08B21F884A900FC49AA /* VRMSelectFinalResultController.swift */,
 				E287B0A521F8A67F00FC49AA /* VRMSelectFinalResultControllerTest.swift */,
-				E287B0B921FA097100FC49AA /* FinalResultDispatchController.swift */,
-				E287B0BF21FA099900FC49AA /* FinalResultDispatchControllerTest.swift */,
 				E2FE09542200AC14005E91C0 /* MaxAdSearchTimeController.swift */,
 				E2FE095A2200AD01005E91C0 /* MaxAdSearchTimeControllerTest.swift */,
 			);
@@ -1819,7 +1822,7 @@
 				50A11DD11D59D7E000F4A068 /* ExecuteOnce.swift in Sources */,
 				50A11DD31D59D7E000F4A068 /* VideoActionsDetector.swift in Sources */,
 				50A11DD41D59D7E000F4A068 /* XMLParser.swift in Sources */,
-				E287B0BB21FA097100FC49AA /* FinalResultDispatchController.swift in Sources */,
+				E287B0BB21FA097100FC49AA /* VPAIDAdCreativeController.swift in Sources */,
 				50D36F131F334BA700DE7085 /* HeartbeatDetector.swift in Sources */,
 				DE0031331EBA0E48007FE000 /* JavaScriptObserver.swift in Sources */,
 				50463E551ED73AC200521E7D /* SystemPlayerReplayDetector.swift in Sources */,
@@ -1862,7 +1865,7 @@
 				DEB112431E3277C1007E65BD /* Provider.swift in Sources */,
 				DEB4DA6F1C9B10EB00D6FD08 /* OnMainThread.swift in Sources */,
 				5087484E1C80783700F2511A /* TrackingPixelsGenerator.swift in Sources */,
-				E287B0BA21FA097100FC49AA /* FinalResultDispatchController.swift in Sources */,
+				E287B0BA21FA097100FC49AA /* VPAIDAdCreativeController.swift in Sources */,
 				E241041921C4075300036290 /* StartVRMGroupProcessingController.swift in Sources */,
 				504CA74A1C870225006D0ADF /* VideoLoadingDetector.swift in Sources */,
 				E22B6B1821F6327B00D480A0 /* FinishVRMGroupProcessingController.swift in Sources */,
@@ -1971,7 +1974,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				06D14E342203699000195483 /* AdCreativeTestData.swift in Sources */,
 				E2D649A8208A431D00152ADE /* VideoImpressionTest.swift in Sources */,
+				068B16522201E15C003ABD69 /* VPAIDAdCreativeControllerTest.swift in Sources */,
 				50C4602C1C80C0D8002AB8AB /* VideoPlayDetectorTests.swift in Sources */,
 				067209EC21B6BF440086CDBE /* BufferingDetectorTests.swift in Sources */,
 				DE1FB2971CE48FAC00B99941 /* VRMProviderTests.swift in Sources */,
@@ -1994,7 +1999,6 @@
 				E231AA79213402C3008C5B6A /* AdStartTimeoutControllerTest.swift in Sources */,
 				501C8BD91D1C0BAB00C52AB3 /* ContextStartedDetectorTests.swift in Sources */,
 				FEEB8E5B1F4C92F5003507BE /* ErrorDetectorTests.swift in Sources */,
-				E287B0C021FA099900FC49AA /* FinalResultDispatchControllerTest.swift in Sources */,
 				DEB112331E30E5ED007E65BD /* VideoLoadingDetectorTests.swift in Sources */,
 				06BF5394209B471A00B98A6D /* UserActionsDetectorTests.swift in Sources */,
 				DE0031531ECF51BF007FE000 /* AdURLProviderTests.swift in Sources */,

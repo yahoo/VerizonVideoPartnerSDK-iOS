@@ -18,17 +18,7 @@ class VerifyBuldTests: XCTestCase {
                                                           maintainAspectRatio: true)],
             clickthrough: nil,
             adParameters: "",
-            pixels: AdPixels(impression: [],
-                             error: [],
-                             clickTracking: [],
-                             creativeView: [],
-                             start: [],
-                             firstQuartile: [],
-                             midpoint: [],
-                             thirdQuartile: [],
-                             complete: [],
-                             pause: [],
-                             resume: []),
+            pixels: AdPixels(),
             id: "id")
         
         result = select(model: model,

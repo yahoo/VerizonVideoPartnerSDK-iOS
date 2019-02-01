@@ -131,7 +131,7 @@ extension PlayerViewController {
                 let time = item.ad.time.static
                 
                 func click() -> CommandWith<SFSafariViewControllerDelegate> {
-                    guard case .mp4 = item.adCreative else { return .nop }
+                    guard item.mp4AdCreative != nil else { return .nop }
                     return item.isClickThroughToggled ? .nop : CommandWith { _ in
                             player.activateClickThrough()
                         }
@@ -225,8 +225,7 @@ extension PlayerViewController {
             }
             
             func adRenderer() -> Props.RendererProps? {
-                guard case .mp4(let creatives) = item.adCreative, item.hasActiveAds,
-                    let creative = creatives.first else { return nil }
+                guard let creative = item.mp4AdCreative, item.hasActiveAds else { return nil }
                 func rate() -> Float {
                     return item.ad.isPlaying ? 1 : 0
                 }
@@ -261,8 +260,7 @@ extension PlayerViewController {
             }
             
             func vpaidProps() -> VPAIDProps? {
-                guard case .vpaid(let creatives) = item.adCreative, item.hasActiveAds,
-                    let creative = creatives.first else { return nil }
+                guard let creative = item.vpaidAdCreative, item.hasActiveAds else { return nil }
                 func rate() -> Float {
                     return item.ad.isPlaying ? 1 : 0
                 }

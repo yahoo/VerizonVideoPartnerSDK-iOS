@@ -1,9 +1,10 @@
-//  Copyright 2018, Oath Inc.
+//  Copyright 2019, Oath Inc.
 //  Licensed under the terms of the MIT License. See LICENSE.md file in project root for terms.
 
 import XCTest
 @testable import VerizonVideoPartnerSDK
 @testable import PlayerCore
+
 class MP4AdCreativeControllerTest: XCTestCase {
 
     let recorder = Recorder()
@@ -39,7 +40,7 @@ class MP4AdCreativeControllerTest: XCTestCase {
     func testIncorectCreative() {
         recorder.record {
             sut.process(adCreative: .none, viewport: CGSize(width: 480, height: 320), id: id)
-            sut.process(adCreative: .vpaid([]), viewport: CGSize(width: 480, height: 320), id: id)
+            sut.process(adCreative: .vpaid([getVPAIDCreative()]), viewport: CGSize(width: 480, height: 320), id: id)
         }
         
         recorder.verify {}
@@ -87,16 +88,3 @@ class MP4AdCreativeControllerTest: XCTestCase {
         }
     }
 }
-
-func getMP4Creative(width: Int, height: Int) -> AdCreative.MP4 {
-    let testURL = URL(string: "https://")!
-    return AdCreative.MP4(url: testURL,
-                          clickthrough: testURL,
-                          pixels: AdPixels(impression: [], error: [], clickTracking: [], creativeView: [], start: [], firstQuartile: [], midpoint: [], thirdQuartile: [], complete: [], pause: [], resume: [], skip: [], mute: [], unmute: [], acceptInvitation: [], acceptInvitationLinear: [], close: [], closeLinear: [], collapse: []),
-                          id: "",
-                          width: width,
-                          height: height,
-                          scalable: false,
-                          maintainAspectRatio: true)
-}
-
