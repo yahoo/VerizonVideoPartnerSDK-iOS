@@ -30,18 +30,17 @@ extension Detectors {
             }
             
             return scheduledItems
-                .filter { _, candidatesSet in
-                    candidatesSet.isSubset(of: processedCandidates) == false
-                }.reduce(into: []) { result, pair in
+                .reduce(into: []) { result, pair in
                        return pair.value.forEach { candidate in
                             result.append(NormalizedScheduledItem(item: pair.key, candidate: candidate))
                         }
+                }.filter { normalized in
+                    processedCandidates.contains(normalized.candidate) == false
                 }.compactMap { normalized in
                     processedCandidates.insert(normalized.candidate)
                     return Result(adInfo: .init(metaInfo: normalized.item.metaInfo), transactionId: transactionId)
             }
         }
     }
-    
 }
 

@@ -80,4 +80,17 @@ class AdEngineRequestDetectorTest: XCTestCase {
         result = detector.process(transactionId: "", scheduledItems: queue)
         XCTAssertTrue(result.isEmpty)
     }
+    
+    func testDetectNewCandidate() {
+        var candidates = Set([firstCandidate])
+        var queue: [VRMCore.Item: Set<ScheduledVRMItems.Candidate>] = [firstItem: candidates]
+        var result = detector.process(transactionId: "", scheduledItems: queue)
+        XCTAssertEqual(result.count, 1)
+        
+        candidates.insert(secondCandidate)
+        queue[firstItem] = candidates
+        
+        result = detector.process(transactionId: "", scheduledItems: queue)
+        XCTAssertEqual(result.count, 1)
+    }
 }
