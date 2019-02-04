@@ -13,7 +13,7 @@ extension Detectors {
             let transactionId: String?
         }
         
-        private var processedCandidates = Set<ScheduledVRMItems.Candidate>()
+        private var processedItems = Set<VRMCore.Item>()
         
         func process(state: PlayerCore.State) -> [Result] {
             return process(transactionId: state.vrmResponse?.transactionId,
@@ -24,21 +24,12 @@ extension Detectors {
                      scheduledItems: [VRMCore.Item: Set<ScheduledVRMItems.Candidate>]) -> [Result] {
             guard scheduledItems.isEmpty == false else { return [] }
             
-            struct NormalizedScheduledItem {
-                let item: VRMCore.Item
-                let candidate: ScheduledVRMItems.Candidate
-            }
-            
-            return scheduledItems
-                .reduce(into: []) { result, pair in
-                       return pair.value.forEach { candidate in
-                            result.append(NormalizedScheduledItem(item: pair.key, candidate: candidate))
-                        }
-                }.filter { normalized in
-                    processedCandidates.contains(normalized.candidate) == false
-                }.compactMap { normalized in
-                    processedCandidates.insert(normalized.candidate)
-                    return Result(adInfo: .init(metaInfo: normalized.item.metaInfo), transactionId: transactionId)
+            return Set(scheduledItems.keys)
+                .subtracting(processedItems)
+                .compactMap { item in
+                    processedItems.insert(item)
+                    return Result(adInfo: Ad.Metrics.Info(metaInfo: item.metaInfo),
+                                  transactionId: transactionId)
             }
         }
     }

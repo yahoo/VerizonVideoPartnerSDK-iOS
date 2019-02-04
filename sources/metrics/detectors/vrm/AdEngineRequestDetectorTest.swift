@@ -42,18 +42,23 @@ class AdEngineRequestDetectorTest: XCTestCase {
     
     func testCorrectDetection() {
         let queue: [VRMCore.Item: Set<ScheduledVRMItems.Candidate>] = [firstItem: Set([firstCandidate])]
-        var result = detector.process(transactionId: "", scheduledItems: queue)
+        let result = detector.process(transactionId: "", scheduledItems: queue)
         
+        guard let first = result.first else {
+            XCTFail("result have to contain 1 object in case of one non tracked item")
+            return
+        }
         XCTAssertEqual(result.count, 1)
-        XCTAssertEqual(result[0].adInfo.engineType,    firstMetainfo.engineType)
-        XCTAssertEqual(result[0].adInfo.ruleId,        firstMetainfo.ruleId)
-        XCTAssertEqual(result[0].adInfo.ruleCompanyId, firstMetainfo.ruleCompanyId)
-        XCTAssertEqual(result[0].adInfo.vendor,        firstMetainfo.vendor)
-        XCTAssertEqual(result[0].adInfo.name,          firstMetainfo.name)
-        XCTAssertEqual(result[0].adInfo.cpm,           firstMetainfo.cpm)
+        
+        XCTAssertEqual(first.adInfo.engineType,    firstMetainfo.engineType)
+        XCTAssertEqual(first.adInfo.ruleId,        firstMetainfo.ruleId)
+        XCTAssertEqual(first.adInfo.ruleCompanyId, firstMetainfo.ruleCompanyId)
+        XCTAssertEqual(first.adInfo.vendor,        firstMetainfo.vendor)
+        XCTAssertEqual(first.adInfo.name,          firstMetainfo.name)
+        XCTAssertEqual(first.adInfo.cpm,           firstMetainfo.cpm)
     }
     
-    func testDoubleDetectSameCandidate() {
+    func testDoubleDetectSameItem() {
         let queue: [VRMCore.Item: Set<ScheduledVRMItems.Candidate>] = [firstItem: Set([firstCandidate])]
         var result = detector.process(transactionId: "", scheduledItems: queue)
         XCTAssertEqual(result.count, 1)
@@ -65,7 +70,7 @@ class AdEngineRequestDetectorTest: XCTestCase {
     func testDetectingTwoCandidates() {
         let queue: [VRMCore.Item: Set<ScheduledVRMItems.Candidate>] = [firstItem: Set([firstCandidate, secondCandidate])]
         var result = detector.process(transactionId: "", scheduledItems: queue)
-        XCTAssertEqual(result.count, 2)
+        XCTAssertEqual(result.count, 1)
         
         result = detector.process(transactionId: "", scheduledItems: queue)
         XCTAssertTrue(result.isEmpty)
@@ -91,6 +96,6 @@ class AdEngineRequestDetectorTest: XCTestCase {
         queue[firstItem] = candidates
         
         result = detector.process(transactionId: "", scheduledItems: queue)
-        XCTAssertEqual(result.count, 1)
+        XCTAssertEqual(result.count, 0)
     }
 }
