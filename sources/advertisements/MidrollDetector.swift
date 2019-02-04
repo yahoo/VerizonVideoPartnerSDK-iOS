@@ -60,7 +60,6 @@ class MidrollDetector {
         var isPlayMidrollAllowed: Bool
         var hasActiveAds: Bool
         var isVPAIDAllowed: Bool
-        var isOpenMeasurementEnabled: Bool
     }
     
     struct State {
@@ -101,8 +100,7 @@ class MidrollDetector {
                 return
             }
             dispatcher(PlayerCore.playAd(model: model,
-                                         id: midroll.id,
-                                         isOpenMeasurementEnabled: input.isOpenMeasurementEnabled))
+                                         id: midroll.id))
         }
     }
     
@@ -123,12 +121,11 @@ class MidrollDetector {
 }
 
 extension MidrollDetector.Input {
-    init?(playerProps: Player.Properties, isVPAIDAllowed: Bool, isOpenMeasurementEnabled: Bool) {
+    init?(playerProps: Player.Properties, isVPAIDAllowed: Bool) {
         guard let item = playerProps.playbackItem,
             let currentTime = item.content.time.static?.current else { return nil }
         
         self.isVPAIDAllowed = isVPAIDAllowed
-        self.isOpenMeasurementEnabled = isOpenMeasurementEnabled
         self.currentTime = perform {
             guard currentTime > Double(Int.min) && currentTime < Double(Int.max) else { return 0 }
             return Int(currentTime) }

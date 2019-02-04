@@ -25,8 +25,7 @@ class MidrollDetectorTests: QuickSpec {
                     currentTime: 0,
                     isPlayMidrollAllowed: true,
                     hasActiveAds: false,
-                    isVPAIDAllowed: false,
-                    isOpenMeasurementEnabled: true)
+                    isVPAIDAllowed: false)
             }
             
             beforeEach {
@@ -211,8 +210,7 @@ class MidrollDetectorTests: QuickSpec {
                             guard let midrollId = midrollDetector.state.lastPrefetchedMidroll?.id else { return XCTFail("Got nil midroll id") }
                             guard let model = model else { return XCTFail("Got nil ad model") }
                             midrollDetector.dispatcher(PlayerCore.playAd(model: model,
-                                                                         id: midrollId,
-                                                                         isOpenMeasurementEnabled: true))
+                                                                         id: midrollId))
                         }
                     }
                     
@@ -236,8 +234,7 @@ class MidrollDetectorTests: QuickSpec {
                             guard let midrollId = midrollDetector.state.lastPrefetchedMidroll?.id else { return XCTFail("Got nil midroll id") }
                             guard let model = model else { return XCTFail("Got nil ad model") }
                             midrollDetector.dispatcher(PlayerCore.playAd(model: model,
-                                                                         id: midrollId,
-                                                                         isOpenMeasurementEnabled: true))
+                                                                         id: midrollId))
                         }
                     }
                     
@@ -261,8 +258,7 @@ class MidrollDetectorTests: QuickSpec {
                             guard let midrollId = midrollDetector.state.lastPrefetchedMidroll?.id else { return XCTFail("Got nil midroll id") }
                             guard let model = model else { return XCTFail("Got nil ad model") }
                             midrollDetector.dispatcher(PlayerCore.playAd(model: model,
-                                                                         id: midrollId,
-                                                                         isOpenMeasurementEnabled: true))
+                                                                         id: midrollId))
                         }
                     }
                     
@@ -299,8 +295,7 @@ class MidrollDetectorTests: QuickSpec {
                             if let midrollId = midrollDetector.state.lastPrefetchedMidroll?.id {
                                 guard let model = model else { return XCTFail("Got nil ad model") }
                                 midrollDetector.dispatcher(PlayerCore.playAd(model: model,
-                                                                             id: midrollId,
-                                                                             isOpenMeasurementEnabled: true))
+                                                                             id: midrollId))
                             } else { return XCTFail("Got nil midroll id") }
                             
                             // check prefetch 3
@@ -311,8 +306,7 @@ class MidrollDetectorTests: QuickSpec {
                             if let midrollId = midrollDetector.state.lastPrefetchedMidroll?.id {
                                 guard let model = model else { return XCTFail("Got nil ad model") }
                                 midrollDetector.dispatcher(PlayerCore.playAd(model: model,
-                                                                             id: midrollId,
-                                                                             isOpenMeasurementEnabled: true))
+                                                                             id: midrollId))
                             } else { return XCTFail("Got nil midroll id") }
                         }
                     }
@@ -350,8 +344,7 @@ class MidrollDetectorTests: QuickSpec {
                             if let midrollId = midrollDetector.state.lastPrefetchedMidroll?.id {
                                 guard let model = model else { return XCTFail("Got nil ad model") }
                                 midrollDetector.dispatcher(PlayerCore.playAd(model: model,
-                                                                             id: midrollId,
-                                                                             isOpenMeasurementEnabled: true))
+                                                                             id: midrollId))
                             } else { return XCTFail("Got nil midroll id") }
                             
                             // check prefetch 3
@@ -362,8 +355,7 @@ class MidrollDetectorTests: QuickSpec {
                             if let midrollId = midrollDetector.state.lastPrefetchedMidroll?.id {
                                 guard let model = model else { return XCTFail("Got nil ad model") }
                                 midrollDetector.dispatcher(PlayerCore.playAd(model: model,
-                                                                             id: midrollId,
-                                                                             isOpenMeasurementEnabled: true))
+                                                                             id: midrollId))
                             } else { return XCTFail("Got nil midroll id") }
                         }
                     }
@@ -383,8 +375,7 @@ class MidrollDetectorTests: QuickSpec {
                             guard let midrollId = midrollDetector.state.lastPrefetchedMidroll?.id else { return XCTFail("Got nil midroll id") }
                             guard let model = model else { return XCTFail("Got nil ad model") }
                             midrollDetector.dispatcher(PlayerCore.playAd(model: model,
-                                                                         id: midrollId,
-                                                                         isOpenMeasurementEnabled: true))
+                                                                         id: midrollId))
                         }
                     }
                     it("seek over 3 and back between 2 and 3") {
@@ -402,8 +393,7 @@ class MidrollDetectorTests: QuickSpec {
                             guard let midrollId = midrollDetector.state.lastPrefetchedMidroll?.id else { return XCTFail("Got nil midroll id") }
                             guard let model = model else { return XCTFail("Got nil ad model") }
                             midrollDetector.dispatcher(PlayerCore.playAd(model: model,
-                                                                         id: midrollId,
-                                                                         isOpenMeasurementEnabled: true))
+                                                                         id: midrollId))
                         }
                         
                         recorder.record {
