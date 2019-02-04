@@ -13,97 +13,23 @@ class SlotOpportunityDetectorTests: XCTestCase {
         sut = Detectors.SlotOpportunity()
     }
     
-    override func tearDown() {
-        sut = nil
-        
-        super.tearDown()
-    }
-    
-    func testAdPlayingProcess() {
+    func testPlayingProcess() {
         let id = UUID()
-        var result = sut.process(sessionID: id,
-                                 adPlaying: false,
-                                 adSkipped: false,
-                                 adFailed: false,
-                                 contentPlaying: false)
+        var result = sut.process(sessionID: id, playbackStarted: false)
         XCTAssertFalse(result)
-        result = sut.process(sessionID: id,
-                             adPlaying: true,
-                             adSkipped: false,
-                             adFailed: false,
-                             contentPlaying: false)
+        
+        result = sut.process(sessionID: id, playbackStarted: true)
         XCTAssertTrue(result)
         
-        result = sut.process(sessionID: id,
-                             adPlaying: true,
-                             adSkipped: false,
-                             adFailed: false,
-                             contentPlaying: false)
+        result = sut.process(sessionID: id, playbackStarted: true)
         XCTAssertFalse(result)
     }
     
-    func testAdSkipProcess() {
-        let id = UUID()
-        var result = sut.process(sessionID: id,
-                                 adPlaying: false,
-                                 adSkipped: true,
-                                 adFailed: false,
-                                 contentPlaying: false)
-        XCTAssertFalse(result)
-        
-        result = sut.process(sessionID: id,
-                             adPlaying: false,
-                             adSkipped: true,
-                             adFailed: false,
-                             contentPlaying: true)
-        XCTAssertTrue(result)
-        
-        result = sut.process(sessionID: id,
-                             adPlaying: false,
-                             adSkipped: true,
-                             adFailed: false,
-                             contentPlaying: true)
-        XCTAssertFalse(result)
-    }
-    
-    func testAdFailProcess() {
-        let id = UUID()
-        var result = sut.process(sessionID: id,
-                                 adPlaying: false,
-                                 adSkipped: false,
-                                 adFailed: true,
-                                 contentPlaying: false)
-        XCTAssertFalse(result)
-        
-        result = sut.process(sessionID: id,
-                             adPlaying: false,
-                             adSkipped: false,
-                             adFailed: true,
-                             contentPlaying: true)
-        XCTAssertTrue(result)
-        
-        result = sut.process(sessionID: id,
-                             adPlaying: false,
-                             adSkipped: false,
-                             adFailed: true,
-                             contentPlaying: true)
-        XCTAssertFalse(result)
-    }
-    
-    func testSessionChnageProcess() {
-        let id = UUID()
-        _ = sut.process(sessionID: id,
-                        adPlaying: true,
-                        adSkipped: false,
-                        adFailed: false,
-                        contentPlaying: false)
+    func testSessionChanageProcess() {
+        _ = sut.process(sessionID: UUID(), playbackStarted: true)
         XCTAssertTrue(sut.playbackInitiated)
         
-        _ = sut.process(sessionID: UUID(),
-                        adPlaying: false,
-                        adSkipped: false,
-                        adFailed: false,
-                        contentPlaying: false)
+        _ = sut.process(sessionID: UUID(), playbackStarted: false)
         XCTAssertFalse(sut.playbackInitiated)
     }
 }
