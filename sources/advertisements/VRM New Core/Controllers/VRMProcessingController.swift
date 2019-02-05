@@ -19,15 +19,11 @@ final class VRMProcessingController {
     func process(with state: PlayerCore.State) {
         process(parsingResultQueue: state.vrmParsingResult.parsedVASTs,
                 scheduledVRMItems: state.vrmScheduledItems.items,
-                currentGroup: state.vrmCurrentGroup.currentGroup,
-                timeout: state.vrmProcessingTimeout,
                 isMaxAdSearchTimeoutReached: state.vrmMaxAdSearchTimeout.isReached)
     }
     
     func process(parsingResultQueue: [VRMCore.Item: VRMParsingResult.Result],
                  scheduledVRMItems: [VRMCore.Item: Set<ScheduledVRMItems.Candidate>],
-                 currentGroup: VRMCore.Group?,
-                 timeout: VRMProcessingTimeout,
                  isMaxAdSearchTimeoutReached: Bool) {
         guard isMaxAdSearchTimeoutReached == false else {
             return
@@ -38,11 +34,7 @@ final class VRMProcessingController {
                 dispatchedResults.contains(result) == false
             }.forEach { item, result in
                 
-                if currentGroup == nil ||
-                    currentGroup?.items.contains(item) == false ||
-                    timeout == .hard {
-                    dispatch(VRMCore.timeoutError(item: item))
-                } else if case .inline(let vast) = result.vastModel {
+                if case .inline(let vast) = result.vastModel {
                     dispatch(VRMCore.selectInlineVAST(item: item, inlineVAST: vast))
                 } else if case .wrapper(let wrapper) = result.vastModel {
                     guard let count = scheduledVRMItems[item]?.count else {

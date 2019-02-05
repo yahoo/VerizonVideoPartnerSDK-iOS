@@ -431,10 +431,13 @@ public struct VVPSDK {
                                                                 self.vrmProvider.requestAds(with: createRequest(url))
             }
             let processingController = VRMProcessingController(maxRedirectCount: maxRedirectCount, dispatch: dispatcher)
-            let createSoftTimeoutTimer = { Timer(duration: softTimeout){ dispatcher(PlayerCore.VRMCore.softTimeoutReached()) } }
-            let createHardTimeoutTimer = { Timer(duration: hardTimeout){ dispatcher(PlayerCore.VRMCore.hardTimeoutReached()) } }
-            let timeoutController = VRMTimeoutController(softTimeoutTimerFactory: createSoftTimeoutTimer,
-                                                         hardTimeoutTimerFactory: createHardTimeoutTimer)
+           
+            let timeoutController = VRMTimeoutController(dispatch: dispatcher,
+                                                         softTimeoutTimerFactory: { onFire in
+                                                            Timer(duration: softTimeout, fire: onFire) },
+                                                         hardTimeoutTimerFactory: { onFire in
+                                                            Timer(duration: hardTimeout, fire: onFire) })
+            
             let selectFinalResult = VRMSelectFinalResultController(dispatch: dispatcher)
             let maxAdSearchTimeController = MaxAdSearchTimeController { requestID in
                 Timer(duration: maxAdSearchTime) {
