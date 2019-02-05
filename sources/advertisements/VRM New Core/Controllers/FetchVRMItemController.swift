@@ -31,8 +31,7 @@ final class FetchVRMItemController {
                         self.dispatch(VRMCore.startItemParsing(originalItem: fetchCandidate.parentItem,
                                                                vastXML: vastXML))
                     }.onError { error in
-                        self.dispatch(VRMCore.failedItemFetch(originalItem: fetchCandidate.parentItem,
-                                                              fetchCandidate: fetchCandidate))
+                        self.dispatch(VRMCore.failedItemFetch(originalItem: fetchCandidate.parentItem))
                 }
         }
     }

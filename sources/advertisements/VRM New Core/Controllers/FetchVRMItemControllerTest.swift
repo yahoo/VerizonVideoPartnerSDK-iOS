@@ -12,7 +12,7 @@ class FetchVRMItemControllerTest: XCTestCase {
         $0.vastXML == $1.vastXML && $0.originalItem == $1.originalItem
     }
     let failedFetchActionCompare = ActionComparator<VRMCore.FetchingError> {
-        $0.originalItem == $1.originalItem && $0.fetchCandidate == $1.fetchCandidate
+        $0.originalItem == $1.originalItem
     }
     var sut: FetchVRMItemController!
     
@@ -75,7 +75,7 @@ class FetchVRMItemControllerTest: XCTestCase {
         }
         
         recorder.verify {
-            sut.dispatch(VRMCore.failedItemFetch(originalItem: urlItem, fetchCandidate: fetchCandidate))
+            sut.dispatch(VRMCore.failedItemFetch(originalItem: urlItem))
         }
     }
 }

@@ -12,7 +12,7 @@ class ParseVRMItemControllerTest: XCTestCase {
         $0.vastModel == $1.vastModel && $0.originalItem == $1.originalItem
     }
     let failedParseCompare = ActionComparator<VRMCore.ParsingError> {
-        $0.originalItem == $1.originalItem && $0.parseCandidate == $1.parseCandidate
+        $0.originalItem == $1.originalItem
     }
     var sut: ParseVRMItemController!
     
@@ -89,7 +89,7 @@ class ParseVRMItemControllerTest: XCTestCase {
         }
         
         recorder.verify {
-            sut.dispatch(VRMCore.failedItemParse(originalItem: vastItem, parseCandidate: parseCandidate))
+            sut.dispatch(VRMCore.failedItemParse(originalItem: vastItem))
         }
     }
 }
