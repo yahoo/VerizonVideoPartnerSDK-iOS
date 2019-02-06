@@ -26,10 +26,16 @@ class SlotOpportunityDetectorTests: XCTestCase {
     }
     
     func testSessionChanageProcess() {
-        _ = sut.process(sessionID: UUID(), playbackStarted: true)
-        XCTAssertTrue(sut.playbackInitiated)
+        let firstAd = UUID()
+        let secondAd = UUID()
         
-        _ = sut.process(sessionID: UUID(), playbackStarted: false)
-        XCTAssertFalse(sut.playbackInitiated)
+        var result = sut.process(sessionID: firstAd, playbackStarted: true)
+        XCTAssertTrue(result)
+        
+        result = sut.process(sessionID: secondAd, playbackStarted: false)
+        XCTAssertFalse(result)
+        
+        result = sut.process(sessionID: secondAd, playbackStarted: true)
+        XCTAssertTrue(result)
     }
 }

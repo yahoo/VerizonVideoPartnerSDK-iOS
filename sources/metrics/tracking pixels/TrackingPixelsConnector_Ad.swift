@@ -238,12 +238,10 @@ extension TrackingPixels.Connector {
             }
         }
         /* Slot Opportunity Detector */ do {
-            if let adSessionID = sessionID {
-                let slotDetected = adSlotOpportunityDetector.process(
-                    sessionID: adSessionID,
-                    playbackStarted: state.rate.adRate.stream || state.rate.contentRate.stream)
-                if slotDetected,
-                    let slot = slot {
+            if let adSessionID = sessionID,
+                let slot = slot {
+                let playbackStarted = state.rate.adRate.stream || state.rate.contentRate.stream
+                if adSlotOpportunityDetector.process( sessionID: adSessionID, playbackStarted: playbackStarted) {
                     reporter.slotOpportunity(videoIndex: state.playlist.currentIndex,
                                              slot: slot,
                                              transactionId: transactionId,
