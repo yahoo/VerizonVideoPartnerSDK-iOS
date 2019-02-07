@@ -108,6 +108,18 @@ extension TrackingPixels.Connector {
                                      videoViewUID: state.playbackSession.id.uuidString)
         }
         
+        adEngineResponseDetector.process(state: state).forEach { result in
+            reporter.adEngineResponse(videoIndex: state.playlist.currentIndex,
+                                      info: result.metaInfo,
+                                      type: adType,
+                                      responseStatus: result.responseStatus,
+                                      responseTime: result.responseTime,
+                                      timeout: result.timeout,
+                                      fillType: result.fillType,
+                                      transactionId: transactionId,
+                                      videoViewUID: state.playbackSession.id.uuidString)
+        }
+        
         vrmDetector.process(state: state.adVRMManager).forEach { result in
             switch result {
             case .completeRequest(let complete):
