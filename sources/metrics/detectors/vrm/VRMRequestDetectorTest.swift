@@ -6,25 +6,33 @@ import XCTest
 @testable import PlayerCore
 
 class VRMRequestDetectorTest: XCTestCase {
-
+    
     func testDetectSameRequest() {
         let uuid = UUID()
         let sut = Detectors.VRMRequestDetector()
         
-        var result = sut.process(with: uuid, transactionId: "id")
+        var result = sut.process(with: uuid, vrmResponseStatus: .response(transactionID: "id"))
         XCTAssertEqual(result?.transactionId, "id")
         
-        result = sut.process(with: uuid, transactionId: "id")
+        result = sut.process(with: uuid, vrmResponseStatus: .response(transactionID: "id"))
         XCTAssertNil(result)
     }
 
     func testDetectDiffRequests() {
         let sut = Detectors.VRMRequestDetector()
         
-        var result = sut.process(with: UUID(), transactionId: "id1")
-        XCTAssertEqual(result?.transactionId, "id1")
+        var result = sut.process(with: UUID(), vrmResponseStatus: .response(transactionID: "id"))
+        XCTAssertEqual(result?.transactionId, "id")
         
-        result = sut.process(with: UUID(), transactionId: "id2")
-        XCTAssertEqual(result?.transactionId, "id2")
+        result = sut.process(with: UUID(), vrmResponseStatus: .response(transactionID: "id"))
+        XCTAssertEqual(result?.transactionId, "id")
+    }
+    
+    func testNoDetectionIfResponseNil() {
+        let sut = Detectors.VRMRequestDetector()
+        
+        let result = sut.process(with: UUID(), vrmResponseStatus: .noResponse)
+        
+        XCTAssertNil(result)
     }
 }

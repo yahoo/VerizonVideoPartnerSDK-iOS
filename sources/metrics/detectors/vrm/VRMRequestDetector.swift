@@ -10,15 +10,31 @@ extension Detectors {
             let transactionId: String?
         }
         
+        enum ResponseStatus {
+            case noResponse
+            case response(transactionID: String?)
+            
+            init(response: VRMResponse?) {
+                switch response {
+                case .none:
+                    self = .noResponse
+                case .some(let value):
+                    self = .response(transactionID: value.transactionId)
+                }
+            }
+        }
+        
         private var trackedRequests = Set<UUID>()
         
         func process(with state: PlayerCore.State) -> Result? {
             return process(with: state.vrmRequestStatus.request?.id,
-                           transactionId: state.vrmResponse?.transactionId)
+                           vrmResponseStatus: ResponseStatus(response: state.vrmResponse))
         }
         
-        func process(with requestId: UUID?, transactionId: String?) -> Result? {
+        func process(with requestId: UUID?,
+                     vrmResponseStatus: ResponseStatus) -> Result? {
             guard let requestId = requestId,
+                case let .response(transactionId) = vrmResponseStatus,
                 trackedRequests.contains(requestId) == false else { return nil }
             
             trackedRequests.insert(requestId)
