@@ -563,7 +563,7 @@ extension TrackingPixels.Connector {
             }
             
             /* Ad Error Detector */ do {
-                adErrorDetector.process(id: state.adVRMManager.request.id,
+                adErrorDetector.process(id: sessionID ,
                                         error: perform {
                                             guard case .errored(let error) = state.playbackStatus.ad else { return nil }
                                             return error

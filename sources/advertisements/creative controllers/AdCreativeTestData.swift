@@ -4,9 +4,10 @@
 import Foundation
 import PlayerCore
 
-func getMP4Creative(width: Int, height: Int) -> AdCreative.MP4 {
+func getMP4Creative(internalID: UUID = UUID(), width: Int, height: Int) -> AdCreative.MP4 {
     let testURL = URL(string: "https://")!
-    return AdCreative.MP4(url: testURL,
+    return AdCreative.MP4(internalID: internalID,
+                          url: testURL,
                           clickthrough: testURL,
                           pixels: AdPixels(),
                           id: "",
@@ -16,9 +17,10 @@ func getMP4Creative(width: Int, height: Int) -> AdCreative.MP4 {
                           maintainAspectRatio: true)
 }
 
-func getVPAIDCreative() -> AdCreative.VPAID {
+func getVPAIDCreative(internalID: UUID = UUID()) -> AdCreative.VPAID {
     let testURL = URL(string: "https://")!
-    return AdCreative.VPAID(url: testURL,
+    return AdCreative.VPAID(internalID: internalID,
+                            url: testURL,
                             adParameters: "",
                             clickthrough: testURL,
                             pixels: AdPixels(),

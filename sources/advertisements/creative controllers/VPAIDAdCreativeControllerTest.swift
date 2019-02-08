@@ -21,16 +21,15 @@ class VPAIDAdCreativeControllerTest: XCTestCase {
     }
     
     func testSingleMP4Creative() {
+        let selected = getVPAIDCreative()
         recorder.record {
-            sut.process(adCreative: .vpaid([getVPAIDCreative()]),
-                        id: id)
-            sut.process(adCreative: .vpaid([getVPAIDCreative()]),
-                        id: UUID())
+            sut.process(adCreative: .vpaid([selected]),id: id)
+            sut.process(adCreative: .vpaid([selected]),id: UUID())
             
         }
         
         recorder.verify {
-            sut.dispatch(PlayerCore.ShowVPAIDAd(creative: getVPAIDCreative(), id: id))
+            sut.dispatch(PlayerCore.ShowVPAIDAd(creative: selected, id: id))
         }
     }
     

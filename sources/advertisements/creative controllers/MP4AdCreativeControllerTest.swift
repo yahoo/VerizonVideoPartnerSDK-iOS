@@ -22,18 +22,19 @@ class MP4AdCreativeControllerTest: XCTestCase {
     }
     
     func testSingleMP4Creative() {
+        let internalID = UUID()
         recorder.record {
-            sut.process(adCreative: .mp4([getMP4Creative(width: 320, height: 240)]),
+            sut.process(adCreative: .mp4([getMP4Creative(internalID: internalID, width: 320, height: 240)]),
                         viewport: CGSize(width: 480, height: 320),
                         id: id)
-            sut.process(adCreative: .mp4([getMP4Creative(width: 320, height: 240)]),
+            sut.process(adCreative: .mp4([getMP4Creative(internalID: internalID, width: 320, height: 240)]),
                         viewport: CGSize(width: 480, height: 320),
                         id: UUID())
             
         }
         
         recorder.verify {
-            sut.dispatch(PlayerCore.ShowMP4Ad(creative: getMP4Creative(width: 320, height: 240), id: id))
+            sut.dispatch(PlayerCore.ShowMP4Ad(creative: getMP4Creative(internalID: internalID, width: 320, height: 240), id: id))
         }
     }
     
@@ -47,36 +48,39 @@ class MP4AdCreativeControllerTest: XCTestCase {
     }
     
     func testDispatchAppropriateAdBySize() {
+        let selected = getMP4Creative(width: 640, height: 360)
         recorder.record {
             sut.process(adCreative: .mp4([getMP4Creative(width: 640, height: 480),
-                                          getMP4Creative(width: 640, height: 360),
+                                          selected,
                                           getMP4Creative(width: 320, height: 180)]),
                         viewport: CGSize(width: 520, height: 380),
                         id: id)
         }
         
         recorder.verify {
-            sut.dispatch(PlayerCore.ShowMP4Ad(creative: getMP4Creative(width: 640, height: 360), id: id))
+            sut.dispatch(PlayerCore.ShowMP4Ad(creative: selected, id: id))
         }
     }
     
     func testDispatchTheSmallestAdBySize() {
+        let selected = getMP4Creative(width: 320, height: 180)
         recorder.record {
             sut.process(adCreative: .mp4([getMP4Creative(width: 640, height: 480),
                                           getMP4Creative(width: 640, height: 360),
-                                          getMP4Creative(width: 320, height: 180)]),
+                                          selected]),
                         viewport: CGSize(width: 240, height: 160),
                         id: id)
         }
         
         recorder.verify {
-            sut.dispatch(PlayerCore.ShowMP4Ad(creative: getMP4Creative(width: 320, height: 180), id: id))
+            sut.dispatch(PlayerCore.ShowMP4Ad(creative: selected, id: id))
         }
     }
     
     func testDispatchTheBiggestAdBySize() {
+        let selected = getMP4Creative(width: 640, height: 480)
         recorder.record {
-            sut.process(adCreative: .mp4([getMP4Creative(width: 640, height: 480),
+            sut.process(adCreative: .mp4([selected,
                                           getMP4Creative(width: 640, height: 360),
                                           getMP4Creative(width: 320, height: 180)]),
                         viewport: CGSize(width: 896, height: 414),
@@ -84,7 +88,7 @@ class MP4AdCreativeControllerTest: XCTestCase {
         }
         
         recorder.verify {
-            sut.dispatch(PlayerCore.ShowMP4Ad(creative: getMP4Creative(width: 640, height: 480), id: id))
+            sut.dispatch(PlayerCore.ShowMP4Ad(creative: selected, id: id))
         }
     }
 }
