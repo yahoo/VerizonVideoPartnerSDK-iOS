@@ -48,6 +48,7 @@ enum VASTParser {
         var adParameters: String?
         var mp4MediaFiles: [PlayerCore.Ad.VASTModel.MP4MediaFile] = []
         var vpaidMediaFiles: [PlayerCore.Ad.VASTModel.VPAIDMediaFile] = []
+        var skipOffset: PlayerCore.Ad.VASTModel.SkipOffset = .none
     }
     
     struct AdVerification {
@@ -134,6 +135,16 @@ enum VASTParser {
             }
             
             delegate.didStartElement = .some { (name, attr) -> Void in
+                if let skipOffset = attr["skipoffset"] {
+                    if skipOffset.contains("%") {
+                        guard let value = Int(skipOffset.replacingOccurrences(of: "%", with: "")) else { return }
+                        inlineContext.skipOffset = .percentage(value)
+                    } else if skipOffset.contains(":") {
+                        guard let value = parseTime(from: skipOffset) else { return }
+                        inlineContext.skipOffset = .time(value)
+                    }
+                }
+                
                 switch name {
                 case "Extensions":
                     delegateStack.push(XML.Delegate(setup: { delegate in
@@ -449,6 +460,7 @@ enum VASTParser {
                                 with: adId,
                                 to: { context in
                                     delegateStack.pop()
+                                    
                                     guard result == nil else { fatalError("Result overwrite detected") }
                                     guard !context.vpaidMediaFiles.isEmpty || !context.mp4MediaFiles.isEmpty else { return }
                                     
@@ -466,6 +478,7 @@ enum VASTParser {
                                     let model = PlayerCore.Ad.VASTModel(adVerifications: adVerifications,
                                                                         mp4MediaFiles: context.mp4MediaFiles,
                                                                         vpaidMediaFiles: context.vpaidMediaFiles,
+                                                                        skipOffset: context.skipOffset,
                                                                         clickthrough: context.clickthroughURL,
                                                                         adParameters: context.adParameters,
                                                                         pixels: context.pixels,
@@ -491,6 +504,21 @@ enum VASTParser {
         
         return delegateStack
     }
+    
+    static func parseTime(from string: String) -> Double? {
+        let components = string.components(separatedBy: ":")
+        guard components.count == 3 else { return nil }
+        return components
+            .compactMap(Double.init)
+            .enumerated()
+            .map {
+                let multipliers: [Double] = [3600, 60, 1]
+                return $0.element * multipliers[$0.offset]
+            }
+            .reduce(0.0, +)
+    }
+
+    
     //swiftlint:disable line_length
     //swiftlint:enable function_body_length
     //swiftlint:enable cyclomatic_complexity

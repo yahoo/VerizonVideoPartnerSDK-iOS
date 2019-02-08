@@ -23,6 +23,7 @@ extension PlayerCore.Ad.VASTModel {
             adVerifications: self.adVerifications + verifications,
             mp4MediaFiles: mp4MediaFiles,
             vpaidMediaFiles: vpaidMediaFiles,
+            skipOffset: skipOffset,
             clickthrough: clickthrough,
             adParameters: adParameters,
             pixels: self.pixels.merge(with: pixels),

@@ -21,8 +21,8 @@
             <Impression><![CDATA[http://localhost:3000/0/pixels/pixel.php?name=noname_impression&random=[CACHE_BUSTER]]]></Impression>
             <Creatives>
                 <Creative id="55414">
-                    <Linear>
-                        <Duration>00:00:30</Duration>
+                    <Linear skipoffset="01:01:03.123">
+                        <Duration>02:00:30</Duration>
                         <TrackingEvents>
                             <Tracking event="creativeView"><![CDATA[http://localhost:3000/6/beacons/vast/creativeView.gif]]></Tracking>
                             <Tracking event="start"><![CDATA[http://localhost:3000/6/beacons/vast/start.gif]]></Tracking>

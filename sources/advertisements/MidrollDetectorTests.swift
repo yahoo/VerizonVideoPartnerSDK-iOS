@@ -57,6 +57,7 @@ class MidrollDetectorTests: QuickSpec {
                                                       scalable: true,
                                                       maintainAspectRatio: true)],
                                 vpaidMediaFiles: [],
+                                skipOffset: .none,
                                 clickthrough: nil,
                                 adParameters: nil,
                                 pixels: .init(),

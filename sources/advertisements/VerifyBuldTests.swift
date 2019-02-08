@@ -16,6 +16,7 @@ class VerifyBuldTests: XCTestCase {
             vpaidMediaFiles: [Ad.VASTModel.VPAIDMediaFile(url: url,
                                                           scalable: false,
                                                           maintainAspectRatio: true)],
+            skipOffset: .none,
             clickthrough: nil,
             adParameters: "",
             pixels: AdPixels(),
