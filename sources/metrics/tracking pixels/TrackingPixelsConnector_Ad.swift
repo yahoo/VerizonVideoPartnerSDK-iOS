@@ -44,7 +44,7 @@ extension TrackingPixels.Connector {
             }
             
             let newCoreAdId: String? = perform {
-                guard let inline = state.vrmFinalResult.result,
+                guard let inline = state.vrmFinalResult.successResult ?? state.vrmFinalResult.failedResult,
                     let vrmResponse = state.vrmResponse else { return nil }
                 return inline.inlineVAST.id
             }
@@ -59,7 +59,7 @@ extension TrackingPixels.Connector {
             }
             
             let newCoreInfo: Ad.Metrics.Info? = perform {
-                guard let inline = state.vrmFinalResult.result,
+                guard let inline = state.vrmFinalResult.successResult ?? state.vrmFinalResult.failedResult,
                     let vrmResponse = state.vrmResponse else { return nil }
                 return Ad.Metrics.Info(metaInfo: inline.item.metaInfo)
             }
@@ -193,7 +193,8 @@ extension TrackingPixels.Connector {
         func report(with function: (Payload) -> ()) {
             func pixels() -> PlayerCore.AdPixels {
                 if let pixels = state.adInfoHolder?.pixels ??
-                                state.vrmFinalResult.result?.inlineVAST.pixels {
+                                state.vrmFinalResult.successResult?.inlineVAST.pixels ??
+                                state.vrmFinalResult.failedResult?.inlineVAST.pixels {
                     return .init(impression: pixels.impression,
                                  error: pixels.error,
                                  clickTracking: pixels.clickTracking,

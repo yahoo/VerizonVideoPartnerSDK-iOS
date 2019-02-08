@@ -27,7 +27,7 @@ final class FinishVRMGroupProcessingController {
                 currentGroup: state.vrmCurrentGroup.currentGroup,
                 erroredItems: allErroredItems,
                 processedItems: processedItems,
-                finalResult: state.vrmFinalResult.result)
+                finalResult: state.vrmFinalResult.successResult)
     }
     
     func process(with timeout: VRMProcessingTimeout,
