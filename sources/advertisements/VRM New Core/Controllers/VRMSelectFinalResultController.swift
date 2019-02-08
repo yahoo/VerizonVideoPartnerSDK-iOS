@@ -17,7 +17,7 @@ final class VRMSelectFinalResultController {
         process(processingResults: state.vrmProcessingResult.processedAds,
                 currentGroup: state.vrmCurrentGroup.currentGroup,
                 isMaxAdSearchTimeoutReached: state.vrmMaxAdSearchTimeout.isReached,
-                finalResult: state.vrmFinalResult.result,
+                finalResult: state.vrmFinalResult.successResult,
                 topPriorityItem: state.vrmTopPriorityItem.item)
     }
     
