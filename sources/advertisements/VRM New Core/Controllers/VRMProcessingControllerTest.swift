@@ -19,10 +19,15 @@ class VRMProcessingControllerTest: XCTestCase {
     let wrapperErrorActionComparator = ActionComparator<VRMCore.TooManyIndirections> {
         $0.item == $1.item
     }
+    let otherErrorActionComparator = ActionComparator<VRMCore.OtherError> {
+        $0.item == $1.item
+    }
     
     let wrapperUrl = URL(string: "http://test.com")!
     var wrapper: VRMCore.VASTModel!
     var adModel: PlayerCore.Ad.VASTModel!
+    var vpaidInline: VRMCore.VASTModel!
+    var emptyInline: VRMCore.VASTModel!
     var inline: VRMCore.VASTModel!
     var vastItem: VRMCore.Item!
     var urlItem: VRMCore.Item!
@@ -35,18 +40,43 @@ class VRMProcessingControllerTest: XCTestCase {
                                              vendor: "",
                                              name: nil,
                                              cpm: nil)
+        let vpaidMediaFile = PlayerCore.Ad.VASTModel.VPAIDMediaFile(url: URL(string:"http://vpaid.com")!,
+                                                                    scalable: true,
+                                                                    maintainAspectRatio: true)
+        let mp4MEdiaFile = PlayerCore.Ad.VASTModel.MP4MediaFile(url: URL(string:"http://mp4.com")!,
+                                                                width: 1,
+                                                                height: 1,
+                                                                scalable: true,
+                                                                maintainAspectRatio: true)
         wrapper = VRMCore.VASTModel.wrapper(.init(tagURL: wrapperUrl,
                                                   adVerifications: [],
                                                   pixels: .init()))
         adModel = .init(adVerifications: [],
-                        mp4MediaFiles: [],
-                        vpaidMediaFiles: [],
+                        mp4MediaFiles: [mp4MEdiaFile],
+                        vpaidMediaFiles: [vpaidMediaFile],
                         skipOffset: .none,
                         clickthrough: nil,
                         adParameters: nil,
                         pixels: .init(),
                         id: nil)
-        inline = VRMCore.VASTModel.inline(adModel)
+        
+        inline = .inline(adModel)
+        emptyInline = .inline(.init(adVerifications: [],
+                                    mp4MediaFiles: [],
+                                    vpaidMediaFiles: [],
+                                    skipOffset: .none,
+                                    clickthrough: nil,
+                                    adParameters: nil,
+                                    pixels: .init(),
+                                    id: nil))
+        vpaidInline = .inline(.init(adVerifications: [],
+                                    mp4MediaFiles: [],
+                                    vpaidMediaFiles: [vpaidMediaFile],
+                                    skipOffset: .none,
+                                    clickthrough: nil,
+                                    adParameters: nil,
+                                    pixels: .init(),
+                                    id: nil))
         vastItem = VRMCore.Item(source: .vast(""), metaInfo: metaInfo)
         urlItem = VRMCore.Item(source: .url(URL(string: "http://ad.com")!), metaInfo: metaInfo)
     }
@@ -59,6 +89,7 @@ class VRMProcessingControllerTest: XCTestCase {
     
     func testSelectInlineModel() {
         let sut = VRMProcessingController(maxRedirectCount: maxRedirectCount,
+                                          isVPAIDAllowed: true,
                                           dispatch: recorder.hook("testSelectInlineModel", cmp: selectInlineAdActionComparator.compare))
         
         recorder.record {
@@ -74,6 +105,7 @@ class VRMProcessingControllerTest: XCTestCase {
     
     func testWrapperModel() {
         let sut = VRMProcessingController(maxRedirectCount: maxRedirectCount,
+                                          isVPAIDAllowed: true,
                                           dispatch: recorder.hook("testWrapperModel", cmp: unwrapItemActionComparator.compare))
         
         recorder.record {
@@ -89,6 +121,7 @@ class VRMProcessingControllerTest: XCTestCase {
     
     func testMaxAdSearchTime() {
         let sut = VRMProcessingController(maxRedirectCount: maxRedirectCount,
+                                          isVPAIDAllowed: true,
                                           dispatch: recorder.hook("testMaxAdSearchTime", cmp: unwrapItemActionComparator.compare))
         
         recorder.record {
@@ -106,7 +139,9 @@ class VRMProcessingControllerTest: XCTestCase {
         let parsingQueue: [VRMCore.Item: VRMParsingResult.Result] = [urlItem: .init(vastModel: wrapper)]
         
         let hook = recorder.hook("testMaxRedirectCount", cmp: wrapperErrorActionComparator.compare)
-        let sut = VRMProcessingController(maxRedirectCount: maxRedirectCount, dispatch: hook)
+        let sut = VRMProcessingController(maxRedirectCount: maxRedirectCount,
+                                          isVPAIDAllowed: true,
+                                          dispatch: hook)
         
         
         recorder.record {
@@ -121,6 +156,40 @@ class VRMProcessingControllerTest: XCTestCase {
         
         recorder.verify {
             sut.dispatch(VRMCore.tooManyIndirections(item: urlItem))
+        }
+    }
+    
+    func testEmptyAdModel() {
+        let hook = recorder.hook("testEmptyAdModel", cmp: otherErrorActionComparator.compare)
+        let sut = VRMProcessingController(maxRedirectCount: maxRedirectCount,
+                                          isVPAIDAllowed: true,
+                                          dispatch: hook)
+        
+        recorder.record {
+            sut.process(parsingResultQueue: [urlItem: .init(vastModel: emptyInline)],
+                        scheduledVRMItems: [urlItem: Set()],
+                        isMaxAdSearchTimeoutReached: false)
+        }
+        
+        recorder.verify {
+            sut.dispatch(VRMCore.otherError(item: urlItem))
+        }
+    }
+    
+    func testNoAllowedVPAID() {
+        let hook = recorder.hook("testNoAllowedVPAID", cmp: otherErrorActionComparator.compare)
+        let sut = VRMProcessingController(maxRedirectCount: maxRedirectCount,
+                                          isVPAIDAllowed: false,
+                                          dispatch: hook)
+        
+        recorder.record {
+            sut.process(parsingResultQueue: [urlItem: .init(vastModel: vpaidInline)],
+                        scheduledVRMItems: [urlItem: Set()],
+                        isMaxAdSearchTimeoutReached: false)
+        }
+        
+        recorder.verify {
+            sut.dispatch(VRMCore.otherError(item: urlItem))
         }
     }
 }

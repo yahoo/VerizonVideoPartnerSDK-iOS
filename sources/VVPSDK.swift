@@ -430,7 +430,9 @@ public struct VVPSDK {
                                                             groupsMapper: mapGroups) { url in
                                                                 self.vrmProvider.requestAds(with: createRequest(url))
             }
-            let processingController = VRMProcessingController(maxRedirectCount: maxRedirectCount, dispatch: dispatcher)
+            let processingController = VRMProcessingController(maxRedirectCount: maxRedirectCount,
+                                                               isVPAIDAllowed: isVPAIDAllowed,
+                                                               dispatch: dispatcher)
            
             let timeoutController = VRMTimeoutController(dispatch: dispatcher,
                                                          softTimeoutTimerFactory: { onFire in

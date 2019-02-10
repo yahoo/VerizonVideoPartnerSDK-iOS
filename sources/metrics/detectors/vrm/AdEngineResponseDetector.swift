@@ -21,6 +21,7 @@ extension Detectors {
             let erroredItems = state.vrmRedirectError.erroredItems
                 .union(state.vrmFetchingError.erroredItems)
                 .union(state.vrmParsingError.erroredItems)
+                .union(state.vrmOtherError.erroredItems)
             return process(timeoutBarrier: state.timeoutBarrier,
                            completedItems: Set(state.vrmProcessingResult.processedAds.map{$0.item}),
                            timeoutedTimes: state.vrmTimeoutError.erroredItems,
