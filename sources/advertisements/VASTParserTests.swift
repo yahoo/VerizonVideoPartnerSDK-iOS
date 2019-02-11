@@ -125,17 +125,24 @@ class VASTParserTests: XCTestCase {
         XCTAssertEqual(vpaidModel.pixels.collapse.first?.absoluteString, url + "collapse.gif")
     }
     
-    func testParseAdSkipInTime() {
+    func testParseSkipOffsetInTime() {
         let vast = getVAST(atPath: "VAST1")
         guard let model = VASTParser.parseFrom(string: vast) else { return XCTFail("Failed to parse VAST VPAID xml") }
         guard case let .inline(vpaidModel) = model else { return XCTFail() }
-        XCTAssertEqual(vpaidModel.skipOffset, .time(3663.123))
+        XCTAssertEqual(vpaidModel.skipOffset, .time(3663))
     }
     
-    func testParseAdSkipInPersentage() {
+    func testParseSkipOffsetInPersentage() {
         let vast = getVAST(atPath: "VASTExampleCDATA")
         guard let model = VASTParser.parseFrom(string: vast) else { return XCTFail("Failed to parse VAST VPAID xml") }
         guard case let .inline(vpaidModel) = model else { return XCTFail() }
         XCTAssertEqual(vpaidModel.skipOffset, .percentage(32))
+    }
+    
+    func testParseNotValidSkipOffsetInTime() {
+        let vast = getVAST(atPath: "VASTVerificationInExtension")
+        guard let model = VASTParser.parseFrom(string: vast) else { return XCTFail("Failed to parse VAST VPAID xml") }
+        guard case let .inline(vpaidModel) = model else { return XCTFail() }
+        XCTAssertEqual(vpaidModel.skipOffset, .none)
     }
 }

@@ -137,11 +137,13 @@ enum VASTParser {
             delegate.didStartElement = .some { (name, attr) -> Void in
                 if let skipOffset = attr["skipoffset"] {
                     if skipOffset.contains("%") {
-                        guard let value = Int(skipOffset.replacingOccurrences(of: "%", with: "")) else { return }
-                        inlineContext.skipOffset = .percentage(value)
+                        if let value = Int(skipOffset.replacingOccurrences(of: "%", with: "")) {
+                            inlineContext.skipOffset = .percentage(value)
+                        }
                     } else if skipOffset.contains(":") {
-                        guard let value = parseTime(from: skipOffset) else { return }
-                        inlineContext.skipOffset = .time(value)
+                        if let value = VASTTime(with: skipOffset)?.seconds {
+                            inlineContext.skipOffset = .time(Double(value))
+                        }
                     }
                 }
                 
@@ -505,19 +507,60 @@ enum VASTParser {
         return delegateStack
     }
     
-    static func parseTime(from string: String) -> Double? {
-        let components = string.components(separatedBy: ":")
-        guard components.count == 3 else { return nil }
-        return components
-            .compactMap(Double.init)
-            .enumerated()
-            .map {
-                let multipliers: [Double] = [3600, 60, 1]
-                return $0.element * multipliers[$0.offset]
+    struct VASTTime {
+        enum Time {
+            case hours([String])
+            case minutes([String])
+            case seconds([String])
+            
+            private var maxValue: Int {
+                switch self {
+                case .hours: return 99
+                case .minutes, .seconds: return 59
+                }
             }
-            .reduce(0.0, +)
+            private var multiplier: Int {
+                switch self {
+                case .hours: return 3600
+                case .minutes: return 60
+                case .seconds: return 1
+                }
+            }
+            private var index: Int {
+                switch self {
+                case .hours: return 0
+                case .minutes: return 1
+                case .seconds: return 2
+                }
+            }
+            private var stringTime: String {
+                switch self {
+                case .hours(let value): return value[self.index]
+                case .minutes(let value): return value[self.index]
+                case .seconds(let value): return value[self.index]
+                }
+            }
+            
+            var resultInSeconds: Int? {
+                guard let roundedSeconds = Double(self.stringTime)?.rounded() else { return nil }
+                let result = Int(roundedSeconds)
+                guard result <= maxValue else { return nil }
+                return result * multiplier
+            }
+            
+        }
+        
+        let seconds: Int
+        
+        init?(with time: String) {
+            let components = time.components(separatedBy: ":")
+            guard components.count == 3,
+                let hours = Time.hours(components).resultInSeconds,
+                let minutes = Time.minutes(components).resultInSeconds,
+                let seconds = Time.seconds(components).resultInSeconds else { return nil }
+            self.seconds = hours + minutes + seconds
+        }
     }
-
     
     //swiftlint:disable line_length
     //swiftlint:enable function_body_length
