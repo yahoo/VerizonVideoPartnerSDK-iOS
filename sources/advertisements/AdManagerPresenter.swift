@@ -4,7 +4,7 @@ import Foundation
 import PlayerCore
 
 struct AdManagerActions<Result> {
-    var skipPreroll = nop() as Action<UUID>
+    var dropPreroll = nop() as Action<UUID>
     var startPreroll = nop() as Action<Result>
 }
 
@@ -65,7 +65,7 @@ final class AdManager<Result> {
                 if let model = result {
                     self.actions.startPreroll(model)
                 } else {
-                    self.actions.skipPreroll(id)
+                    self.actions.dropPreroll(id)
                 }
             }
         }

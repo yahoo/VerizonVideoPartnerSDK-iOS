@@ -96,7 +96,7 @@ class MidrollDetector {
             state.lastPrefetchedMidroll = midroll
             state.prefetchedModel = nil
             guard let model = model else {
-                dispatcher(PlayerCore.skipAd(id: midroll.id))
+                dispatcher(PlayerCore.dropAd(id: midroll.id))
                 return
             }
             dispatcher(PlayerCore.playAd(model: model,
