@@ -386,7 +386,7 @@ public struct VVPSDK {
                                       dispatcher: dispatcher)
             
             weak var player = player
-            adManager.actions.skipPreroll = { player?.skipAd(id: $0) }
+            adManager.actions.dropPreroll = { player?.dropAd(id: $0) }
             adManager.actions.startPreroll = { player?.playAd(model: $0) }
             let _ = player?.addObserver { playerProps in
                 guard let item = playerProps.playbackItem else { return }

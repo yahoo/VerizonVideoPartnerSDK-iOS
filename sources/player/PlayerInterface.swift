@@ -223,8 +223,8 @@ extension Player {
         dispatch(action: PlayerCore.adPlaybackIsFailed(error: error))
     }
     
-    func skipAd(id: UUID) {
-        dispatch(action: PlayerCore.skipAd(id: id))
+    func dropAd(id: UUID) {
+        dispatch(action: PlayerCore.dropAd(id: id))
     }
 }
 

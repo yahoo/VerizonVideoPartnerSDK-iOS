@@ -34,7 +34,7 @@ class AdManagerPresenterTests: QuickSpec {
                                 XCTFail("Expecting AdRequest with advertisement ID!")
                             }
                     })
-                    adManager?.actions.skipPreroll = recorder.hook("skip preroll")
+                    adManager?.actions.dropPreroll = recorder.hook("drop preroll")
                     adManager?.actions.startPreroll = recorder.hook("start preroll")
                 }
             }
@@ -74,7 +74,7 @@ class AdManagerPresenterTests: QuickSpec {
                 recorder.verify {}
             }
             
-            it("should skip preroll") {
+            it("should drop preroll") {
                 recorder.record {
                     adManager.props.preroll.count = 1
                     adManager.props.preroll.number = 0
@@ -92,7 +92,7 @@ class AdManagerPresenterTests: QuickSpec {
                 }
                 
                 recorder.verify {
-                    adManager.actions.skipPreroll(adID!)
+                    adManager.actions.dropPreroll(adID!)
                 }
                 
                 recorder.record {

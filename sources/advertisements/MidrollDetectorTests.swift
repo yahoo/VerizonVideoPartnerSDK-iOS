@@ -40,7 +40,7 @@ class MidrollDetectorTests: QuickSpec {
                             guard let targetShowAdCreative = targetShowAdCreatives.first,
                                 let recordShowAdCreative = recordShowAdCreatives.first else { return false }
                             return targetShowAdCreative.url == recordShowAdCreative.url
-                        case (let targetSkipAd as SkipAd, let recordSkipAd as SkipAd):
+                        case (let targetSkipAd as DropAd, let recordSkipAd as DropAd):
                             return targetSkipAd.id == recordSkipAd.id
                         default: return false
                         }
@@ -185,7 +185,7 @@ class MidrollDetectorTests: QuickSpec {
                     
                     recorder.verify {
                         guard let midrollId = midrollDetector.state.lastPrefetchedMidroll?.id else { return XCTFail("Got nil midroll id") }
-                        midrollDetector.dispatcher(PlayerCore.skipAd(id: midrollId))
+                        midrollDetector.dispatcher(PlayerCore.dropAd(id: midrollId))
                     }
                 }
                 
