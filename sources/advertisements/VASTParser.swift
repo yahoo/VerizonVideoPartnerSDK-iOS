@@ -142,7 +142,7 @@ enum VASTParser {
                         }
                     } else if skipOffset.contains(":") {
                         if let value = VASTTime(with: skipOffset)?.seconds {
-                            inlineContext.skipOffset = .time(Double(value))
+                            inlineContext.skipOffset = .time(value)
                         }
                     }
                 }
