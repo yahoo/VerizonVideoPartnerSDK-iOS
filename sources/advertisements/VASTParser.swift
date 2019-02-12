@@ -48,6 +48,7 @@ enum VASTParser {
         var adParameters: String?
         var mp4MediaFiles: [PlayerCore.Ad.VASTModel.MP4MediaFile] = []
         var vpaidMediaFiles: [PlayerCore.Ad.VASTModel.VPAIDMediaFile] = []
+        var skipOffset: PlayerCore.Ad.VASTModel.SkipOffset = .none
     }
     
     struct AdVerification {
@@ -134,6 +135,18 @@ enum VASTParser {
             }
             
             delegate.didStartElement = .some { (name, attr) -> Void in
+                if let skipOffset = attr["skipoffset"] {
+                    if skipOffset.contains("%") {
+                        if let value = Int(skipOffset.replacingOccurrences(of: "%", with: "")) {
+                            inlineContext.skipOffset = .percentage(value)
+                        }
+                    } else if skipOffset.contains(":") {
+                        if let value = VASTTime(with: skipOffset)?.seconds {
+                            inlineContext.skipOffset = .time(Double(value))
+                        }
+                    }
+                }
+                
                 switch name {
                 case "Extensions":
                     delegateStack.push(XML.Delegate(setup: { delegate in
@@ -449,6 +462,7 @@ enum VASTParser {
                                 with: adId,
                                 to: { context in
                                     delegateStack.pop()
+                                    
                                     guard result == nil else { fatalError("Result overwrite detected") }
                                     guard !context.vpaidMediaFiles.isEmpty || !context.mp4MediaFiles.isEmpty else { return }
                                     
@@ -466,6 +480,7 @@ enum VASTParser {
                                     let model = PlayerCore.Ad.VASTModel(adVerifications: adVerifications,
                                                                         mp4MediaFiles: context.mp4MediaFiles,
                                                                         vpaidMediaFiles: context.vpaidMediaFiles,
+                                                                        skipOffset: context.skipOffset,
                                                                         clickthrough: context.clickthroughURL,
                                                                         adParameters: context.adParameters,
                                                                         pixels: context.pixels,
@@ -491,6 +506,62 @@ enum VASTParser {
         
         return delegateStack
     }
+    
+    struct VASTTime {
+        enum Time {
+            case hours([String])
+            case minutes([String])
+            case seconds([String])
+            
+            private var maxValue: Int {
+                switch self {
+                case .hours: return 99
+                case .minutes, .seconds: return 59
+                }
+            }
+            private var multiplier: Int {
+                switch self {
+                case .hours: return 3600
+                case .minutes: return 60
+                case .seconds: return 1
+                }
+            }
+            private var index: Int {
+                switch self {
+                case .hours: return 0
+                case .minutes: return 1
+                case .seconds: return 2
+                }
+            }
+            private var stringTime: String {
+                switch self {
+                case .hours(let value): return value[self.index]
+                case .minutes(let value): return value[self.index]
+                case .seconds(let value): return value[self.index]
+                }
+            }
+            
+            var resultInSeconds: Int? {
+                guard let roundedSeconds = Double(self.stringTime)?.rounded() else { return nil }
+                let result = Int(roundedSeconds)
+                guard result <= maxValue else { return nil }
+                return result * multiplier
+            }
+            
+        }
+        
+        let seconds: Int
+        
+        init?(with time: String) {
+            let components = time.components(separatedBy: ":")
+            guard components.count == 3,
+                let hours = Time.hours(components).resultInSeconds,
+                let minutes = Time.minutes(components).resultInSeconds,
+                let seconds = Time.seconds(components).resultInSeconds else { return nil }
+            self.seconds = hours + minutes + seconds
+        }
+    }
+    
     //swiftlint:disable line_length
     //swiftlint:enable function_body_length
     //swiftlint:enable cyclomatic_complexity

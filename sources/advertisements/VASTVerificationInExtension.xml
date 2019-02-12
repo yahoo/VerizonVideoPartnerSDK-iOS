@@ -10,7 +10,7 @@
             <Impression><![CDATA[http://localhost:3000/6/beacons/vast/impression.gif?int=123&str=abc&macro=[HELLO]&url=https%3A%2F%2Fexample.com%2Fpath]]></Impression>
             <Creatives>
                 <Creative>
-                    <Linear>
+                    <Linear skipoffset="01.5:60:64.123">
                         <Duration>
                             <![CDATA[00:00:30]]>
                         </Duration>

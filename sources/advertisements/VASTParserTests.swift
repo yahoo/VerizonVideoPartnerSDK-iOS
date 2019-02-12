@@ -27,7 +27,7 @@ class VASTParserTests: XCTestCase {
         guard case let .inline(inlineModel) = model else { return XCTFail() }
         guard let url = inlineModel.mp4MediaFiles.first?.url.absoluteString else { return XCTFail() }
         XCTAssertEqual(url,
-            "https://dev.example.com/videos/2018/video_example_1280x720.mp4")
+                       "https://dev.example.com/videos/2018/video_example_1280x720.mp4")
         XCTAssertEqual(inlineModel.id, "4203085")
     }
     
@@ -69,7 +69,7 @@ class VASTParserTests: XCTestCase {
         let vast = getVAST(atPath: "VAST1")
         guard let model = VASTParser.parseFrom(string: vast) else { return XCTFail() }
         guard case .inline(let inlineModel) = model else { return XCTFail() }
-
+        
         XCTAssertEqual(inlineModel.adVerifications.count, 1)
         guard let adVerification = inlineModel.adVerifications.first else { return XCTFail("Missing AdVerification") }
         
@@ -123,5 +123,26 @@ class VASTParserTests: XCTestCase {
         XCTAssertEqual(vpaidModel.pixels.acceptInvitation.first?.absoluteString, url + "acceptInvitation.gif")
         XCTAssertEqual(vpaidModel.pixels.close.first?.absoluteString, url + "close.gif")
         XCTAssertEqual(vpaidModel.pixels.collapse.first?.absoluteString, url + "collapse.gif")
+    }
+    
+    func testParseSkipOffsetInTime() {
+        let vast = getVAST(atPath: "VAST1")
+        guard let model = VASTParser.parseFrom(string: vast) else { return XCTFail("Failed to parse VAST VPAID xml") }
+        guard case let .inline(vpaidModel) = model else { return XCTFail() }
+        XCTAssertEqual(vpaidModel.skipOffset, .time(3663))
+    }
+    
+    func testParseSkipOffsetInPersentage() {
+        let vast = getVAST(atPath: "VASTExampleCDATA")
+        guard let model = VASTParser.parseFrom(string: vast) else { return XCTFail("Failed to parse VAST VPAID xml") }
+        guard case let .inline(vpaidModel) = model else { return XCTFail() }
+        XCTAssertEqual(vpaidModel.skipOffset, .percentage(32))
+    }
+    
+    func testParseNotValidSkipOffsetInTime() {
+        let vast = getVAST(atPath: "VASTVerificationInExtension")
+        guard let model = VASTParser.parseFrom(string: vast) else { return XCTFail("Failed to parse VAST VPAID xml") }
+        guard case let .inline(vpaidModel) = model else { return XCTFail() }
+        XCTAssertEqual(vpaidModel.skipOffset, .none)
     }
 }
