@@ -408,12 +408,12 @@ public struct VVPSDK {
         
         func setupVRMWithNewCore() {
             let maxRedirectCount = player.model.adSettings.maxVASTWrapperRedirectCount
-            let prefetchOffset = player.model.adSettings.prefetchingOffset
             let maxAdSearchTime = player.model.adSettings.maxSearchTime
             let createRequest: (URL) -> (URLRequest) = {
                 .init(url: $0, timeoutInterval: hardTimeout)
             }
-            let adStartProcessing = StartAdProcessingController(prefetchOffset: prefetchOffset, dispatch: dispatcher)
+            let prerollProcessor = VRMPrerollProcessorController(dispatch: dispatcher)
+            let midrollProcessor = VRMMidrollProcessorController(dispatch: dispatcher)
             let startGroupProcessing = StartVRMGroupProcessingController(dispatch: dispatcher)
             let finishGroupProcessing = FinishVRMGroupProcessingController(dispatch: dispatcher)
             let itemController = VRMItemController(dispatch: dispatcher)
@@ -466,7 +466,8 @@ public struct VVPSDK {
             }
             
             _ = player.addObserver { playerProps in
-                adStartProcessing.process(props: playerProps)
+                prerollProcessor.process(props: playerProps)
+                midrollProcessor.process(props: playerProps)
             }
         }
         

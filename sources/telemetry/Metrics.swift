@@ -159,7 +159,9 @@ extension Telemetry.Metrics {
         }
         
         func process(state: PlayerCore.State) {
-            guard let ruleId = state.adInfoHolder?.info.ruleId else { return }
+            let newCoreResult = state.vrmFinalResult.successResult ?? state.vrmFinalResult.failedResult
+            guard let ruleId = state.adInfoHolder?.info.ruleId ??
+                 newCoreResult?.item.metaInfo.ruleId else { return }
             process(isTimeoutReached: state.adKill == .adStartTimeout, for: ruleId)
         }
         func process(isTimeoutReached: Bool, for ruleId: String) {
@@ -187,7 +189,9 @@ extension Telemetry.Metrics {
         }
         
         func process(state: PlayerCore.State) {
-            guard let ruleId = state.adInfoHolder?.info.ruleId else { return }
+            let newCoreResult = state.vrmFinalResult.successResult ?? state.vrmFinalResult.failedResult
+            guard let ruleId = state.adInfoHolder?.info.ruleId ??
+            newCoreResult?.item.metaInfo.ruleId  else { return }
             
             abuseEventReporter.process(abusedEvents: state.vpaidErrors.abusedEvents,
                                        forRuleId: ruleId)
@@ -322,19 +326,20 @@ extension Telemetry.Metrics {
         }
         
         func process(state: PlayerCore.State) {
-            guard let ruleId = state.adInfoHolder?.info.ruleId else { return }
-            let isMeasurementStarted: Bool = {
+            let newCoreResult = state.vrmFinalResult.successResult ?? state.vrmFinalResult.failedResult
+            guard let ruleId = state.adInfoHolder?.info.ruleId ?? newCoreResult?.item.metaInfo.ruleId else { return }
+            let isMeasurementStarted: Bool = perform {
                 guard case .active = state.openMeasurement else { return false }
                 return true
-            }()
-            let measurementError: Error? = {
+            }
+            let measurementError: Error? = perform {
                 guard case .failed(let error) = state.openMeasurement else { return nil }
                 return error
-            }()
-            let fetchingError: Error? = {
+            }
+            let fetchingError: Error? = perform {
                 guard case .failed(let error) = state.serviceScript else { return nil }
                 return error
-            }()
+            }
             successInitializationReporter.process(isMeasurementStarted: isMeasurementStarted,
                                                   forRuleId: ruleId)
             scriptFetchingFailedReporter.process(with: fetchingError)
