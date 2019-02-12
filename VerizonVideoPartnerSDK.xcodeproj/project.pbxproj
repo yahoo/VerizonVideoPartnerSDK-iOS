@@ -298,7 +298,7 @@
 		E2604397220379F10034FC48 /* VRMRequestDetectorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2604396220379F10034FC48 /* VRMRequestDetectorTest.swift */; };
 		E26043FA220885B70034FC48 /* AdEngineResponseDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26043F5220885B60034FC48 /* AdEngineResponseDetector.swift */; };
 		E26043FB220885B70034FC48 /* AdEngineResponseDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26043F5220885B60034FC48 /* AdEngineResponseDetector.swift */; };
-		E26043FE220885C10034FC48 /* AdEngineResponseDetectorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26043F9220885B60034FC48 /* AdEngineResponseDetectorTest.swift */; };
+		E26043FE220885C10034FC48 /* AdEngineResponseDetectorSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26043F9220885B60034FC48 /* AdEngineResponseDetectorSpec.swift */; };
 		E2629D07211228FA006ED117 /* TelemetryMetricsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2629D06211228FA006ED117 /* TelemetryMetricsTest.swift */; };
 		E2629D3C21147ECE006ED117 /* NoVpaidUrlFixture.json in Resources */ = {isa = PBXBuildFile; fileRef = E2629D3521147ECE006ED117 /* NoVpaidUrlFixture.json */; };
 		E287B08C21F884A900FC49AA /* VRMSelectFinalResultController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E287B08B21F884A900FC49AA /* VRMSelectFinalResultController.swift */; };
@@ -659,7 +659,7 @@
 		E2604390220379740034FC48 /* VRMRequestDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VRMRequestDetector.swift; sourceTree = "<group>"; };
 		E2604396220379F10034FC48 /* VRMRequestDetectorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VRMRequestDetectorTest.swift; sourceTree = "<group>"; };
 		E26043F5220885B60034FC48 /* AdEngineResponseDetector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdEngineResponseDetector.swift; sourceTree = "<group>"; };
-		E26043F9220885B60034FC48 /* AdEngineResponseDetectorTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdEngineResponseDetectorTest.swift; sourceTree = "<group>"; };
+		E26043F9220885B60034FC48 /* AdEngineResponseDetectorSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdEngineResponseDetectorSpec.swift; sourceTree = "<group>"; };
 		E2629D06211228FA006ED117 /* TelemetryMetricsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TelemetryMetricsTest.swift; path = sources/telemetry/TelemetryMetricsTest.swift; sourceTree = "<group>"; };
 		E2629D3521147ECE006ED117 /* NoVpaidUrlFixture.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = NoVpaidUrlFixture.json; sourceTree = "<group>"; };
 		E287B08B21F884A900FC49AA /* VRMSelectFinalResultController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VRMSelectFinalResultController.swift; sourceTree = "<group>"; };
@@ -1000,7 +1000,7 @@
 				E2FD5AEB2203413E007EBE86 /* AdEngineRequestDetector.swift */,
 				E2FD5AEE2203414D007EBE86 /* AdEngineRequestDetectorTest.swift */,
 				E26043F5220885B60034FC48 /* AdEngineResponseDetector.swift */,
-				E26043F9220885B60034FC48 /* AdEngineResponseDetectorTest.swift */,
+				E26043F9220885B60034FC48 /* AdEngineResponseDetectorSpec.swift */,
 			);
 			path = vrm;
 			sourceTree = "<group>";
@@ -2004,7 +2004,7 @@
 				06D14E342203699000195483 /* AdCreativeTestData.swift in Sources */,
 				E2D649A8208A431D00152ADE /* VideoImpressionTest.swift in Sources */,
 				068B16522201E15C003ABD69 /* VPAIDAdCreativeControllerTest.swift in Sources */,
-				E26043FE220885C10034FC48 /* AdEngineResponseDetectorTest.swift in Sources */,
+				E26043FE220885C10034FC48 /* AdEngineResponseDetectorSpec.swift in Sources */,
 				50C4602C1C80C0D8002AB8AB /* VideoPlayDetectorTests.swift in Sources */,
 				067209EC21B6BF440086CDBE /* BufferingDetectorTests.swift in Sources */,
 				DE1FB2971CE48FAC00B99941 /* VRMProviderTests.swift in Sources */,

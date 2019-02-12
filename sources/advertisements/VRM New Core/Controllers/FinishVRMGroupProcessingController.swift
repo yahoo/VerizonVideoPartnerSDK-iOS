@@ -20,6 +20,7 @@ final class FinishVRMGroupProcessingController {
             .union(state.vrmFetchingError.erroredItems)
             .union(state.vrmParsingError.erroredItems)
             .union(state.vrmRedirectError.erroredItems)
+            .union(state.vrmOtherError.erroredItems)
         let processedItems = Set(state.vrmProcessingResult.processedAds.map({$0.item}))
         
         process(with: state.vrmProcessingTimeout,

@@ -7,12 +7,16 @@ import PlayerCore
 final class VRMProcessingController {
     
     let maxRedirectCount: Int
+    let isVPAIDAllowed: Bool
     let dispatch: (PlayerCore.Action) -> Void
     
     private var dispatchedResults = Set<VRMParsingResult.Result>()
     
-    init(maxRedirectCount: Int,dispatch: @escaping (PlayerCore.Action) -> Void) {
+    init(maxRedirectCount: Int,
+         isVPAIDAllowed: Bool,
+         dispatch: @escaping (PlayerCore.Action) -> Void) {
         self.maxRedirectCount = maxRedirectCount
+        self.isVPAIDAllowed = isVPAIDAllowed
         self.dispatch = dispatch
     }
     
@@ -34,9 +38,15 @@ final class VRMProcessingController {
                 dispatchedResults.contains(result) == false
             }.forEach { item, result in
                 
-                if case .inline(let vast) = result.vastModel {
-                    dispatch(VRMCore.selectInlineVAST(item: item, inlineVAST: vast))
-                } else if case .wrapper(let wrapper) = result.vastModel {
+                switch result.vastModel {
+                case .inline(let vast):
+                    let isModelContainAd = (isVPAIDAllowed && !vast.vpaidMediaFiles.isEmpty) || !vast.mp4MediaFiles.isEmpty
+                    if isModelContainAd {
+                        dispatch(VRMCore.selectInlineVAST(item: item, inlineVAST: vast))
+                    } else {
+                        dispatch(VRMCore.otherError(item: item))
+                    }
+                case .wrapper(let wrapper):
                     guard let count = scheduledVRMItems[item]?.count else {
                         assertionFailure("try to unwrap item, which wasn't started")
                         return
