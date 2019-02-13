@@ -51,6 +51,8 @@
                         <Tracking event="close"><![CDATA[http://localhost:3000/6/beacons/vast/close.gif]]></Tracking>
                         <Tracking event="acceptInvitation"><![CDATA[http://localhost:3000/6/beacons/vast/acceptInvitation.gif]]></Tracking>
                         <Tracking event="collapse"><![CDATA[http://localhost:3000/6/beacons/vast/collapse.gif]]></Tracking>
+                        <Tracking event="progress" offset="10%">
+                            <![CDATA[http://localhost:3000/6/beacons/vast/progress.gif]]></Tracking>
                     </TrackingEvents>
                     
                     <VideoClicks>

@@ -30,6 +30,9 @@
                             <Tracking event="midpoint"><![CDATA[http://localhost:3000/6/beacons/vast/midpoint.gif]]></Tracking>
                             <Tracking event="thirdQuartile"><![CDATA[http://localhost:3000/6/beacons/vast/thirdQuartile.gif]]></Tracking>
                             <Tracking event="complete"><![CDATA[http://localhost:3000/6/beacons/vast/complete.gif]]></Tracking>
+                            <Tracking event="skip"><![CDATA[http://localhost:3000/6/beacons/vast/skip.gif]]></Tracking>
+                            <Tracking event="progress" offset="00:01:00">
+                                <![CDATA[hhttp://localhost:3000/6/beacons/vast/progress.gif]]></Tracking>
                         </TrackingEvents>
                         <VideoClicks>
                             <ClickThrough><![CDATA[http://localhost:3000]]></ClickThrough>

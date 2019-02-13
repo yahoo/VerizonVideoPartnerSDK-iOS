@@ -213,7 +213,8 @@ extension TrackingPixels.Connector {
                                  acceptInvitationLinear: pixels.acceptInvitationLinear,
                                  close: pixels.close,
                                  closeLinear: pixels.closeLinear,
-                                 collapse: pixels.collapse)
+                                 collapse: pixels.collapse,
+                                 progress: pixels.progress)
                 } else {
                     fatalError("No pixels which are required to fire!")
                 }

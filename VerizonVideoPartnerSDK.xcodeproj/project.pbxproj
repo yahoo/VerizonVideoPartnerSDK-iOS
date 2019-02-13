@@ -51,6 +51,8 @@
 		06E5F33721C2CA7E0099D733 /* PlayerControls.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06E5F30D21C2C7DE0099D733 /* PlayerControls.framework */; };
 		06E5F33821C2CA7E0099D733 /* PlayerCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06E5F31D21C2C7F80099D733 /* PlayerCore.framework */; };
 		06E5F33921C2CA7E0099D733 /* VideoRenderer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06E5F31521C2C7EB0099D733 /* VideoRenderer.framework */; };
+		06EC86B72214398E00CB4A8E /* VASTParser_Offset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EC86B62214398E00CB4A8E /* VASTParser_Offset.swift */; };
+		06EC86B82214398E00CB4A8E /* VASTParser_Offset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EC86B62214398E00CB4A8E /* VASTParser_Offset.swift */; };
 		06F8DBC421C2A2D40019021D /* VRMPrerollProcessorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06F8DBC121C2A2D40019021D /* VRMPrerollProcessorController.swift */; };
 		06F8DBC521C2A2D40019021D /* VRMPrerollProcessorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06F8DBC121C2A2D40019021D /* VRMPrerollProcessorController.swift */; };
 		06F8DBC621C2A2F50019021D /* VRMPrerollProcessorControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06F8DBC021C2A2D40019021D /* VRMPrerollProcessorControllerTest.swift */; };
@@ -491,6 +493,7 @@
 		06D14E2F2203696700195483 /* AdCreativeTestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdCreativeTestData.swift; sourceTree = "<group>"; };
 		06E5F33221C2C9D40099D733 /* Autogeneratable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Autogeneratable.swift; sourceTree = "<group>"; };
 		06E6F4CC213DA6FF008BAA23 /* PlayerCore.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = PlayerCore.xcodeproj; path = PlayerCore/PlayerCore.xcodeproj; sourceTree = "<group>"; };
+		06EC86B62214398E00CB4A8E /* VASTParser_Offset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VASTParser_Offset.swift; sourceTree = "<group>"; };
 		06F8DBC021C2A2D40019021D /* VRMPrerollProcessorControllerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VRMPrerollProcessorControllerTest.swift; sourceTree = "<group>"; };
 		06F8DBC121C2A2D40019021D /* VRMPrerollProcessorController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VRMPrerollProcessorController.swift; sourceTree = "<group>"; };
 		500B20E91D1AB8D50012C3CB /* ExecuteOnce.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExecuteOnce.swift; path = detectors/display/ExecuteOnce.swift; sourceTree = "<group>"; };
@@ -1079,6 +1082,7 @@
 			children = (
 				DEF02B511D1EC0AD001F64EE /* VASTModel.swift */,
 				DE1685DC1CE732D600492A90 /* VASTParser.swift */,
+				06EC86B62214398E00CB4A8E /* VASTParser_Offset.swift */,
 				DE1685E61CE76A5D00492A90 /* VASTParserTests.swift */,
 				DE4539411D09644D00317632 /* XMLParser.swift */,
 				DEF02B581D22970A001F64EE /* VAST1.xml */,
@@ -1804,6 +1808,7 @@
 				50A11DB21D59D7E000F4A068 /* Player_VideoEvents.swift in Sources */,
 				DE07CE091DD2353C00DAE3EC /* PlayerProperties.swift in Sources */,
 				DE3DA42C1E55D9A900D34880 /* VVPSDKPlugins.swift in Sources */,
+				06EC86B82214398E00CB4A8E /* VASTParser_Offset.swift in Sources */,
 				E22B6A8621D14D1F00D480A0 /* ParseVRMItemController.swift in Sources */,
 				50A11DB51D59D7E000F4A068 /* VRMRequest.swift in Sources */,
 				DE445EE41FB347A900D50790 /* Store.swift in Sources */,
@@ -1957,6 +1962,7 @@
 				E287B08C21F884A900FC49AA /* VRMSelectFinalResultController.swift in Sources */,
 				50D36F121F334BA700DE7085 /* HeartbeatDetector.swift in Sources */,
 				50A11E091D59D9F000F4A068 /* OpenSafariUtil.swift in Sources */,
+				06EC86B72214398E00CB4A8E /* VASTParser_Offset.swift in Sources */,
 				DEB1123C1E30F56C007E65BD /* ConfigurationParser.swift in Sources */,
 				501C8BD71D1C0B8200C52AB3 /* ContextStartedDetector.swift in Sources */,
 				06B13EF22090AB13009A6645 /* AdViewTimeDetector.swift in Sources */,
