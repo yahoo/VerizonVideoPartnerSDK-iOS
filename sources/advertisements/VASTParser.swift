@@ -48,7 +48,7 @@ enum VASTParser {
         var adParameters: String?
         var mp4MediaFiles: [PlayerCore.Ad.VASTModel.MP4MediaFile] = []
         var vpaidMediaFiles: [PlayerCore.Ad.VASTModel.VPAIDMediaFile] = []
-        var skipOffset: PlayerCore.Ad.VASTModel.SkipOffset = .none
+        var skipOffset: PlayerCore.Ad.VASTModel.VASTOffset = .none
     }
     
     struct AdVerification {
@@ -136,15 +136,7 @@ enum VASTParser {
             
             delegate.didStartElement = .some { (name, attr) -> Void in
                 if let skipOffset = attr["skipoffset"] {
-                    if skipOffset.contains("%") {
-                        if let value = Int(skipOffset.replacingOccurrences(of: "%", with: "")) {
-                            inlineContext.skipOffset = .percentage(value)
-                        }
-                    } else if skipOffset.contains(":") {
-                        if let value = VASTTime(with: skipOffset)?.seconds {
-                            inlineContext.skipOffset = .time(value)
-                        }
-                    }
+                    inlineContext.skipOffset = VASTParser.getOffset(from: skipOffset)
                 }
                 
                 switch name {
@@ -218,7 +210,13 @@ enum VASTParser {
                                         case "close": inlineContext.pixels.close.append(url)
                                         case "closeLinear": inlineContext.pixels.closeLinear.append(url)
                                         case "collapse": inlineContext.pixels.collapse.append(url)
-                                        default: break }
+                                        case "progress":
+                                            guard let offset = attr["offset"] else { break }
+                                            var progressOffset = VASTParser.getOffset(from: offset)
+                                            inlineContext.pixels.progress.append(.init(url: url,
+                                                                                       offset: progressOffset))
+                                        default: break
+                                        }
                                     }
                                     
                                     delegateStack.pop()
@@ -403,6 +401,11 @@ enum VASTParser {
                                         case "close": pixels.close.append(url)
                                         case "closeLinear": pixels.closeLinear.append(url)
                                         case "collapse": pixels.collapse.append(url)
+                                        case "progress":
+                                            guard let offset = attr["offset"] else { break }
+                                            pixels.progress.append(
+                                                .init(url: url,
+                                                      offset:  VASTParser.getOffset(from: offset)))
                                         default: break }
                                     }
                                     
@@ -505,61 +508,6 @@ enum VASTParser {
         }))
         
         return delegateStack
-    }
-    
-    struct VASTTime {
-        enum Time {
-            case hours([String])
-            case minutes([String])
-            case seconds([String])
-            
-            private var maxValue: Int {
-                switch self {
-                case .hours: return 99
-                case .minutes, .seconds: return 59
-                }
-            }
-            private var multiplier: Int {
-                switch self {
-                case .hours: return 3600
-                case .minutes: return 60
-                case .seconds: return 1
-                }
-            }
-            private var index: Int {
-                switch self {
-                case .hours: return 0
-                case .minutes: return 1
-                case .seconds: return 2
-                }
-            }
-            private var stringTime: String {
-                switch self {
-                case .hours(let value): return value[self.index]
-                case .minutes(let value): return value[self.index]
-                case .seconds(let value): return value[self.index]
-                }
-            }
-            
-            var resultInSeconds: Int? {
-                guard let roundedSeconds = Double(self.stringTime)?.rounded() else { return nil }
-                let result = Int(roundedSeconds)
-                guard result <= maxValue else { return nil }
-                return result * multiplier
-            }
-            
-        }
-        
-        let seconds: Int
-        
-        init?(with time: String) {
-            let components = time.components(separatedBy: ":")
-            guard components.count == 3,
-                let hours = Time.hours(components).resultInSeconds,
-                let minutes = Time.minutes(components).resultInSeconds,
-                let seconds = Time.seconds(components).resultInSeconds else { return nil }
-            self.seconds = hours + minutes + seconds
-        }
     }
     
     //swiftlint:disable line_length

@@ -39,6 +39,9 @@
                             <Tracking event="pause">http://myTrackingURL/wrapper/pause</Tracking>
                             <Tracking event="resume">http://myTrackingURL/wrapper/resume</Tracking>
                             <Tracking event="fullscreen">http://myTrackingURL/wrapper/fullscreen</Tracking>
+                            <Tracking event="close"><![CDATA[http://myTrackingURL/wrapper/close]]></Tracking>
+                            <Tracking event="acceptInvitation"><![CDATA[http://myTrackingURL/wrapper/acceptInvitation]]></Tracking>
+                            <Tracking event="collapse"><![CDATA[http://myTrackingURL/wrapper/collapse]]></Tracking>
                         </TrackingEvents>
                     </Linear>
                 </Creative>
