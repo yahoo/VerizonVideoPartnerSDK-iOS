@@ -301,6 +301,7 @@ extension TrackingPixels.Connector {
                 report { payload in
                     reporter.sendBeacon(urls: payload.pixels.skip)
                     engineFlow(stage: .skipped, payload: payload)
+                    openMeasurementVideoEvents?.skip()
                 }
             }
         }

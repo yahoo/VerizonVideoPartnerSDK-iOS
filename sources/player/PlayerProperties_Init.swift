@@ -92,9 +92,11 @@ extension Player.Properties {
             let currentTime = Int(state.currentTime.ad.seconds.rounded())
             switch skipOffset {
             case .time(let value):
+                guard value < Int(duration) else { return nil }
                 return value - currentTime
             case .percentage(let value):
                 let offset = Int(duration.rounded() / 100 * Double(value))
+                guard offset < Int(duration) else { return nil }
                 return offset - currentTime
             default: return nil
             }
