@@ -53,6 +53,8 @@
 		06E5F33921C2CA7E0099D733 /* VideoRenderer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06E5F31521C2C7EB0099D733 /* VideoRenderer.framework */; };
 		06EC86B72214398E00CB4A8E /* VASTParser_Offset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EC86B62214398E00CB4A8E /* VASTParser_Offset.swift */; };
 		06EC86B82214398E00CB4A8E /* VASTParser_Offset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EC86B62214398E00CB4A8E /* VASTParser_Offset.swift */; };
+		06EC86CB221467C300CB4A8E /* AdSkipDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EC86CA221467C300CB4A8E /* AdSkipDetector.swift */; };
+		06EC86CD221467DE00CB4A8E /* AdSkipDetectorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EC86CC221467DE00CB4A8E /* AdSkipDetectorTest.swift */; };
 		06F8DBC421C2A2D40019021D /* VRMPrerollProcessorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06F8DBC121C2A2D40019021D /* VRMPrerollProcessorController.swift */; };
 		06F8DBC521C2A2D40019021D /* VRMPrerollProcessorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06F8DBC121C2A2D40019021D /* VRMPrerollProcessorController.swift */; };
 		06F8DBC621C2A2F50019021D /* VRMPrerollProcessorControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06F8DBC021C2A2D40019021D /* VRMPrerollProcessorControllerTest.swift */; };
@@ -494,6 +496,8 @@
 		06E5F33221C2C9D40099D733 /* Autogeneratable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Autogeneratable.swift; sourceTree = "<group>"; };
 		06E6F4CC213DA6FF008BAA23 /* PlayerCore.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = PlayerCore.xcodeproj; path = PlayerCore/PlayerCore.xcodeproj; sourceTree = "<group>"; };
 		06EC86B62214398E00CB4A8E /* VASTParser_Offset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VASTParser_Offset.swift; sourceTree = "<group>"; };
+		06EC86CA221467C300CB4A8E /* AdSkipDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdSkipDetector.swift; sourceTree = "<group>"; };
+		06EC86CC221467DE00CB4A8E /* AdSkipDetectorTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdSkipDetectorTest.swift; sourceTree = "<group>"; };
 		06F8DBC021C2A2D40019021D /* VRMPrerollProcessorControllerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VRMPrerollProcessorControllerTest.swift; sourceTree = "<group>"; };
 		06F8DBC121C2A2D40019021D /* VRMPrerollProcessorController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VRMPrerollProcessorController.swift; sourceTree = "<group>"; };
 		500B20E91D1AB8D50012C3CB /* ExecuteOnce.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExecuteOnce.swift; path = detectors/display/ExecuteOnce.swift; sourceTree = "<group>"; };
@@ -833,6 +837,15 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		06EC86C9221467A900CB4A8E /* ad skip */ = {
+			isa = PBXGroup;
+			children = (
+				06EC86CA221467C300CB4A8E /* AdSkipDetector.swift */,
+				06EC86CC221467DE00CB4A8E /* AdSkipDetectorTest.swift */,
+			);
+			path = "ad skip";
+			sourceTree = "<group>";
+		};
 		06F8DBB621C2A2A00019021D /* VRM New Core */ = {
 			isa = PBXGroup;
 			children = (
@@ -1166,30 +1179,31 @@
 		DE4C51401C80731B00BFFB0B /* detectors */ = {
 			isa = PBXGroup;
 			children = (
-				E231AA70213400F0008C5B6A /* ad max show time */,
-				069DC3DF20EA9B8C00D70B28 /* vpaid event */,
-				E2E4F702208901F300182CDF /* video impression */,
-				501AB1FC202B301200BAFA9C /* video loading */,
-				065F37232099F50800813113 /* video actions detector */,
-				501AB1E22029C67500BAFA9C /* playback cycle */,
-				501AB1E82029F58A00BAFA9C /* slot opportunity */,
-				501AB1DC2028932F00BAFA9C /* ad error */,
-				501AB1D0202892BB00BAFA9C /* ad click */,
-				06B13EEA2090AAE6009A6645 /* ad view time */,
-				50C99D502010DAC10041B013 /* vrm */,
-				FEEB8E641F4C9A09003507BE /* buffering */,
-				FEEB8E551F4C92F0003507BE /* error */,
-				FE95D44C1F3CC2A9008B1D54 /* intent */,
-				50D36F0A1F334B7900DE7085 /* heartbeat */,
 				50A5A5E31E79723000C15E12 /* 3sec playback */,
+				501AB1D0202892BB00BAFA9C /* ad click */,
+				501AB1DC2028932F00BAFA9C /* ad error */,
+				E231AA70213400F0008C5B6A /* ad max show time */,
+				06EC86C9221467A900CB4A8E /* ad skip */,
+				06B13EEA2090AAE6009A6645 /* ad view time */,
+				FEEB8E641F4C9A09003507BE /* buffering */,
 				501C8BD51D1C0B5800C52AB3 /* context started */,
 				DE4C51411C80731B00BFFB0B /* decile */,
-				DE4C51471C80731B00BFFB0B /* quartile */,
-				DE4C51441C80731B00BFFB0B /* playlist statistic */,
+				FEEB8E551F4C92F0003507BE /* error */,
+				50D36F0A1F334B7900DE7085 /* heartbeat */,
+				FE95D44C1F3CC2A9008B1D54 /* intent */,
 				061CFFF4211C723D002B5BE9 /* mute */,
+				501AB1E22029C67500BAFA9C /* playback cycle */,
+				DE4C51441C80731B00BFFB0B /* playlist statistic */,
+				DE4C51471C80731B00BFFB0B /* quartile */,
+				501AB1E82029F58A00BAFA9C /* slot opportunity */,
 				06BF538A209B46CC00B98A6D /* user actions */,
+				065F37232099F50800813113 /* video actions detector */,
+				E2E4F702208901F300182CDF /* video impression */,
+				501AB1FC202B301200BAFA9C /* video loading */,
 				DE4C514B1C80731B00BFFB0B /* video play */,
 				DE4C514E1C80731B00BFFB0B /* video time */,
+				069DC3DF20EA9B8C00D70B28 /* vpaid event */,
+				50C99D502010DAC10041B013 /* vrm */,
 			);
 			path = detectors;
 			sourceTree = "<group>";
@@ -1920,6 +1934,7 @@
 				DEB112361E30F0CE007E65BD /* Context.swift in Sources */,
 				E2604391220379740034FC48 /* VRMRequestDetector.swift in Sources */,
 				507053591DAE9700003C023A /* Memoise.swift in Sources */,
+				06EC86CB221467C300CB4A8E /* AdSkipDetector.swift in Sources */,
 				50D747751CE6235F00CB91D4 /* VRMRequest.swift in Sources */,
 				DE4C51E11C80D43200BFFB0B /* TrackingPixelsConnector.swift in Sources */,
 				50D629D320237BA5000B2F8F /* TrackingPixelsConnector_Ad.swift in Sources */,
@@ -2021,6 +2036,7 @@
 				068B16522201E15C003ABD69 /* VPAIDAdCreativeControllerTest.swift in Sources */,
 				E26043FE220885C10034FC48 /* AdEngineResponseDetectorSpec.swift in Sources */,
 				50C4602C1C80C0D8002AB8AB /* VideoPlayDetectorTests.swift in Sources */,
+				06EC86CD221467DE00CB4A8E /* AdSkipDetectorTest.swift in Sources */,
 				067209EC21B6BF440086CDBE /* BufferingDetectorTests.swift in Sources */,
 				DE1FB2971CE48FAC00B99941 /* VRMProviderTests.swift in Sources */,
 				50C4602B1C80B791002AB8AB /* PlaylistStatisticDetectorTests.swift in Sources */,
