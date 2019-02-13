@@ -291,20 +291,19 @@ extension TrackingPixels.Connector {
         
         /*Ad Max Show Time Detector*/ do {
             if adMaxShowTimerDetector.process(state: state) {
-                guard let info = adMetricsInfo else { return }
-                reporter.adEngineFlow(videoIndex: state.playlist.currentIndex,
-                                      info: info,
-                                      type: adType,
-                                      stage: .killed,
-                                      width: state.viewport.dimensions?.width,
-                                      height: state.viewport.dimensions?.height,
-                                      autoplay: model.isAutoplayEnabled,
-                                      transactionId: transactionId,
-                                      adId: adId,
-                                      videoViewUID: state.playbackSession.id.uuidString)
+                report { payload in
+                    engineFlow(stage: .killed, payload: payload)
+                }
             }
         }
-        
+        /*Ad Skip Detector*/ do {
+            if adSkipDetector.process(state: state) {
+                report { payload in
+                    reporter.sendBeacon(urls: payload.pixels.skip)
+                    engineFlow(stage: .skipped, payload: payload)
+                }
+            }
+        }
         switch state.selectedAdCreative {
         case .vpaid:
             vpaidEventsDetector.process(events: state.vpaid.events).forEach {
