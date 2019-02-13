@@ -226,6 +226,9 @@ extension Player {
     func dropAd(id: UUID) {
         dispatch(action: PlayerCore.dropAd(id: id))
     }
+    func skipAd() {
+        dispatch(action: PlayerCore.skipAd())
+    }
 }
 
 extension Player {

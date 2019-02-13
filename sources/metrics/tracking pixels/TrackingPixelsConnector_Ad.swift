@@ -232,7 +232,7 @@ extension TrackingPixels.Connector {
             let input = Detectors.AdViewTime.Input(
                 duration: state.duration.ad?.seconds,
                 currentTime: state.currentTime.ad.seconds,
-                isAdFinished: state.adTracker.isForceFinished,
+                isAdFinished: state.adTracker == .forceFinished,
                 isSessionCompleted: state.playerSession.isCompleted,
                 videoIndex: state.playlist.currentIndex,
                 vvuid: state.playbackSession.id.uuidString)
@@ -406,8 +406,8 @@ extension TrackingPixels.Connector {
         case .mp4:
             /* Playback Cycle Detector */ do {
                 let result = adPlaybackCycleDetector.process(streamPlaying: state.rate.adRate.stream,
-                                                             isSuccessfullyCompleted: state.adTracker.isSuccessfullyCompleted,
-                                                             isForceFinished: state.adTracker.isForceFinished)
+                                                             isSuccessfullyCompleted: state.adTracker == .successfullyCompleted,
+                                                             isForceFinished: state.adTracker == .forceFinished)
                 switch result {
                 case .start:
                     report { payload in
@@ -434,7 +434,7 @@ extension TrackingPixels.Connector {
             
             /* Mute/Unmute Detector */ do {
                 let result = muteDetector.process(isMuted: state.mute.player,
-                                                  isNotFinished: !state.adTracker.isForceFinished)
+                                                  isNotFinished: state.adTracker == .unknown)
                 report { payload in
                     switch result {
                     case .mute:
@@ -475,7 +475,7 @@ extension TrackingPixels.Connector {
                 }()
                 let result = openMeasurementMuteDetector.process(
                     isMuted: state.mute.player,
-                    isNotFinished: !state.adTracker.isForceFinished,
+                    isNotFinished: state.adTracker == .unknown,
                     isOMActive: isOMActive)
                 switch result {
                 case .mute:

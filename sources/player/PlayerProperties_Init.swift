@@ -86,6 +86,20 @@ extension Player.Properties {
             }
         }
         
+        let adSkipOffset: Int? = perform {
+            guard let duration = state.duration.ad?.seconds,
+                let skipOffset = state.vrmFinalResult.successResult?.inlineVAST.skipOffset else { return nil }
+            let currentTime = Int(state.currentTime.ad.seconds.rounded())
+            switch skipOffset {
+            case .time(let value):
+                return value - currentTime
+            case .percentage(let value):
+                let offset = Int(duration.rounded() / 100 * Double(value))
+                return offset - currentTime
+            default: return nil
+            }
+        }
+        
         let content: PlaybackItem.Video = perform {
             let contentIsSeeking = state.interactiveSeeking.isSeekingInProgress
             let contentShouldPlay =
@@ -198,7 +212,7 @@ extension Player.Properties {
                 averageBitrate: state.averageBitrate.ad,
                 time: time(from: state.duration.ad,
                            currentTime: state.currentTime.ad,
-                           isFinished: state.adTracker.isForceFinished), 
+                           isFinished: state.adTracker != .unknown),
                 bufferInfo: .init(progress: 0, time: CMTime.zero, milliseconds: 0),
                 pictureInPictureMode: .unsupported,
                 controlsAnimationSupport: false,
@@ -230,6 +244,7 @@ extension Player.Properties {
                 midrolls: state.ad.midrolls.filter {
                     state.ad.playedAds.contains($0.id) == false
                 },
+                adSkipOffset: adSkipOffset,
                 mp4AdCreative: state.ad.mp4AdCreative,
                 vpaidAdCreative: state.ad.vpaidAdCreative,
                 isAdPlaying: isAdPlaying,

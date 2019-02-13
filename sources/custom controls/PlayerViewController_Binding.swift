@@ -145,6 +145,12 @@ extension PlayerViewController {
                     return "Current position \(currentTimeString) of \(durationString))"
                 }
                 
+                func adSkipState() -> AdVideoControls.Props.AdSkipState {
+                    guard let adSkipOffset = item.adSkipOffset else { return .unavailable }
+                    guard adSkipOffset > 0 else { return .available(CommandWith(action: player.skipAd)) }
+                    return .awaiting(adSkipOffset)
+                }
+                
                 return AdVideoControls.Props(
                     mainAction: item.ad.isPlaying
                         ? .pause(CommandWith(action: player.pause))
@@ -158,7 +164,8 @@ extension PlayerViewController {
                         : nil,
                     click: click(),
                     isLoading: item.ad.isBuffering || item.ad.time.isUnknown,
-                    airplayActiveViewHidden: item.ad.airPlay != .active
+                    airplayActiveViewHidden: item.ad.airPlay != .active,
+                    adSkipState: adSkipState()
                 )
             }
             
