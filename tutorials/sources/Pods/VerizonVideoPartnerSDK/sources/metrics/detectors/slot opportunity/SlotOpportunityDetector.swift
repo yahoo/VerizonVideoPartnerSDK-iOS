@@ -8,26 +8,17 @@ extension Detectors {
         var playbackInitiated = false
         var sessionID: UUID?
         
-        func process(sessionID: UUID,
-                     adPlaying: Bool,
-                     adSkipped: Bool,
-                     adFailed: Bool,
-                     contentPlaying: Bool) -> Bool {
+        func process(sessionID: UUID, playbackStarted: Bool) -> Bool {
             if self.sessionID != sessionID {
                 self.sessionID = sessionID
                 playbackInitiated = false
             }
             
-            guard playbackInitiated == false else { return false }
-            switch (adSkipped, contentPlaying, adPlaying, adFailed) {
-            case (true, true, _, false),
-                 (_, true, _, true),
-                 (false, _, true, false):
-                playbackInitiated = true
-                return true
-                
-            default: return false
-            }
+            guard playbackInitiated == false,
+                playbackStarted else { return false }
+            
+            playbackInitiated = true
+            return true
         }
     }
 }

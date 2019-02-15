@@ -21,7 +21,9 @@ extension PlayerCore.Ad.VASTModel {
     func merge(with pixels: AdPixels, and verifications: [PlayerCore.Ad.VASTModel.AdVerification]) -> PlayerCore.Ad.VASTModel {
         return PlayerCore.Ad.VASTModel(
             adVerifications: self.adVerifications + verifications,
-            mediaFiles: mediaFiles,
+            mp4MediaFiles: mp4MediaFiles,
+            vpaidMediaFiles: vpaidMediaFiles,
+            skipOffset: skipOffset,
             clickthrough: clickthrough,
             adParameters: adParameters,
             pixels: self.pixels.merge(with: pixels),
@@ -50,7 +52,8 @@ extension PlayerCore.AdPixels {
             acceptInvitationLinear: acceptInvitationLinear + pixels.acceptInvitationLinear,
             close: close + pixels.close,
             closeLinear: closeLinear + pixels.closeLinear,
-            collapse: collapse + pixels.collapse
+            collapse: collapse + pixels.collapse,
+            progress: progress + pixels.progress
         )
     }
 }

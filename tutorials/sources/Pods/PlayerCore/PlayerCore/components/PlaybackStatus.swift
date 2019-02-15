@@ -2,7 +2,7 @@
 //  Licensed under the terms of the MIT License. See LICENSE.md file in project root for terms.
 import Foundation
 
-public enum Status {
+public enum Status: Hashable {
     case unknown
     case ready
     case errored(NSError)
@@ -50,16 +50,4 @@ public func reduce(state: PlaybackStatus, action: Action) -> PlaybackStatus {
         content: reduceContent(state: state.content, action: action),
         ad: reduceAd(state: state.ad, action: action)
     )
-}
-
-extension Status: Equatable {
-    public static func ==(lhs: Status, rhs: Status) -> Bool {
-        switch (lhs, rhs) {
-        case (.unknown, .unknown): return true
-        case (.ready, .ready): return true
-        case (.errored(let lError), .errored(let rError)):
-            return lError == rError
-        default: return false
-        }
-    }
 }

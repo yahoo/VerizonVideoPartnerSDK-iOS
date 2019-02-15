@@ -1,1 +1,0 @@
-../../../../OMSDK-Oath2/OMSDK_Oath2.framework/Versions/A/Headers/OMIDScriptInjector.h

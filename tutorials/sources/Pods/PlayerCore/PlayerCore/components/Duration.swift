@@ -18,13 +18,17 @@ func reduce(state: Duration, action: Action) -> Duration {
     case let action as UpdateContentDuration:
         return Duration(ad: state.ad, content: action.newDuration)
         
-    case is SkipAd,
+    case is DropAd,
          is ShowContent,
+         is SkipAd,
          is AdStopped,
          is AdStartTimeout,
          is AdMaxShowTimeout,
          is AdError,
          is AdSkipped,
+         is VRMCore.NoGroupsToProcess,
+         is VRMCore.MaxSearchTimeout,
+         is VRMCore.VRMResponseFetchFailed,
          is AdNotSupported:
         return Duration(ad: nil, content: state.content)
         

@@ -3,7 +3,7 @@
 
 import Foundation
 
-public struct Thumbnail {
+public struct Thumbnail: Equatable {
     let width: Float
     let height: Float
     let url: URL

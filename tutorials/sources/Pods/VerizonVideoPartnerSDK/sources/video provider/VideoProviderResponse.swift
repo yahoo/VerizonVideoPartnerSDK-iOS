@@ -43,7 +43,9 @@ extension VideoProvider.Response {
         public let softTimeout: Double
         public let hardTimeout: Double
         public let startTimeout: Double
+        public let maxSearchTime: Double
         public let maxDuration: Int
+        public let maxVASTWrapperRedirectCount: Int
     }
     
     public enum Tracking {

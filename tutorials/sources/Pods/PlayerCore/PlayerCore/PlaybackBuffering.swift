@@ -23,6 +23,7 @@ func reduce(state: PlaybackBuffering, action: Action) -> PlaybackBuffering {
          is AdMaxShowTimeout,
          is AdStartTimeout,
          is AdPlaybackFailed,
+         is SkipAd,
          is ShowContent:
         return PlaybackBuffering(content: state.content, ad: .inactive)
     case is SelectVideoAtIdx:

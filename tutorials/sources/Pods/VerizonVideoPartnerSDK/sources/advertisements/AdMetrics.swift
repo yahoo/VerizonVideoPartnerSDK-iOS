@@ -1,6 +1,7 @@
 //  Copyright 2018, Oath Inc.
 //  Licensed under the terms of the MIT License. See LICENSE.md file in project root for terms.
 import Foundation
+import PlayerCore
 
 enum Ad { }
 
@@ -67,6 +68,15 @@ extension Ad.Metrics {
 
 extension Ad.Metrics.Info {
     init(metaInfo: VRMProvider.Item.MetaInfo) {
+        self.engineType = metaInfo.engineType
+        self.ruleId = metaInfo.ruleId
+        self.ruleCompanyId = metaInfo.ruleCompanyId
+        self.vendor = metaInfo.vendor
+        self.name = metaInfo.name
+        self.cpm = metaInfo.cpm
+    }
+    
+    init(metaInfo: VRMCore.Item.MetaInfo) {
         self.engineType = metaInfo.engineType
         self.ruleId = metaInfo.ruleId
         self.ruleCompanyId = metaInfo.ruleCompanyId

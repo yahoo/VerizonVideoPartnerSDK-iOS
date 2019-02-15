@@ -86,14 +86,14 @@ public struct Model {
     }
     
     public init(playlist: [Video],
-         autoplay: Bool = true,
-         controlsAnimationSupported: Bool = false,
-         isVPAIDAllowed: Bool = false,
-         isOpenMeasurementAllowed: Bool = false,
-         isNewVRMCoreEnabled: Bool = false,
-         adSettings: AdSettings = .default,
-         vpaidSettings: VPAIDSettings,
-         omSettings: OMSettings) {
+                autoplay: Bool = true,
+                controlsAnimationSupported: Bool = false,
+                isVPAIDAllowed: Bool = false,
+                isOpenMeasurementAllowed: Bool = false,
+                isNewVRMCoreEnabled: Bool = false,
+                adSettings: AdSettings = .default,
+                vpaidSettings: VPAIDSettings,
+                omSettings: OMSettings) {
         self.playlist = playlist
         self.isAutoplayEnabled = autoplay
         self.isControlsAnimationSupported = controlsAnimationSupported
@@ -132,27 +132,35 @@ public struct Model {
     
     public struct AdSettings {
         public static let `default` = AdSettings(prefetchingOffset: 0,
-                                               softTimeout: 0.5,
-                                               hardTimeout: 2.5,
-                                               startTimeout: 3.5,
-                                               maxDuration: 90)
+                                                 softTimeout: 0.5,
+                                                 hardTimeout: 2.5,
+                                                 startTimeout: 3.5,
+                                                 maxSearchTime: 9.0,
+                                                 maxDuration: 90,
+                                                 maxVASTWrapperRedirectCount: 3)
         
         public let prefetchingOffset: Int
         public let softTimeout: Double
         public let hardTimeout: Double
         public let startTimeout: Double
+        public let maxSearchTime: Double
         public let maxDuration: Int
+        public let maxVASTWrapperRedirectCount: Int
         
         public init(prefetchingOffset: Int,
                     softTimeout: Double,
                     hardTimeout: Double,
                     startTimeout: Double,
-                    maxDuration: Int) {
+                    maxSearchTime: Double,
+                    maxDuration: Int,
+                    maxVASTWrapperRedirectCount: Int) {
             self.prefetchingOffset = prefetchingOffset
             self.softTimeout = softTimeout
             self.hardTimeout = hardTimeout
+            self.maxSearchTime = maxSearchTime
             self.startTimeout = startTimeout
             self.maxDuration = maxDuration
+            self.maxVASTWrapperRedirectCount = maxVASTWrapperRedirectCount
         }
     }
     public struct VPAIDSettings {
@@ -170,7 +178,7 @@ public struct Model {
             self.serviceScriptURL = serviceScriptURL
         }
     }
-
+    
     public enum Video {
         public typealias Reason = String
         case available(Item)
@@ -206,13 +214,13 @@ extension Model.Video {
         public let isPictureInPictureModeSupported: Bool
         
         public init(url: URL,
-             renderer: Descriptor,
-             ad: AdModel,
-             isAirPlayEnabled: Bool,
-             isPictureInPictureModeSupported: Bool,
-             brandedContent: BrandedContent?,
-             title: String = "",
-             thumbnail: Thumbnail? = nil) {
+                    renderer: Descriptor,
+                    ad: AdModel,
+                    isAirPlayEnabled: Bool,
+                    isPictureInPictureModeSupported: Bool,
+                    brandedContent: BrandedContent?,
+                    title: String = "",
+                    thumbnail: Thumbnail? = nil) {
             self.url = url
             self.title = title
             self.renderer = renderer

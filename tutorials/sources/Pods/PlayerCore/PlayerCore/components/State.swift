@@ -1,12 +1,14 @@
 //  Copyright 2018, Oath Inc.
 //  Licensed under the terms of the MIT License. See LICENSE.md file in project root for terms.
 public struct State {
+    public let timeoutBarrier: Double
     public let playlist: Playlist
     public let rate: Rate
     public let duration: Duration
     public let ad: Ad
     public let adKill: AdKill
     public let adMaxShowTime: TimerSession
+    public let selectedAdCreative: AdCreative
     public let openMeasurement: OpenMeasurement
     public let serviceScript: OpenMeasurementServiceScript
     public let currentTime: CurrentTime
@@ -41,6 +43,16 @@ public struct State {
     public let vrmFetchItemsQueue: VRMFetchItemQueue
     public let vrmParseItemsQueue: VRMParseItemQueue
     public let vrmParsingResult: VRMParsingResult
+    public let vrmProcessingResult: VRMProcessingResult
+    public let vrmProcessingTimeout: VRMProcessingTimeout
+    public let vrmMaxAdSearchTimeout: VRMMaxAdSearchTimeout
+    public let vrmFetchingError: VRMFetchingError
+    public let vrmParsingError: VRMParsingError
+    public let vrmTimeoutError: VRMTimeoutError
+    public let vrmRedirectError: VRMRedirectError
+    public let vrmOtherError: VRMOtherError
+    public let vrmFinalResult: VRMFinalResult
+    public let vrmItemResponseTime: VRMItemResponseTime
 }
 
 
@@ -55,8 +67,10 @@ extension State {
                 hasPrerollAds: Bool,
                 midrolls: [Midroll],
                 timeoutBarrier: Double,
-                maxAdDuration: Int) {
+                maxAdDuration: Int,
+                isOpenMeasurementEnabled: Bool) {
         self = State(
+            timeoutBarrier: timeoutBarrier,
             playlist: Playlist(currentIndex: 0),
             rate: Rate(contentRate: Rate.Value(player: isPlaybackInitiated, stream: false),
                        adRate: Rate.Value(player: false, stream: false),
@@ -65,14 +79,16 @@ extension State {
             duration: Duration(ad: nil, content: nil),
             ad: Ad(playedAds: [],
                    midrolls: midrolls.map { .init(cuePoint: $0.cuePoint, url: $0.url, id: UUID()) },
-                   adCreative: .none,
+                   mp4AdCreative: nil,
+                   vpaidAdCreative: nil,
                    currentAd: .empty,
                    currentType: hasPrerollAds ? .preroll : .midroll),
             adKill: .none,
             adMaxShowTime: .init(state: .stopped,
                                  startAdSession: nil,
                                  allowedDuration: Double(maxAdDuration)),
-            openMeasurement: OpenMeasurement.inactive,
+            selectedAdCreative: .none,
+            openMeasurement: isOpenMeasurementEnabled ? .inactive : .disabled,
             serviceScript: OpenMeasurementServiceScript.none,
             currentTime: CurrentTime(content: nil, ad: CMTime.zero),
             loadedTimeRanges: LoadedTimeRanges(content: [] as [CMTimeRange], ad: [] as [CMTimeRange]),
@@ -95,7 +111,7 @@ extension State {
             playbackDuration: PlaybackDuration(startTime: nil, duration: 0),
             playbackBuffering: PlaybackBuffering(content: .unknown, ad: .unknown),
             averageBitrate: AverageBitrate(content: 0, ad: 0),
-            adTracker: AdFinishTracker(isFinished: false),
+            adTracker: .unknown,
             adVRMManager: AdVRMManager(timeoutBarrier: Int(timeoutBarrier * 1000),
                                        requestsFired: 0,
                                        request: .initial()),
@@ -117,19 +133,31 @@ extension State {
             vrmScheduledItems: .initial,
             vrmFetchItemsQueue: .initial,
             vrmParseItemsQueue: .initial,
-            vrmParsingResult: .initial
+            vrmParsingResult: .initial,
+            vrmProcessingResult: .initial,
+            vrmProcessingTimeout: .none,
+            vrmMaxAdSearchTimeout: .initial,
+            vrmFetchingError: VRMFetchingError(erroredItems: []),
+            vrmParsingError: VRMParsingError(erroredItems: []),
+            vrmTimeoutError: VRMTimeoutError(erroredItems: []),
+            vrmRedirectError: VRMRedirectError(erroredItems: []),
+            vrmOtherError: VRMOtherError(erroredItems: []),
+            vrmFinalResult: .initial,
+            vrmItemResponseTime: .initial
         )
     }
 }
 
 public func reduce(state: State, action: Action) -> State {
     return State(
+        timeoutBarrier: state.timeoutBarrier,
         playlist: reduce(state: state.playlist, action: action),
         rate: reduce(state: state.rate, action: action),
         duration: reduce(state: state.duration, action: action),
         ad: reduce(state: state.ad, action: action),
         adKill: reduce(state: state.adKill, action: action),
         adMaxShowTime: reduce(state: state.adMaxShowTime, action: action),
+        selectedAdCreative: reduce(state: state.selectedAdCreative, action: action),
         openMeasurement: reduce(state: state.openMeasurement, action: action),
         serviceScript: reduce(state: state.serviceScript, action: action),
         currentTime: reduce(state: state.currentTime, action: action),
@@ -163,6 +191,16 @@ public func reduce(state: State, action: Action) -> State {
         vrmScheduledItems: reduce(state: state.vrmScheduledItems, action: action),
         vrmFetchItemsQueue: reduce(state: state.vrmFetchItemsQueue, action: action),
         vrmParseItemsQueue: reduce(state: state.vrmParseItemsQueue, action: action),
-        vrmParsingResult: reduce(state: state.vrmParsingResult, action: action)
+        vrmParsingResult: reduce(state: state.vrmParsingResult, action: action),
+        vrmProcessingResult: reduce(state: state.vrmProcessingResult, action: action),
+        vrmProcessingTimeout: reduce(state: state.vrmProcessingTimeout, action: action),
+        vrmMaxAdSearchTimeout: reduce(state: state.vrmMaxAdSearchTimeout, action: action),
+        vrmFetchingError: reduce(state: state.vrmFetchingError, action: action),
+        vrmParsingError: reduce(state: state.vrmParsingError, action: action),
+        vrmTimeoutError: reduce(state: state.vrmTimeoutError, action: action),
+        vrmRedirectError: reduce(state: state.vrmRedirectError, action: action),
+        vrmOtherError: reduce(state: state.vrmOtherError, action: action),
+        vrmFinalResult: reduce(state: state.vrmFinalResult, action: action),
+        vrmItemResponseTime: reduce(state: state.vrmItemResponseTime, action: action)
     )
 }

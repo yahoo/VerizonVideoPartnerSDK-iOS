@@ -14,6 +14,7 @@ func reduce(state: AdKill, action: Action) -> AdKill {
     case is AdMaxShowTimeout:
         return .maxShowTime
     case is ShowContent,
+         is SkipAd,
          is AdPlaybackFailed,
          is AdError,
          is AdStopped,

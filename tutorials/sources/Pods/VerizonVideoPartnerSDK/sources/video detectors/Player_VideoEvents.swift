@@ -56,7 +56,7 @@ public struct PlaybackEvents {
 }
 
 extension Player {
-
+    
     /// Add video events
     /// - parameter playbackEvents: Playback events struct with callbacks.
     /// - returns: Dispose lambda to be called when events no longer needed.
@@ -79,7 +79,7 @@ extension Player {
                 playbackEvents.didPlayedQuartile(quartile)
             }
         }
-        let playbackCycle = Detectors.PlaybackCycle()
+        let playbackCycle = Detectors.ContentPlaybackCycle()
         func playbackCycleProcess(_ props: Player.Properties) {
             guard let item = props.playbackItem else { return }
             let result = playbackCycle.process(
@@ -107,7 +107,7 @@ extension Player {
                 case .nothing: break
                 }
             }
-
+            
             playbackCycleProcess(props)
             
             /* Video Actions Detector */ do {

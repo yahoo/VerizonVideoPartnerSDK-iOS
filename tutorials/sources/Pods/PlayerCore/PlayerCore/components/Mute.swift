@@ -16,7 +16,7 @@ func reduce(state: Mute, action: Action) -> Mute {
     case let action as AdVolumeChange:
         let isVPAIDMuted = action.volume == 0
         return Mute(player: state.player, vpaid: isVPAIDMuted)
-    case is ShowAd:
+    case is ShowMP4Ad, is ShowVPAIDAd, is ShowAd:
         return Mute(player: state.player, vpaid: state.player)
     default: return state        
     }

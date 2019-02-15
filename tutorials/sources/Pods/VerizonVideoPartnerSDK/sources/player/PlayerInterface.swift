@@ -211,8 +211,8 @@ extension Player {
         dispatch(action: PlayerCore.adEndPlayback())
     }
     
-    func playAd(model: PlayerCore.Ad.VASTModel, isOpenMeasurementEnabled: Bool) {
-        dispatch(action: PlayerCore.playAd(model: model, id: UUID(), isOpenMeasurementEnabled: isOpenMeasurementEnabled))
+    func playAd(model: PlayerCore.Ad.VASTModel) {
+        dispatch(action: PlayerCore.playAd(model: model, id: UUID()))
     }
     
     func adReady() {
@@ -223,8 +223,11 @@ extension Player {
         dispatch(action: PlayerCore.adPlaybackIsFailed(error: error))
     }
     
-    func skipAd(id: UUID) {
-        dispatch(action: PlayerCore.skipAd(id: id))
+    func dropAd(id: UUID) {
+        dispatch(action: PlayerCore.dropAd(id: id))
+    }
+    func skipAd() {
+        dispatch(action: PlayerCore.skipAd())
     }
 }
 

@@ -3,33 +3,40 @@
 
 import Foundation
 
-public func playAd(model: Ad.VASTModel, id: UUID, isOpenMeasurementEnabled: Bool) -> Action {
+public func showMP4Ad(creative: AdCreative.MP4, id: UUID) -> Action {
+    return ShowMP4Ad(creative: creative, id: id)
+}
+public func showVPAIDAd(creative: AdCreative.VPAID, id: UUID) -> Action {
+    return ShowVPAIDAd(creative: creative, id: id)
+}
+
+public func playAd(model: Ad.VASTModel, id: UUID) -> Action {
     let adCreative: AdCreative? = {
-        if let mp4MediaFile = model.mediaFiles.first(where: { $0.type == .mp4 }) {
+        if let mediaFile = model.mp4MediaFiles.first {
             return AdCreative.mp4(
-                .init(
-                    url: mp4MediaFile.url,
+                [.init(
+                    url: mediaFile.url,
                     clickthrough: model.clickthrough,
                     pixels: model.pixels,
                     id: model.id,
-                    scalable: mp4MediaFile.scalable,
-                    maintainAspectRatio: mp4MediaFile.maintainAspectRatio))
+                    width: mediaFile.width,
+                    height: mediaFile.height,
+                    scalable: mediaFile.scalable,
+                    maintainAspectRatio: mediaFile.maintainAspectRatio)])
         }
-        if let vpaidMediaFile = model.mediaFiles.first(where: { $0.type == .vpaid }) {
+        if let mediaFile = model.vpaidMediaFiles.first {
             return AdCreative.vpaid(
-                .init(
-                    url: vpaidMediaFile.url,
+                [.init(
+                    url: mediaFile.url,
                     adParameters: model.adParameters,
                     clickthrough: model.clickthrough,
                     pixels: model.pixels,
-                    id: model.id))
+                    id: model.id)])
         }
         return nil
     }()
-    guard let creative = adCreative else { return SkipAd(id: id) }
+    guard let creative = adCreative else { return DropAd(id: id) }
     return ShowAd(creative: creative,
                   id: id,
-                  adVerifications: model.adVerifications,
-                  isOpenMeasurementEnabled: isOpenMeasurementEnabled)
+                  adVerifications: model.adVerifications)
 }
-

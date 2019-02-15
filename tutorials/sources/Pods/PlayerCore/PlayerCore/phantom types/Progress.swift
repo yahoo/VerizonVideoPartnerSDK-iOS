@@ -2,7 +2,7 @@
 //  Licensed under the terms of the MIT License. See LICENSE.md file in project root for terms.
 import CoreMedia
 
-public struct Progress {
+public struct Progress: Hashable {
     public typealias NativeValue = Double
     
     public let value: NativeValue
@@ -52,11 +52,5 @@ extension Progress: ExpressibleByFloatLiteral {
     public typealias FloatLiteralType = Double
     public init(floatLiteral value: FloatLiteralType) {
         self.init(NativeValue(value))
-    }
-}
-
-extension Progress: Equatable {
-    public static func ==(lhs: Progress, rhs: Progress) -> Bool {
-        return lhs.value == rhs.value
     }
 }

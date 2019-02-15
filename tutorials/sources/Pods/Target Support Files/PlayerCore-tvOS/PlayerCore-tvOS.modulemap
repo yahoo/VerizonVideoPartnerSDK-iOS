@@ -1,0 +1,7 @@
+module PlayerCore {
+  umbrella header "PlayerCore-tvOS-umbrella.h"
+  exclude header "PlayerCore-iOS-umbrella.h"
+
+  export *
+  module * { export * }
+}

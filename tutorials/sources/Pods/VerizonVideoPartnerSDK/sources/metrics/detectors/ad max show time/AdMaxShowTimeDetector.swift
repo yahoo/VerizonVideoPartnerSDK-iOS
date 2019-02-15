@@ -10,7 +10,8 @@ extension Detectors {
         private var isReported = true
         
         func process(state: PlayerCore.State) -> Bool {
-            return process(adKill: state.adKill, sessionId: state.adVRMManager.request.id)
+            return process(adKill: state.adKill,
+                           sessionId: state.adVRMManager.request.id ?? state.vrmRequestStatus.request?.id)
         }
         
         func process(adKill: AdKill, sessionId: UUID?) -> Bool {

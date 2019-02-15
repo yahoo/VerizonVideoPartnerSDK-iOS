@@ -237,10 +237,13 @@ public struct VVPSDK {
             softTimeout: videoResponse.adSettings.softTimeout,
             hardTimeout: videoResponse.adSettings.hardTimeout,
             startTimeout: videoResponse.adSettings.startTimeout,
-            maxDuration: videoResponse.adSettings.maxDuration)
+            maxSearchTime: videoResponse.adSettings.maxSearchTime,
+            maxDuration: videoResponse.adSettings.maxDuration,
+            maxVASTWrapperRedirectCount: videoResponse.adSettings.maxVASTWrapperRedirectCount)
         
         let vpaidSettings = PlayerCore.Model.VPAIDSettings(document: self.configuration.vpaid.document)
         let omSettings = PlayerCore.Model.OMSettings(serviceScriptURL: self.configuration.openMeasurement.script)
+        
         let playerModel = PlayerCore.Model(playlist: videoModels,
                                            autoplay: videoResponse.autoplay,
                                            controlsAnimationSupported: videoResponse.features.isControlsAnimationEnabled,
@@ -348,6 +351,7 @@ public struct VVPSDK {
         let dispatcher: (PlayerCore.Action) -> Void = { [weak player] in player?.store.dispatch(action: $0) }
         let softTimeout = player.model.adSettings.softTimeout
         let hardTimeout = player.model.adSettings.hardTimeout
+        let isVPAIDAllowed = player.model.isVPAIDAllowed
         
         func setupVRMWithOldCore() {
             let vastTagProcessor = VASTTagProcessor(session: ephemeralSession,
@@ -356,8 +360,6 @@ public struct VVPSDK {
                 innerParse: vastTagProcessor.parseTag,
                 innerFetch: vastTagProcessor.fetchTag)
             let adProxy = AdVRMEngine(dispatcher: dispatcher)
-            let isVPAIDAllowed = player.model.isVPAIDAllowed
-            let isOpenMeasurementEnabled = player.model.isOpenMeasurementAllowed
             let provider = AdURLProvider(
                 groupsFetch: adProxy.requestAds(using: vrmProvider.requestAds),
                 processItem: adProxy.processItem(using: vastWrapperProcessor.parseTag(from:),
@@ -374,8 +376,7 @@ public struct VVPSDK {
             
             _ = player.addObserver { playerProps in
                 guard let detectorInput = MidrollDetector.Input(playerProps: playerProps,
-                                                                isVPAIDAllowed: isVPAIDAllowed,
-                                                                isOpenMeasurementEnabled: isOpenMeasurementEnabled) else { return }
+                                                                isVPAIDAllowed: isVPAIDAllowed) else { return }
                 midrollDetector.process(input: detectorInput)
                 
                 
@@ -385,8 +386,8 @@ public struct VVPSDK {
                                       dispatcher: dispatcher)
             
             weak var player = player
-            adManager.actions.skipPreroll = { player?.skipAd(id: $0) }
-            adManager.actions.startPreroll = { player?.playAd(model: $0, isOpenMeasurementEnabled: isOpenMeasurementEnabled) }
+            adManager.actions.dropPreroll = { player?.dropAd(id: $0) }
+            adManager.actions.startPreroll = { player?.playAd(model: $0) }
             let _ = player?.addObserver { playerProps in
                 guard let item = playerProps.playbackItem else { return }
                 
@@ -406,39 +407,67 @@ public struct VVPSDK {
         }
         
         func setupVRMWithNewCore() {
+            let maxRedirectCount = player.model.adSettings.maxVASTWrapperRedirectCount
+            let maxAdSearchTime = player.model.adSettings.maxSearchTime
             let createRequest: (URL) -> (URLRequest) = {
                 .init(url: $0, timeoutInterval: hardTimeout)
             }
-            let adStartProcessing = StartAdProcessingController(dispatch: dispatcher)
+            let prerollProcessor = VRMPrerollProcessorController(dispatch: dispatcher)
+            let midrollProcessor = VRMMidrollProcessorController(dispatch: dispatcher)
             let startGroupProcessing = StartVRMGroupProcessingController(dispatch: dispatcher)
+            let finishGroupProcessing = FinishVRMGroupProcessingController(dispatch: dispatcher)
             let itemController = VRMItemController(dispatch: dispatcher)
             let itemFetchController = FetchVRMItemController(dispatch: dispatcher) { url in
-                return self.ephemeralSession.dataFuture(with: createRequest(url))
-                           .map(Network.Parse.successResponseData)
-                           .map(Network.Parse.string)
+                self.ephemeralSession.dataFuture(with: createRequest(url))
+                    .map(Network.Parse.successResponseData)
+                    .map(Network.Parse.string)
             }
             let itemParseController = ParseVRMItemController(dispatch: dispatcher,
                                                              vastMapper: vastMapper) { vastXML in
-                return Future(value: vastXML)
-                        .dispatch(on: DispatchQueue.global(qos: .userInitiated))
-                        .map(VASTParser.parseFrom)
-                
+                                                                Future(value: vastXML).map(VASTParser.parseFrom)
             }
             let vrmRequestController = VRMRequestController(dispatch: dispatcher,
                                                             groupsMapper: mapGroups) { url in
-                                                                return self.vrmProvider.requestAds(with: createRequest(url))
+                                                                self.vrmProvider.requestAds(with: createRequest(url))
             }
+            let processingController = VRMProcessingController(maxRedirectCount: maxRedirectCount,
+                                                               isVPAIDAllowed: isVPAIDAllowed,
+                                                               dispatch: dispatcher)
+           
+            let timeoutController = VRMTimeoutController(dispatch: dispatcher,
+                                                         softTimeoutTimerFactory: { onFire in
+                                                            Timer(duration: softTimeout, fire: onFire) },
+                                                         hardTimeoutTimerFactory: { onFire in
+                                                            Timer(duration: hardTimeout, fire: onFire) })
+            
+            let selectFinalResult = VRMSelectFinalResultController(dispatch: dispatcher)
+            let maxAdSearchTimeController = MaxAdSearchTimeController { requestID in
+                Timer(duration: maxAdSearchTime) {
+                    dispatcher(PlayerCore.VRMCore.maxSearchTimeoutReached(requestID: requestID))
+                }
+            }
+            
+            let mp4AdCreativeController = MP4AdCreativeController(dispatch: dispatcher)
+            let vpaidAdCreativeController = VPAIDAdCreativeController(dispatch: dispatcher)
             
             _ = player.store.state.addObserver { state in
                 vrmRequestController.process(with: state)
                 startGroupProcessing.process(with: state)
+                finishGroupProcessing.process(with: state)
                 itemController.process(with: state)
                 itemFetchController.process(with: state)
                 itemParseController.process(with: state)
+                processingController.process(with: state)
+                timeoutController.process(with: state)
+                selectFinalResult.process(with: state)
+                maxAdSearchTimeController.process(with: state)
+                mp4AdCreativeController.process(state: state)
+                vpaidAdCreativeController.process(state: state)
             }
             
             _ = player.addObserver { playerProps in
-                adStartProcessing.process(props: playerProps)
+                prerollProcessor.process(props: playerProps)
+                midrollProcessor.process(props: playerProps)
             }
         }
         
@@ -453,7 +482,7 @@ public struct VVPSDK {
                                                     dispatcher: dispatcher)
         let adStartTimeout = player.model.adSettings.startTimeout
         let adStartTimeoutController = AdStartTimeoutController {
-            return Timer(duration: adStartTimeout) { dispatcher(adStartTimeoutReached()) }
+            Timer(duration: adStartTimeout) { dispatcher(adStartTimeoutReached()) }
         }
         _ = player.store.state.addObserver { state in
             timerController.process(state: state)

@@ -8,8 +8,8 @@ public struct VRMFetchItemQueue {
     static let initial = VRMFetchItemQueue(candidates: [])
     
     public struct Candidate: Hashable {
+        public let id = VRMCore.ID<Candidate>()
         public let parentItem: VRMCore.Item
-        public let id: VRMCore.ID<Candidate>
         public let url: URL
     }
     
@@ -17,14 +17,27 @@ public struct VRMFetchItemQueue {
 }
 
 func reduce(state: VRMFetchItemQueue, action: Action) -> VRMFetchItemQueue {
+    func remove(item: VRMCore.Item ) -> VRMFetchItemQueue {
+        let filteredCandidates = state.candidates
+            .filter { $0.parentItem != item }
+        return VRMFetchItemQueue(candidates: Set(filteredCandidates))
+    }
+    
     switch action {
     case let fetchAction as VRMCore.StartItemFetch:
         let candidate = VRMFetchItemQueue.Candidate(parentItem: fetchAction.originalItem,
-                                                         id: VRMCore.ID(),
-                                                         url: fetchAction.url)
+                                                    url: fetchAction.url)
         var newState = state
         newState.candidates.insert(candidate)
         return newState
+    case let parsingAction as VRMCore.StartItemParsing:
+        return remove(item: parsingAction.originalItem)
+    case let fetchingError as VRMCore.FetchingError:
+        return remove(item: fetchingError.originalItem)
+        
+    case is VRMCore.AdRequest,
+         is VRMCore.HardTimeout:
+        return .initial
     default:
         return state
     }

@@ -15,6 +15,8 @@ func reduce(state: VRMResponse?, action: Action) -> VRMResponse? {
         return VRMResponse(transactionId: adResponse.transactionId,
                            slot: adResponse.slot,
                            groups: adResponse.groups)
+    case is VRMCore.AdRequest:
+        return nil
     default:
         return state
     }

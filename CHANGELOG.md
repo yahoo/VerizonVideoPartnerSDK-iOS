@@ -1,11 +1,11 @@
 # Change Log
 
-## [Unreleased](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/tree/HEAD)
-
-[Full Changelog](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/compare/1.2.1...HEAD)
+## [1.2.2](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/tree/1.2.2) (2019-02-15)
+[Full Changelog](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/compare/1.2.1...1.2.2)
 
 **Merged pull requests:**
 
+- Update change log [\#73](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/pull/73) ([VladyslavAnokhin](https://github.com/VladyslavAnokhin))
 - Update podspec and sdk version to 1.2.1 [\#72](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/pull/72) ([VladyslavAnokhin](https://github.com/VladyslavAnokhin))
 
 ## [1.2.1](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/tree/1.2.1) (2019-02-14)

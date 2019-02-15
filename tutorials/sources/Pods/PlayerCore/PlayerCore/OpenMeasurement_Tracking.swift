@@ -22,6 +22,7 @@ extension OpenMeasurement {
         public let pause: () -> Void
         public let click: () -> Void
         public let volumeChange: (CGFloat) -> Void
+        public let skip: () -> Void
         
         public enum AdPosition {
             case preroll, midroll
@@ -37,7 +38,8 @@ extension OpenMeasurement {
                     resume: @escaping () -> Void,
                     pause: @escaping () -> Void,
                     click: @escaping () -> Void,
-                    volumeChange: @escaping (CGFloat) -> Void) {
+                    volumeChange: @escaping (CGFloat) -> Void,
+                    skip: @escaping () -> Void) {
             self.loaded = loaded
             self.bufferFinish = bufferFinish
             self.bufferStart = bufferStart
@@ -50,6 +52,7 @@ extension OpenMeasurement {
             self.pause = pause
             self.click = click
             self.volumeChange = volumeChange
+            self.skip = skip
         }
         
     }
@@ -70,5 +73,6 @@ extension OpenMeasurement.VideoEvents {
                                                    resume: {},
                                                    pause: {},
                                                    click: {},
-                                                   volumeChange: {_ in})
+                                                   volumeChange: {_ in},
+                                                   skip: {})
 }

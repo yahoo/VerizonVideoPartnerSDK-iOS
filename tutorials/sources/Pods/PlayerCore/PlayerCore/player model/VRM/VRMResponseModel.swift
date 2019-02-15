@@ -14,7 +14,9 @@ public extension VRMCore {
     }
     
     public struct Group: Equatable {
-        public let id: ID<Group>
+        public typealias ID = VRMCore.ID<Group>
+        
+        public let id: ID
         public let items: [Item]
         
         public init(items: [Item]) {

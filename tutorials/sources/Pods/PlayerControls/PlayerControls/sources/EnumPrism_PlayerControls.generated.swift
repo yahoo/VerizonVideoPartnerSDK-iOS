@@ -1,4 +1,4 @@
-// Generated using Sourcery 0.14.0 — https://github.com/krzysztofzablocki/Sourcery
+// Generated using Sourcery 0.15.0 — https://github.com/krzysztofzablocki/Sourcery
 // DO NOT EDIT
 
 
@@ -20,6 +20,29 @@ import Foundation
 /*Creates Bool var with given simple case*/
 
 /*For each public enum with cases count > 0 is created extension with cases' prism vars*/
+    public extension AdVideoControls.Props.AdSkipState {
+    public var isUnavailable: Bool {
+        guard case .unavailable = self else { return false }
+        return true
+    }
+
+    /*Optional associated values not supported now*/
+        public var available: 
+        Command?
+ {
+            guard case let .available(available) = self else { return nil }
+            return available
+        }
+
+    /*Optional associated values not supported now*/
+        public var awaiting: 
+        Int?
+ {
+            guard case let .awaiting(awaiting) = self else { return nil }
+            return awaiting
+        }
+    }
+
     public extension AdVideoControls.Props.MainAction {
     /*Optional associated values not supported now*/
         public var play: 
