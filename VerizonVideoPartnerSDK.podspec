@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'VerizonVideoPartnerSDK'
-  s.version          = '1.2.1'
+  s.version          = '1.2.2'
   s.summary          = 'Verizon Video Partner SDK'
   s.license          = { type: 'MIT', file: 'LICENSE' }
   s.swift_version    = '4.2'
@@ -13,9 +13,9 @@ DESC
   s.homepage         = 'https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS'
 
   s.authors          = {
-    'Andrey Moskvin' => 'andrey.moskvin@oath.com',
-    'Roman Tysiachnik' => 'roman.tysiachnik@oath.com',
-    'Vladyslav Anokhin' => 'vladyslav.anokhin@oath.com'
+    'Andrey Moskvin' => 'andrey.moskvin@verizonmedia.com',
+    'Roman Tysiachnik' => 'roman.tysiachnik@verizonmedia.com',
+    'Vladyslav Anokhin' => 'vladyslav.anokhin@verizonmedia.com'
   }
 
   s.source           = { git: 'https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS.git',
@@ -23,7 +23,8 @@ DESC
   s.source_files     = 'sources/**/*.swift'
   s.exclude_files    = 'sources/utils/Utils.swift', 
                        'sources/utils/Recorder.swift', 
-                       'sources/utils/ActionComparator.swift', 
+                       'sources/utils/ActionComparator.swift',
+                       'sources/utils/MockTimer.swift', 
                        'sources/**/*Test*',
                        'sources/**/*Spec*', 
                        'sources/**/Contents.swift'
@@ -37,7 +38,7 @@ DESC
   
   s.dependency 'VideoRenderer', '1.26'
   s.dependency 'PlayerCore', '1.0.4'
-  s.ios.dependency 'PlayerControls', '1.29'
+  s.ios.dependency 'PlayerControls', '1.30'
   s.ios.dependency 'OMSDK-Oath2', '1.0.0'
 
   s.ios.deployment_target  = '9.0'
