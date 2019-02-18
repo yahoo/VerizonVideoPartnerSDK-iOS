@@ -12,6 +12,7 @@ extension Telemetry {
         let adStartTimeout: AdStartTimeout
         let vpaid: VPAID
         let openMeasurement: OpenMeasurement
+        let vrmProcessing: VRMProcessing
         
         init(url: URL, context: JSON, ephemeralSession: URLSession) {
             let send = Telemetry.CustomTelemetrySender(session: ephemeralSession,
@@ -23,6 +24,7 @@ extension Telemetry {
             adStartTimeout = AdStartTimeout(context: context, send: send)
             vpaid = VPAID(context: context, send: send)
             openMeasurement = OpenMeasurement(context: context, send: send)
+            vrmProcessing = VRMProcessing(context: context, send: send)
         }
         
         func process(props: Player.Properties) {
@@ -35,6 +37,7 @@ extension Telemetry {
             vpaid.process(state: state)
             adStartTimeout.process(state: state)
             openMeasurement.process(state: state)
+            vrmProcessing.process(state: state)
         }
         
         func process(videoProviderError error: Error) {
@@ -161,7 +164,7 @@ extension Telemetry.Metrics {
         func process(state: PlayerCore.State) {
             let newCoreResult = state.vrmFinalResult.successResult ?? state.vrmFinalResult.failedResult
             guard let ruleId = state.adInfoHolder?.info.ruleId ??
-                 newCoreResult?.item.metaInfo.ruleId else { return }
+                newCoreResult?.item.metaInfo.ruleId else { return }
             process(isTimeoutReached: state.adKill == .adStartTimeout, for: ruleId)
         }
         func process(isTimeoutReached: Bool, for ruleId: String) {
@@ -171,6 +174,40 @@ extension Telemetry.Metrics {
             send(telemetryJSON(withContext: context,
                                type: "START_TIMEOUT_REACHED",
                                value: ["rid": ruleId]))
+        }
+    }
+}
+
+extension Telemetry.Metrics {
+    final class VRMProcessing {
+        
+        let context: JSON
+        let send: (JSON) -> ()
+        
+        private var processedRequests = Set<UUID>()
+        
+        init(context: JSON, send: @escaping (JSON) -> ()) {
+            self.context = context
+            self.send = send
+        }
+        
+        func process(state: PlayerCore.State) {
+            process(adRequest: state.vrmRequestStatus.request?.id,
+                    processingTime: state.vrmProcessingTime)
+        }
+        
+        func process(adRequest: UUID?,
+                     processingTime: VRMProcessingTime) {
+            guard let requestID = adRequest,
+                case let .finished(startAt, finishAt) = processingTime,
+                processedRequests.contains(requestID) == false else { return }
+            
+            processedRequests.insert(requestID)
+            
+            let timeInterval = Int(finishAt.timeIntervalSince(startAt) * 1000)
+            send(telemetryJSON(withContext: context,
+                               type: "VRM_PROCESSING_TIME",
+                               value: ["time": timeInterval]))
         }
     }
 }
@@ -191,7 +228,7 @@ extension Telemetry.Metrics {
         func process(state: PlayerCore.State) {
             let newCoreResult = state.vrmFinalResult.successResult ?? state.vrmFinalResult.failedResult
             guard let ruleId = state.adInfoHolder?.info.ruleId ??
-            newCoreResult?.item.metaInfo.ruleId  else { return }
+                newCoreResult?.item.metaInfo.ruleId  else { return }
             
             abuseEventReporter.process(abusedEvents: state.vpaidErrors.abusedEvents,
                                        forRuleId: ruleId)
