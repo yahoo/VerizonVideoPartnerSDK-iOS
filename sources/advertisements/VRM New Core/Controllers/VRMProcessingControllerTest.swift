@@ -57,6 +57,7 @@ class VRMProcessingControllerTest: XCTestCase {
                         skipOffset: .none,
                         clickthrough: nil,
                         adParameters: nil,
+                        adProgress: [],
                         pixels: .init(),
                         id: nil)
         
@@ -67,6 +68,7 @@ class VRMProcessingControllerTest: XCTestCase {
                                     skipOffset: .none,
                                     clickthrough: nil,
                                     adParameters: nil,
+                                    adProgress: [],
                                     pixels: .init(),
                                     id: nil))
         vpaidInline = .inline(.init(adVerifications: [],
@@ -75,6 +77,7 @@ class VRMProcessingControllerTest: XCTestCase {
                                     skipOffset: .none,
                                     clickthrough: nil,
                                     adParameters: nil,
+                                    adProgress: [],
                                     pixels: .init(),
                                     id: nil))
         vastItem = VRMCore.Item(source: .vast(""), metaInfo: metaInfo)

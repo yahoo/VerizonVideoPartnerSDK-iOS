@@ -45,10 +45,11 @@ enum VASTParser {
         var adVerifications = [AdVerification]()
         var clickthroughURL: URL?
         var pixels = PlayerCore.AdPixels()
+        var adProgress: [PlayerCore.Ad.VASTModel.AdProgress] = []
         var adParameters: String?
         var mp4MediaFiles: [PlayerCore.Ad.VASTModel.MP4MediaFile] = []
         var vpaidMediaFiles: [PlayerCore.Ad.VASTModel.VPAIDMediaFile] = []
-        var skipOffset: PlayerCore.Ad.VASTModel.VASTOffset = .none
+        var skipOffset: PlayerCore.Ad.VASTModel.VASTOffset?
     }
     
     struct AdVerification {
@@ -212,9 +213,9 @@ enum VASTParser {
                                         case "collapse": inlineContext.pixels.collapse.append(url)
                                         case "progress":
                                             guard let offset = attr["offset"] else { break }
-                                            var progressOffset = VASTParser.getOffset(from: offset)
-                                            inlineContext.pixels.progress.append(.init(url: url,
-                                                                                       offset: progressOffset))
+                                            guard let progressOffset = VASTParser.getOffset(from: offset) else { break }
+                                            inlineContext.adProgress.append(.init(url: url,
+                                                                                  offset: progressOffset))
                                         default: break
                                         }
                                     }
@@ -302,6 +303,7 @@ enum VASTParser {
         var pixels = PlayerCore.AdPixels()
         var vastTag = nil as URL?
         var adVerificationsResult = [AdVerification]()
+        var adProgress: [PlayerCore.Ad.VASTModel.AdProgress] = []
         
         let delegateStack = XML.StackDelegate()
         delegateStack.push(XML.Delegate(setup: { delegate in
@@ -317,7 +319,8 @@ enum VASTParser {
                                                                       verificationParameters: $0.verificationParameters,
                                                                       verificationNotExecuted: $0.verificationNotExecuted)
                     },
-                    pixels: pixels))
+                    pixels: pixels,
+                    progress: adProgress))
                 
                 delegateStack.pop()
             }
@@ -403,9 +406,9 @@ enum VASTParser {
                                         case "collapse": pixels.collapse.append(url)
                                         case "progress":
                                             guard let offset = attr["offset"] else { break }
-                                            pixels.progress.append(
-                                                .init(url: url,
-                                                      offset:  VASTParser.getOffset(from: offset)))
+                                            guard let progressOffset = VASTParser.getOffset(from: offset) else { break }
+                                            adProgress.append(.init(url: url,
+                                                                                  offset: progressOffset))
                                         default: break }
                                     }
                                     
@@ -486,6 +489,7 @@ enum VASTParser {
                                                                         skipOffset: context.skipOffset,
                                                                         clickthrough: context.clickthroughURL,
                                                                         adParameters: context.adParameters,
+                                                                        adProgress: context.adProgress,
                                                                         pixels: context.pixels,
                                                                         id: adId)
                                     result = VASTModel.inline(model)

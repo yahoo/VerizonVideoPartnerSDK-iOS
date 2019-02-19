@@ -60,6 +60,7 @@ class MidrollDetectorTests: QuickSpec {
                                 skipOffset: .none,
                                 clickthrough: nil,
                                 adParameters: nil,
+                                adProgress: [],
                                 pixels: .init(),
                                 id: nil)
                             $0(model) }

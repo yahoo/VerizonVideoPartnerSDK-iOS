@@ -14,13 +14,6 @@ class AdSkipDetectorTest: XCTestCase {
         id = UUID()
     }
     
-    override func tearDown() {
-        sut = nil
-        id = nil
-        
-        super.tearDown()
-    }
-    
     func testProcess() {
         XCTAssertFalse(sut.process(isSkipped: false, id: id))
         XCTAssertTrue(sut.process(isSkipped: true, id: id))

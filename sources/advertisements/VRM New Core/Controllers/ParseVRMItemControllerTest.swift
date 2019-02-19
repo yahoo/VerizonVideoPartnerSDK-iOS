@@ -48,6 +48,7 @@ class ParseVRMItemControllerTest: XCTestCase {
                                              skipOffset: .none,
                                              clickthrough: nil,
                                              adParameters: nil,
+                                             adProgress: [],
                                              pixels: AdPixels(),
                                              id: nil)
         let dispatch = recorder.hook("testSuccessfulParse", cmp: completeParsingComparator.compare)
