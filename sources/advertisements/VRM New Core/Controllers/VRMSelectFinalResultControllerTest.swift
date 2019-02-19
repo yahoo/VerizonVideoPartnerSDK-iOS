@@ -32,6 +32,7 @@ class VRMSelectFinalResultControllerTest: XCTestCase {
                          skipOffset: .none,
                          clickthrough: nil,
                          adParameters: nil,
+                         adProgress: [],
                          pixels: .init(),
                          id: "id1")
         
@@ -41,6 +42,7 @@ class VRMSelectFinalResultControllerTest: XCTestCase {
                          skipOffset: .none,
                          clickthrough: nil,
                          adParameters: nil,
+                         adProgress: [],
                          pixels: .init(),
                          id: "id2")
         let metaInfo = VRMCore.Item.MetaInfo(engineType: nil,

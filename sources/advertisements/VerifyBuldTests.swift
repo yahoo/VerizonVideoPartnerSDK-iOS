@@ -19,6 +19,7 @@ class VerifyBuldTests: XCTestCase {
             skipOffset: .none,
             clickthrough: nil,
             adParameters: "",
+            adProgress: [],
             pixels: AdPixels(),
             id: "id")
         

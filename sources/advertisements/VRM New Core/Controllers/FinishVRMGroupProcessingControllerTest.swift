@@ -44,6 +44,7 @@ class FinishVRMGroupProcessingControllerTest: XCTestCase {
                         skipOffset: .none,
                         clickthrough: nil,
                         adParameters: nil,
+                        adProgress: [],
                         pixels: .init(),
                         id: "id1")
         result = VRMCore.Result(item: urlItem, inlineVAST: adModel)

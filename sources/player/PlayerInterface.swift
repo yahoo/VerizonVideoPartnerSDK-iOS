@@ -185,7 +185,8 @@ extension Player {
     /// Can be called more than one time during single video playback. (AVPlayer details)
     /// Usually, this event is expected from AVFoundation layer.
     func adUpdate(duration: CMTime) {
-        dispatch(action: PlayerCore.updateAdDuration(duration: duration))
+        let vastAdProgress = store.state.value.vrmFinalResult.successResult?.inlineVAST.adProgress ?? []
+        dispatch(action: PlayerCore.updateAdDuration(duration: duration, vastAdProgress: vastAdProgress))
     }
     
     /// Should be called as a part of avplayer-model sync process.

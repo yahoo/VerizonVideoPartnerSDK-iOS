@@ -5,8 +5,8 @@ import PlayerCore
 
 extension VASTParser {
     
-    static func getOffset(from string: String) -> PlayerCore.Ad.VASTModel.VASTOffset {
-        guard string.isEmpty == false else { return .none }
+    static func getOffset(from string: String) -> PlayerCore.Ad.VASTModel.VASTOffset? {
+        guard string.isEmpty == false else { return nil }
         if string.contains("%") {
             if let value = Int(string.replacingOccurrences(of: "%", with: "")) {
                 return .percentage(value)
@@ -16,7 +16,7 @@ extension VASTParser {
                 return .time(value)
             }
         }
-        return .none
+        return nil
     }
     
     private struct TimeOffset {
