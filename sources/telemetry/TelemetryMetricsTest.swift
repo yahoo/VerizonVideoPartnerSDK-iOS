@@ -23,6 +23,7 @@ class TelemetryMetricsTest: XCTestCase {
     var scriptFetchingFailedReporter: Telemetry.Metrics.OpenMeasurement.ScriptFetchingFailedReporter!
 
     var vrmProcessing: Telemetry.Metrics.VRMProcessing!
+    var mp4AdBuffering: Telemetry.Metrics.AdBuffering!
     
     var abuseTelemetry: Telemetry.Metrics.VPAID.AbuseEventErrorReporter!
     var jsTelemetry: Telemetry.Metrics.VPAID.JSEvaluationErrorReporter!
@@ -49,6 +50,7 @@ class TelemetryMetricsTest: XCTestCase {
         failedConfigurationReporter = Telemetry.Metrics.OpenMeasurement.FailedConfigurationReporter(context: [:], send: send)
         scriptFetchingFailedReporter = Telemetry.Metrics.OpenMeasurement.ScriptFetchingFailedReporter(context: [:], send: send)
         vrmProcessing = Telemetry.Metrics.VRMProcessing(context: [:], send: send)
+        mp4AdBuffering = Telemetry.Metrics.AdBuffering(context: [:], send: send)
     }
     
     override func tearDown() {
@@ -284,6 +286,23 @@ class TelemetryMetricsTest: XCTestCase {
         
         recorder.verify {
             vrmProcessing.send(json(for: "VRM_PROCESSING_TIME",
+                                    and: ["time": 2500]))
+        }
+    }
+    
+    func testAdBufferingTime() {
+        let startAt = Date(timeIntervalSince1970: 0)
+        let finishAt = Date(timeIntervalSince1970: 2.5)
+        
+        recorder.record {
+            let adRequest = UUID()
+            mp4AdBuffering.process(adRequest: adRequest, processingTime: .inProgress(startAt: startAt))
+            mp4AdBuffering.process(adRequest: adRequest, processingTime: .finished(startAt: startAt, finishAt: finishAt))
+            mp4AdBuffering.process(adRequest: adRequest, processingTime: .finished(startAt: startAt, finishAt: finishAt))
+        }
+        
+        recorder.verify {
+            mp4AdBuffering.send(json(for: "AD_BUFFERING_TIME",
                                     and: ["time": 2500]))
         }
     }
