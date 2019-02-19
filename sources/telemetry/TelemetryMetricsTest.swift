@@ -22,6 +22,8 @@ class TelemetryMetricsTest: XCTestCase {
     var failedConfigurationReporter: Telemetry.Metrics.OpenMeasurement.FailedConfigurationReporter!
     var scriptFetchingFailedReporter: Telemetry.Metrics.OpenMeasurement.ScriptFetchingFailedReporter!
 
+    var vrmProcessing: Telemetry.Metrics.VRMProcessing!
+    
     var abuseTelemetry: Telemetry.Metrics.VPAID.AbuseEventErrorReporter!
     var jsTelemetry: Telemetry.Metrics.VPAID.JSEvaluationErrorReporter!
     var unsupportedVPAID: Telemetry.Metrics.VPAID.UnsupportedVPAIDReporter!
@@ -38,7 +40,7 @@ class TelemetryMetricsTest: XCTestCase {
             return targetDictionary.isEqual(recordedDictionary)
         }
         
-        let send: (JSON)->() = recorder.hook("send") { compareJSON(target: $0, recorded: $1) }
+        let send = recorder.hook("hook", cmp: compareJSON)
         abuseTelemetry = Telemetry.Metrics.VPAID.AbuseEventErrorReporter(context: [:], send: send)
         jsTelemetry = Telemetry.Metrics.VPAID.JSEvaluationErrorReporter(context: [:], send: send)
         unsupportedVPAID = Telemetry.Metrics.VPAID.UnsupportedVPAIDReporter(context: [:], send: send)
@@ -46,6 +48,7 @@ class TelemetryMetricsTest: XCTestCase {
         successInitializationReporter = Telemetry.Metrics.OpenMeasurement.SuccessInitializationReporter(context: [:], send: send)
         failedConfigurationReporter = Telemetry.Metrics.OpenMeasurement.FailedConfigurationReporter(context: [:], send: send)
         scriptFetchingFailedReporter = Telemetry.Metrics.OpenMeasurement.ScriptFetchingFailedReporter(context: [:], send: send)
+        vrmProcessing = Telemetry.Metrics.VRMProcessing(context: [:], send: send)
     }
     
     override func tearDown() {
@@ -265,6 +268,23 @@ class TelemetryMetricsTest: XCTestCase {
         recorder.verify {
             scriptFetchingFailedReporter.send(json(for: "OM_SDK_SCRIPT_FETCHING_FAILED",
                                                   and: ["message": error.localizedDescription]))
+        }
+    }
+    
+    func testVRMProcessingFinished() {
+        let startAt = Date(timeIntervalSince1970: 0)
+        let finishAt = Date(timeIntervalSince1970: 2.5)
+        
+        recorder.record {
+            let adRequest = UUID()
+            vrmProcessing.process(adRequest: adRequest, processingTime: .inProgress(startAt: startAt))
+            vrmProcessing.process(adRequest: adRequest, processingTime: .finished(startAt: startAt, finishAt: finishAt))
+            vrmProcessing.process(adRequest: adRequest, processingTime: .finished(startAt: startAt, finishAt: finishAt))
+        }
+        
+        recorder.verify {
+            vrmProcessing.send(json(for: "VRM_PROCESSING_TIME",
+                                    and: ["time": 2500]))
         }
     }
     
