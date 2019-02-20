@@ -1,5 +1,17 @@
 # Change Log
 
+## [1.3.0](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/tree/1.3.0) (2019-02-20)
+[Full Changelog](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/compare/1.2.2...1.3.0)
+
+**Merged pull requests:**
+
+- Fixed tvOS build and updated fastlane to run tvOS in PRs [\#79](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/pull/79) ([RomanTysiachnik](https://github.com/RomanTysiachnik))
+- Send telemetry for mp4 ad processing time [\#77](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/pull/77) ([VladyslavAnokhin](https://github.com/VladyslavAnokhin))
+- Added vrm processing telemetry [\#76](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/pull/76) ([VladyslavAnokhin](https://github.com/VladyslavAnokhin))
+- Tutorials + changelog update [\#75](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/pull/75) ([AndriiMoskvin](https://github.com/AndriiMoskvin))
+- Release 1.2.2 with controls 1.30 \(fixed resource bundle\) [\#74](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/pull/74) ([AndriiMoskvin](https://github.com/AndriiMoskvin))
+- Implemented Ad Progress detector [\#70](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/pull/70) ([RomanTysiachnik](https://github.com/RomanTysiachnik))
+
 ## [1.2.2](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/tree/1.2.2) (2019-02-15)
 [Full Changelog](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/compare/1.2.1...1.2.2)
 

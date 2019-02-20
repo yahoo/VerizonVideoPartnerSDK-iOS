@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'VerizonVideoPartnerSDK'
-  s.version          = '1.2.2'
+  s.version          = '1.3.0'
   s.summary          = 'Verizon Video Partner SDK'
   s.license          = { type: 'MIT', file: 'LICENSE' }
   s.swift_version    = '4.2'
@@ -37,8 +37,8 @@ DESC
   s.static_framework = true
   
   s.dependency 'VideoRenderer', '1.26'
-  s.dependency 'PlayerCore', '1.0.4'
-  s.ios.dependency 'PlayerControls', '1.30'
+  s.dependency 'PlayerCore', '1.1.0'
+  s.ios.dependency 'PlayerControls', '2.0'
   s.ios.dependency 'OMSDK-Oath2', '1.0.0'
 
   s.ios.deployment_target  = '9.0'
