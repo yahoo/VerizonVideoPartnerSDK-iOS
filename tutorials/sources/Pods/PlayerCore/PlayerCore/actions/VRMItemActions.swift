@@ -39,7 +39,7 @@ extension VRMItem {
     }
 }
 
-public struct VRMMetaInfo {
+public struct VRMMetaInfo: Hashable {
     public let engineType: String?
     public let ruleId: String?
     public let ruleCompanyId: String?
@@ -59,19 +59,5 @@ public struct VRMMetaInfo {
         self.vendor = vendor
         self.name = name
         self.cpm = cpm
-    }
-}
-
-extension VRMMetaInfo: Hashable {
-    public var hashValue: Int {
-        return vendor.hashValue
-    }
-    
-    public static func ==(lhs: VRMMetaInfo, rhs: VRMMetaInfo) -> Bool {
-        return lhs.engineType == rhs.engineType &&
-            lhs.ruleId == rhs.ruleId &&
-            lhs.ruleCompanyId == rhs.ruleCompanyId &&
-            lhs.vendor == rhs.vendor &&
-            lhs.name == rhs.name
     }
 }

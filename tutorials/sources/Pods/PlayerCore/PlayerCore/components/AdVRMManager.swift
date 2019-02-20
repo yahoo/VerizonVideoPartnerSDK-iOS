@@ -64,16 +64,16 @@ public struct AdVRMManager {
         }
     }
     
-    public enum Timeout { case beforeSoft, afterSoft, afterHard }
+    public enum Timeout: Hashable { case beforeSoft, afterSoft, afterHard }
     
-    public struct StartItem {
+    public struct StartItem: Hashable {
         public let info: VRMMetaInfo
         public let itemID: UUID
         public let url: URL
         public let requestDate: Date
     }
     
-    public struct CompleteItem {
+    public struct CompleteItem: Hashable {
         public let adId: String?
         public let itemID: UUID
         public let info: VRMMetaInfo
@@ -83,7 +83,7 @@ public struct AdVRMManager {
         public let requestTimeoutBarrier: Int
     }
     
-    public struct TimeoutItem {
+    public struct TimeoutItem: Hashable {
         public let info: VRMMetaInfo
         public let itemID: UUID
         public let transactionID: String?
@@ -121,7 +121,7 @@ func reduce(state: AdVRMManager, action: Action) -> AdVRMManager {
         state.request.state = .failed(.init(transactionID: finish.transactionID,
                                           slot: finish.slot))
         
-    case (is SkipAd, .finish(let finish)):
+    case (is DropAd, .finish(let finish)):
         state.request.state = .skipped(.init(transactionID: finish.transactionID,
                                              slot: finish.slot,
                                              startItems: finish.startItems,

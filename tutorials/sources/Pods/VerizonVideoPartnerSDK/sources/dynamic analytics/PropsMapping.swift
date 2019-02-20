@@ -265,26 +265,18 @@ func json(for status: Player.Properties.PlaybackItem.Video.Status) -> JSøN {
     }
 }
 
-func json(for adModel: AdCreative) -> JSøN {
-    let object: [String: JSøN]
-    switch adModel {
-    case .mp4(let model):
-        object = [
-            "clickthrough": model.clickthrough |> json,
-            "maintainAspectRatio": model.maintainAspectRatio |> json,
-            "mediaFile": model.url |> json,
-            "scalable": model.scalable |> json,
-            "pixels": model.pixels |> json,
-            "id": model.id |> json]
-    case .vpaid(let model):
-        object = [
-            "adParameters": model.adParameters |> json,
-            "mediaFile": model.url |> json,
-            "clickthrough": model.clickthrough |> json,
-            "pixels": model.pixels |> json,
-            "id": model.id |> json]
-    case .none: return .null
-    }
+func json(for adModel: AdCreative.MP4?) -> JSøN {
+    guard let model = adModel else { return .null }
+    let object: [String: JSøN] = [
+        "clickthrough": model.clickthrough |> json,
+        "maintainAspectRatio": model.maintainAspectRatio |> json,
+        "mediaFile": model.url |> json,
+        "width": model.width |> json,
+        "height": model.height |> json,
+        "scalable": model.scalable |> json,
+        "pixels": model.pixels |> json,
+        "id": model.id |> json
+    ]
     return object |> json
 }
 
@@ -380,7 +372,7 @@ func json(for videoAngles: (horizontal: Float, vertical: Float)?) -> JSøN {
 func json(for available: Player.Properties.PlaybackItem.Available) -> JSøN {
     let object: [String: JSøN] = [
         "ad": available.ad |> json,
-        "adModel": available.adCreative |> json,
+        "adModel": available.mp4AdCreative |> json,
         "content": available.content |> json,
         "hasActiveAds": available.hasActiveAds |> json,
         "isAdPlaying": available.isAdPlaying |> json,

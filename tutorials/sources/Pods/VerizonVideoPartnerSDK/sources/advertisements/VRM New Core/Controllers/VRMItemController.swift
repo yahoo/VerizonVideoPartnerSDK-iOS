@@ -8,27 +8,35 @@ final class VRMItemController {
     
     let dispatch: (PlayerCore.Action) -> Void
     
-    private var startedItems = Set<VRMCore.Item>()
+    private var startedCandidates = Set<ScheduledVRMItems.Candidate>()
+    private var wrapperError = Set<VRMCore.Item>()
     
     init(dispatch: @escaping (PlayerCore.Action) -> Void ) {
         self.dispatch = dispatch
     }
     
     func process(with state: PlayerCore.State) {
-        process(with: state.vrmScheduledItems.items)
+        process(with: state.vrmScheduledItems.items,
+                isMaxAdSearchTimeReached: state.vrmMaxAdSearchTimeout.isReached)
     }
     
-    func process(with scheduledItems: Set<VRMCore.Item>) {
-        scheduledItems
-            .subtracting(startedItems)
-            .forEach { item in
-                startedItems.insert(item)
-                switch (item.source) {
-                case let .url(url):
-                    dispatch(VRMCore.startItemFetch(originalItem: item, url: url))
-                case let .vast(vastXML):
-                    dispatch(VRMCore.startItemParsing(originalItem: item, vastXML: vastXML))
-                }
+    func process(with scheduledItems: [VRMCore.Item: Set<ScheduledVRMItems.Candidate>],
+                 isMaxAdSearchTimeReached: Bool) {
+        guard isMaxAdSearchTimeReached == false else {
+            return
+        }
+        
+        scheduledItems.forEach { originalItem, queue in
+            queue.subtracting(startedCandidates)
+                .forEach { candidate in
+                    startedCandidates.insert(candidate)
+                    switch (candidate.source) {
+                    case let .url(url):
+                        dispatch(VRMCore.startItemFetch(originalItem: originalItem, url: url))
+                    case let .vast(vastXML):
+                        dispatch(VRMCore.startItemParsing(originalItem: originalItem, vastXML: vastXML))
+                    }
+            }
         }
     }
 }

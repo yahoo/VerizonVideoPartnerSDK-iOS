@@ -4,16 +4,32 @@
 import Foundation
 
 public struct ScheduledVRMItems {
-    static let initial = ScheduledVRMItems(items: [])
+    static let initial = ScheduledVRMItems(items: [:])
     
-    public let items: Set<VRMCore.Item>
+    public struct Candidate: Hashable {
+        public let id = VRMCore.ID<Candidate>()
+        public let source: VRMCore.Item.Source
+    }
+    
+    public var items: [VRMCore.Item: Set<Candidate>]
 }
 
 func reduce(state: ScheduledVRMItems, action: Action) -> ScheduledVRMItems {
     switch action {
     case let startGroupAction as VRMCore.StartGroupProcessing:
-        let allScheduledItems = state.items.union(startGroupAction.group.items)
-        return ScheduledVRMItems(items: allScheduledItems)
+        var newState = state
+        startGroupAction.group.items.forEach { item in
+            newState.items[item] = Set(arrayLiteral: .init(source:item.source))
+        }
+        return newState
+        
+    case let unwrapAction as VRMCore.UnwrapItem:
+        var newState = state
+        let candidate = ScheduledVRMItems.Candidate(source: .url(unwrapAction.url))
+        newState.items[unwrapAction.item]?.insert(candidate)
+        return newState
+    case is VRMCore.AdRequest:
+        return .initial
     default:
         return state
     }

@@ -1,13 +1,13 @@
 PODS:
   - OMSDK-Oath2 (1.0.0)
-  - PlayerControls (1.27)
-  - PlayerCore (1.0.2)
-  - VerizonVideoPartnerSDK (1.1.0):
+  - PlayerControls (1.30)
+  - PlayerCore (1.0.4)
+  - VerizonVideoPartnerSDK (1.2.2):
     - OMSDK-Oath2 (= 1.0.0)
-    - PlayerControls (= 1.27)
-    - PlayerCore (= 1.0.2)
-    - VideoRenderer (= 1.25)
-  - VideoRenderer (1.25)
+    - PlayerControls (= 1.30)
+    - PlayerCore (= 1.0.4)
+    - VideoRenderer (= 1.26)
+  - VideoRenderer (1.26)
 
 DEPENDENCIES:
   - VerizonVideoPartnerSDK
@@ -22,11 +22,11 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   OMSDK-Oath2: 641f95e29744bba047d4dc03081c3f2340ab338c
-  PlayerControls: 54af32ee1fa9da39dcf3bfcc43426c427a5f9049
-  PlayerCore: 39322c51d14ba2c706cc66b33d590a4c5be99205
-  VerizonVideoPartnerSDK: 65f743334454d4ab8bcbfb4b936ce2bb40f74690
-  VideoRenderer: 9374dc7e0108f21eb1b0c8aa7b2a18a947197164
+  PlayerControls: caea5a34aa29a1823573eda6c48529c1ace7a529
+  PlayerCore: 354444537679ceb7bf3e7a27d3945973fd6edc11
+  VerizonVideoPartnerSDK: 51a5112d7048262c887398ad39563a5754531690
+  VideoRenderer: 282fb7d8067c0220ae1d7f53706fa3f9134e47fd
 
 PODFILE CHECKSUM: 37cfeb4d6c1e15a6f75c529aaa1bd7a1ebf783b6
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.6.0

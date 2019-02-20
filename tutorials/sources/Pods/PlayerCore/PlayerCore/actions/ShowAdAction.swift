@@ -7,5 +7,14 @@ struct ShowAd: Action {
     let creative: AdCreative
     let id: UUID
     let adVerifications: [Ad.VASTModel.AdVerification]
-    let isOpenMeasurementEnabled: Bool
+}
+
+struct ShowMP4Ad: Action {
+    let creative: AdCreative.MP4
+    let id: UUID
+}
+
+struct ShowVPAIDAd: Action {
+    let creative: AdCreative.VPAID
+    let id: UUID
 }

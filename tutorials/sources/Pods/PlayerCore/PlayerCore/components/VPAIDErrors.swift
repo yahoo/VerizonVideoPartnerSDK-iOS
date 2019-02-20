@@ -32,7 +32,7 @@ func reduce(state: VPAIDErrors, action: Action) -> VPAIDErrors {
         return VPAIDErrors(abusedEvents: state.abusedEvents,
                            javaScriptEvaluationErrors: state.javaScriptEvaluationErrors,
                            isAdNotSupported: true)
-    case is ShowAd, is SkipAd, is AdStopped, is ShowContent, is SelectVideoAtIdx:
+    case is ShowMP4Ad, is ShowVPAIDAd, is ShowAd, is DropAd, is AdStopped, is ShowContent, is SelectVideoAtIdx:
         return VPAIDErrors(abusedEvents: [],
                            javaScriptEvaluationErrors: [],
                            isAdNotSupported: false)

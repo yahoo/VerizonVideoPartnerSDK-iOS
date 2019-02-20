@@ -15,6 +15,8 @@ func reduce(state: VRMGroupsQueue, action: Action) -> VRMGroupsQueue {
     case let currentGroupAction as VRMCore.StartGroupProcessing:
         let newGroups = state.groupsQueue.filter{ $0 != currentGroupAction.group }
         return VRMGroupsQueue(groupsQueue: newGroups)
+    case is VRMCore.AdRequest:
+        return .initial
     default: return state
     }
 }

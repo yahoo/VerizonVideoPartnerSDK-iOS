@@ -111,7 +111,7 @@ extension SystemPlayerViewController {
                                     return AVInterstitialTimeRange(timeRange: timeRange) }})
                     
                     let adProps: PlayerProps? = {
-                        guard case .mp4(let model) = videoProps.adCreative, videoProps.hasActiveAds else { return nil }
+                        guard let model = videoProps.mp4AdCreative, videoProps.hasActiveAds else { return nil }
                         
                         return PlayerProps(
                             url: model.url,

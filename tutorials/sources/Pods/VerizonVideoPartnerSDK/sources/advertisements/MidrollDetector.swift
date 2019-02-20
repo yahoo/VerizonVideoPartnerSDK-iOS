@@ -48,7 +48,7 @@ func playAction(input: MidrollDetector.Input,
 class MidrollDetector {
     typealias Midroll = PlayerCore.Ad.Midroll
     
-    enum Action {
+    enum Action: Hashable {
         case prefetch(Midroll)
         case play(PlayerCore.Ad.VASTModel?, Midroll)
     }
@@ -60,7 +60,6 @@ class MidrollDetector {
         var isPlayMidrollAllowed: Bool
         var hasActiveAds: Bool
         var isVPAIDAllowed: Bool
-        var isOpenMeasurementEnabled: Bool
     }
     
     struct State {
@@ -97,12 +96,11 @@ class MidrollDetector {
             state.lastPrefetchedMidroll = midroll
             state.prefetchedModel = nil
             guard let model = model else {
-                dispatcher(PlayerCore.skipAd(id: midroll.id))
+                dispatcher(PlayerCore.dropAd(id: midroll.id))
                 return
             }
             dispatcher(PlayerCore.playAd(model: model,
-                                         id: midroll.id,
-                                         isOpenMeasurementEnabled: input.isOpenMeasurementEnabled))
+                                         id: midroll.id))
         }
     }
     
@@ -123,12 +121,11 @@ class MidrollDetector {
 }
 
 extension MidrollDetector.Input {
-    init?(playerProps: Player.Properties, isVPAIDAllowed: Bool, isOpenMeasurementEnabled: Bool) {
+    init?(playerProps: Player.Properties, isVPAIDAllowed: Bool) {
         guard let item = playerProps.playbackItem,
             let currentTime = item.content.time.static?.current else { return nil }
         
         self.isVPAIDAllowed = isVPAIDAllowed
-        self.isOpenMeasurementEnabled = isOpenMeasurementEnabled
         self.currentTime = perform {
             guard currentTime > Double(Int.min) && currentTime < Double(Int.max) else { return 0 }
             return Int(currentTime) }
@@ -136,19 +133,5 @@ extension MidrollDetector.Input {
         midrolls = item.midrolls
         isPlayMidrollAllowed = item.content.isPaused == false && item.content.isSeeking == false
         hasActiveAds = item.hasActiveAds
-    }
-}
-
-
-extension MidrollDetector.Action: Equatable {
-    static func ==(lhs: MidrollDetector.Action, rhs: MidrollDetector.Action) -> Bool {
-        switch (lhs, rhs) {
-        case (.prefetch(let lhsMidroll), .prefetch(let rhsMidroll)):
-            return lhsMidroll == rhsMidroll
-        case (.play(let lhsPrefetchedModel, let lhsPrefetchedMidroll), .play(let rhsPrefetchedModel, let rhsPrefetchedMidroll)):
-            return lhsPrefetchedModel?.mediaFiles.first?.url == rhsPrefetchedModel?.mediaFiles.first?.url
-                && lhsPrefetchedMidroll == rhsPrefetchedMidroll
-        default: return false
-        }
     }
 }

@@ -3,22 +3,22 @@
 import Foundation
 
 public struct VRMRequestStatus {
-    static let initial = VRMRequestStatus(request: .none, requestsFired: 0)
+    static let initial = VRMRequestStatus(request: nil, requestsFired: 0)
     
-    public enum Request {
-        case none
-        case request(url: URL, id: UUID)
+    public struct Request {
+        public let url: URL
+        public let id: UUID
     }
     
-    public let request: Request
+    public let request: Request?
     public let requestsFired: Int
 }
 
 func reduce(state: VRMRequestStatus, action: Action) -> VRMRequestStatus {
     switch action {
     case let adRequest as VRMCore.AdRequest:
-        return VRMRequestStatus(request: .request(url: adRequest.url,
-                                                  id: adRequest.id),
+        return VRMRequestStatus(request: .init(url: adRequest.url,
+                                                id: adRequest.id),
                                 requestsFired: state.requestsFired+1)
     default:
         return state

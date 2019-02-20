@@ -334,30 +334,16 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Tutorial/Pods-Tutorial-resources.sh",
-				"${PODS_ROOT}/PlayerControls/PlayerControls/resources/AdVideoControls.xib",
-				"${PODS_ROOT}/PlayerControls/PlayerControls/resources/AirPlayActiveView.xib",
-				"${PODS_ROOT}/PlayerControls/PlayerControls/resources/DefaultControlsViewController.xib",
-				"${PODS_ROOT}/PlayerControls/PlayerControls/resources/SeekerControlPlayground.xib",
-				"${PODS_ROOT}/PlayerControls/PlayerControls/resources/SettingCell.xib",
-				"${PODS_ROOT}/PlayerControls/PlayerControls/resources/SettingHeaderView.xib",
-				"${PODS_ROOT}/PlayerControls/PlayerControls/resources/SettingsViewController.xib",
-				"${PODS_ROOT}/PlayerControls/PlayerControls/resources/PlayerUIControls.xcassets",
+				"${PODS_ROOT}/Target Support Files/Pods-Tutorial/Pods-Tutorial-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/PlayerControls/PlayerControls.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AdVideoControls.nib",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AirPlayActiveView.nib",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/DefaultControlsViewController.nib",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SeekerControlPlayground.nib",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SettingCell.nib",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SettingHeaderView.nib",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SettingsViewController.nib",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Assets.car",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/PlayerControls.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Tutorial/Pods-Tutorial-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Tutorial/Pods-Tutorial-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

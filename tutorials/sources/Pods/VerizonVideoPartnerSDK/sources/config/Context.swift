@@ -53,7 +53,7 @@ extension VVPSDK {
                     model: hardwareVersion,
                     os: UIDevice.current.systemVersion),
                 sdk: SDK.init(
-                    version: "2.31",
+                    version: VVPSDK.backendVersion,
                     renderers: Renderer.Repository.shared.availableRenderers
                 ),
                 extra: [:])

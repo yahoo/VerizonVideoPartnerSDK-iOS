@@ -14,12 +14,11 @@ extension VRMCore {
     struct CompleteItemParsing: Action {
         let originalItem: Item
         let vastModel: VASTModel
-        let date: Date
     }
     
     struct ParsingError: Action {
         let originalItem: Item
-        let parseCandidate: VRMParseItemQueue.Candidate
+        let finishDate: Date
     }
     
     struct StartItemFetch: Action {
@@ -30,6 +29,21 @@ extension VRMCore {
     
     struct FetchingError: Action {
         let originalItem: Item
-        let fetchCandidate: VRMFetchItemQueue.Candidate
+        let finishDate: Date
+    }
+    
+    struct UnwrapItem: Action {
+        let url: URL
+        let item: Item
+    }
+    
+    struct TooManyIndirections: Action {
+        let item: Item
+        let finishDate: Date
+    }
+    
+    struct OtherError: Action {
+        let item: Item
+        let finishDate: Date
     }
 }

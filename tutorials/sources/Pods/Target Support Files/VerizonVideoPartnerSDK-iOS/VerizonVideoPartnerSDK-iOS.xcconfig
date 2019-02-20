@@ -1,11 +1,8 @@
 CONFIGURATION_BUILD_DIR = ${PODS_CONFIGURATION_BUILD_DIR}/VerizonVideoPartnerSDK-iOS
 FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/OMSDK-Oath2"
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-HEADER_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Headers/Public"
-LIBRARY_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/PlayerControls" "${PODS_CONFIGURATION_BUILD_DIR}/PlayerCore-iOS" "${PODS_CONFIGURATION_BUILD_DIR}/VideoRenderer-iOS"
-OTHER_CFLAGS = $(inherited) -fmodule-map-file="${PODS_CONFIGURATION_BUILD_DIR}/VideoRenderer-iOS/VideoRenderer.modulemap" -fmodule-map-file="${PODS_CONFIGURATION_BUILD_DIR}/PlayerCore-iOS/PlayerCore.modulemap" -fmodule-map-file="${PODS_CONFIGURATION_BUILD_DIR}/PlayerControls/PlayerControls.modulemap"
-OTHER_LDFLAGS = -framework "AVFoundation" -framework "CoreGraphics" -framework "CoreMedia" -framework "WebKit"
-OTHER_SWIFT_FLAGS = $(inherited) "-D" "COCOAPODS" -Xcc -fmodule-map-file="${PODS_CONFIGURATION_BUILD_DIR}/VideoRenderer-iOS/VideoRenderer.modulemap" -Xcc -fmodule-map-file="${PODS_CONFIGURATION_BUILD_DIR}/PlayerCore-iOS/PlayerCore.modulemap" -Xcc -fmodule-map-file="${PODS_CONFIGURATION_BUILD_DIR}/PlayerControls/PlayerControls.modulemap" -import-underlying-module -Xcc -fmodule-map-file="${SRCROOT}/${MODULEMAP_FILE}"
+OTHER_CFLAGS = $(inherited) -fmodule-map-file="${PODS_CONFIGURATION_BUILD_DIR}/PlayerControls/PlayerControls.modulemap" -fmodule-map-file="${PODS_CONFIGURATION_BUILD_DIR}/PlayerCore-iOS/PlayerCore.modulemap" -fmodule-map-file="${PODS_CONFIGURATION_BUILD_DIR}/VideoRenderer-iOS/VideoRenderer.modulemap"
+OTHER_SWIFT_FLAGS = $(inherited) -D COCOAPODS -Xcc -fmodule-map-file="${PODS_CONFIGURATION_BUILD_DIR}/PlayerControls/PlayerControls.modulemap" -Xcc -fmodule-map-file="${PODS_CONFIGURATION_BUILD_DIR}/PlayerCore-iOS/PlayerCore.modulemap" -Xcc -fmodule-map-file="${PODS_CONFIGURATION_BUILD_DIR}/VideoRenderer-iOS/VideoRenderer.modulemap" -import-underlying-module -Xcc -fmodule-map-file="${SRCROOT}/${MODULEMAP_FILE}"
 PODS_BUILD_DIR = ${BUILD_DIR}
 PODS_CONFIGURATION_BUILD_DIR = ${PODS_BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
 PODS_ROOT = ${SRCROOT}

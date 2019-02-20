@@ -1,0 +1,6 @@
+module PlayerControls {
+  umbrella header "PlayerControls-umbrella.h"
+
+  export *
+  module * { export * }
+}

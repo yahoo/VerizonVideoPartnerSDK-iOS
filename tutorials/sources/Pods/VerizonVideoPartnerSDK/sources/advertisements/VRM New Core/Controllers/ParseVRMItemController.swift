@@ -44,8 +44,7 @@ final class ParseVRMItemController {
                 self.parseXML(candidate.vastXML)
                     .onComplete { vastModel in
                         guard let vastModel = vastModel else {
-                            self.dispatch(VRMCore.failedItemParse(originalItem: candidate.parentItem,
-                                                                  parseCandidate: candidate))
+                            self.dispatch(VRMCore.failedItemParse(originalItem: candidate.parentItem))
                             return
                         }
                         

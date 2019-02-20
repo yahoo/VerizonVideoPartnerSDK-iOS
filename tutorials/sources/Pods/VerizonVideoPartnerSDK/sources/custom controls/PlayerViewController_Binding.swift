@@ -131,7 +131,7 @@ extension PlayerViewController {
                 let time = item.ad.time.static
                 
                 func click() -> CommandWith<SFSafariViewControllerDelegate> {
-                    guard case .mp4 = item.adCreative else { return .nop }
+                    guard item.mp4AdCreative != nil else { return .nop }
                     return item.isClickThroughToggled ? .nop : CommandWith { _ in
                             player.activateClickThrough()
                         }
@@ -143,6 +143,12 @@ extension PlayerViewController {
                     guard let currentTimeString = TimeFormatter.voiceOverReadable(from: Int(currentTime)) else { return "" }
                     guard let durationString =  TimeFormatter.voiceOverReadable(from: Int(duration)) else { return "" }
                     return "Current position \(currentTimeString) of \(durationString))"
+                }
+                
+                func adSkipState() -> AdVideoControls.Props.AdSkipState {
+                    guard let adSkipOffset = item.adSkipOffset else { return .unavailable }
+                    guard adSkipOffset > 0 else { return .available(CommandWith(action: player.skipAd)) }
+                    return .awaiting(adSkipOffset)
                 }
                 
                 return AdVideoControls.Props(
@@ -158,7 +164,8 @@ extension PlayerViewController {
                         : nil,
                     click: click(),
                     isLoading: item.ad.isBuffering || item.ad.time.isUnknown,
-                    airplayActiveViewHidden: item.ad.airPlay != .active
+                    airplayActiveViewHidden: item.ad.airPlay != .active,
+                    adSkipState: adSkipState()
                 )
             }
             
@@ -225,7 +232,7 @@ extension PlayerViewController {
             }
             
             func adRenderer() -> Props.RendererProps? {
-                guard case .mp4(let creative) = item.adCreative, item.hasActiveAds else { return nil }
+                guard let creative = item.mp4AdCreative, item.hasActiveAds else { return nil }
                 func rate() -> Float {
                     return item.ad.isPlaying ? 1 : 0
                 }
@@ -260,7 +267,7 @@ extension PlayerViewController {
             }
             
             func vpaidProps() -> VPAIDProps? {
-                guard case .vpaid(let creative) = item.adCreative, item.hasActiveAds else { return nil }
+                guard let creative = item.vpaidAdCreative, item.hasActiveAds else { return nil }
                 func rate() -> Float {
                     return item.ad.isPlaying ? 1 : 0
                 }

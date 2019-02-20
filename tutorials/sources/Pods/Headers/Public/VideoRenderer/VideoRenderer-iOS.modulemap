@@ -1,7 +1,1 @@
-module VideoRenderer {
-  umbrella header "VideoRenderer-iOS-umbrella.h"
-  exclude header "VideoRenderer-tvOS-umbrella.h"
-
-  export *
-  module * { export * }
-}
+../../../Target Support Files/VideoRenderer-iOS/VideoRenderer-iOS.modulemap

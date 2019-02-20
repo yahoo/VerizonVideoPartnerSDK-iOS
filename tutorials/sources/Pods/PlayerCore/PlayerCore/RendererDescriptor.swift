@@ -3,7 +3,7 @@
 
 import Foundation
 
-public struct Descriptor: Equatable {
+public struct Descriptor: Hashable {
     public let id: String
     public let version: String
     

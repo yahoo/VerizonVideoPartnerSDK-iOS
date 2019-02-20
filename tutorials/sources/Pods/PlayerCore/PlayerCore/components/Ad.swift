@@ -6,13 +6,13 @@ public struct Ad {
     public let playedAds: Set<UUID>
     public let midrolls: [Midroll]
     
-    public struct Midroll {
+    public struct Midroll: Hashable {
         public let cuePoint: Int
         public let url: URL
         public let id: UUID
     }
     
-    public enum State {
+    public enum State: Hashable {
         case empty
         case play
         
@@ -21,56 +21,99 @@ public struct Ad {
             return true
         }
     }
-    public var adCreative: AdCreative
+    public let mp4AdCreative: AdCreative.MP4?
+    public let vpaidAdCreative: AdCreative.VPAID?
     
     public let currentAd: State
     public let currentType: AdType
 }
 
 func reduce(state: Ad, action: Action) -> Ad {
+    
+    func markIDAsPlayed(id: UUID) -> Ad {
+        var playedAds = state.playedAds
+        playedAds.insert(id)
+        return Ad(playedAds: playedAds,
+                  midrolls: state.midrolls,
+                  mp4AdCreative: state.mp4AdCreative,
+                  vpaidAdCreative: state.vpaidAdCreative,
+                  currentAd: state.currentAd,
+                  currentType: state.currentType)
+    }
+    
     switch action {
     case let action as AdRequest:
         return Ad(playedAds: state.playedAds,
                   midrolls: state.midrolls,
-                  adCreative: .none,
+                  mp4AdCreative: nil,
+                  vpaidAdCreative: nil,
                   currentAd: state.currentAd,
                   currentType: action.type)
         
     case let action as VRMCore.AdRequest:
         return Ad(playedAds: state.playedAds,
                   midrolls: state.midrolls,
-                  adCreative: .none,
+                  mp4AdCreative: nil,
+                  vpaidAdCreative: nil,
                   currentAd: state.currentAd,
                   currentType: action.type)
         
     case let action as ShowAd:
         var playedAds = state.playedAds
         playedAds.insert(action.id)
-        return Ad(playedAds: playedAds,
-                  midrolls: state.midrolls,
-                  adCreative: action.creative,
-                  currentAd: .play,
-                  currentType: state.currentType)
+        switch action.creative {
+        case .mp4(let creatives):
+            return Ad(playedAds: playedAds,
+                      midrolls: state.midrolls,
+                      mp4AdCreative: creatives.first,
+                      vpaidAdCreative: nil,
+                      currentAd: .play,
+                      currentType: state.currentType)
+        case .vpaid(let creatives):
+            return Ad(playedAds: playedAds,
+                      midrolls: state.midrolls,
+                      mp4AdCreative: nil,
+                      vpaidAdCreative: creatives.first,
+                      currentAd: .play,
+                      currentType: state.currentType)
+        case .none:
+            fatalError("AdCreative.none has to create SkipAd action")
+        }
         
-    case let action as SkipAd:
+    case let action as ShowMP4Ad:
         var playedAds = state.playedAds
         playedAds.insert(action.id)
         return Ad(playedAds: playedAds,
                   midrolls: state.midrolls,
-                  adCreative: state.adCreative,
-                  currentAd: state.currentAd,
+                  mp4AdCreative: action.creative,
+                  vpaidAdCreative: nil,
+                  currentAd: .play,
                   currentType: state.currentType)
         
-    case let action as VRMCore.VRMResponseFetchFailed:
+    case let action as ShowVPAIDAd:
         var playedAds = state.playedAds
-        playedAds.insert(action.requestID)
+        playedAds.insert(action.id)
         return Ad(playedAds: playedAds,
                   midrolls: state.midrolls,
-                  adCreative: state.adCreative,
-                  currentAd: state.currentAd,
+                  mp4AdCreative: nil,
+                  vpaidAdCreative: action.creative,
+                  currentAd: .play,
                   currentType: state.currentType)
         
+    case let action as DropAd:
+        return markIDAsPlayed(id: action.id)
+        
+    case let action as VRMCore.VRMResponseFetchFailed:
+        return markIDAsPlayed(id: action.requestID)
+        
+    case let action as VRMCore.NoGroupsToProcess:
+        return markIDAsPlayed(id: action.id)
+        
+    case let action as VRMCore.MaxSearchTimeout:
+        return markIDAsPlayed(id: action.requestID)
+        
     case is ShowContent,
+         is SkipAd,
          is AdPlaybackFailed,
          is AdError,
          is AdStartTimeout,
@@ -80,33 +123,19 @@ func reduce(state: Ad, action: Action) -> Ad {
          is AdNotSupported:
         return Ad(playedAds: state.playedAds,
                   midrolls: state.midrolls,
-                  adCreative: state.adCreative,
+                  mp4AdCreative: state.mp4AdCreative,
+                  vpaidAdCreative: state.vpaidAdCreative,
                   currentAd: .empty,
                   currentType: state.currentType)
         
     case let action as SelectVideoAtIdx:
         return Ad(playedAds: [],
                   midrolls: action.midrolls,
-                  adCreative: .none,
+                  mp4AdCreative: nil,
+                  vpaidAdCreative: nil,
                   currentAd: .empty,
                   currentType: action.hasPrerollAds ? .preroll : .midroll)
         
     default: return state
-    }
-}
-
-extension Ad.Midroll: Equatable {
-    public static func ==(lhs: Ad.Midroll, rhs: Ad.Midroll) -> Bool {
-        return lhs.cuePoint == rhs.cuePoint
-            && lhs.url == rhs.url
-            && lhs.id == rhs.id
-    }
-    
-    public static func >(left: Ad.Midroll, right: Ad.Midroll) -> Bool {
-        return left.cuePoint > right.cuePoint
-    }
-    
-    public static func <(left: Ad.Midroll, right: Ad.Midroll) -> Bool {
-        return left.cuePoint < right.cuePoint
     }
 }

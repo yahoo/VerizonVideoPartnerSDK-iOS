@@ -24,7 +24,8 @@ final class Store {
                                              hasPrerollAds: hasPrerollAds,
                                              midrolls: model.midrolls[0],
                                              timeoutBarrier: model.adSettings.hardTimeout,
-                                             maxAdDuration: model.adSettings.maxDuration),
+                                             maxAdDuration: model.adSettings.maxDuration,
+                                             isOpenMeasurementEnabled: model.isOpenMeasurementAllowed),
                                 queue: queue)
         self.channel = Telemetry.Station.shared.makeChannel(for: self)
     }

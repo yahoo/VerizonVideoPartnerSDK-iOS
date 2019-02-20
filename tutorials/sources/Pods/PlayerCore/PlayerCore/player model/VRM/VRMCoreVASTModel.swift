@@ -6,9 +6,9 @@ import Foundation
 public extension VRMCore {
     
     /// Currently we support only InLine ads.
-    public enum VASTModel: Equatable {
+    public enum VASTModel: Hashable {
         
-        public struct WrapperModel: Equatable {
+        public struct WrapperModel: Hashable {
             public let tagURL: URL
             public let adVerifications: [Ad.VASTModel.AdVerification]
             public let pixels: AdPixels
@@ -39,7 +39,9 @@ public extension Ad.VASTModel {
     public func merge(with pixels: AdPixels, and verifications: [Ad.VASTModel.AdVerification]) -> Ad.VASTModel {
         return PlayerCore.Ad.VASTModel(
             adVerifications: self.adVerifications + verifications,
-            mediaFiles: mediaFiles,
+            mp4MediaFiles: mp4MediaFiles,
+            vpaidMediaFiles: vpaidMediaFiles,
+            skipOffset: skipOffset,
             clickthrough: clickthrough,
             adParameters: adParameters,
             pixels: self.pixels.merge(with: pixels),
@@ -68,7 +70,8 @@ public extension AdPixels {
             acceptInvitationLinear: acceptInvitationLinear + pixels.acceptInvitationLinear,
             close: close + pixels.close,
             closeLinear: closeLinear + pixels.closeLinear,
-            collapse: collapse + pixels.collapse
+            collapse: collapse + pixels.collapse,
+            progress: progress + pixels.progress
         )
     }
 }

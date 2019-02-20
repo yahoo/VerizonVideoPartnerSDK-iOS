@@ -67,7 +67,7 @@ func reduce(state: CurrentTime, action: Action) -> CurrentTime {
                                           isSeekInProgress: false),
                            ad: CMTime.zero)
         
-    case (is ShowAd, _):
+    case (is ShowMP4Ad, _), (is ShowVPAIDAd, _), (is ShowAd, _):
         return CurrentTime(content: state.content, ad: CMTime.zero)
         
     default: return state

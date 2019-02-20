@@ -26,6 +26,100 @@ extension TrackingPixels.Connector {
             }
         }
         
+        let transactionId: String? = perform {
+            let oldCoreTransactionId: String? = perform {
+                return state.transactionIDHolder?.transactionID
+            }
+            
+            let newCoreTransactionId: String? = perform {
+                return state.vrmResponse?.transactionId
+            }
+            
+            return newCoreTransactionId ?? oldCoreTransactionId
+        }
+        
+        let adId: String? = perform {
+            let oldCoreAdId: String? = perform {
+                return state.adInfoHolder?.adID
+            }
+            
+            let newCoreAdId: String? = perform {
+                guard let inline = state.vrmFinalResult.successResult ?? state.vrmFinalResult.failedResult,
+                    let vrmResponse = state.vrmResponse else { return nil }
+                return inline.inlineVAST.id
+            }
+            
+            return newCoreAdId ?? oldCoreAdId
+        }
+        
+        let adMetricsInfo: Ad.Metrics.Info? = perform {
+            let oldCoreInfo: Ad.Metrics.Info? = perform {
+                guard let adInfo = state.adInfoHolder?.info else { return nil }
+                return info(from: adInfo)
+            }
+            
+            let newCoreInfo: Ad.Metrics.Info? = perform {
+                guard let inline = state.vrmFinalResult.successResult ?? state.vrmFinalResult.failedResult,
+                    let vrmResponse = state.vrmResponse else { return nil }
+                return Ad.Metrics.Info(metaInfo: inline.item.metaInfo)
+            }
+            
+            return newCoreInfo ?? oldCoreInfo
+        }
+        
+        let slot: String? = perform {
+            let oldSlot: String? = perform {
+                switch state.adVRMManager.request.state {
+                case .finish(let finish):
+                    return finish.slot
+                case .failed(let failed):
+                    return failed.slot
+                case .skipped(let skipped):
+                    return skipped.slot
+                default: return nil
+                }
+            }
+            
+            let newSlot: String? = perform {
+                return state.vrmResponse?.slot
+            }
+            
+            return newSlot ?? oldSlot
+        }
+        
+        let sessionID = state.adVRMManager.request.id ?? state.vrmRequestStatus.request?.id
+        
+        adRequestDetector.process(with: state).flatMap { result in
+            reporter.adVRMRequest(videoIndex: state.playlist.currentIndex,
+                                  type: adType,
+                                  sequenceNumber: state.vrmRequestStatus.requestsFired,
+                                  transactionId: result.transactionId,
+                                  videoViewUID: state.playbackSession.id.uuidString)
+        }
+        
+        adEngineRequestDetector.process(state: state).forEach { result in
+            reporter.adEngineRequest(videoIndex: state.playlist.currentIndex,
+                                     info: result.adInfo,
+                                     type: adType,
+                                     transactionId: result.transactionId,
+                                     videoViewUID: state.playbackSession.id.uuidString)
+            reporter.adServerRequest(info: result.adInfo,
+                                     videoIndex: state.playlist.currentIndex,
+                                     videoViewUID: state.playbackSession.id.uuidString)
+        }
+        
+        adEngineResponseDetector.process(state: state).forEach { result in
+            reporter.adEngineResponse(videoIndex: state.playlist.currentIndex,
+                                      info: result.metaInfo,
+                                      type: adType,
+                                      responseStatus: result.responseStatus,
+                                      responseTime: result.responseTime,
+                                      timeout: result.timeout,
+                                      fillType: result.fillType,
+                                      transactionId: transactionId,
+                                      videoViewUID: state.playbackSession.id.uuidString)
+        }
+        
         vrmDetector.process(state: state.adVRMManager).forEach { result in
             switch result {
             case .completeRequest(let complete):
@@ -97,13 +191,10 @@ extension TrackingPixels.Connector {
         }
         
         func report(with function: (Payload) -> ()) {
-            guard
-                case .finish(let finish) = state.adVRMManager.request.state,
-                let completeItem = finish.completeItem else { return }
-            let info = VerizonVideoPartnerSDK.info(from: completeItem.info)
-            
             func pixels() -> PlayerCore.AdPixels {
-                if let pixels = state.adInfoHolder?.pixels {
+                if let pixels = state.adInfoHolder?.pixels ??
+                                state.vrmFinalResult.successResult?.inlineVAST.pixels ??
+                                state.vrmFinalResult.failedResult?.inlineVAST.pixels {
                     return .init(impression: pixels.impression,
                                  error: pixels.error,
                                  clickTracking: pixels.clickTracking,
@@ -122,15 +213,19 @@ extension TrackingPixels.Connector {
                                  acceptInvitationLinear: pixels.acceptInvitationLinear,
                                  close: pixels.close,
                                  closeLinear: pixels.closeLinear,
-                                 collapse: pixels.collapse)
+                                 collapse: pixels.collapse,
+                                 progress: pixels.progress)
                 } else {
                     fatalError("No pixels which are required to fire!")
                 }
             }
-            function(Payload(info: info,
-                             transactionID: completeItem.transactionID,
-                             adID: completeItem.adId,
-                             slot: finish.slot,
+            
+            guard let adMetricsInfo = adMetricsInfo else { return }
+            
+            function(Payload(info: adMetricsInfo,
+                             transactionID: transactionId,
+                             adID: adId,
+                             slot: slot ?? "",
                              pixels: pixels()))
         }
         
@@ -138,40 +233,32 @@ extension TrackingPixels.Connector {
             let input = Detectors.AdViewTime.Input(
                 duration: state.duration.ad?.seconds,
                 currentTime: state.currentTime.ad.seconds,
-                isAdFinished: state.adTracker.isFinished,
+                isAdFinished: state.adTracker == .forceFinished,
                 isSessionCompleted: state.playerSession.isCompleted,
                 videoIndex: state.playlist.currentIndex,
                 vvuid: state.playbackSession.id.uuidString)
             
             if let result = adViewTimeDetector.process(newInput: input) {
-                guard let holder = state.adInfoHolder else { return }
-                let info = VerizonVideoPartnerSDK.info(from: holder.info)
+                guard let adId = adId,
+                      let adInfo = adMetricsInfo else { return }
                 reporter.adViewTime(videoIndex: result.videoIndex,
-                                    info: info,
+                                    info: adInfo,
                                     type: adType,
                                     videoViewUID: result.vvuid,
-                                    adId: holder.adID,
-                                    transactionId: state.transactionIDHolder?.transactionID,
+                                    adId: adId,
+                                    transactionId: transactionId,
                                     adCurrentTime: result.time,
                                     adDuration: result.duration)
             }
         }
         /* Slot Opportunity Detector */ do {
-            if let adSessionID = state.adVRMManager.request.id {
-                let slotDetected = adSlotOpportunityDetector.process(
-                    sessionID: adSessionID,
-                    adPlaying: state.rate.adRate.stream,
-                    adSkipped: perform {
-                        guard case .skipped = state.adVRMManager.request.state else { return false }
-                        return true },
-                    adFailed: perform {
-                        guard case .failed = state.adVRMManager.request.state else { return false }
-                        return true },
-                    contentPlaying: state.rate.contentRate.stream)
-                if slotDetected, let result = state.adVRMManager.request.result {
+            if let adSessionID = sessionID,
+                let slot = slot {
+                let playbackStarted = state.rate.adRate.stream || state.rate.contentRate.stream
+                if adSlotOpportunityDetector.process( sessionID: adSessionID, playbackStarted: playbackStarted) {
                     reporter.slotOpportunity(videoIndex: state.playlist.currentIndex,
-                                             slot: result.slot,
-                                             transactionId: result.transactionID,
+                                             slot: slot,
+                                             transactionId: transactionId,
                                              width: state.viewport.dimensions?.width ?? 0,
                                              videoViewUID: state.playbackSession.id.uuidString,
                                              type: adType)
@@ -204,28 +291,23 @@ extension TrackingPixels.Connector {
         
         /*Ad Max Show Time Detector*/ do {
             if adMaxShowTimerDetector.process(state: state) {
-                guard let holder = state.adInfoHolder else { return }
-                let info = VerizonVideoPartnerSDK.info(from: holder.info)
-                reporter.adEngineFlow(videoIndex: state.playlist.currentIndex,
-                                      info: info,
-                                      type: adType,
-                                      stage: .killed,
-                                      width: state.viewport.dimensions?.width,
-                                      height: state.viewport.dimensions?.height,
-                                      autoplay: model.isAutoplayEnabled,
-                                      transactionId: state.transactionIDHolder?.transactionID,
-                                      adId: holder.adID,
-                                      videoViewUID: state.playbackSession.id.uuidString)
+                report { payload in
+                    engineFlow(stage: .killed, payload: payload)
+                }
             }
         }
-        
-        switch state.ad.adCreative {
+        /*Ad Skip Detector*/ do {
+            if adSkipDetector.process(state: state) {
+                report { payload in
+                    reporter.sendBeacon(urls: payload.pixels.skip)
+                    engineFlow(stage: .skipped, payload: payload)
+                    openMeasurementVideoEvents?.skip()
+                }
+            }
+        }
+        switch state.selectedAdCreative {
         case .vpaid:
-            let events = vpaidEventsDetector.process(events: state.vpaid.events)
-            guard !events.isEmpty else { return }
-            guard let holder = state.adInfoHolder else { return }
-            let info = VerizonVideoPartnerSDK.info(from: holder.info)
-            events.forEach {
+            vpaidEventsDetector.process(events: state.vpaid.events).forEach {
                 switch $0 {
                 case .AdScriptLoaded:
                     report { payload in
@@ -308,24 +390,27 @@ extension TrackingPixels.Connector {
                         engineFlow(stage: .finished, payload: payload)
                     }
                 case .AdError(let error):
-                    reporter.sendBeacon(urls: holder.pixels.error)
+                    report { payload in
+                    reporter.sendBeacon(urls: payload.pixels.error)
                     reporter.adEngineIssue(videoIndex: state.playlist.currentIndex,
-                                           info: info,
+                                           info: payload.info,
                                            type: adType,
                                            errorMessage: error.localizedDescription,
                                            stage: .load,
-                                           transactionId: state.transactionIDHolder?.transactionID,
-                                           adId: holder.adID,
+                                           transactionId: payload.transactionID,
+                                           adId: payload.adID,
                                            videoViewUID: state.playerSession.id.uuidString)
+                    }
                 default: break
                 }
             }
         case .mp4:
             /* Playback Cycle Detector */ do {
                 let result = adPlaybackCycleDetector.process(streamPlaying: state.rate.adRate.stream,
-                                                             isFinished: state.adTracker.isFinished)
+                                                             isSuccessfullyCompleted: state.adTracker == .successfullyCompleted,
+                                                             isForceFinished: state.adTracker == .forceFinished)
                 switch result {
-                case .beginPlaying:
+                case .start:
                     report { payload in
                         reporter.sendBeacon(urls: payload.pixels.start)
                         engineFlow(stage: .started, payload: payload)
@@ -337,21 +422,12 @@ extension TrackingPixels.Connector {
                     let volume: Float = state.mute.player ? 0 : 1
                     openMeasurementVideoEvents?.start(CGFloat(duration), CGFloat(volume))
                     
-                case .endPlaying:
-                    guard let holder = state.adInfoHolder else { return }
-                    reporter.sendBeacon(urls: holder.pixels.complete)
-                    openMeasurementVideoEvents?.complete()
-                    let info = VerizonVideoPartnerSDK.info(from: holder.info)
-                    reporter.adEngineFlow(videoIndex: state.playlist.currentIndex,
-                                          info: info,
-                                          type: adType,
-                                          stage: .finished,
-                                          width: state.viewport.dimensions?.width,
-                                          height: state.viewport.dimensions?.height,
-                                          autoplay: model.isAutoplayEnabled,
-                                          transactionId: state.transactionIDHolder?.transactionID,
-                                          adId: holder.adID,
-                                          videoViewUID: state.playbackSession.id.uuidString)
+                case .complete:
+                    report { payload in
+                        reporter.sendBeacon(urls: payload.pixels.complete)
+                        openMeasurementVideoEvents?.complete()
+                        engineFlow(stage: .finished, payload: payload)
+                    }
                     
                 case .nothing: break
                 }
@@ -359,7 +435,7 @@ extension TrackingPixels.Connector {
             
             /* Mute/Unmute Detector */ do {
                 let result = muteDetector.process(isMuted: state.mute.player,
-                                                  isNotFinished: !state.adTracker.isFinished)
+                                                  isNotFinished: state.adTracker == .unknown)
                 report { payload in
                     switch result {
                     case .mute:
@@ -400,7 +476,7 @@ extension TrackingPixels.Connector {
                 }()
                 let result = openMeasurementMuteDetector.process(
                     isMuted: state.mute.player,
-                    isNotFinished: !state.adTracker.isFinished,
+                    isNotFinished: state.adTracker == .unknown,
                     isOMActive: isOMActive)
                 switch result {
                 case .mute:
@@ -413,7 +489,7 @@ extension TrackingPixels.Connector {
             
             /* Video Loading Detector */ do {
                 let result = adVideoLoadingDetector.render(isLoaded: state.playbackStatus.ad == .ready,
-                                                           sessionID: state.adVRMManager.request.id,
+                                                           sessionID: sessionID,
                                                            isPlaying: state.ad.currentAd.isPlaying)
                 
                 switch result {
@@ -454,7 +530,7 @@ extension TrackingPixels.Connector {
                 
                 let result = adQuartileDetector.process(quartile: quartile,
                                                         playing: state.rate.adRate.stream,
-                                                        sessionId: state.adVRMManager.request.id,
+                                                        sessionId: sessionID,
                                                         isStatic: hasDuration)
                 for metric in result {
                     switch metric.newQuartile {
@@ -489,23 +565,23 @@ extension TrackingPixels.Connector {
             }
             
             /* Ad Error Detector */ do {
-                adErrorDetector.process(id: state.adVRMManager.request.id,
+                adErrorDetector.process(id: sessionID ,
                                         error: perform {
                                             guard case .errored(let error) = state.playbackStatus.ad else { return nil }
                                             return error
                 }).map { (issue: Detectors.AdError.Result) in
-                    guard let holder = state.adInfoHolder else { return }
-                    let info = VerizonVideoPartnerSDK.info(from: holder.info)
-                    reporter.sendBeacon(urls: holder.pixels.error)
-                    
-                    reporter.adEngineIssue(videoIndex: state.playlist.currentIndex,
-                                           info: info,
-                                           type: adType,
-                                           errorMessage: issue.error.localizedDescription,
-                                           stage: .load,
-                                           transactionId: state.transactionIDHolder?.transactionID,
-                                           adId: holder.adID,
-                                           videoViewUID: state.playerSession.id.uuidString)
+                    report { payload in
+                        reporter.sendBeacon(urls: payload.pixels.error)
+                        
+                        reporter.adEngineIssue(videoIndex: state.playlist.currentIndex,
+                                               info: payload.info,
+                                               type: adType,
+                                               errorMessage: issue.error.localizedDescription,
+                                               stage: .load,
+                                               transactionId: payload.transactionID,
+                                               adId: payload.adID,
+                                               videoViewUID: state.playerSession.id.uuidString)
+                    }
                 }
             }
             

@@ -36,7 +36,7 @@ class Observer<Value>: Hashable {
                                      queue callbackQueue: DispatchQueue) -> Update {
         
         /// Queue for protecting access to pending props
-        let queue = DispatchQueue(label: "com.onemobilesdk.player.observer")
+        let queue = DispatchQueue(label: "com.VerizonVideoPartnerSDK.player.observer")
         
         /// Intermediate storage for props
         var pending: Value?

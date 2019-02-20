@@ -18,7 +18,7 @@ func reduce(state: LoadedTimeRanges, action: Action) -> LoadedTimeRanges {
     case is ShowContent:
         return LoadedTimeRanges(content: state.content, ad: state.ad)
         
-    case is ShowAd:
+    case is ShowMP4Ad, is ShowVPAIDAd, is ShowAd:
         return LoadedTimeRanges(content: state.content, ad: [])
         
     case is SelectVideoAtIdx:

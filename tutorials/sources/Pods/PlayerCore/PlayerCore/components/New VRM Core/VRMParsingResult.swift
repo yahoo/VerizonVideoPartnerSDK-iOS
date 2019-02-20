@@ -6,7 +6,12 @@ import Foundation
 public struct VRMParsingResult {
     static let initial = VRMParsingResult(parsedVASTs: [:])
     
-    var parsedVASTs: [VRMCore.Item: VRMCore.VASTModel]
+    public struct Result: Hashable {
+        public let id = VRMCore.ID<Result>()
+        public let vastModel: VRMCore.VASTModel
+    }
+    
+    public var parsedVASTs: [VRMCore.Item: Result]
 }
 
 func reduce(state: VRMParsingResult, action: Action) -> VRMParsingResult {
@@ -15,25 +20,27 @@ func reduce(state: VRMParsingResult, action: Action) -> VRMParsingResult {
     case let finishParsing as VRMCore.CompleteItemParsing:
         var newState = state
         
-        if let currentVASTModel = newState.parsedVASTs[finishParsing.originalItem] {
+        if let currentVASTModel = newState.parsedVASTs[finishParsing.originalItem]?.vastModel {
             switch(currentVASTModel, finishParsing.vastModel) {
             case let (.wrapper(currentWrapper), .wrapper(processedWrapper)):
                 let mergedWrapper = processedWrapper.merge(with: currentWrapper.pixels,
                                                            and: currentWrapper.adVerifications)
-                newState.parsedVASTs[finishParsing.originalItem] = .wrapper(mergedWrapper)
+                newState.parsedVASTs[finishParsing.originalItem] = .init(vastModel: .wrapper(mergedWrapper))
                 return newState
             case let (.wrapper(currentWrapper), .inline(resultModel)):
                 let mergedResult = resultModel.merge(with: currentWrapper.pixels,
                                                      and: currentWrapper.adVerifications)
-                newState.parsedVASTs[finishParsing.originalItem] = .inline(mergedResult)
+                newState.parsedVASTs[finishParsing.originalItem] = .init(vastModel: .inline(mergedResult))
             case (.inline, _):
                 fatalError("Tried to complete already completed item")
             }
         } else {
-            newState.parsedVASTs[finishParsing.originalItem] = finishParsing.vastModel
+            newState.parsedVASTs[finishParsing.originalItem] = .init(vastModel: finishParsing.vastModel)
         }
         
         return newState
+    case is VRMCore.AdRequest:
+        return .initial
     default:
         return state
     }

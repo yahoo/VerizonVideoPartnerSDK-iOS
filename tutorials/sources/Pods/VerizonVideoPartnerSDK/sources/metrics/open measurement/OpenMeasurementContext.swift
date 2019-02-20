@@ -88,7 +88,8 @@ enum OpenMeasurement {
             resume: omidVideoEvents.resume,
             pause: omidVideoEvents.pause,
             click: { omidVideoEvents.adUserInteraction(withType: .click) },
-            volumeChange: omidVideoEvents.volumeChange)
+            volumeChange: omidVideoEvents.volumeChange,
+            skip: omidVideoEvents.skipped)
         
         return Output(adSession: adSession, adEvents: adEvents, videoEvents: videoEvents)
     }

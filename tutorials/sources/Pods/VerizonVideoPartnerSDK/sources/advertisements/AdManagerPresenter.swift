@@ -4,7 +4,7 @@ import Foundation
 import PlayerCore
 
 struct AdManagerActions<Result> {
-    var skipPreroll = nop() as Action<UUID>
+    var dropPreroll = nop() as Action<UUID>
     var startPreroll = nop() as Action<Result>
 }
 
@@ -65,25 +65,9 @@ final class AdManager<Result> {
                 if let model = result {
                     self.actions.startPreroll(model)
                 } else {
-                    self.actions.skipPreroll(id)
+                    self.actions.dropPreroll(id)
                 }
             }
         }
     }
-}
-
-extension VRMProvider.Item: Hashable {
-    var hashValue: Int {
-        switch self {
-        case let .vast(string, _): return string.hashValue
-        case let .url(url, _): return url.hashValue
-        }
-    }
-}
-
-func == (left: VRMProvider.Item, right: VRMProvider.Item) -> Bool {
-    switch (left, right) {
-    case (let .vast(lh, _), let .vast(rh, _)): return lh == rh
-    case (let .url(lh, _), let .url(rh, _)): return lh == rh
-    default: return false }
 }
