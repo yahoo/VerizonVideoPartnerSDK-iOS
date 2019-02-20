@@ -26,7 +26,6 @@ lane :build do
 end
 
 lane :build_tvos_target do
-  next if git_branch == 'master'
   carthage(
     command: 'build',
     project_directory: '.',

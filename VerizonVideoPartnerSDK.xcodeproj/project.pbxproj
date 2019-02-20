@@ -16,6 +16,7 @@
 		062E9B3E20F5097C00AF1D54 /* PlayerViewController_Clickthrough.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062E9B3D20F5097C00AF1D54 /* PlayerViewController_Clickthrough.swift */; };
 		063988A72100C95000FE8475 /* VPAIDMessageHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 063988A62100C95000FE8475 /* VPAIDMessageHandler.swift */; };
 		063C8354221C568D0052C1DC /* AdEngineResponseDetectorSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26043F9220885B60034FC48 /* AdEngineResponseDetectorSpec.swift */; };
+		063C8374221D9AD00052C1DC /* AdSkipDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EC86CA221467C300CB4A8E /* AdSkipDetector.swift */; };
 		0640B18D20C983F3007DCB3F /* VerifyBuldTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0640B18C20C983F3007DCB3F /* VerifyBuldTests.swift */; };
 		06419E1A20EF7433007FE2F0 /* WebviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06419E1720EF7433007FE2F0 /* WebviewViewController.swift */; };
 		06419E2120EF7950007FE2F0 /* VPAIDProps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06419E2020EF7950007FE2F0 /* VPAIDProps.swift */; };
@@ -1869,6 +1870,7 @@
 				50E5ADEA1EE08A76004104D6 /* PlayerTracer.swift in Sources */,
 				50A11DC81D59D7E000F4A068 /* DecileDetector.swift in Sources */,
 				E2D64A5C2090E8F600152ADE /* VideoImpression.swift in Sources */,
+				063C8374221D9AD00052C1DC /* AdSkipDetector.swift in Sources */,
 				50A11DCA1D59D7E000F4A068 /* QuartileDetector.swift in Sources */,
 				061AFD7421F53BC30024BAC5 /* ContentPlaybackCycleDetector.swift in Sources */,
 				50A11DCB1D59D7E000F4A068 /* ApplyDecorator.swift in Sources */,
