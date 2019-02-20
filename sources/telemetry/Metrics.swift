@@ -13,6 +13,7 @@ extension Telemetry {
         let vpaid: VPAID
         let openMeasurement: OpenMeasurement
         let vrmProcessing: VRMProcessing
+        let adBuffering: AdBuffering
         
         init(url: URL, context: JSON, ephemeralSession: URLSession) {
             let send = Telemetry.CustomTelemetrySender(session: ephemeralSession,
@@ -25,6 +26,7 @@ extension Telemetry {
             vpaid = VPAID(context: context, send: send)
             openMeasurement = OpenMeasurement(context: context, send: send)
             vrmProcessing = VRMProcessing(context: context, send: send)
+            adBuffering = AdBuffering(context: context, send: send)
         }
         
         func process(props: Player.Properties) {
@@ -38,6 +40,7 @@ extension Telemetry {
             adStartTimeout.process(state: state)
             openMeasurement.process(state: state)
             vrmProcessing.process(state: state)
+            adBuffering.process(state: state)
         }
         
         func process(videoProviderError error: Error) {
@@ -209,6 +212,41 @@ extension Telemetry.Metrics {
                                type: "VRM_PROCESSING_TIME",
                                value: ["time": timeInterval]))
         }
+    }
+}
+
+extension Telemetry.Metrics {
+    final class AdBuffering {
+        
+        let context: JSON
+        let send: (JSON) -> ()
+        
+        private var processedRequests = Set<UUID>()
+        
+        init(context: JSON, send: @escaping (JSON) -> ()) {
+            self.context = context
+            self.send = send
+        }
+        
+        func process(state: PlayerCore.State) {
+            process(adRequest: state.vrmRequestStatus.request?.id,
+                    processingTime: state.mp4AdBufferingTime)
+        }
+        
+        func process(adRequest: UUID?,
+                     processingTime: MP4AdBufferingTime) {
+            guard let requestID = adRequest,
+                case let .finished(startAt, finishAt) = processingTime,
+                processedRequests.contains(requestID) == false else { return }
+            
+            processedRequests.insert(requestID)
+            
+            let timeInterval = Int(finishAt.timeIntervalSince(startAt) * 1000)
+            send(telemetryJSON(withContext: context,
+                               type: "AD_BUFFERING_TIME",
+                               value: ["time": timeInterval]))
+        }
+        
     }
 }
 
@@ -465,4 +503,3 @@ func telemetryJSON(withContext context: JSON, type: String, value: JSON = [:]) -
         ]
     ]
 }
-

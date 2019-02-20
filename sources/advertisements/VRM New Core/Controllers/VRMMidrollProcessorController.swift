@@ -63,7 +63,7 @@ final class VRMMidrollProcessorController {
         let midrollToPlay = candidateBeforeCurrentTime ?? candidateAfterCurrentTime
         
         prevRoundedTime = roundedTime
-        
+
         if let midroll = midrollToPlay,
             lastMidroll?.id != midroll.id {
             lastMidroll = midroll
