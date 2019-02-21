@@ -6,20 +6,20 @@ import VerizonVideoPartnerSDK
 
 func singleVideo() -> Future<Result<Player>> {
     return VVPSDK.Provider.default.getSDK()
-        .then { $0.getPlayer(videoID: "577cc23d50954952cc56bc47") }
+        .then { $0.getPlayer(videoID: "5be162270822e865c05571da") }
 }
 
 #if os(iOS)
 func arrayOfVideos() -> Future<Result<Player>> {
     return VVPSDK.Provider.default.getSDK()
-        .then { $0.getPlayer(videoIDs: ["593967be9e45105fa1b5939a",
-                                        "577cc23d50954952cc56bc47",
-                                        "5939698f85eb427b86aa0a14"]) }
+        .then { $0.getPlayer(videoIDs: ["5be157906614d143c1eeb5ae",
+                                        "5be15940007d0c759d8aa06b",
+                                        "5be04fe9bf48852d05888487"]) }
 }
 
 func videoPlaylist() -> Future<Result<Player>> {
     return VVPSDK.Provider.default.getSDK()
-        .then { $0.getPlayer(playlistID: "577cc27b88d2ff0d0f5acc71") }
+        .then { $0.getPlayer(playlistID: "5be16352cf9d31000187830f") }
 }
 #endif
 
@@ -30,28 +30,28 @@ func mutedVideo() -> Future<Result<Player>> {
 
 func videoWithoutAutoplay() -> Future<Result<Player>> {
     return VVPSDK.Provider.default.getSDK()
-        .then { $0.getPlayer(videoID: "577cc23d50954952cc56bc47",
+        .then { $0.getPlayer(videoID: "5be162270822e865c05571da",
                              autoplay: false) }
 }
 
 func liveVideo() -> Future<Result<Player>> {
     return VVPSDK.Provider.default.getSDK()
-        .then { $0.getPlayer(videoID: "5a600ab092fdde68e1f7a606") }
+        .then { $0.getPlayer(videoID: "5be06b6bc2ec100eee0af751") }
 }
 
 func subtitlesVideo() -> Future<Result<Player>> {
     return VVPSDK.Provider.default.getSDK()
-        .then { $0.getPlayer(videoID: "59397934955a316f1c4f65b4") }
+        .then { $0.getPlayer(videoID: "5be16478023e752a7573f1f4") }
 }
 
 func restrictedVideo() -> Future<Result<Player>> {
     return VVPSDK.Provider.default.getSDK()
-        .then { $0.getPlayer(videoID: "59396b1c9e45105fa1b599c9") }
+        .then { $0.getPlayer(videoID: "5be15c63c2ec100eee0b6e3b") }
 }
 
 func deletedVideo() -> Future<Result<Player>> {
     return VVPSDK.Provider.default.getSDK()
-        .then { $0.getPlayer(videoID: "577cc23d50954952cc56bc48") }
+        .then { $0.getPlayer(videoID: "666666666666666666666666") }
 }
 
 func unknownVideo() -> Future<Result<Player>> {
