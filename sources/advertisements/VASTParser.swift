@@ -408,7 +408,7 @@ enum VASTParser {
                                             guard let offset = attr["offset"] else { break }
                                             guard let progressOffset = VASTParser.getOffset(from: offset) else { break }
                                             adProgress.append(.init(url: url,
-                                                                                  offset: progressOffset))
+                                                                    offset: progressOffset))
                                         default: break }
                                     }
                                     
