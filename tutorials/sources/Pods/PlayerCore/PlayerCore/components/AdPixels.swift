@@ -25,7 +25,6 @@ public struct AdPixels: Hashable {
     public var close: URLs
     public var closeLinear: URLs
     public var collapse: URLs
-    public var progress: [Progress]
     
     public init(impression: URLs = [],
                 error: URLs = [],
@@ -45,8 +44,7 @@ public struct AdPixels: Hashable {
                 acceptInvitationLinear: URLs = [],
                 close: URLs = [],
                 closeLinear: URLs = [],
-                collapse: URLs = [],
-                progress: [Progress] = []) {
+                collapse: URLs = []) {
         self.impression = impression
         self.error = error
         self.clickTracking = clickTracking
@@ -66,15 +64,5 @@ public struct AdPixels: Hashable {
         self.close = close
         self.closeLinear = closeLinear
         self.collapse = collapse
-        self.progress = progress
-    }
-    public struct Progress: Hashable {
-        public let url: URL
-        public let offset: Ad.VASTModel.VASTOffset
-        
-        public init(url: URL, offset: Ad.VASTModel.VASTOffset) {
-            self.url = url
-            self.offset = offset
-        }
     }
 }

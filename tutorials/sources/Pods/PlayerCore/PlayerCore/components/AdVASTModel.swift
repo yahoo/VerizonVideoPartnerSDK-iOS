@@ -7,9 +7,10 @@ extension Ad {
         public let adVerifications: [AdVerification]
         public let mp4MediaFiles: [MP4MediaFile]
         public let vpaidMediaFiles: [VPAIDMediaFile]
-        public let skipOffset: VASTOffset
+        public let skipOffset: VASTOffset?
         public let clickthrough: URL?
         public let adParameters: String?
+        public let adProgress: [AdProgress]
         public let pixels: AdPixels
         public let id: String?
         
@@ -47,9 +48,18 @@ extension Ad {
         }
         
         public enum VASTOffset: Hashable {
-            case none
             case time(Int)
             case percentage(Int)
+        }
+        
+        public struct AdProgress: Hashable {
+            public let url: URL
+            public let offset: Ad.VASTModel.VASTOffset
+            
+            public init(url: URL, offset: Ad.VASTModel.VASTOffset) {
+                self.url = url
+                self.offset = offset
+            }
         }
         
         public struct AdVerification: Hashable {
@@ -71,9 +81,10 @@ extension Ad {
         public init(adVerifications: [AdVerification],
                     mp4MediaFiles: [MP4MediaFile],
                     vpaidMediaFiles: [VPAIDMediaFile],
-                    skipOffset: VASTOffset,
+                    skipOffset: VASTOffset?,
                     clickthrough: URL?,
                     adParameters: String?,
+                    adProgress: [AdProgress],
                     pixels: AdPixels,
                     id: String?) {
             self.adVerifications = adVerifications
@@ -82,6 +93,7 @@ extension Ad {
             self.skipOffset = skipOffset
             self.clickthrough = clickthrough
             self.adParameters = adParameters
+            self.adProgress = adProgress
             self.pixels = pixels
             self.id = id
         }

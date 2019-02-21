@@ -1,10 +1,5 @@
-//
-//  BundleHelper.swift
-//  PlayerControls
-//
-//  Created by amoskvin on 2/15/19.
-//  Copyright © 2019 Oath Inc. All rights reserved.
-//
+//  Copyright 2019, Oath Inc.
+//  Licensed under the terms of the MIT License. See LICENSE.md file in project root for terms.
 
 import Foundation
 
@@ -13,10 +8,8 @@ func controlsBundle(for class: AnyClass) -> Bundle {
     if let controlsBundleUrl = current.url(forResource: "PlayerControls",
                                               withExtension: "bundle"),
         let controls = Bundle(url: controlsBundleUrl) {
-        print("CocoaPods bundle")
         return controls
     } else {
-        print("Current bundle")
         return current
     }
 }

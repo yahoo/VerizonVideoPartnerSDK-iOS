@@ -8,4 +8,5 @@ struct UpdateContentDuration: Action {
 
 struct UpdateAdDuration: Action {
     let newDuration: CMTime?
+    let vastAdProgress: [Ad.VASTModel.AdProgress]
 }

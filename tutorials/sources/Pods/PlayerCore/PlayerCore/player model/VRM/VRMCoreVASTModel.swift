@@ -44,6 +44,7 @@ public extension Ad.VASTModel {
             skipOffset: skipOffset,
             clickthrough: clickthrough,
             adParameters: adParameters,
+            adProgress: self.adProgress + adProgress,
             pixels: self.pixels.merge(with: pixels),
             id: id)
     }
@@ -70,8 +71,7 @@ public extension AdPixels {
             acceptInvitationLinear: acceptInvitationLinear + pixels.acceptInvitationLinear,
             close: close + pixels.close,
             closeLinear: closeLinear + pixels.closeLinear,
-            collapse: collapse + pixels.collapse,
-            progress: progress + pixels.progress
+            collapse: collapse + pixels.collapse
         )
     }
 }
