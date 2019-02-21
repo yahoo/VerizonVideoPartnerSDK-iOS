@@ -11,6 +11,7 @@ enum VASTModel {
         let tagURL: URL
         let adVerifications: [PlayerCore.Ad.VASTModel.AdVerification]
         let pixels: PlayerCore.AdPixels
+        let progress: [PlayerCore.Ad.VASTModel.AdProgress]
     }
     
     case wrapper(WrapperModel)
@@ -26,6 +27,7 @@ extension PlayerCore.Ad.VASTModel {
             skipOffset: skipOffset,
             clickthrough: clickthrough,
             adParameters: adParameters,
+            adProgress: self.adProgress + adProgress,
             pixels: self.pixels.merge(with: pixels),
             id: id)
     }
@@ -52,8 +54,8 @@ extension PlayerCore.AdPixels {
             acceptInvitationLinear: acceptInvitationLinear + pixels.acceptInvitationLinear,
             close: close + pixels.close,
             closeLinear: closeLinear + pixels.closeLinear,
-            collapse: collapse + pixels.collapse,
-            progress: progress + pixels.progress
+            collapse: collapse + pixels.collapse
+            
         )
     }
 }

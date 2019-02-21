@@ -98,7 +98,6 @@ extension Player.Properties {
                 let offset = Int(duration.rounded() / 100 * Double(value))
                 guard offset < Int(duration) else { return nil }
                 return offset - currentTime
-            default: return nil
             }
         }
         

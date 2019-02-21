@@ -8,6 +8,7 @@ public struct State {
     public let ad: Ad
     public let adKill: AdKill
     public let adMaxShowTime: TimerSession
+    public let adProgress: AdVASTProgress
     public let selectedAdCreative: AdCreative
     public let openMeasurement: OpenMeasurement
     public let serviceScript: OpenMeasurementServiceScript
@@ -53,6 +54,8 @@ public struct State {
     public let vrmOtherError: VRMOtherError
     public let vrmFinalResult: VRMFinalResult
     public let vrmItemResponseTime: VRMItemResponseTime
+    public let vrmProcessingTime: VRMProcessingTime
+    public let mp4AdBufferingTime: MP4AdBufferingTime
 }
 
 
@@ -87,6 +90,7 @@ extension State {
             adMaxShowTime: .init(state: .stopped,
                                  startAdSession: nil,
                                  allowedDuration: Double(maxAdDuration)),
+            adProgress: .init(pixels: []),
             selectedAdCreative: .none,
             openMeasurement: isOpenMeasurementEnabled ? .inactive : .disabled,
             serviceScript: OpenMeasurementServiceScript.none,
@@ -143,7 +147,9 @@ extension State {
             vrmRedirectError: VRMRedirectError(erroredItems: []),
             vrmOtherError: VRMOtherError(erroredItems: []),
             vrmFinalResult: .initial,
-            vrmItemResponseTime: .initial
+            vrmItemResponseTime: .initial,
+            vrmProcessingTime: .initial,
+            mp4AdBufferingTime: .initial
         )
     }
 }
@@ -157,6 +163,7 @@ public func reduce(state: State, action: Action) -> State {
         ad: reduce(state: state.ad, action: action),
         adKill: reduce(state: state.adKill, action: action),
         adMaxShowTime: reduce(state: state.adMaxShowTime, action: action),
+        adProgress: reduce(state: state.adProgress, action: action),
         selectedAdCreative: reduce(state: state.selectedAdCreative, action: action),
         openMeasurement: reduce(state: state.openMeasurement, action: action),
         serviceScript: reduce(state: state.serviceScript, action: action),
@@ -201,6 +208,8 @@ public func reduce(state: State, action: Action) -> State {
         vrmRedirectError: reduce(state: state.vrmRedirectError, action: action),
         vrmOtherError: reduce(state: state.vrmOtherError, action: action),
         vrmFinalResult: reduce(state: state.vrmFinalResult, action: action),
-        vrmItemResponseTime: reduce(state: state.vrmItemResponseTime, action: action)
+        vrmItemResponseTime: reduce(state: state.vrmItemResponseTime, action: action),
+        vrmProcessingTime: reduce(state: state.vrmProcessingTime, action: action),
+        mp4AdBufferingTime: reduce(state: state.mp4AdBufferingTime, action: action)
     )
 }

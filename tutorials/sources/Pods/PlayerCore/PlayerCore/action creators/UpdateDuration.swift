@@ -6,6 +6,6 @@ public func updateContentDuration(duration: CMTime) -> Action {
     return UpdateContentDuration(newDuration: duration)
 }
 
-public func updateAdDuration(duration: CMTime) -> Action {
-    return UpdateAdDuration(newDuration: duration)
+public func updateAdDuration(duration: CMTime, vastAdProgress: [Ad.VASTModel.AdProgress]) -> Action {
+    return UpdateAdDuration(newDuration: duration, vastAdProgress: vastAdProgress)
 }

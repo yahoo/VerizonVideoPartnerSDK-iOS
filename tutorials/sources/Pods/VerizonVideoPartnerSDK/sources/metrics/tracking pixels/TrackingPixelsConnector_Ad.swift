@@ -213,8 +213,7 @@ extension TrackingPixels.Connector {
                                  acceptInvitationLinear: pixels.acceptInvitationLinear,
                                  close: pixels.close,
                                  closeLinear: pixels.closeLinear,
-                                 collapse: pixels.collapse,
-                                 progress: pixels.progress)
+                                 collapse: pixels.collapse)
                 } else {
                     fatalError("No pixels which are required to fire!")
                 }
@@ -304,6 +303,11 @@ extension TrackingPixels.Connector {
                     openMeasurementVideoEvents?.skip()
                 }
             }
+        }
+        /*Ad Progress Detector*/ do {
+            let urls = adProgressDetector.process(currentTime: state.currentTime.ad.seconds,
+                                                  progressPixelsArray: state.adProgress.pixels)
+            reporter.sendBeacon(urls: urls)
         }
         switch state.selectedAdCreative {
         case .vpaid:
