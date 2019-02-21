@@ -50,7 +50,8 @@ class VRMProcessingControllerTest: XCTestCase {
                                                                 maintainAspectRatio: true)
         wrapper = VRMCore.VASTModel.wrapper(.init(tagURL: wrapperUrl,
                                                   adVerifications: [],
-                                                  pixels: .init()))
+                                                  pixels: .init(),
+                                                  adProgress: []))
         adModel = .init(adVerifications: [],
                         mp4MediaFiles: [mp4MEdiaFile],
                         vpaidMediaFiles: [vpaidMediaFile],

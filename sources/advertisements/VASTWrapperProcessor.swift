@@ -38,7 +38,7 @@ struct VASTWrapperProcessor {
                 case .timeout: return Future(value: .timeoutError)
                 case .parsingError: return Future(value: .parsingError)
                 case .model(.inline(let model)):
-                    return Future(value: .model(model.merge(with: wrapper1.pixels, and: wrapper1.adVerifications)))
+                    return Future(value: .model(model.merge(pixels: wrapper1.pixels, verifications: wrapper1.adVerifications, adProgress: wrapper1.progress)))
                     
                 case .model(.wrapper(let wrapper2)):
                     return self.innerFetch(wrapper2.tagURL).then { result in
@@ -48,8 +48,8 @@ struct VASTWrapperProcessor {
                         case .parsingError: return Future(value: .parsingError)
                         case .model(.inline(let model)):
                             return Future(value: .model(
-                                model.merge(with: wrapper1.pixels, and: wrapper1.adVerifications)
-                                    .merge(with: wrapper2.pixels, and: wrapper2.adVerifications))
+                                model.merge(pixels: wrapper1.pixels, verifications: wrapper1.adVerifications, adProgress: wrapper1.progress)
+                                    .merge(pixels: wrapper2.pixels, verifications: wrapper2.adVerifications, adProgress: wrapper2.progress))
                             )
 
                         case .model(.wrapper): return Future(value: .tooManyIndirections)
