@@ -17,7 +17,6 @@
 		063988A72100C95000FE8475 /* VPAIDMessageHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 063988A62100C95000FE8475 /* VPAIDMessageHandler.swift */; };
 		063C8354221C568D0052C1DC /* AdEngineResponseDetectorSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26043F9220885B60034FC48 /* AdEngineResponseDetectorSpec.swift */; };
 		063C8374221D9AD00052C1DC /* AdSkipDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EC86CA221467C300CB4A8E /* AdSkipDetector.swift */; };
-		0640B18D20C983F3007DCB3F /* VerifyBuldTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0640B18C20C983F3007DCB3F /* VerifyBuldTests.swift */; };
 		06419E1A20EF7433007FE2F0 /* WebviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06419E1720EF7433007FE2F0 /* WebviewViewController.swift */; };
 		06419E2120EF7950007FE2F0 /* VPAIDProps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06419E2020EF7950007FE2F0 /* VPAIDProps.swift */; };
 		065F37262099F53200813113 /* VideoActionsDetectorsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504CA7531C87342A006D0ADF /* VideoActionsDetectorsTests.swift */; };
@@ -81,7 +80,6 @@
 		502288F721CD142C0045B868 /* VRMItemController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E257A9F421C927FF0016D35A /* VRMItemController.swift */; };
 		5034AD2A207E69CA00B5CAA1 /* VideoSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5034AD29207E69CA00B5CAA1 /* VideoSelector.swift */; };
 		5034AD2B207E69CA00B5CAA1 /* VideoSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5034AD29207E69CA00B5CAA1 /* VideoSelector.swift */; };
-		503EB7CE1CE76F510090E595 /* AdManagerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503EB7CD1CE76F510090E595 /* AdManagerPresenter.swift */; };
 		50463DF61ED42D2300521E7D /* SystemPlayerViewControlller_Binding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5098D6931ECC930F00070681 /* SystemPlayerViewControlller_Binding.swift */; };
 		50463E551ED73AC200521E7D /* SystemPlayerReplayDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50463E541ED73AC200521E7D /* SystemPlayerReplayDetector.swift */; };
 		504CA73D1C85D5D9006D0ADF /* VerizonVideoPartnerSDK.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = DE4C511B1C8071D500BFFB0B /* VerizonVideoPartnerSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -108,13 +106,11 @@
 		5087484E1C80783700F2511A /* TrackingPixelsGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4C51551C80731B00BFFB0B /* TrackingPixelsGenerator.swift */; };
 		5087484F1C80787700F2511A /* empty playlist.json in Resources */ = {isa = PBXBuildFile; fileRef = DE4C519A1C80733500BFFB0B /* empty playlist.json */; };
 		508748501C80787B00F2511A /* test.json in Resources */ = {isa = PBXBuildFile; fileRef = DE4C519C1C80733500BFFB0B /* test.json */; };
-		508A597E2010F97B00641398 /* VRMDetectorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508A597D2010F97B00641398 /* VRMDetectorTests.swift */; };
 		509B89F41EF300770097707F /* NoTrackingFixture.json in Resources */ = {isa = PBXBuildFile; fileRef = 509B89F31EF300770097707F /* NoTrackingFixture.json */; };
 		509B89F61EF302360097707F /* JavascriptTrackingFixture.json in Resources */ = {isa = PBXBuildFile; fileRef = 509B89F51EF302360097707F /* JavascriptTrackingFixture.json */; };
 		509B89F81EF3024F0097707F /* NativeTrackingFixture.json in Resources */ = {isa = PBXBuildFile; fileRef = 509B89F71EF3024F0097707F /* NativeTrackingFixture.json */; };
 		50A039591F30D54C00DDAE4B /* UnrecognizedTrackingFixture.json in Resources */ = {isa = PBXBuildFile; fileRef = 50A039581F30D54C00DDAE4B /* UnrecognizedTrackingFixture.json */; };
 		50A11D951D59D7E000F4A068 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4C51D51C80957B00BFFB0B /* Player.swift */; };
-		50A11D971D59D7E000F4A068 /* AdManagerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 503EB7CD1CE76F510090E595 /* AdManagerPresenter.swift */; };
 		50A11D981D59D7E000F4A068 /* VideoProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4C519F1C80733500BFFB0B /* VideoProvider.swift */; };
 		50A11D9C1D59D7E000F4A068 /* OnMainThread.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB4DA6E1C9B10EB00D6FD08 /* OnMainThread.swift */; };
 		50A11D9D1D59D7E000F4A068 /* TrackingPixelsGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4C51551C80731B00BFFB0B /* TrackingPixelsGenerator.swift */; };
@@ -137,7 +133,6 @@
 		50A11DCA1D59D7E000F4A068 /* QuartileDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4C51481C80731B00BFFB0B /* QuartileDetector.swift */; };
 		50A11DCB1D59D7E000F4A068 /* ApplyDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEAE91D71CAA830800C736D0 /* ApplyDecorator.swift */; };
 		50A11DCC1D59D7E000F4A068 /* MetricsSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4C51531C80731B00BFFB0B /* MetricsSender.swift */; };
-		50A11DCD1D59D7E000F4A068 /* ProcessAdItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1FD9D11CE775B300C0B7BC /* ProcessAdItem.swift */; };
 		50A11DCE1D59D7E000F4A068 /* ContextStartedDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501C8BD61D1C0B8200C52AB3 /* ContextStartedDetector.swift */; };
 		50A11DD11D59D7E000F4A068 /* ExecuteOnce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 500B20E91D1AB8D50012C3CB /* ExecuteOnce.swift */; };
 		50A11DD31D59D7E000F4A068 /* VideoActionsDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504CA7511C8731A1006D0ADF /* VideoActionsDetector.swift */; };
@@ -146,12 +141,10 @@
 		50A11DD91D59D7E000F4A068 /* TrackingPixelsReporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4C51571C80731B00BFFB0B /* TrackingPixelsReporter.swift */; };
 		50A11DDC1D59D7E000F4A068 /* VideoProviderParsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB4DA741CA16FC600D6FD08 /* VideoProviderParsing.swift */; };
 		50A11DDD1D59D7E000F4A068 /* Dictionary+ParseJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4C51981C80733500BFFB0B /* Dictionary+ParseJSON.swift */; };
-		50A11DE11D59D7E000F4A068 /* AdURLProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D442541D085A3900C0DAB0 /* AdURLProvider.swift */; };
 		50A11DE21D59D7E000F4A068 /* Rethrow.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1FB2991CE4F34300B99941 /* Rethrow.swift */; };
 		50A11DE51D59D7E000F4A068 /* Pipeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBE4A7E1CA2EEDC006E01C1 /* Pipeline.swift */; };
 		50A11DE61D59D7E000F4A068 /* VASTModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF02B511D1EC0AD001F64EE /* VASTModel.swift */; };
 		50A11DEB1D59D7E000F4A068 /* AdMetrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D442581D0FF9DB00C0DAB0 /* AdMetrics.swift */; };
-		50A11DEC1D59D7E000F4A068 /* VASTWrapperProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF02B561D228216001F64EE /* VASTWrapperProcessor.swift */; };
 		50A11DF01D59D7E000F4A068 /* VerizonVideoPartnerSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = DEBE4A961CA407AA006E01C1 /* VerizonVideoPartnerSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		50A11E091D59D9F000F4A068 /* OpenSafariUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A11E081D59D9F000F4A068 /* OpenSafariUtil.swift */; };
 		50A12D031CE639160088A74E /* NetworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A12CFE1CE638EB0088A74E /* NetworkTests.swift */; };
@@ -161,25 +154,17 @@
 		50A5A5E71E79726E00C15E12 /* 3secPlaybackDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A5A5E51E79726E00C15E12 /* 3secPlaybackDetector.swift */; };
 		50A5A5E91E79818000C15E12 /* 3SecPlaybackDetectorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A5A5E81E79818000C15E12 /* 3SecPlaybackDetectorTests.swift */; };
 		50B049901CD2546800CC2D47 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B049871CD2546800CC2D47 /* PlayerViewController.swift */; };
-		50B5EF531E16B11900EA88E3 /* AdManagerPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA4C8BF1D06DB4300D2A0C9 /* AdManagerPresenterTests.swift */; };
 		50C4602B1C80B791002AB8AB /* PlaylistStatisticDetectorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4C51451C80731B00BFFB0B /* PlaylistStatisticDetectorTests.swift */; };
 		50C4602C1C80C0D8002AB8AB /* VideoPlayDetectorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4C514C1C80731B00BFFB0B /* VideoPlayDetectorTests.swift */; };
 		50C4602E1C80C36D002AB8AB /* VideoTimeDetectorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4C514F1C80731B00BFFB0B /* VideoTimeDetectorTests.swift */; };
-		50C99D2E200CDF600041B013 /* MidrollDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C99D2C200CD6820041B013 /* MidrollDetector.swift */; };
-		50C99D2F200CDF770041B013 /* MidrollDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C99D2C200CD6820041B013 /* MidrollDetector.swift */; };
-		50C99D34200D18480041B013 /* AdVRMEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C99D32200D18120041B013 /* AdVRMEngine.swift */; };
-		50C99D35200D184B0041B013 /* AdVRMEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C99D32200D18120041B013 /* AdVRMEngine.swift */; };
 		50C99D4A2010B4A00041B013 /* Observer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C99D492010B4A00041B013 /* Observer.swift */; };
 		50C99D4B2010B4A00041B013 /* Observer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C99D492010B4A00041B013 /* Observer.swift */; };
 		50C99D4E2010B4E00041B013 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C99D4D2010B4E00041B013 /* Observable.swift */; };
 		50C99D4F2010B4E00041B013 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C99D4D2010B4E00041B013 /* Observable.swift */; };
-		50C99D522010DAE90041B013 /* VRMDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C99D512010DAE90041B013 /* VRMDetector.swift */; };
-		50C99D532010DAE90041B013 /* VRMDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C99D512010DAE90041B013 /* VRMDetector.swift */; };
 		50CFB5281FB61EA20017328C /* PlayerProperties_Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CFB5271FB61EA20017328C /* PlayerProperties_Init.swift */; };
 		50D36F121F334BA700DE7085 /* HeartbeatDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D36F111F334BA700DE7085 /* HeartbeatDetector.swift */; };
 		50D36F131F334BA700DE7085 /* HeartbeatDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D36F111F334BA700DE7085 /* HeartbeatDetector.swift */; };
 		50D36F151F334D7B00DE7085 /* HeartbeatDetectorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D36F141F334D7B00DE7085 /* HeartbeatDetectorTests.swift */; };
-		50D442551D085A3900C0DAB0 /* AdURLProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D442541D085A3900C0DAB0 /* AdURLProvider.swift */; };
 		50D442591D0FF9DB00C0DAB0 /* AdMetrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D442581D0FF9DB00C0DAB0 /* AdMetrics.swift */; };
 		50D4425A1D1029AF00C0DAB0 /* VVPSDK.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4C51351C8072FA00BFFB0B /* VVPSDK.swift */; };
 		50D629D320237BA5000B2F8F /* TrackingPixelsConnector_Ad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D629D220237BA5000B2F8F /* TrackingPixelsConnector_Ad.swift */; };
@@ -196,13 +181,11 @@
 		861AF6D31D994DC80086B8EF /* Nimble.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 861AF6D11D994DC80086B8EF /* Nimble.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		861AF6D41D994DC80086B8EF /* Quick.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 861AF6D21D994DC80086B8EF /* Quick.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9A1469E621CE9549007315BA /* ActionComparator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1469E521CE9549007315BA /* ActionComparator.swift */; };
-		A614D83720581451001FFD4E /* MidrollDetectorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A614D83620581451001FFD4E /* MidrollDetectorTests.swift */; };
 		A61B687C2029BB98007CFB32 /* Metrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = A61B687B2029BB98007CFB32 /* Metrics.swift */; };
 		A61B687D2029BB98007CFB32 /* Metrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = A61B687B2029BB98007CFB32 /* Metrics.swift */; };
 		B418F54E1ECB2C8100C9131D /* VASTWrapper.xml in Resources */ = {isa = PBXBuildFile; fileRef = B418F5461ECB267B00C9131D /* VASTWrapper.xml */; };
 		DE0031321EBA0E48007FE000 /* JavaScriptObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0031311EBA0E48007FE000 /* JavaScriptObserver.swift */; };
 		DE0031331EBA0E48007FE000 /* JavaScriptObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0031311EBA0E48007FE000 /* JavaScriptObserver.swift */; };
-		DE0031531ECF51BF007FE000 /* AdURLProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0031521ECF51BF007FE000 /* AdURLProviderTests.swift */; };
 		DE00317F1ED5ADE0007FE000 /* PropsMapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE00317E1ED5ADE0007FE000 /* PropsMapping.swift */; };
 		DE0031801ED5ADE0007FE000 /* PropsMapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE00317E1ED5ADE0007FE000 /* PropsMapping.swift */; };
 		DE06F78C1E7AB647006B5DD3 /* VideoProviderResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE06F78B1E7AB647006B5DD3 /* VideoProviderResponse.swift */; };
@@ -218,7 +201,6 @@
 		DE1FB2971CE48FAC00B99941 /* VRMProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1FB2961CE48FAC00B99941 /* VRMProviderTests.swift */; };
 		DE1FB29A1CE4F34300B99941 /* Rethrow.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1FB2991CE4F34300B99941 /* Rethrow.swift */; };
 		DE1FD9CF1CE7737900C0B7BC /* VASTMissedCorrectType.xml in Resources */ = {isa = PBXBuildFile; fileRef = DE1FD9CE1CE7737900C0B7BC /* VASTMissedCorrectType.xml */; };
-		DE1FD9D31CE777C500C0B7BC /* ProcessAdItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1FD9D11CE775B300C0B7BC /* ProcessAdItem.swift */; };
 		DE22C78D1D0EFAA000F47147 /* Disposable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE22C78C1D0EFAA000F47147 /* Disposable.swift */; };
 		DE22C78F1D11830300F47147 /* PlayerViewController_Binding.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE22C78E1D11830300F47147 /* PlayerViewController_Binding.swift */; };
 		DE3DA42B1E55D9A900D34880 /* VVPSDKPlugins.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3DA42A1E55D9A900D34880 /* VVPSDKPlugins.swift */; };
@@ -265,7 +247,6 @@
 		DECB6CDD1CA2E7F000E7FC19 /* VideoProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DECB6CDC1CA2E7F000E7FC19 /* VideoProviderTests.swift */; };
 		DEE069D61E840BDF00A95BE9 /* VideoProviderResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE06F78B1E7AB647006B5DD3 /* VideoProviderResponse.swift */; };
 		DEF02B521D1EC0AD001F64EE /* VASTModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF02B511D1EC0AD001F64EE /* VASTModel.swift */; };
-		DEF02B571D228216001F64EE /* VASTWrapperProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF02B561D228216001F64EE /* VASTWrapperProcessor.swift */; };
 		DEF02B5A1D229768001F64EE /* VAST1.xml in Resources */ = {isa = PBXBuildFile; fileRef = DEF02B581D22970A001F64EE /* VAST1.xml */; };
 		DEF969401CF067ED000788AD /* VideoContextPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF9693F1CF067ED000788AD /* VideoContextPresenter.swift */; };
 		DEF969421CF06930000788AD /* VideoContextPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEF969411CF06930000788AD /* VideoContextPresenterTests.swift */; };
@@ -475,7 +456,6 @@
 		061CFFFD211C7272002B5BE9 /* MuteDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MuteDetector.swift; sourceTree = "<group>"; };
 		062E9B3D20F5097C00AF1D54 /* PlayerViewController_Clickthrough.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PlayerViewController_Clickthrough.swift; path = "sources/custom controls/PlayerViewController_Clickthrough.swift"; sourceTree = "<group>"; };
 		063988A62100C95000FE8475 /* VPAIDMessageHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPAIDMessageHandler.swift; sourceTree = "<group>"; };
-		0640B18C20C983F3007DCB3F /* VerifyBuldTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyBuldTests.swift; sourceTree = "<group>"; };
 		06419E1720EF7433007FE2F0 /* WebviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebviewViewController.swift; sourceTree = "<group>"; };
 		06419E2020EF7950007FE2F0 /* VPAIDProps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPAIDProps.swift; sourceTree = "<group>"; };
 		067209B821B6BD9A0086CDBE /* OpenMeasurementServiceScript.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OpenMeasurementServiceScript.swift; path = "sources/metrics/open measurement/OpenMeasurementServiceScript.swift"; sourceTree = SOURCE_ROOT; };
@@ -520,7 +500,6 @@
 		5027D62B1E9BFE3F007A07E2 /* PlayerControls.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = PlayerControls.xcodeproj; path = "Carthage/Checkouts/OneMobileSDK-controls-ios/PlayerControls/PlayerControls.xcodeproj"; sourceTree = "<group>"; };
 		503392701E96AFC4002562D9 /* PlayerControls.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = PlayerControls.xcodeproj; path = "Carthage/Checkouts/OneMobileSDK-controls-ios/PlayerControls/PlayerControls.xcodeproj"; sourceTree = "<group>"; };
 		5034AD29207E69CA00B5CAA1 /* VideoSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoSelector.swift; sourceTree = "<group>"; };
-		503EB7CD1CE76F510090E595 /* AdManagerPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdManagerPresenter.swift; sourceTree = "<group>"; };
 		50463E541ED73AC200521E7D /* SystemPlayerReplayDetector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SystemPlayerReplayDetector.swift; path = "sources/default controls/SystemPlayerReplayDetector.swift"; sourceTree = "<group>"; };
 		504CA73E1C85D601006D0ADF /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		504CA7441C85F508006D0ADF /* VideoLoadingDetector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoLoadingDetector.swift; sourceTree = "<group>"; };
@@ -534,7 +513,6 @@
 		506C59CF1F1797F100AAA662 /* JavaScriptTelemetry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JavaScriptTelemetry.swift; sourceTree = "<group>"; };
 		507053581DAE9700003C023A /* Memoise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Memoise.swift; sourceTree = "<group>"; };
 		507A83BF1D19782E0013B729 /* ExecuteOnceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExecuteOnceTests.swift; path = "detectors/context intent/ExecuteOnceTests.swift"; sourceTree = "<group>"; };
-		508A597D2010F97B00641398 /* VRMDetectorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VRMDetectorTests.swift; sourceTree = "<group>"; };
 		5098D6931ECC930F00070681 /* SystemPlayerViewControlller_Binding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SystemPlayerViewControlller_Binding.swift; path = "sources/default controls/SystemPlayerViewControlller_Binding.swift"; sourceTree = "<group>"; };
 		509B89F31EF300770097707F /* NoTrackingFixture.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = NoTrackingFixture.json; sourceTree = "<group>"; };
 		509B89F51EF302360097707F /* JavascriptTrackingFixture.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = JavascriptTrackingFixture.json; sourceTree = "<group>"; };
@@ -548,15 +526,11 @@
 		50A5A5E81E79818000C15E12 /* 3SecPlaybackDetectorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = 3SecPlaybackDetectorTests.swift; path = "3sec playback/3SecPlaybackDetectorTests.swift"; sourceTree = "<group>"; };
 		50B049871CD2546800CC2D47 /* PlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlayerViewController.swift; path = "sources/custom controls/PlayerViewController.swift"; sourceTree = "<group>"; };
 		50B5EF501E1690EA00EA88E3 /* Comparators.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = Comparators.playground; path = VRM/Comparators.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		50C99D2C200CD6820041B013 /* MidrollDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MidrollDetector.swift; sourceTree = "<group>"; };
-		50C99D32200D18120041B013 /* AdVRMEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdVRMEngine.swift; sourceTree = "<group>"; };
 		50C99D492010B4A00041B013 /* Observer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observer.swift; sourceTree = "<group>"; };
 		50C99D4D2010B4E00041B013 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Observable.swift; path = sources/player/observer/Observable.swift; sourceTree = SOURCE_ROOT; };
-		50C99D512010DAE90041B013 /* VRMDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VRMDetector.swift; sourceTree = "<group>"; };
 		50CFB5271FB61EA20017328C /* PlayerProperties_Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerProperties_Init.swift; sourceTree = "<group>"; };
 		50D36F111F334BA700DE7085 /* HeartbeatDetector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HeartbeatDetector.swift; path = heartbeat/HeartbeatDetector.swift; sourceTree = "<group>"; };
 		50D36F141F334D7B00DE7085 /* HeartbeatDetectorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HeartbeatDetectorTests.swift; path = heartbeat/HeartbeatDetectorTests.swift; sourceTree = "<group>"; };
-		50D442541D085A3900C0DAB0 /* AdURLProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdURLProvider.swift; sourceTree = "<group>"; };
 		50D442581D0FF9DB00C0DAB0 /* AdMetrics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AdMetrics.swift; path = ../advertisements/AdMetrics.swift; sourceTree = "<group>"; };
 		50D629D220237BA5000B2F8F /* TrackingPixelsConnector_Ad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingPixelsConnector_Ad.swift; sourceTree = "<group>"; };
 		50D7475B1CE389EF00CB91D4 /* Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = Network.swift; path = sources/network/Network.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -569,11 +543,9 @@
 		861AF6D11D994DC80086B8EF /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/iOS/Nimble.framework; sourceTree = "<group>"; };
 		861AF6D21D994DC80086B8EF /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/iOS/Quick.framework; sourceTree = "<group>"; };
 		9A1469E521CE9549007315BA /* ActionComparator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionComparator.swift; sourceTree = "<group>"; };
-		A614D83620581451001FFD4E /* MidrollDetectorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MidrollDetectorTests.swift; sourceTree = "<group>"; };
 		A61B687B2029BB98007CFB32 /* Metrics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Metrics.swift; path = sources/telemetry/Metrics.swift; sourceTree = "<group>"; };
 		B418F5461ECB267B00C9131D /* VASTWrapper.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = VASTWrapper.xml; sourceTree = "<group>"; };
 		DE0031311EBA0E48007FE000 /* JavaScriptObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JavaScriptObserver.swift; sourceTree = "<group>"; };
-		DE0031521ECF51BF007FE000 /* AdURLProviderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdURLProviderTests.swift; sourceTree = "<group>"; };
 		DE00317E1ED5ADE0007FE000 /* PropsMapping.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PropsMapping.swift; sourceTree = "<group>"; };
 		DE06F78B1E7AB647006B5DD3 /* VideoProviderResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoProviderResponse.swift; sourceTree = "<group>"; };
 		DE07CE071DD2353C00DAE3EC /* PlayerProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerProperties.swift; sourceTree = "<group>"; };
@@ -587,7 +559,6 @@
 		DE1FB2961CE48FAC00B99941 /* VRMProviderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = VRMProviderTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		DE1FB2991CE4F34300B99941 /* Rethrow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rethrow.swift; sourceTree = "<group>"; };
 		DE1FD9CE1CE7737900C0B7BC /* VASTMissedCorrectType.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = VASTMissedCorrectType.xml; sourceTree = "<group>"; };
-		DE1FD9D11CE775B300C0B7BC /* ProcessAdItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ProcessAdItem.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		DE2110C81E1532410053D44C /* Future.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Future.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		DE22C78C1D0EFAA000F47147 /* Disposable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Disposable.swift; sourceTree = "<group>"; };
 		DE22C78E1D11830300F47147 /* PlayerViewController_Binding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlayerViewController_Binding.swift; path = "sources/custom controls/PlayerViewController_Binding.swift"; sourceTree = "<group>"; };
@@ -629,7 +600,6 @@
 		DE684CD61E0C2F36007CE35C /* Action.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
 		DE79CE201E979F9700C3A660 /* AdURLProviderProcess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdURLProviderProcess.swift; sourceTree = "<group>"; };
 		DE8416A01F4493FF00E57971 /* PlayerInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerInterface.swift; sourceTree = "<group>"; };
-		DEA4C8BF1D06DB4300D2A0C9 /* AdManagerPresenterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdManagerPresenterTests.swift; sourceTree = "<group>"; };
 		DEAE91D71CAA830800C736D0 /* ApplyDecorator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplyDecorator.swift; sourceTree = "<group>"; };
 		DEAE91DA1CAA83D200C736D0 /* SkipRepeatsDecorator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkipRepeatsDecorator.swift; sourceTree = "<group>"; };
 		DEB112351E30F0CE007E65BD /* Context.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Context.swift; sourceTree = "<group>"; };
@@ -646,7 +616,6 @@
 		DEBE4A9A1CA40DAC006E01C1 /* VVP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VVP.swift; path = sources/VVP.swift; sourceTree = "<group>"; };
 		DECB6CDC1CA2E7F000E7FC19 /* VideoProviderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = VideoProviderTests.swift; path = provider/VideoProviderTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		DEF02B511D1EC0AD001F64EE /* VASTModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VASTModel.swift; sourceTree = "<group>"; };
-		DEF02B561D228216001F64EE /* VASTWrapperProcessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = VASTWrapperProcessor.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		DEF02B581D22970A001F64EE /* VAST1.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = VAST1.xml; sourceTree = "<group>"; };
 		DEF9693F1CF067ED000788AD /* VideoContextPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoContextPresenter.swift; sourceTree = "<group>"; };
 		DEF969411CF06930000788AD /* VideoContextPresenterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoContextPresenterTests.swift; sourceTree = "<group>"; };
@@ -1031,8 +1000,6 @@
 		50C99D502010DAC10041B013 /* vrm */ = {
 			isa = PBXGroup;
 			children = (
-				50C99D512010DAE90041B013 /* VRMDetector.swift */,
-				508A597D2010F97B00641398 /* VRMDetectorTests.swift */,
 				E2604390220379740034FC48 /* VRMRequestDetector.swift */,
 				E2604396220379F10034FC48 /* VRMRequestDetectorTest.swift */,
 				E2FD5AEB2203413E007EBE86 /* AdEngineRequestDetector.swift */,
@@ -1129,34 +1096,16 @@
 			children = (
 				068B169C2202238B003ABD69 /* creative controllers */,
 				06F8DBB621C2A2A00019021D /* VRM New Core */,
-				DE1FD9D01CE7759E00C0B7BC /* process ad item */,
 				DE1685D71CE7308500492A90 /* vast parser */,
 				50D7476D1CE6234900CB91D4 /* vrm */,
-				503EB7CD1CE76F510090E595 /* AdManagerPresenter.swift */,
-				DEA4C8BF1D06DB4300D2A0C9 /* AdManagerPresenterTests.swift */,
 				DE79CE201E979F9700C3A660 /* AdURLProviderProcess.swift */,
-				50D442541D085A3900C0DAB0 /* AdURLProvider.swift */,
-				DE0031521ECF51BF007FE000 /* AdURLProviderTests.swift */,
 				E23168002126D67D00F5AD5B /* AdStartTimeoutController.swift */,
 				E231AA78213402C3008C5B6A /* AdStartTimeoutControllerTest.swift */,
 				E2316874212C3B5D00F5AD5B /* MaxShowTimeController.swift */,
 				E231AA50212DBB3B008C5B6A /* MaxShowTimeControllerTest.swift */,
-				50C99D2C200CD6820041B013 /* MidrollDetector.swift */,
-				A614D83620581451001FFD4E /* MidrollDetectorTests.swift */,
-				50C99D32200D18120041B013 /* AdVRMEngine.swift */,
-				0640B18C20C983F3007DCB3F /* VerifyBuldTests.swift */,
 			);
 			name = advertisements;
 			path = sources/advertisements;
-			sourceTree = "<group>";
-		};
-		DE1FD9D01CE7759E00C0B7BC /* process ad item */ = {
-			isa = PBXGroup;
-			children = (
-				DE1FD9D11CE775B300C0B7BC /* ProcessAdItem.swift */,
-				DEF02B561D228216001F64EE /* VASTWrapperProcessor.swift */,
-			);
-			name = "process ad item";
 			sourceTree = "<group>";
 		};
 		DE4C51331C80722500BFFB0B /* support */ = {
@@ -1805,7 +1754,6 @@
 				DE684CD81E0C2F36007CE35C /* Action.swift in Sources */,
 				50A11D951D59D7E000F4A068 /* Player.swift in Sources */,
 				50463DF61ED42D2300521E7D /* SystemPlayerViewControlller_Binding.swift in Sources */,
-				50A11D971D59D7E000F4A068 /* AdManagerPresenter.swift in Sources */,
 				DEBAA7C01E154D4100DFC359 /* Future.swift in Sources */,
 				067209F221B6CCAE0086CDBE /* BufferingDetector.swift in Sources */,
 				06F8DBC521C2A2D40019021D /* VRMPrerollProcessorController.swift in Sources */,
@@ -1831,7 +1779,6 @@
 				E22B6ADC21F0A95700D480A0 /* VVPSDK_Version.swift in Sources */,
 				50C99D4F2010B4E00041B013 /* Observable.swift in Sources */,
 				DE79CE221E979F9700C3A660 /* AdURLProviderProcess.swift in Sources */,
-				50C99D532010DAE90041B013 /* VRMDetector.swift in Sources */,
 				DEE069D61E840BDF00A95BE9 /* VideoProviderResponse.swift in Sources */,
 				DEB112371E30F0CE007E65BD /* Context.swift in Sources */,
 				E22B6AE621F0C6D100D480A0 /* VRMTimeoutController.swift in Sources */,
@@ -1852,14 +1799,12 @@
 				501AB1DF2028934A00BAFA9C /* AdErrorDetector.swift in Sources */,
 				DEBAA7C91E1571A100DFC359 /* Result.swift in Sources */,
 				50A11DBE1D59D7E000F4A068 /* VideoContextPresenter.swift in Sources */,
-				50C99D35200D184B0041B013 /* AdVRMEngine.swift in Sources */,
 				06B13EF32090AB13009A6645 /* AdViewTimeDetector.swift in Sources */,
 				50C99D4B2010B4A00041B013 /* Observer.swift in Sources */,
 				502288F721CD142C0045B868 /* VRMItemController.swift in Sources */,
 				501AB1E52029C69C00BAFA9C /* AdPlaybackCycleDetector.swift in Sources */,
 				50A11DC01D59D7E000F4A068 /* VVP.swift in Sources */,
 				50A5A5011E69958600C15E12 /* Timer.swift in Sources */,
-				50C99D2F200CDF770041B013 /* MidrollDetector.swift in Sources */,
 				50A11DC21D59D7E000F4A068 /* VVPSDK.swift in Sources */,
 				DE0031801ED5ADE0007FE000 /* PropsMapping.swift in Sources */,
 				50A11DC41D59D7E000F4A068 /* VideoPlayDetector.swift in Sources */,
@@ -1881,7 +1826,6 @@
 				E2E575962211E0D40068C394 /* VRMMidrollProcessorController.swift in Sources */,
 				DEB1123D1E30F56C007E65BD /* ConfigurationParser.swift in Sources */,
 				5070535A1DAE9700003C023A /* Memoise.swift in Sources */,
-				50A11DCD1D59D7E000F4A068 /* ProcessAdItem.swift in Sources */,
 				50A11DCE1D59D7E000F4A068 /* ContextStartedDetector.swift in Sources */,
 				E241041A21C4075300036290 /* StartVRMGroupProcessingController.swift in Sources */,
 				50A11DD11D59D7E000F4A068 /* ExecuteOnce.swift in Sources */,
@@ -1901,7 +1845,6 @@
 				E23168AC212C4C9F00F5AD5B /* MaxShowTimeController.swift in Sources */,
 				5051EBA81FB9DF9200C17782 /* PlayerProperties_Init.swift in Sources */,
 				504D8C971E65960B0068120E /* Telemetry.swift in Sources */,
-				50A11DE11D59D7E000F4A068 /* AdURLProvider.swift in Sources */,
 				50A11DE21D59D7E000F4A068 /* Rethrow.swift in Sources */,
 				50A11DE51D59D7E000F4A068 /* Pipeline.swift in Sources */,
 				E26043FB220885B70034FC48 /* AdEngineResponseDetector.swift in Sources */,
@@ -1912,7 +1855,6 @@
 				E2B0062021CD265000B72485 /* FetchVRMItemController.swift in Sources */,
 				068B16A5220223FD003ABD69 /* MP4AdCreativeController.swift in Sources */,
 				50E6E456208F94EF003B0F4E /* UserActionInitiated.swift in Sources */,
-				50A11DEC1D59D7E000F4A068 /* VASTWrapperProcessor.swift in Sources */,
 				50D629D420237BA5000B2F8F /* TrackingPixelsConnector_Ad.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1927,7 +1869,6 @@
 				DE445EE31FB347A900D50790 /* Store.swift in Sources */,
 				DE0031321EBA0E48007FE000 /* JavaScriptObserver.swift in Sources */,
 				506C59D01F1797F100AAA662 /* JavaScriptTelemetry.swift in Sources */,
-				503EB7CE1CE76F510090E595 /* AdManagerPresenter.swift in Sources */,
 				5087482E1C80762000F2511A /* VideoProvider.swift in Sources */,
 				E2E4F7042089020E00182CDF /* VideoImpression.swift in Sources */,
 				DEBAA7BF1E154D4100DFC359 /* Future.swift in Sources */,
@@ -1990,7 +1931,6 @@
 				DE4C51C51C8094FB00BFFB0B /* TrackingPixelsReporter.swift in Sources */,
 				501AB1E42029C69C00BAFA9C /* AdPlaybackCycleDetector.swift in Sources */,
 				DE4C51C61C8094FE00BFFB0B /* MetricsSender.swift in Sources */,
-				DE1FD9D31CE777C500C0B7BC /* ProcessAdItem.swift in Sources */,
 				067209BC21B6BD9A0086CDBE /* OpenMeasurementServiceScript.swift in Sources */,
 				06419E1A20EF7433007FE2F0 /* WebviewViewController.swift in Sources */,
 				E287B08C21F884A900FC49AA /* VRMSelectFinalResultController.swift in Sources */,
@@ -2002,14 +1942,12 @@
 				06B13EF22090AB13009A6645 /* AdViewTimeDetector.swift in Sources */,
 				50A5A5E61E79726E00C15E12 /* 3secPlaybackDetector.swift in Sources */,
 				069DC48420EA9EC400D70B28 /* VPAIDEvents.swift in Sources */,
-				50C99D522010DAE90041B013 /* VRMDetector.swift in Sources */,
 				E2E575952211E0D40068C394 /* VRMMidrollProcessorController.swift in Sources */,
 				FE95D45B1F3CC380008B1D54 /* IntentDetector.swift in Sources */,
 				E2FE09552200AC14005E91C0 /* MaxAdSearchTimeController.swift in Sources */,
 				500B20EA1D1AB8D50012C3CB /* ExecuteOnce.swift in Sources */,
 				504CA7521C8731A1006D0ADF /* VideoActionsDetector.swift in Sources */,
 				DE4539421D09644D00317632 /* XMLParser.swift in Sources */,
-				50C99D34200D18480041B013 /* AdVRMEngine.swift in Sources */,
 				DE0B1D6A1DB8F8D00007D107 /* ContentControlsViewController_Binding.swift in Sources */,
 				E2B0061F21CD265000B72485 /* FetchVRMItemController.swift in Sources */,
 				E22B6ADB21F0A95700D480A0 /* VVPSDK_Version.swift in Sources */,
@@ -2020,7 +1958,6 @@
 				DEF969471CF3737B000788AD /* VideoProviderParsing.swift in Sources */,
 				E22B6AD421EF768200D480A0 /* VRMProcessingController.swift in Sources */,
 				5087482D1C80761600F2511A /* Dictionary+ParseJSON.swift in Sources */,
-				50D442551D085A3900C0DAB0 /* AdURLProvider.swift in Sources */,
 				061CFFFE211C7272002B5BE9 /* MuteDetector.swift in Sources */,
 				504D8C961E65960B0068120E /* Telemetry.swift in Sources */,
 				067209D421B6BE320086CDBE /* BufferingDetector.swift in Sources */,
@@ -2038,8 +1975,6 @@
 				067209BE21B6BD9A0086CDBE /* OpenMeasurementContext.swift in Sources */,
 				5034AD2A207E69CA00B5CAA1 /* VideoSelector.swift in Sources */,
 				50D442591D0FF9DB00C0DAB0 /* AdMetrics.swift in Sources */,
-				50C99D2E200CDF600041B013 /* MidrollDetector.swift in Sources */,
-				DEF02B571D228216001F64EE /* VASTWrapperProcessor.swift in Sources */,
 				DE79CE211E979F9700C3A660 /* AdURLProviderProcess.swift in Sources */,
 				062E9B3E20F5097C00AF1D54 /* PlayerViewController_Clickthrough.swift in Sources */,
 				E23168A5212C4C9E00F5AD5B /* MaxShowTimeController.swift in Sources */,
@@ -2063,7 +1998,6 @@
 				501AB1DB202892E800BAFA9C /* AdClickDetectorTests.swift in Sources */,
 				FEF072CB1F59A3D5006A0BDC /* PlayerDestructionTests.swift in Sources */,
 				E2FE095B2200AD01005E91C0 /* MaxAdSearchTimeControllerTest.swift in Sources */,
-				A614D83720581451001FFD4E /* MidrollDetectorTests.swift in Sources */,
 				E257A9FB21C93F4A0016D35A /* VRMItemControllerTest.swift in Sources */,
 				E22B6B1B21F6329A00D480A0 /* FinishVRMGroupProcessingControllerTest.swift in Sources */,
 				E22B6AE821F0C72800D480A0 /* VRMTimeoutControllerTest.swift in Sources */,
@@ -2082,14 +2016,12 @@
 				FEEB8E5B1F4C92F5003507BE /* ErrorDetectorTests.swift in Sources */,
 				DEB112331E30E5ED007E65BD /* VideoLoadingDetectorTests.swift in Sources */,
 				06BF5394209B471A00B98A6D /* UserActionsDetectorTests.swift in Sources */,
-				DE0031531ECF51BF007FE000 /* AdURLProviderTests.swift in Sources */,
 				E287B0A621F8A67F00FC49AA /* VRMSelectFinalResultControllerTest.swift in Sources */,
 				508748261C80750100F2511A /* Recorder.swift in Sources */,
 				06EC86EF2214842900CB4A8E /* AdVASTProgressDetectorTest.swift in Sources */,
 				E231AA51212DBB3B008C5B6A /* MaxShowTimeControllerTest.swift in Sources */,
 				501AB1E72029EE7700BAFA9C /* AdPlaybackCycleDetectorTests.swift in Sources */,
 				06F8DBC621C2A2F50019021D /* VRMPrerollProcessorControllerTest.swift in Sources */,
-				50B5EF531E16B11900EA88E3 /* AdManagerPresenterTests.swift in Sources */,
 				E2629D07211228FA006ED117 /* TelemetryMetricsTest.swift in Sources */,
 				50A5A5E91E79818000C15E12 /* 3SecPlaybackDetectorTests.swift in Sources */,
 				06B13EF52090AB1B009A6645 /* AdViewTimeDetectorTests.swift in Sources */,
@@ -2100,7 +2032,6 @@
 				DECB6CDD1CA2E7F000E7FC19 /* VideoProviderTests.swift in Sources */,
 				E22B6B0B21F209FC00D480A0 /* MockTimer.swift in Sources */,
 				505136191C917A3B00629078 /* QuartileDetectorTests.swift in Sources */,
-				0640B18D20C983F3007DCB3F /* VerifyBuldTests.swift in Sources */,
 				0672086F2125A7AF007C07D7 /* ObserverTests.swift in Sources */,
 				E241041C21C4078E00036290 /* StartVRMGroupProcessingControllerTest.swift in Sources */,
 				508748271C80753800F2511A /* DictionaryParseJSONTests.swift in Sources */,
@@ -2111,7 +2042,6 @@
 				50A12D031CE639160088A74E /* NetworkTests.swift in Sources */,
 				50D747891CE624E200CB91D4 /* VRMRequestTests.swift in Sources */,
 				061CFFFC211C7263002B5BE9 /* MuteDetectorTests.swift in Sources */,
-				508A597E2010F97B00641398 /* VRMDetectorTests.swift in Sources */,
 				065F37262099F53200813113 /* VideoActionsDetectorsTests.swift in Sources */,
 				061AFD6721F256ED0024BAC5 /* ContentPlaybackCycleDetectorTests.swift in Sources */,
 				DEF969421CF06930000788AD /* VideoContextPresenterTests.swift in Sources */,

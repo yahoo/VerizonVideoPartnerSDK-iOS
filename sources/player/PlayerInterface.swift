@@ -212,10 +212,6 @@ extension Player {
         dispatch(action: PlayerCore.adEndPlayback())
     }
     
-    func playAd(model: PlayerCore.Ad.VASTModel) {
-        dispatch(action: PlayerCore.playAd(model: model, id: UUID()))
-    }
-    
     func adReady() {
         dispatch(action: PlayerCore.adPlaybackIsReady())
     }

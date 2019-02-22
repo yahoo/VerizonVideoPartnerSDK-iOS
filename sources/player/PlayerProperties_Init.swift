@@ -286,7 +286,7 @@ extension Player.Properties {
         isSessionCompleted = state.playerSession.isCompleted
         isAutoplayEnabled = model.isAutoplayEnabled
         isPlaybackInitiated = state.playerSession.isStarted
-        adSessionID = state.adVRMManager.request.id ?? state.vrmRequestStatus.request?.id ?? state.playbackSession.id
+        adSessionID = state.vrmRequestStatus.request?.id ?? state.playbackSession.id
         vpaidDocument = model.vpaidSettings.document
         
     }
