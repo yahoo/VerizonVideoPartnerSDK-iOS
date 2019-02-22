@@ -166,8 +166,7 @@ extension Telemetry.Metrics {
         
         func process(state: PlayerCore.State) {
             let newCoreResult = state.vrmFinalResult.successResult ?? state.vrmFinalResult.failedResult
-            guard let ruleId = state.adInfoHolder?.info.ruleId ??
-                newCoreResult?.item.metaInfo.ruleId else { return }
+            guard let ruleId = newCoreResult?.item.metaInfo.ruleId else { return }
             process(isTimeoutReached: state.adKill == .adStartTimeout, for: ruleId)
         }
         func process(isTimeoutReached: Bool, for ruleId: String) {
@@ -265,8 +264,7 @@ extension Telemetry.Metrics {
         
         func process(state: PlayerCore.State) {
             let newCoreResult = state.vrmFinalResult.successResult ?? state.vrmFinalResult.failedResult
-            guard let ruleId = state.adInfoHolder?.info.ruleId ??
-                newCoreResult?.item.metaInfo.ruleId  else { return }
+            guard let ruleId = newCoreResult?.item.metaInfo.ruleId  else { return }
             
             abuseEventReporter.process(abusedEvents: state.vpaidErrors.abusedEvents,
                                        forRuleId: ruleId)
@@ -402,7 +400,7 @@ extension Telemetry.Metrics {
         
         func process(state: PlayerCore.State) {
             let newCoreResult = state.vrmFinalResult.successResult ?? state.vrmFinalResult.failedResult
-            guard let ruleId = state.adInfoHolder?.info.ruleId ?? newCoreResult?.item.metaInfo.ruleId else { return }
+            guard let ruleId = newCoreResult?.item.metaInfo.ruleId else { return }
             let isMeasurementStarted: Bool = perform {
                 guard case .active = state.openMeasurement else { return false }
                 return true
