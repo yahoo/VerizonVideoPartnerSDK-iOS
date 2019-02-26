@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<VAST version="3.0">
+    <Ad id="1">
+    <InLine>
+        <AdSystem version="4.11.1-55">LiveRail</AdSystem>
+        <AdTitle><![CDATA[LiveRail creative 1]]></AdTitle>
+        <Description><![CDATA[]]></Description>
+        <Error><![CDATA[http://localhost:3000/0/beacons/vast/error.gif]]></Error>
+        <Impression><![CDATA[http://localhost:3000/0/beacons/vast/impression.gif]]></Impression>
+        <Creatives>
+            <Creative sequence="1" id="7969">
+                <Linear skipoffset="32%">
+                    <Duration>00:00:11</Duration>
+                    
+                    <TrackingEvents>
+                        <Tracking event="skip"><![CDATA[http://localhost:3000/1/beacons/vast/skip.gif]]></Tracking>
+                        <Tracking event="firstQuartile"><![CDATA[http://localhost:3000/1/beacons/vast/firstQuartile.gif]]></Tracking>
+                        <Tracking event="midpoint"><![CDATA[http://localhost:3000/1/beacons/vast/midpoint.gif]]></Tracking>
+                        <Tracking event="thirdQuartile"><![CDATA[http://localhost:3000/1/beacons/vast/thirdQuartile.gif]]></Tracking>
+                        <Tracking event="complete"><![CDATA[http://localhost:3000/1/beacons/vast/complete.gif]]></Tracking>
+                        <Tracking event="mute"><![CDATA[http://localhost:3000/1/beacons/vast/mute.gif]]></Tracking>
+                        <Tracking event="unmute"><![CDATA[http://localhost:3000/1/beacons/vast/unmute.gif]]></Tracking>
+                        <Tracking event="pause"><![CDATA[http://localhost:3000/1/beacons/vast/pause.gif]]></Tracking>
+                        <Tracking event="resume"><![CDATA[http://localhost:3000/1/beacons/vast/resume.gif]]></Tracking>
+                        <Tracking event="fullscreen"><![CDATA[http://localhost:3000/1/beacons/vast/fullscreen.gif]]></Tracking>
+                        <Tracking event="close"><![CDATA[http://localhost:3000/1/beacons/vast/close.gif]]></Tracking>
+                        <Tracking event="acceptInvitation"><![CDATA[http://localhost:3000/1/beacons/vast/acceptInvitation.gif]]></Tracking>
+                        <Tracking event="collapse"><![CDATA[http://localhost:3000/1/beacons/vast/collapse.gif]]></Tracking>
+                        <Tracking event="progress" offset="10%">
+                            <![CDATA[http://localhost:3000/1/beacons/vast/progress.gif]]></Tracking>
+                    </TrackingEvents>
+                    
+                    <VideoClicks>
+                        <ClickTracking><![CDATA[http://localhost:3000/1/beacons/vast/click.gif]]></ClickTracking>
+                    </VideoClicks>
+                    
+                    <MediaFiles>
+                        <MediaFile delivery="progressive" bitrate="400" width="320" height="180" type="video/mp4"><![CDATA[http://localhost:3000/adasset/1331/229/7969/lo.mp4]]></MediaFile>
+                        <MediaFile delivery="progressive" bitrate="600" width="640" height="480" type="video/mp4"><![CDATA[http://localhost:3000/adasset/1331/229/7969/me.mp4]]></MediaFile>
+                        <MediaFile delivery="progressive" bitrate="1024" width="640" height="480" type="video/mp4"><![CDATA[http://localhost:3000/adasset/1331/229/7969/hi.mp4]]></MediaFile>
+                    </MediaFiles>
+                </Linear>
+            </Creative>
+            <Creative sequence="2" id="7970">
+                <Linear skipoffset="00:00:05">
+                    <Duration>00:00:11</Duration>
+                    
+                    <TrackingEvents>
+                        <Tracking event="skip"><![CDATA[http://localhost:3000/2/beacons/vast/skip.gif]]></Tracking>
+                        <Tracking event="firstQuartile"><![CDATA[http://localhost:3000/2/beacons/vast/firstQuartile.gif]]></Tracking>
+                        <Tracking event="midpoint"><![CDATA[http://localhost:3000/2/beacons/vast/midpoint.gif]]></Tracking>
+                        <Tracking event="thirdQuartile"><![CDATA[http://localhost:3000/2/beacons/vast/thirdQuartile.gif]]></Tracking>
+                        <Tracking event="complete"><![CDATA[http://localhost:3000/2/beacons/vast/complete.gif]]></Tracking>
+                        <Tracking event="mute"><![CDATA[http://localhost:3000/2/beacons/vast/mute.gif]]></Tracking>
+                        <Tracking event="unmute"><![CDATA[http://localhost:3000/2/beacons/vast/unmute.gif]]></Tracking>
+                        <Tracking event="pause"><![CDATA[http://localhost:3000/2/beacons/vast/pause.gif]]></Tracking>
+                        <Tracking event="resume"><![CDATA[http://localhost:3000/2/beacons/vast/resume.gif]]></Tracking>
+                        <Tracking event="fullscreen"><![CDATA[http://localhost:3000/2/beacons/vast/fullscreen.gif]]></Tracking>
+                        <Tracking event="close"><![CDATA[http://localhost:3000/2/beacons/vast/close.gif]]></Tracking>
+                        <Tracking event="acceptInvitation"><![CDATA[http://localhost:3000/2/beacons/vast/acceptInvitation.gif]]></Tracking>
+                        <Tracking event="collapse"><![CDATA[http://localhost:3000/2/beacons/vast/collapse.gif]]></Tracking>
+                        <Tracking event="progress" offset="00:00:03">
+                            <![CDATA[http://localhost:3000/2/beacons/vast/progress.gif]]></Tracking>
+                    </TrackingEvents>
+                    
+                    <VideoClicks>
+                        <ClickTracking><![CDATA[http://localhost:3000/2/beacons/vast/click.gif]]></ClickTracking>
+                    </VideoClicks>
+                    
+                    <MediaFiles>
+                        <MediaFile delivery="progressive" bitrate="400" width="320" height="180" type="video/mp4"><![CDATA[http://localhost:3000/adasset/1331/229/7969/lo.mp4]]></MediaFile>
+                        <MediaFile delivery="progressive" bitrate="600" width="640" height="480" type="video/mp4"><![CDATA[http://localhost:3000/adasset/1331/229/7969/me.mp4]]></MediaFile>
+                        <MediaFile delivery="progressive" bitrate="1024" width="640" height="480" type="video/mp4"><![CDATA[http://localhost:3000/adasset/1331/229/7969/hi.mp4]]></MediaFile>
+                    </MediaFiles>
+                </Linear>
+            </Creative>
+        </Creatives>
+        <Extensions>
+        </Extensions>
+    </InLine>
+</Ad>
+
+
+<Ad id="2">
+    <InLine>
+        <AdSystem version="4.11.1-55">LiveRail</AdSystem>
+        <AdTitle><![CDATA[LiveRail creative 2]]></AdTitle>
+        <Description><![CDATA[]]></Description>
+        <Error><![CDATA[http://localhost:3000/0/beacons/vast/error.gif]]></Error>
+        <Impression><![CDATA[http://localhost:3000/0/beacons/vast/impression.gif]]></Impression>
+        <Creatives>
+            <Creative sequence="1" id="7969">
+                <Linear skipoffset="32%">
+                    <Duration>00:00:11</Duration>
+                    
+                    <TrackingEvents>
+                        <Tracking event="skip"><![CDATA[http://localhost:3000/1/beacons/vast/skip.gif]]></Tracking>
+                        <Tracking event="firstQuartile"><![CDATA[http://localhost:3000/1/beacons/vast/firstQuartile.gif]]></Tracking>
+                        <Tracking event="midpoint"><![CDATA[http://localhost:3000/1/beacons/vast/midpoint.gif]]></Tracking>
+                        <Tracking event="thirdQuartile"><![CDATA[http://localhost:3000/1/beacons/vast/thirdQuartile.gif]]></Tracking>
+                        <Tracking event="complete"><![CDATA[http://localhost:3000/1/beacons/vast/complete.gif]]></Tracking>
+                        <Tracking event="mute"><![CDATA[http://localhost:3000/1/beacons/vast/mute.gif]]></Tracking>
+                        <Tracking event="unmute"><![CDATA[http://localhost:3000/1/beacons/vast/unmute.gif]]></Tracking>
+                        <Tracking event="pause"><![CDATA[http://localhost:3000/1/beacons/vast/pause.gif]]></Tracking>
+                        <Tracking event="resume"><![CDATA[http://localhost:3000/1/beacons/vast/resume.gif]]></Tracking>
+                        <Tracking event="fullscreen"><![CDATA[http://localhost:3000/1/beacons/vast/fullscreen.gif]]></Tracking>
+                        <Tracking event="close"><![CDATA[http://localhost:3000/1/beacons/vast/close.gif]]></Tracking>
+                        <Tracking event="acceptInvitation"><![CDATA[http://localhost:3000/1/beacons/vast/acceptInvitation.gif]]></Tracking>
+                        <Tracking event="collapse"><![CDATA[http://localhost:3000/1/beacons/vast/collapse.gif]]></Tracking>
+                        <Tracking event="progress" offset="10%">
+                            <![CDATA[http://localhost:3000/1/beacons/vast/progress.gif]]></Tracking>
+                    </TrackingEvents>
+                    
+                    <VideoClicks>
+                        <ClickTracking><![CDATA[http://localhost:3000/1/beacons/vast/click.gif]]></ClickTracking>
+                    </VideoClicks>
+                    
+                    <MediaFiles>
+                        <MediaFile delivery="progressive" bitrate="400" width="320" height="180" type="video/mp4"><![CDATA[http://localhost:3000/adasset/1331/229/7969/lo.mp4]]></MediaFile>
+                        <MediaFile delivery="progressive" bitrate="600" width="640" height="480" type="video/mp4"><![CDATA[http://localhost:3000/adasset/1331/229/7969/me.mp4]]></MediaFile>
+                        <MediaFile delivery="progressive" bitrate="1024" width="640" height="480" type="video/mp4"><![CDATA[http://localhost:3000/adasset/1331/229/7969/hi.mp4]]></MediaFile>
+                    </MediaFiles>
+                </Linear>
+            </Creative>
+            <Creative sequence="2" id="7970">
+                <Linear skipoffset="00:00:05">
+                    <Duration>00:00:11</Duration>
+                    
+                    <TrackingEvents>
+                        <Tracking event="skip"><![CDATA[http://localhost:3000/2/beacons/vast/skip.gif]]></Tracking>
+                        <Tracking event="firstQuartile"><![CDATA[http://localhost:3000/2/beacons/vast/firstQuartile.gif]]></Tracking>
+                        <Tracking event="midpoint"><![CDATA[http://localhost:3000/2/beacons/vast/midpoint.gif]]></Tracking>
+                        <Tracking event="thirdQuartile"><![CDATA[http://localhost:3000/2/beacons/vast/thirdQuartile.gif]]></Tracking>
+                        <Tracking event="complete"><![CDATA[http://localhost:3000/2/beacons/vast/complete.gif]]></Tracking>
+                        <Tracking event="mute"><![CDATA[http://localhost:3000/2/beacons/vast/mute.gif]]></Tracking>
+                        <Tracking event="unmute"><![CDATA[http://localhost:3000/2/beacons/vast/unmute.gif]]></Tracking>
+                        <Tracking event="pause"><![CDATA[http://localhost:3000/2/beacons/vast/pause.gif]]></Tracking>
+                        <Tracking event="resume"><![CDATA[http://localhost:3000/2/beacons/vast/resume.gif]]></Tracking>
+                        <Tracking event="fullscreen"><![CDATA[http://localhost:3000/2/beacons/vast/fullscreen.gif]]></Tracking>
+                        <Tracking event="close"><![CDATA[http://localhost:3000/2/beacons/vast/close.gif]]></Tracking>
+                        <Tracking event="acceptInvitation"><![CDATA[http://localhost:3000/2/beacons/vast/acceptInvitation.gif]]></Tracking>
+                        <Tracking event="collapse"><![CDATA[http://localhost:3000/2/beacons/vast/collapse.gif]]></Tracking>
+                        <Tracking event="progress" offset="00:00:03">
+                            <![CDATA[http://localhost:3000/2/beacons/vast/progress.gif]]></Tracking>
+                    </TrackingEvents>
+                    
+                    <VideoClicks>
+                        <ClickTracking><![CDATA[http://localhost:3000/2/beacons/vast/click.gif]]></ClickTracking>
+                    </VideoClicks>
+                    
+                    <MediaFiles>
+                        <MediaFile delivery="progressive" bitrate="400" width="320" height="180" type="video/mp4"><![CDATA[http://localhost:3000/adasset/1331/229/7969/lo.mp4]]></MediaFile>
+                        <MediaFile delivery="progressive" bitrate="600" width="640" height="480" type="video/mp4"><![CDATA[http://localhost:3000/adasset/1331/229/7969/me.mp4]]></MediaFile>
+                        <MediaFile delivery="progressive" bitrate="1024" width="640" height="480" type="video/mp4"><![CDATA[http://localhost:3000/adasset/1331/229/7969/hi.mp4]]></MediaFile>
+                    </MediaFiles>
+                </Linear>
+            </Creative>
+        </Creatives>
+        <Extensions>
+        </Extensions>
+    </InLine>
+</Ad>
+</VAST><!-- 4 UA_KHARKIVSKAOBLAST_0_KHARKIV 61085 -->

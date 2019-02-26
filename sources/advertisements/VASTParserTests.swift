@@ -60,9 +60,9 @@ class VASTParserTests: XCTestCase {
     func testParseVpaidVAST() {
         let vast = getVAST(atPath: "VASTVpaid")
         guard let model = VASTParser.parseFrom(string: vast) else { return XCTFail("Failed to parse VAST VPAID xml") }
-        guard case let .inline(vpaidModel) = model else { return XCTFail() }
+        guard case let .inline(inlineModel) = model else { return XCTFail() }
         let expectedURLString = "http://localhost:3000/vpaid/6/video.js"
-        XCTAssertEqual(vpaidModel.vpaidMediaFiles.first?.url.absoluteString, expectedURLString)
+        XCTAssertEqual(inlineModel.vpaidMediaFiles.first?.url.absoluteString, expectedURLString)
     }
     
     func testParseAdVerification() {
@@ -106,46 +106,56 @@ class VASTParserTests: XCTestCase {
     func testParsePixelsFromVAST() {
         let vast = getVAST(atPath: "VASTExampleCDATA")
         guard let model = VASTParser.parseFrom(string: vast) else { return XCTFail("Failed to parse VAST VPAID xml") }
-        guard case let .inline(vpaidModel) = model else { return XCTFail() }
+        guard case let .inline(inlineModel) = model else { return XCTFail() }
         let url = "http://localhost:3000/6/beacons/vast/"
-        XCTAssertEqual(vpaidModel.pixels.impression.first?.absoluteString, url + "impression.gif")
-        XCTAssertEqual(vpaidModel.pixels.error.first?.absoluteString, url + "error.gif")
-        XCTAssertEqual(vpaidModel.pixels.clickTracking.first?.absoluteString, url + "click.gif")
-        XCTAssertEqual(vpaidModel.pixels.firstQuartile.first?.absoluteString, url + "firstQuartile.gif")
-        XCTAssertEqual(vpaidModel.pixels.midpoint.first?.absoluteString, url + "midpoint.gif")
-        XCTAssertEqual(vpaidModel.pixels.thirdQuartile.first?.absoluteString, url + "thirdQuartile.gif")
-        XCTAssertEqual(vpaidModel.pixels.complete.first?.absoluteString, url + "complete.gif")
-        XCTAssertEqual(vpaidModel.pixels.pause.first?.absoluteString, url + "pause.gif")
-        XCTAssertEqual(vpaidModel.pixels.resume.first?.absoluteString, url + "resume.gif")
-        XCTAssertEqual(vpaidModel.pixels.skip.first?.absoluteString, url + "skip.gif")
-        XCTAssertEqual(vpaidModel.pixels.mute.first?.absoluteString, url + "mute.gif")
-        XCTAssertEqual(vpaidModel.pixels.unmute.first?.absoluteString, url + "unmute.gif")
-        XCTAssertEqual(vpaidModel.pixels.acceptInvitation.first?.absoluteString, url + "acceptInvitation.gif")
-        XCTAssertEqual(vpaidModel.pixels.close.first?.absoluteString, url + "close.gif")
-        XCTAssertEqual(vpaidModel.pixels.collapse.first?.absoluteString, url + "collapse.gif")
-        XCTAssertEqual(vpaidModel.adProgress.first?.url.absoluteString, url + "progress.gif")
+        XCTAssertEqual(inlineModel.pixels.impression.first?.absoluteString, url + "impression.gif")
+        XCTAssertEqual(inlineModel.pixels.error.first?.absoluteString, url + "error.gif")
+        XCTAssertEqual(inlineModel.pixels.clickTracking.first?.absoluteString, url + "click.gif")
+        XCTAssertEqual(inlineModel.pixels.firstQuartile.first?.absoluteString, url + "firstQuartile.gif")
+        XCTAssertEqual(inlineModel.pixels.midpoint.first?.absoluteString, url + "midpoint.gif")
+        XCTAssertEqual(inlineModel.pixels.thirdQuartile.first?.absoluteString, url + "thirdQuartile.gif")
+        XCTAssertEqual(inlineModel.pixels.complete.first?.absoluteString, url + "complete.gif")
+        XCTAssertEqual(inlineModel.pixels.pause.first?.absoluteString, url + "pause.gif")
+        XCTAssertEqual(inlineModel.pixels.resume.first?.absoluteString, url + "resume.gif")
+        XCTAssertEqual(inlineModel.pixels.skip.first?.absoluteString, url + "skip.gif")
+        XCTAssertEqual(inlineModel.pixels.mute.first?.absoluteString, url + "mute.gif")
+        XCTAssertEqual(inlineModel.pixels.unmute.first?.absoluteString, url + "unmute.gif")
+        XCTAssertEqual(inlineModel.pixels.acceptInvitation.first?.absoluteString, url + "acceptInvitation.gif")
+        XCTAssertEqual(inlineModel.pixels.close.first?.absoluteString, url + "close.gif")
+        XCTAssertEqual(inlineModel.pixels.collapse.first?.absoluteString, url + "collapse.gif")
+        XCTAssertEqual(inlineModel.adProgress.first?.url.absoluteString, url + "progress.gif")
     }
     
     func testParseOffsetInTime() {
         let vast = getVAST(atPath: "VAST1")
         guard let model = VASTParser.parseFrom(string: vast) else { return XCTFail("Failed to parse VAST VPAID xml") }
-        guard case let .inline(vpaidModel) = model else { return XCTFail() }
-        XCTAssertEqual(vpaidModel.skipOffset, .time(3663))
-        XCTAssertEqual(vpaidModel.adProgress.first?.offset, .time(60))
+        guard case let .inline(inlineModel) = model else { return XCTFail() }
+        XCTAssertEqual(inlineModel.skipOffset, .time(3663))
+        XCTAssertEqual(inlineModel.adProgress.first?.offset, .time(60))
     }
     
     func testParseOffsetInPersentage() {
         let vast = getVAST(atPath: "VASTExampleCDATA")
         guard let model = VASTParser.parseFrom(string: vast) else { return XCTFail("Failed to parse VAST VPAID xml") }
-        guard case let .inline(vpaidModel) = model else { return XCTFail() }
-        XCTAssertEqual(vpaidModel.skipOffset, .percentage(32))
-        XCTAssertEqual(vpaidModel.adProgress.first?.offset, .percentage(10))
+        guard case let .inline(inlineModel) = model else { return XCTFail() }
+        XCTAssertEqual(inlineModel.skipOffset, .percentage(32))
+        XCTAssertEqual(inlineModel.adProgress.first?.offset, .percentage(10))
     }
     
     func testParseNotValidSkipOffsetInTime() {
         let vast = getVAST(atPath: "VASTVerificationInExtension")
         guard let model = VASTParser.parseFrom(string: vast) else { return XCTFail("Failed to parse VAST VPAID xml") }
-        guard case let .inline(vpaidModel) = model else { return XCTFail() }
-        XCTAssertEqual(vpaidModel.skipOffset, nil)
+        guard case let .inline(inlineModel) = model else { return XCTFail() }
+        XCTAssertEqual(inlineModel.skipOffset, nil)
     }
+    
+    func testParseMultipleCreatives() {
+        let vast = getVAST(atPath: "VASTMultipleCreatives")
+        guard let model = VASTParser.parseFrom(string: vast) else { return XCTFail("Failed to parse VAST VPAID xml") }
+        guard case let .inline(inlineModel) = model else { return XCTFail() }
+        XCTAssertEqual(inlineModel.mp4MediaFiles.count, 3)
+        XCTAssertEqual(inlineModel.pixels.firstQuartile.count, 1)
+        XCTAssertEqual(inlineModel.skipOffset, .percentage(32))
+    }
+
 }
