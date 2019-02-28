@@ -13,6 +13,7 @@
 		061CFFFC211C7263002B5BE9 /* MuteDetectorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061CFFFB211C7263002B5BE9 /* MuteDetectorTests.swift */; };
 		061CFFFE211C7272002B5BE9 /* MuteDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061CFFFD211C7272002B5BE9 /* MuteDetector.swift */; };
 		061CFFFF211C7272002B5BE9 /* MuteDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061CFFFD211C7272002B5BE9 /* MuteDetector.swift */; };
+		061EB355222573C700DF149C /* VASTMultipleCreatives.xml in Resources */ = {isa = PBXBuildFile; fileRef = 061EB3522225731F00DF149C /* VASTMultipleCreatives.xml */; };
 		062E9B3E20F5097C00AF1D54 /* PlayerViewController_Clickthrough.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062E9B3D20F5097C00AF1D54 /* PlayerViewController_Clickthrough.swift */; };
 		063988A72100C95000FE8475 /* VPAIDMessageHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 063988A62100C95000FE8475 /* VPAIDMessageHandler.swift */; };
 		063C8354221C568D0052C1DC /* AdEngineResponseDetectorSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26043F9220885B60034FC48 /* AdEngineResponseDetectorSpec.swift */; };
@@ -454,6 +455,7 @@
 		061AFD6421F256CA0024BAC5 /* ContentPlaybackCycleDetectorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ContentPlaybackCycleDetectorTests.swift; path = "playback cycle/ContentPlaybackCycleDetectorTests.swift"; sourceTree = "<group>"; };
 		061CFFFB211C7263002B5BE9 /* MuteDetectorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MuteDetectorTests.swift; sourceTree = "<group>"; };
 		061CFFFD211C7272002B5BE9 /* MuteDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MuteDetector.swift; sourceTree = "<group>"; };
+		061EB3522225731F00DF149C /* VASTMultipleCreatives.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = VASTMultipleCreatives.xml; sourceTree = "<group>"; };
 		062E9B3D20F5097C00AF1D54 /* PlayerViewController_Clickthrough.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PlayerViewController_Clickthrough.swift; path = "sources/custom controls/PlayerViewController_Clickthrough.swift"; sourceTree = "<group>"; };
 		063988A62100C95000FE8475 /* VPAIDMessageHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPAIDMessageHandler.swift; sourceTree = "<group>"; };
 		06419E1720EF7433007FE2F0 /* WebviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebviewViewController.swift; sourceTree = "<group>"; };
@@ -1083,6 +1085,7 @@
 				DEF02B581D22970A001F64EE /* VAST1.xml */,
 				DE1685E41CE768E600492A90 /* VASTExampleCDATA.xml */,
 				DE1FD9CE1CE7737900C0B7BC /* VASTMissedCorrectType.xml */,
+				061EB3522225731F00DF149C /* VASTMultipleCreatives.xml */,
 				067209D921B6BE710086CDBE /* VASTVerificationInExtension.xml */,
 				06BF541620A062E300B98A6D /* VASTVpaid.xml */,
 				B418F5461ECB267B00C9131D /* VASTWrapper.xml */,
@@ -1672,6 +1675,7 @@
 				50A039591F30D54C00DDAE4B /* UnrecognizedTrackingFixture.json in Resources */,
 				DEF02B5A1D229768001F64EE /* VAST1.xml in Resources */,
 				DE1FD9CF1CE7737900C0B7BC /* VASTMissedCorrectType.xml in Resources */,
+				061EB355222573C700DF149C /* VASTMultipleCreatives.xml in Resources */,
 				5087484F1C80787700F2511A /* empty playlist.json in Resources */,
 				06BF541F20A078FE00B98A6D /* VASTVpaid.xml in Resources */,
 				067209DB21B6BE710086CDBE /* VASTVerificationInExtension.xml in Resources */,

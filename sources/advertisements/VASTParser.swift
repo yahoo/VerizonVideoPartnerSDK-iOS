@@ -129,16 +129,11 @@ enum VASTParser {
             
             delegate.didEndElement = { endName in
                 guard endName == "InLine" else { return }
-                
                 setter(inlineContext)
-                
                 delegateStack.pop()
             }
             
             delegate.didStartElement = .some { (name, attr) -> Void in
-                if let skipOffset = attr["skipoffset"] {
-                    inlineContext.skipOffset = VASTParser.getOffset(from: skipOffset)
-                }
                 
                 switch name {
                 case "Extensions":
@@ -179,109 +174,136 @@ enum VASTParser {
                         delegateStack.pop()
                     }))
                     
-                case "Linear":
+                case "Creatives":
                     delegateStack.push(XML.Delegate(setup: { delegate in
                         delegate.didEndElement = { name in
-                            guard name == "Linear" else { return }
+                            guard name == "Creatives" else { return }
                             delegateStack.pop()
                         }
                         
                         delegate.didStartElement = .some { name, attr in
-                            switch name {
-                                
-                            case "Tracking":
-                                guard let event = attr["event"] else { break }
-                                
-                                delegateStack.push(parseURL(to: { url in
-                                    if let url = url {
-                                        switch event {
-                                        case "creativeView": inlineContext.pixels.creativeView.append(url)
-                                        case "start": inlineContext.pixels.start.append(url)
-                                        case "firstQuartile": inlineContext.pixels.firstQuartile.append(url)
-                                        case "midpoint": inlineContext.pixels.midpoint.append(url)
-                                        case "thirdQuartile": inlineContext.pixels.thirdQuartile.append(url)
-                                        case "complete": inlineContext.pixels.complete.append(url)
-                                        case "pause": inlineContext.pixels.pause.append(url)
-                                        case "resume": inlineContext.pixels.resume.append(url)
-                                        case "skip": inlineContext.pixels.skip.append(url)
-                                        case "mute": inlineContext.pixels.mute.append(url)
-                                        case "unmute": inlineContext.pixels.unmute.append(url)
-                                        case "acceptInvitation": inlineContext.pixels.acceptInvitation.append(url)
-                                        case "acceptInvitationLinear": inlineContext.pixels.acceptInvitationLinear.append(url)
-                                        case "close": inlineContext.pixels.close.append(url)
-                                        case "closeLinear": inlineContext.pixels.closeLinear.append(url)
-                                        case "collapse": inlineContext.pixels.collapse.append(url)
-                                        case "progress":
-                                            guard let offset = attr["offset"] else { break }
-                                            guard let progressOffset = VASTParser.getOffset(from: offset) else { break }
-                                            inlineContext.adProgress.append(.init(url: url,
-                                                                                  offset: progressOffset))
-                                        default: break
-                                        }
+                            guard name == "Creative" else { return }
+                            guard inlineContext.vpaidMediaFiles.isEmpty
+                                && inlineContext.mp4MediaFiles.isEmpty else { return }
+                            delegateStack.push(XML.Delegate(setup: { delegate in
+                                delegate.didEndElement = { name in
+                                    guard name == "Creative" else { return }
+                                    delegateStack.pop()
+                                }
+                                delegate.didStartElement = .some { name, attr in
+                                    guard name == "Linear" else { return }
+                                    
+                                    if let skipOffset = attr["skipoffset"] {
+                                        inlineContext.skipOffset = VASTParser.getOffset(from: skipOffset)
                                     }
                                     
-                                    delegateStack.pop()
-                                }))
-                                
-                            case "ClickThrough":
-                                delegateStack.push(parseURL(to: { url in
-                                    inlineContext.clickthroughURL = url
-                                    delegateStack.pop()
-                                }))
-                                
-                            case "ClickTracking":
-                                delegateStack.push(parseURL(to: { url in
-                                    if let url = url { inlineContext.pixels.clickTracking.append(url) }
-                                    delegateStack.pop()
-                                }))
-                                
-                            case "AdParameters":
-                                delegateStack.push(parseString(to: { (parameter) in
-                                    inlineContext.adParameters = parameter
-                                    delegateStack.pop()
-                                }))
-                                
-                            case "MediaFile":
-                                guard let typeAttr = attr["type"] else { break }
-                                guard
-                                    let delivery = attr["delivery"],
-                                    delivery == "progressive" else { break }
-                                delegateStack.push(parseURL(to: { url in
-                                    var scalable: Bool?
-                                    if let scalableAttr = attr["scalable"] {
-                                        scalable = scalableAttr == "true"
-                                    }
-                                    var maintainAspectRatio: Bool?
-                                    if let maintainAspectRatioAttr = attr["maintainAspectRatio"] {
-                                        maintainAspectRatio = maintainAspectRatioAttr == "true"
-                                    }
-                                    guard let widthAttr = attr["width"], let width = Int(widthAttr) else { return }
-                                    guard let heightAttr = attr["height"], let height = Int(heightAttr) else { return }
-                                    guard let url = url else { return }
-                                    switch typeAttr {
-                                    case "video/mp4":
-                                        let mediaFile = PlayerCore.Ad.VASTModel.MP4MediaFile(
-                                            url: url,
-                                            width: width,
-                                            height: height,
-                                            scalable: scalable ?? false,
-                                            maintainAspectRatio: maintainAspectRatio ?? true)
-                                        inlineContext.mp4MediaFiles.append(mediaFile)
-                                    case "application/javascript":
-                                        guard
-                                            let apiFramework = attr["apiFramework"],
-                                            apiFramework == "VPAID" else { break }
-                                        let mediaFile = PlayerCore.Ad.VASTModel.VPAIDMediaFile(
-                                            url: url,
-                                            scalable: scalable ?? false,
-                                            maintainAspectRatio: maintainAspectRatio ?? true)
-                                        inlineContext.vpaidMediaFiles.append(mediaFile)
-                                    default: break
-                                    }
-                                    delegateStack.pop()
-                                }))
-                                
-                            default: break }
+                                    delegateStack.push(XML.Delegate(setup: { delegate in
+                                        delegate.didEndElement = { name in
+                                            guard name == "Linear" else { return }
+                                            delegateStack.pop()
+                                        }
+                                        
+                                        delegate.didStartElement = .some { name, attr in
+                                            
+                                            switch name {
+                                                
+                                            case "Tracking":
+                                                guard let event = attr["event"] else { break }
+                                                
+                                                delegateStack.push(parseURL(to: { url in
+                                                    if let url = url {
+                                                        switch event {
+                                                        case "creativeView": inlineContext.pixels.creativeView.append(url)
+                                                        case "start": inlineContext.pixels.start.append(url)
+                                                        case "firstQuartile": inlineContext.pixels.firstQuartile.append(url)
+                                                        case "midpoint": inlineContext.pixels.midpoint.append(url)
+                                                        case "thirdQuartile": inlineContext.pixels.thirdQuartile.append(url)
+                                                        case "complete": inlineContext.pixels.complete.append(url)
+                                                        case "pause": inlineContext.pixels.pause.append(url)
+                                                        case "resume": inlineContext.pixels.resume.append(url)
+                                                        case "skip": inlineContext.pixels.skip.append(url)
+                                                        case "mute": inlineContext.pixels.mute.append(url)
+                                                        case "unmute": inlineContext.pixels.unmute.append(url)
+                                                        case "acceptInvitation": inlineContext.pixels.acceptInvitation.append(url)
+                                                        case "acceptInvitationLinear": inlineContext.pixels.acceptInvitationLinear.append(url)
+                                                        case "close": inlineContext.pixels.close.append(url)
+                                                        case "closeLinear": inlineContext.pixels.closeLinear.append(url)
+                                                        case "collapse": inlineContext.pixels.collapse.append(url)
+                                                        case "progress":
+                                                            guard let offset = attr["offset"] else { break }
+                                                            guard let progressOffset = VASTParser.getOffset(from: offset) else { break }
+                                                            inlineContext.adProgress.append(.init(url: url,
+                                                                                                  offset: progressOffset))
+                                                        default: break
+                                                        }
+                                                    }
+                                                    
+                                                    delegateStack.pop()
+                                                }))
+                                                
+                                            case "ClickThrough":
+                                                delegateStack.push(parseURL(to: { url in
+                                                    inlineContext.clickthroughURL = url
+                                                    delegateStack.pop()
+                                                }))
+                                                
+                                            case "ClickTracking":
+                                                delegateStack.push(parseURL(to: { url in
+                                                    if let url = url { inlineContext.pixels.clickTracking.append(url) }
+                                                    delegateStack.pop()
+                                                }))
+                                                
+                                            case "AdParameters":
+                                                delegateStack.push(parseString(to: { (parameter) in
+                                                    inlineContext.adParameters = parameter
+                                                    delegateStack.pop()
+                                                }))
+                                                
+                                            case "MediaFile":
+                                                guard let typeAttr = attr["type"] else { break }
+                                                guard
+                                                    let delivery = attr["delivery"],
+                                                    delivery == "progressive" else { break }
+                                                delegateStack.push(parseURL(to: { url in
+                                                    var scalable: Bool?
+                                                    if let scalableAttr = attr["scalable"] {
+                                                        scalable = scalableAttr == "true"
+                                                    }
+                                                    var maintainAspectRatio: Bool?
+                                                    if let maintainAspectRatioAttr = attr["maintainAspectRatio"] {
+                                                        maintainAspectRatio = maintainAspectRatioAttr == "true"
+                                                    }
+                                                    guard let widthAttr = attr["width"], let width = Int(widthAttr) else { return }
+                                                    guard let heightAttr = attr["height"], let height = Int(heightAttr) else { return }
+                                                    guard let url = url else { return }
+                                                    switch typeAttr {
+                                                    case "video/mp4":
+                                                        let mediaFile = PlayerCore.Ad.VASTModel.MP4MediaFile(
+                                                            url: url,
+                                                            width: width,
+                                                            height: height,
+                                                            scalable: scalable ?? false,
+                                                            maintainAspectRatio: maintainAspectRatio ?? true)
+                                                        inlineContext.mp4MediaFiles.append(mediaFile)
+                                                    case "application/javascript":
+                                                        guard
+                                                            let apiFramework = attr["apiFramework"],
+                                                            apiFramework == "VPAID" else { break }
+                                                        let mediaFile = PlayerCore.Ad.VASTModel.VPAIDMediaFile(
+                                                            url: url,
+                                                            scalable: scalable ?? false,
+                                                            maintainAspectRatio: maintainAspectRatio ?? true)
+                                                        inlineContext.vpaidMediaFiles.append(mediaFile)
+                                                    default: break
+                                                    }
+                                                    delegateStack.pop()
+                                                }))
+                                                
+                                            default: break }
+                                        }
+                                    }))
+                                }
+                            }))
                         }
                     }))
                     
@@ -430,6 +452,8 @@ enum VASTParser {
         }))
         return delegateStack
     }
+
+
     //swiftlint:disable line_length
     //swiftlint:enable function_body_length
     //swiftlint:enable cyclomatic_complexity
@@ -505,7 +529,8 @@ enum VASTParser {
                                 result = VASTModel.wrapper(model)
                             }))
                             
-                        default: fatalError("Unexpected element: \(name)") }
+                        default:
+                            fatalError("Unexpected element: \(name)") }
                     }
                 }))
             }
