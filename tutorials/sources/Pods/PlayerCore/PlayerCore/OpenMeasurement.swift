@@ -26,11 +26,13 @@ public enum OpenMeasurement {
 
 func reduce(state: OpenMeasurement, action: Action) -> OpenMeasurement {
     switch action {
-    case let action as ShowAd where state != .disabled:
-        guard action.adVerifications.isEmpty == false else {
+    case let action as VRMCore.SelectFinalResult where state != .disabled:
+        let inline = action.inlineVAST
+        guard inline.adVerifications.isEmpty == false,
+              inline.mp4MediaFiles.isEmpty == false else {
             return .inactive
         }
-        return .loading(action.adVerifications)
+        return .loading(inline.adVerifications)
         
     case let action as OpenMeasurementActivated where state != .disabled:
         return .active(action.adEvents, action.videoEvents)
@@ -39,7 +41,6 @@ func reduce(state: OpenMeasurement, action: Action) -> OpenMeasurement {
         return .inactive
         
     case is DropAd,
-         is AdError,
          is ShowContent,
          is SkipAd,
          is AdPlaybackFailed,

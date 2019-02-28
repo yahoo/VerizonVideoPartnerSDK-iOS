@@ -63,7 +63,7 @@ func reduce(state: Rate, action: Action) -> Rate {
                     isAttachedToViewPort: state.isAttachedToViewPort,
                     currentKind: .content)
         
-    case (is ShowMP4Ad, .content), (is ShowVPAIDAd, .content), (is ShowAd, .content):
+    case (is ShowMP4Ad, .content), (is ShowVPAIDAd, .content):
         return Rate(contentRate: .init(player: false,
                                        stream: state.contentRate.stream),
                     adRate: .init(player: true,
@@ -133,25 +133,25 @@ func reduce(state: Rate, action: Action) -> Rate {
                     isAttachedToViewPort: false,
                     currentKind: state.currentKind)
    
-    case (is AdStarted, .ad) where state.isAttachedToViewPort:
+    case (is VPAIDActions.AdStarted, .ad) where state.isAttachedToViewPort:
         return Rate(contentRate: .init(player: false, stream: false),
                     adRate: .init(player: true, stream: state.adRate.stream),
                     isAttachedToViewPort: state.isAttachedToViewPort,
                     currentKind: state.currentKind)
     
-    case (is AdImpression, .ad) where state.isAttachedToViewPort:
+    case (is VPAIDActions.AdImpression, .ad) where state.isAttachedToViewPort:
         return Rate(contentRate: .init(player: false, stream: false),
                     adRate: .init(player: state.adRate.player, stream: true),
                     isAttachedToViewPort: state.isAttachedToViewPort,
                     currentKind: state.currentKind)
         
-    case (is AdPaused, .ad) where state.isAttachedToViewPort:
+    case (is VPAIDActions.AdPaused, .ad) where state.isAttachedToViewPort:
         return Rate(contentRate: .init(player: false, stream: false),
                     adRate: .init(player: false, stream: false),
                     isAttachedToViewPort: state.isAttachedToViewPort,
                     currentKind: state.currentKind)
         
-    case (is AdResumed, .ad) where state.isAttachedToViewPort:
+    case (is VPAIDActions.AdResumed, .ad) where state.isAttachedToViewPort:
         return Rate(contentRate: .init(player: false, stream: false),
                     adRate: .init(player: true, stream: true),
                     isAttachedToViewPort: state.isAttachedToViewPort,
@@ -164,13 +164,13 @@ func reduce(state: Rate, action: Action) -> Rate {
                     isAttachedToViewPort: state.isAttachedToViewPort,
                     currentKind: state.currentKind)
         
-    case (is AdStopped, .ad),
-         (is AdSkipped, .ad),
-         (is AdStartTimeout, .ad),
-         (is AdMaxShowTimeout, .ad),
-         (is AdNotSupported, .ad),
+    case (is VPAIDActions.AdStopped, .ad),
+         (is VPAIDActions.AdNotSupported, .ad),
+         (is VPAIDActions.AdSkipped, .ad),
+         (is VPAIDActions.AdError, .ad),
          (is SkipAd, .ad),
-         (is AdError, .ad):
+         (is AdStartTimeout, .ad),
+         (is AdMaxShowTimeout, .ad):
         return Rate(contentRate: .init(player: true,
                                        stream: state.contentRate.stream),
                     adRate: .init(player: false,

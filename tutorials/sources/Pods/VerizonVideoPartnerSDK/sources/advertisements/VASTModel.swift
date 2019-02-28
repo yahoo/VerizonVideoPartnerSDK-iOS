@@ -19,7 +19,9 @@ enum VASTModel {
 }
 
 extension PlayerCore.Ad.VASTModel {
-    func merge(with pixels: AdPixels, and verifications: [PlayerCore.Ad.VASTModel.AdVerification]) -> PlayerCore.Ad.VASTModel {
+    func merge(pixels: AdPixels,
+               verifications: [PlayerCore.Ad.VASTModel.AdVerification],
+               adProgress: [PlayerCore.Ad.VASTModel.AdProgress]) -> PlayerCore.Ad.VASTModel {
         return PlayerCore.Ad.VASTModel(
             adVerifications: self.adVerifications + verifications,
             mp4MediaFiles: mp4MediaFiles,

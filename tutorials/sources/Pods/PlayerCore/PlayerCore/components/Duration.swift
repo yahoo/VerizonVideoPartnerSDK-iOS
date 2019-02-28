@@ -21,18 +21,18 @@ func reduce(state: Duration, action: Action) -> Duration {
     case is DropAd,
          is ShowContent,
          is SkipAd,
-         is AdStopped,
          is AdStartTimeout,
          is AdMaxShowTimeout,
-         is AdError,
-         is AdSkipped,
+         is VPAIDActions.AdStopped,
+         is VPAIDActions.AdError,
+         is VPAIDActions.AdSkipped,
+         is VPAIDActions.AdNotSupported,
          is VRMCore.NoGroupsToProcess,
          is VRMCore.MaxSearchTimeout,
-         is VRMCore.VRMResponseFetchFailed,
-         is AdNotSupported:
+         is VRMCore.VRMResponseFetchFailed:
         return Duration(ad: nil, content: state.content)
         
-    case let action as AdDurationChange:
+    case let action as VPAIDActions.AdDurationChange:
         return Duration(ad: action.duration, content: state.content)
     default:
         return state

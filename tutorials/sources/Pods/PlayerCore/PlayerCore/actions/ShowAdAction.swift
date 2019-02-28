@@ -3,12 +3,6 @@
 
 import Foundation
 
-struct ShowAd: Action {
-    let creative: AdCreative
-    let id: UUID
-    let adVerifications: [Ad.VASTModel.AdVerification]
-}
-
 struct ShowMP4Ad: Action {
     let creative: AdCreative.MP4
     let id: UUID

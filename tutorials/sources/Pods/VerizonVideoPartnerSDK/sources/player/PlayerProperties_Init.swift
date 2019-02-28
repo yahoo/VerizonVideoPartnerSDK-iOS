@@ -98,7 +98,6 @@ extension Player.Properties {
                 let offset = Int(duration.rounded() / 100 * Double(value))
                 guard offset < Int(duration) else { return nil }
                 return offset - currentTime
-            default: return nil
             }
         }
         
@@ -287,7 +286,7 @@ extension Player.Properties {
         isSessionCompleted = state.playerSession.isCompleted
         isAutoplayEnabled = model.isAutoplayEnabled
         isPlaybackInitiated = state.playerSession.isStarted
-        adSessionID = state.adVRMManager.request.id ?? state.vrmRequestStatus.request?.id ?? state.playbackSession.id
+        adSessionID = state.vrmRequestStatus.request?.id ?? state.playbackSession.id
         vpaidDocument = model.vpaidSettings.document
         
     }

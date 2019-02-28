@@ -3,7 +3,9 @@
 import Foundation
 
 public enum AdCreative: Hashable {
-    case mp4([MP4]), vpaid([VPAID]), none
+    case mp4([MP4])
+    case vpaid([VPAID])
+    case none
     
     public struct MP4: Hashable {
         public let internalID: UUID
@@ -89,8 +91,6 @@ func reduce(state: AdCreative, action: Action) -> AdCreative {
             return .vpaid(vpaidAdCreatives)
         }
         return .none
-    case let action as ShowAd:
-        return action.creative
     case is VRMCore.AdRequest:
         return .none
     default: return state

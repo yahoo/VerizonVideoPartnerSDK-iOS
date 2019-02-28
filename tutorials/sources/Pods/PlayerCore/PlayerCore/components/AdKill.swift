@@ -16,10 +16,10 @@ func reduce(state: AdKill, action: Action) -> AdKill {
     case is ShowContent,
          is SkipAd,
          is AdPlaybackFailed,
-         is AdError,
-         is AdStopped,
-         is AdSkipped,
-         is AdNotSupported:
+         is VPAIDActions.AdError,
+         is VPAIDActions.AdStopped,
+         is VPAIDActions.AdSkipped,
+         is VPAIDActions.AdNotSupported:
         return .none
     default: return state
     }

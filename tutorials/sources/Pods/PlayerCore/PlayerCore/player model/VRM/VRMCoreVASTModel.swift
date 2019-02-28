@@ -12,13 +12,16 @@ public extension VRMCore {
             public let tagURL: URL
             public let adVerifications: [Ad.VASTModel.AdVerification]
             public let pixels: AdPixels
+            public let adProgress: [Ad.VASTModel.AdProgress]
             
             public init(tagURL: URL,
                         adVerifications: [Ad.VASTModel.AdVerification],
-                        pixels: AdPixels) {
+                        pixels: AdPixels,
+                        adProgress: [Ad.VASTModel.AdProgress]) {
                 self.tagURL = tagURL
                 self.adVerifications = adVerifications
                 self.pixels = pixels
+                self.adProgress = adProgress
             }
         }
         
@@ -28,15 +31,20 @@ public extension VRMCore {
 }
 
 public extension VRMCore.VASTModel.WrapperModel {
-    func merge(with pixels: AdPixels, and verifications: [Ad.VASTModel.AdVerification]) -> VRMCore.VASTModel.WrapperModel {
+    func merge(pixels: AdPixels,
+               verifications: [Ad.VASTModel.AdVerification],
+               adProgress: [Ad.VASTModel.AdProgress]) -> VRMCore.VASTModel.WrapperModel {
         return VRMCore.VASTModel.WrapperModel(tagURL: tagURL,
                                               adVerifications: self.adVerifications + verifications,
-                                              pixels: self.pixels.merge(with: pixels))
+                                              pixels: self.pixels.merge(with: pixels),
+                                              adProgress: self.adProgress + adProgress)
     }
 }
 
 public extension Ad.VASTModel {
-    public func merge(with pixels: AdPixels, and verifications: [Ad.VASTModel.AdVerification]) -> Ad.VASTModel {
+    public func merge(pixels: AdPixels,
+                      verifications: [Ad.VASTModel.AdVerification],
+                      adProgress: [Ad.VASTModel.AdProgress]) -> Ad.VASTModel {
         return PlayerCore.Ad.VASTModel(
             adVerifications: self.adVerifications + verifications,
             mp4MediaFiles: mp4MediaFiles,

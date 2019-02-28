@@ -28,8 +28,8 @@ func reduce(state: VRMFinalResult, action: Action) -> VRMFinalResult {
                                         inlineVAST: finalResult.inlineVAST))
     case is AdPlaybackFailed,
          is AdStartTimeout,
-         is AdError,
-         is AdNotSupported:
+         is VPAIDActions.AdError,
+         is VPAIDActions.AdNotSupported:
         guard let result = state.successResult else { return state }
         return .failed(result: result)
          

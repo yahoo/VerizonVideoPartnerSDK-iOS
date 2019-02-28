@@ -36,7 +36,7 @@ public struct Model {
                 controlsAnimationSupported: Bool = false,
                 isVPAIDAllowed: Bool = false,
                 isOpenMeasurementAllowed: Bool = false,
-                isNewVRMCoreEnabled: Bool = false,
+                isFailoverEnabled: Bool = false,
                 adSettings: AdSettings = .default,
                 vpaidSettings: VPAIDSettings,
                 omSettings: OMSettings) {
@@ -45,7 +45,7 @@ public struct Model {
                   controlsAnimationSupported: controlsAnimationSupported,
                   isVPAIDAllowed: isVPAIDAllowed,
                   isOpenMeasurementAllowed: isOpenMeasurementAllowed,
-                  isNewVRMCoreEnabled: isNewVRMCoreEnabled,
+                  isFailoverEnabled: isFailoverEnabled,
                   adSettings: adSettings,
                   vpaidSettings: vpaidSettings,
                   omSettings: omSettings)
@@ -64,7 +64,7 @@ public struct Model {
                 controlsAnimationSupported: Bool = false,
                 isVPAIDAllowed: Bool = false,
                 isOpenMeasurementAllowed: Bool = false,
-                isNewVRMCoreEnabled: Bool = false,
+                isFailoverEnabled: Bool = false,
                 adSettings: AdSettings = .default,
                 vpaidSettings: VPAIDSettings,
                 omSettings: OMSettings) {
@@ -79,7 +79,7 @@ public struct Model {
             controlsAnimationSupported: controlsAnimationSupported,
             isVPAIDAllowed: isVPAIDAllowed,
             isOpenMeasurementAllowed: isOpenMeasurementAllowed,
-            isNewVRMCoreEnabled: isNewVRMCoreEnabled,
+            isFailoverEnabled: isFailoverEnabled,
             adSettings: adSettings,
             vpaidSettings: vpaidSettings,
             omSettings: omSettings)
@@ -90,7 +90,7 @@ public struct Model {
                 controlsAnimationSupported: Bool = false,
                 isVPAIDAllowed: Bool = false,
                 isOpenMeasurementAllowed: Bool = false,
-                isNewVRMCoreEnabled: Bool = false,
+                isFailoverEnabled: Bool = false,
                 adSettings: AdSettings = .default,
                 vpaidSettings: VPAIDSettings,
                 omSettings: OMSettings) {
@@ -99,7 +99,7 @@ public struct Model {
         self.isControlsAnimationSupported = controlsAnimationSupported
         self.isVPAIDAllowed = isVPAIDAllowed
         self.isOpenMeasurementAllowed = isOpenMeasurementAllowed
-        self.isNewVRMCoreEnabled = isNewVRMCoreEnabled
+        self.isFailoverEnabled = isFailoverEnabled
         self.adSettings = adSettings
         self.vpaidSettings = vpaidSettings
         self.omSettings = omSettings
@@ -128,7 +128,7 @@ public struct Model {
     /// The value that represents Open Measurement possibility
     public let isOpenMeasurementAllowed: Bool
     
-    public let isNewVRMCoreEnabled: Bool
+    public let isFailoverEnabled: Bool
     
     public struct AdSettings {
         public static let `default` = AdSettings(prefetchingOffset: 0,
