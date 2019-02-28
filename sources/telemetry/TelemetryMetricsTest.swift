@@ -21,9 +21,10 @@ class TelemetryMetricsTest: XCTestCase {
     var successInitializationReporter: Telemetry.Metrics.OpenMeasurement.SuccessInitializationReporter!
     var failedConfigurationReporter: Telemetry.Metrics.OpenMeasurement.FailedConfigurationReporter!
     var scriptFetchingFailedReporter: Telemetry.Metrics.OpenMeasurement.ScriptFetchingFailedReporter!
-
-    var vrmProcessing: Telemetry.Metrics.VRMProcessing!
-    var mp4AdBuffering: Telemetry.Metrics.AdBuffering!
+    
+    var vrmProcessing: Telemetry.Metrics.Buffering.VRM!
+    var mp4AdBuffering: Telemetry.Metrics.Buffering.MP4Ad!
+    var contentBuffering:  Telemetry.Metrics.Buffering.Content!
     
     var abuseTelemetry: Telemetry.Metrics.VPAID.AbuseEventErrorReporter!
     var jsTelemetry: Telemetry.Metrics.VPAID.JSEvaluationErrorReporter!
@@ -49,8 +50,9 @@ class TelemetryMetricsTest: XCTestCase {
         successInitializationReporter = Telemetry.Metrics.OpenMeasurement.SuccessInitializationReporter(context: [:], send: send)
         failedConfigurationReporter = Telemetry.Metrics.OpenMeasurement.FailedConfigurationReporter(context: [:], send: send)
         scriptFetchingFailedReporter = Telemetry.Metrics.OpenMeasurement.ScriptFetchingFailedReporter(context: [:], send: send)
-        vrmProcessing = Telemetry.Metrics.VRMProcessing(context: [:], send: send)
-        mp4AdBuffering = Telemetry.Metrics.AdBuffering(context: [:], send: send)
+        vrmProcessing = Telemetry.Metrics.Buffering.VRM(context: [:], send: send)
+        mp4AdBuffering = Telemetry.Metrics.Buffering.MP4Ad(context: [:], send: send)
+        contentBuffering = Telemetry.Metrics.Buffering.Content(context: [:], send: send)
     }
     
     override func tearDown() {
@@ -111,7 +113,7 @@ class TelemetryMetricsTest: XCTestCase {
     
     func testJSErrorSameSession() {
         let error = TestError(name: "error")
-
+        
         recorder.record {
             jsTelemetry.process(javascriptErrors: [error], forRuleId: "rule")
             jsTelemetry.process(javascriptErrors: [error, error], forRuleId: "rule")
@@ -121,8 +123,8 @@ class TelemetryMetricsTest: XCTestCase {
             jsTelemetry.send(json(for: "VPAID_JAVASCRIPT_EVALUATION_ERROR",
                                   and: ["rid": "rule",
                                         "error_code": "\(error.errorCode)",
-                                        "error_description": (error as NSError).description,
-                                        "error_additional_info": error.errorUserInfo]))
+                                    "error_description": (error as NSError).description,
+                                    "error_additional_info": error.errorUserInfo]))
         }
     }
     
@@ -130,12 +132,12 @@ class TelemetryMetricsTest: XCTestCase {
         let error1 = TestError(name: "error1")
         let error2 = TestError(name: "error2")
         let error3 = TestError(name: "error3")
-
+        
         recorder.record {
             jsTelemetry.process(javascriptErrors: [error1], forRuleId: "rule1")
             jsTelemetry.process(javascriptErrors: [error2, error3], forRuleId: "rule2")
         }
-
+        
         recorder.verify {
             jsTelemetry.send(json(for: "VPAID_JAVASCRIPT_EVALUATION_ERROR",
                                   and: ["rid": "rule1",
@@ -193,7 +195,7 @@ class TelemetryMetricsTest: XCTestCase {
         
         recorder.verify {
             adStartTimeout.send(json(for: "START_TIMEOUT_REACHED",
-                                       and: ["rid": "rule 1"]))
+                                     and: ["rid": "rule 1"]))
         }
     }
     func testAdStartTimeoutOnSecondSession() {
@@ -217,9 +219,9 @@ class TelemetryMetricsTest: XCTestCase {
         
         recorder.verify {
             adStartTimeout.send(json(for: "START_TIMEOUT_REACHED",
-                                       and: ["rid": "rule 1"]))
+                                     and: ["rid": "rule 1"]))
             adStartTimeout.send(json(for: "START_TIMEOUT_REACHED",
-                                       and: ["rid": "rule 2"]))
+                                     and: ["rid": "rule 2"]))
         }
     }
     func testOpenMeasurementInitiated() {
@@ -269,7 +271,7 @@ class TelemetryMetricsTest: XCTestCase {
         
         recorder.verify {
             scriptFetchingFailedReporter.send(json(for: "OM_SDK_SCRIPT_FETCHING_FAILED",
-                                                  and: ["message": error.localizedDescription]))
+                                                   and: ["message": error.localizedDescription]))
         }
     }
     
@@ -279,14 +281,14 @@ class TelemetryMetricsTest: XCTestCase {
         
         recorder.record {
             let adRequest = UUID()
-            vrmProcessing.process(adRequest: adRequest, processingTime: .inProgress(startAt: startAt))
-            vrmProcessing.process(adRequest: adRequest, processingTime: .finished(startAt: startAt, finishAt: finishAt))
-            vrmProcessing.process(adRequest: adRequest, processingTime: .finished(startAt: startAt, finishAt: finishAt))
+            vrmProcessing.process(requestId: adRequest, processingStatus: .inProgress(startAt: startAt))
+            vrmProcessing.process(requestId: adRequest, processingStatus: .finished(startAt: startAt, finishAt: finishAt))
+            vrmProcessing.process(requestId: adRequest, processingStatus: .finished(startAt: startAt, finishAt: finishAt))
         }
         
         recorder.verify {
-            vrmProcessing.send(json(for: "VRM_PROCESSING_TIME",
-                                    and: ["time": 2500]))
+            vrmProcessing.vrm.send(json(for: "VRM_PROCESSING_TIME",
+                                        and: ["time": 2500]))
         }
     }
     
@@ -296,14 +298,31 @@ class TelemetryMetricsTest: XCTestCase {
         
         recorder.record {
             let adRequest = UUID()
-            mp4AdBuffering.process(adRequest: adRequest, processingTime: .inProgress(startAt: startAt))
-            mp4AdBuffering.process(adRequest: adRequest, processingTime: .finished(startAt: startAt, finishAt: finishAt))
-            mp4AdBuffering.process(adRequest: adRequest, processingTime: .finished(startAt: startAt, finishAt: finishAt))
+            mp4AdBuffering.process(requestId: adRequest, processingStatus: .inProgress(startAt: startAt))
+            mp4AdBuffering.process(requestId: adRequest, processingStatus: .finished(startAt: startAt, finishAt: finishAt))
+            mp4AdBuffering.process(requestId: adRequest, processingStatus: .finished(startAt: startAt, finishAt: finishAt))
         }
         
         recorder.verify {
-            mp4AdBuffering.send(json(for: "AD_BUFFERING_TIME",
-                                    and: ["time": 2500]))
+            mp4AdBuffering.mp4Ad.send(json(for: "AD_BUFFERING_TIME",
+                                           and: ["time": 2500]))
+        }
+    }
+    
+    func testContentBufferingTime() {
+        let startAt = Date(timeIntervalSince1970: 0)
+        let finishAt = Date(timeIntervalSince1970: 2.5)
+        
+        recorder.record {
+            let sessionId = UUID()
+            contentBuffering.process(playbackSession: sessionId, processingStatus: .inProgress(startAt: startAt))
+            contentBuffering.process(playbackSession: sessionId, processingStatus: .finished(startAt: startAt, finishAt: finishAt))
+            contentBuffering.process(playbackSession: sessionId, processingStatus: .finished(startAt: startAt, finishAt: finishAt))
+        }
+        
+        recorder.verify {
+            contentBuffering.content.send(json(for: "VIDEO_BUFFERING_TIME",
+                                              and: ["time": 2500]))
         }
     }
     
