@@ -2,6 +2,7 @@
 //  Licensed under the terms of the MIT License. See LICENSE.md file in project root for terms.
 import Foundation
 import PlayerCore
+import CoreMedia
 
 extension Telemetry {
     struct Metrics {
@@ -191,7 +192,6 @@ extension Telemetry.Metrics {
                 self.context = context
                 self.send = send
             }
-            
             func process(uniqueKey: UUID?,
                          processingTime: BufferingStatus,
                          telemetryType: String) {
@@ -226,7 +226,8 @@ extension Telemetry.Metrics {
                         processingStatus: state.vrmProcessingTime.status)
             
             content.process(playbackSession: state.playbackSession.id,
-                            processingStatus: state.contentBufferingTime.status)
+                            processingStatus: state.contentBufferingTime.status,
+                            duration: state.duration.content)
         }
     }
 }
@@ -271,7 +272,11 @@ extension Telemetry.Metrics.Buffering {
             content = Reporter(context: context, send: send)
         }
         
-        func process(playbackSession: UUID?, processingStatus: BufferingStatus) {
+        func process(playbackSession: UUID?,
+                     processingStatus: BufferingStatus,
+                     duration: CMTime?) {
+            guard let duration = duration,
+                CMTIME_IS_INDEFINITE(duration) == false else { return }
             content.process(uniqueKey: playbackSession,
                         processingTime: processingStatus,
                         telemetryType: "VIDEO_BUFFERING_TIME")
