@@ -7,14 +7,6 @@ import PlayerCore
 
 class MaxShowTimeControllerTest: XCTestCase {
     
-    class MockTimer: Cancellable {
-        var didCancelCalled = false
-        
-        func cancel() {
-            didCancelCalled = true
-        }
-    }
-    
     func testMaxShowTimeController() {
 
         var timer: MockTimer!

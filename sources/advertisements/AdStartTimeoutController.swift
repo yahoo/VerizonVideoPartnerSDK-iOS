@@ -6,23 +6,36 @@ import PlayerCore
 
 final class AdStartTimeoutController {
     
-    let timerCreator: () -> Cancellable
-    private(set) var timer: Cancellable?
+    typealias OnFire = () -> ()
+    typealias TimerFactory = (@escaping OnFire) -> Cancellable
     
-    init(timerCreator: @escaping () -> Cancellable) {
-        self.timerCreator = timerCreator
+    let timerFactory: TimerFactory
+    let dispatcher: (PlayerCore.Action) -> Void
+    
+    private(set) var timer: Cancellable?
+    private var processedRequestIDs = Set<UUID>()
+    
+    init(dispatcher: @escaping (PlayerCore.Action) -> Void,
+         timerFactory: @escaping TimerFactory) {
+        self.timerFactory = timerFactory
+        self.dispatcher = dispatcher
     }
     
     func process(state: State) {
         process(currentAdState: state.ad.currentAd,
-                isStreamPlaying: state.rate.adRate.stream)
+                isStreamPlaying: state.rate.adRate.stream,
+                isVPAIDCreative: state.selectedAdCreative.isVPAID)
     }
     
     func process(currentAdState: PlayerCore.Ad.State,
-                 isStreamPlaying: Bool) {
+                 isStreamPlaying: Bool,
+                 isVPAIDCreative: Bool) {
         switch currentAdState {
         case .play where timer == nil:
-            timer = timerCreator()
+            timer = timerFactory { [weak self] in
+                let action = isVPAIDCreative ? vpaidAdStartTimeoutReached() : mp4AdStartTimeoutReached()
+                self?.dispatcher(action)
+            }
             
         case .play where isStreamPlaying:
             timer?.cancel()
