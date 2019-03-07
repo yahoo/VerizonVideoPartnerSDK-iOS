@@ -52,7 +52,7 @@ extension VideoProvider.Parse {
         return try .init(isControlsAnimationEnabled: json.parse("isControlsAnimationEnabled"),
                          isVPAIDAllowed: json.parse("isVPAIDAllowed"),
                          isOpenMeasurementEnabled: json.parse("isOpenMeasurementEnabled"),
-                         isNewVRMCoreEnabled: json.parse("isNewVRMCoreEnabled"))
+                         isFailoverEnabled: false)
     }
     
     static func adSettings(from json: JSON) throws -> VideoProvider.Response.AdSettings {

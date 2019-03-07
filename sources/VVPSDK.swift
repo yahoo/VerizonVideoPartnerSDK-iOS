@@ -249,7 +249,7 @@ public struct VVPSDK {
                                            controlsAnimationSupported: videoResponse.features.isControlsAnimationEnabled,
                                            isVPAIDAllowed: videoResponse.features.isVPAIDAllowed,
                                            isOpenMeasurementAllowed: videoResponse.features.isOpenMeasurementEnabled,
-                                           isNewVRMCoreEnabled: videoResponse.features.isNewVRMCoreEnabled,
+                                           isFailoverEnabled: videoResponse.features.isFailoverEnabled,
                                            adSettings: adSettings,
                                            vpaidSettings: vpaidSettings,
                                            omSettings: omSettings)
