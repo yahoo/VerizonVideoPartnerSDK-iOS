@@ -12,7 +12,7 @@ public struct AdVASTProgress {
 
 func reduce(state: AdVASTProgress, action: Action) -> AdVASTProgress {
     switch action {
-    case is AdRequest:
+    case is VRMCore.AdRequest:
         return AdVASTProgress(pixels: [])
     case let action as UpdateAdDuration:
         guard let duration = action.newDuration else { return state }

@@ -35,7 +35,7 @@ extension VideoProvider.Response {
         public let isControlsAnimationEnabled: Bool
         public let isVPAIDAllowed: Bool
         public let isOpenMeasurementEnabled: Bool
-        public let isNewVRMCoreEnabled: Bool
+        public let isFailoverEnabled: Bool
     }
     
     public struct AdSettings {

@@ -1,5 +1,21 @@
 # Change Log
 
+## [Unreleased](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/tree/HEAD)
+
+[Full Changelog](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/compare/1.3.0...HEAD)
+
+**Merged pull requests:**
+
+- Replaced isNewVRMCoreEnabled with isFailoverEnabled [\#89](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/pull/89) ([RomanTysiachnik](https://github.com/RomanTysiachnik))
+- Updated controls submodule [\#88](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/pull/88) ([RomanTysiachnik](https://github.com/RomanTysiachnik))
+- Buffering telemetry shouldn't be fired for live videos [\#87](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/pull/87) ([RomanTysiachnik](https://github.com/RomanTysiachnik))
+- Added telemetry for content buffering [\#85](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/pull/85) ([VladyslavAnokhin](https://github.com/VladyslavAnokhin))
+- Fixed parsing for multiple creatives in VAST [\#84](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/pull/84) ([RomanTysiachnik](https://github.com/RomanTysiachnik))
+- Remove old vrm core controllers [\#83](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/pull/83) ([VladyslavAnokhin](https://github.com/VladyslavAnokhin))
+- Added adProgress in merge methods of wrapper [\#82](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/pull/82) ([RomanTysiachnik](https://github.com/RomanTysiachnik))
+- VVP SDK tutorials update [\#81](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/pull/81) ([RomanTysiachnik](https://github.com/RomanTysiachnik))
+- Release 1.3.0 after changes in public API of Player Controls [\#80](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/pull/80) ([RomanTysiachnik](https://github.com/RomanTysiachnik))
+
 ## [1.3.0](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/tree/1.3.0) (2019-02-20)
 [Full Changelog](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/compare/1.2.2...1.3.0)
 

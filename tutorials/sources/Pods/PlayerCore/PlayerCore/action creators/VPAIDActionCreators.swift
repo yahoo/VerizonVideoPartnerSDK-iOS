@@ -34,56 +34,56 @@ public func createAction(from event: VPAIDEvents) -> Action {
     switch event {
     case .AdDurationChange(let duration):
         let time = CMTime(seconds: duration, preferredTimescale: 600)
-        return AdDurationChange(duration: time)
+        return VPAIDActions.AdDurationChange(duration: time)
     case .AdCurrentTimeChanged(let currentTime):
         let time = CMTime(seconds: currentTime, preferredTimescale: 600)
-        return AdCurrentTimeChanged(newTime: time)
+        return VPAIDActions.AdCurrentTimeChanged(newTime: time)
     case .AdClickThru(let url):
-        return AdClickThru(url: url)
+        return VPAIDActions.AdClickThru(url: url)
     case .AdLoaded:
-        return AdLoaded()
+        return VPAIDActions.AdLoaded()
     case .AdNotSupported:
-        return AdNotSupported()
+        return VPAIDActions.AdNotSupported()
     case .AdStarted:
-        return AdStarted()
+        return VPAIDActions.AdStarted()
     case .AdStopped:
-        return AdStopped()
+        return VPAIDActions.AdStopped()
     case .AdSkipped:
-        return AdSkipped()
+        return VPAIDActions.AdSkipped()
     case .AdPaused:
-        return AdPaused()
+        return VPAIDActions.AdPaused()
     case .AdResumed:
-        return AdResumed()
+        return VPAIDActions.AdResumed()
     case .AdError(let error):
-        return AdError(error: error)
+        return VPAIDActions.AdError(error: error)
     case .AdImpression:
-        return AdImpression()
+        return VPAIDActions.AdImpression()
     case .AdVideoStart:
-        return AdVideoStart()
+        return VPAIDActions.AdVideoStart()
     case .AdVideoFirstQuartile:
-        return AdVideoFirstQuartile()
+        return VPAIDActions.AdVideoFirstQuartile()
     case .AdVideoMidpoint:
-        return AdVideoMidpoint()
+        return VPAIDActions.AdVideoMidpoint()
     case .AdVideoThirdQuartile:
-        return AdVideoThirdQuartile()
+        return VPAIDActions.AdVideoThirdQuartile()
     case .AdVideoComplete:
-        return AdVideoComplete()
+        return VPAIDActions.AdVideoComplete()
     case .AdWindowOpen(let url):
-        return AdWindowOpen(url: url)
+        return VPAIDActions.AdWindowOpen(url: url)
     case .AdUserAcceptInvitation:
-        return AdUserAcceptInvitation()
+        return VPAIDActions.AdUserAcceptInvitation()
     case .AdUserMinimize:
-        return AdUserMinimize()
+        return VPAIDActions.AdUserMinimize()
     case .AdUserClose:
-        return AdUserClose()
+        return VPAIDActions.AdUserClose()
     case .AdVolumeChange(let volume):
-        return AdVolumeChange(volume: volume)
+        return VPAIDActions.AdVolumeChange(volume: volume)
     case .AdScriptLoaded:
-        return AdScriptLoaded()
+        return VPAIDActions.AdScriptLoaded()
     case let .AdUniqueEventAbuse(name, value):
-        return AdUniqueEventAbuse(name: name, value: value)
+        return VPAIDActions.AdUniqueEventAbuse(name: name, value: value)
     case .AdJSEvaluationFailed(let error):
-        return AdJavaScriptEvaluationError(error: error)
+        return VPAIDActions.AdJavaScriptEvaluationError(error: error)
     }
 }
 

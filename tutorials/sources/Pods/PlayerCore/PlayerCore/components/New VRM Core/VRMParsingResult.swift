@@ -23,13 +23,15 @@ func reduce(state: VRMParsingResult, action: Action) -> VRMParsingResult {
         if let currentVASTModel = newState.parsedVASTs[finishParsing.originalItem]?.vastModel {
             switch(currentVASTModel, finishParsing.vastModel) {
             case let (.wrapper(currentWrapper), .wrapper(processedWrapper)):
-                let mergedWrapper = processedWrapper.merge(with: currentWrapper.pixels,
-                                                           and: currentWrapper.adVerifications)
+                let mergedWrapper = processedWrapper.merge(pixels: currentWrapper.pixels,
+                                                           verifications: currentWrapper.adVerifications,
+                                                           adProgress: currentWrapper.adProgress)
                 newState.parsedVASTs[finishParsing.originalItem] = .init(vastModel: .wrapper(mergedWrapper))
                 return newState
             case let (.wrapper(currentWrapper), .inline(resultModel)):
-                let mergedResult = resultModel.merge(with: currentWrapper.pixels,
-                                                     and: currentWrapper.adVerifications)
+                let mergedResult = resultModel.merge(pixels: currentWrapper.pixels,
+                                                     verifications: currentWrapper.adVerifications,
+                                                     adProgress: currentWrapper.adProgress)
                 newState.parsedVASTs[finishParsing.originalItem] = .init(vastModel: .inline(mergedResult))
             case (.inline, _):
                 fatalError("Tried to complete already completed item")

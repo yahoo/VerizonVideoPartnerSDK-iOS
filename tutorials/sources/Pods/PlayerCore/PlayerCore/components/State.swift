@@ -27,10 +27,7 @@ public struct State {
     public let playbackBuffering: PlaybackBuffering
     public let averageBitrate: AverageBitrate
     public let adTracker: AdFinishTracker
-    public let adVRMManager: AdVRMManager
     public let mediaOptions: MediaOptions
-    public let adInfoHolder: AdInfoHolder?
-    public let transactionIDHolder: TransactionIDHolder?
     public let contentFullScreen: ContentFullScreen
     public let userActions: UserActions
     public let vpaid: VPAIDState
@@ -56,6 +53,7 @@ public struct State {
     public let vrmItemResponseTime: VRMItemResponseTime
     public let vrmProcessingTime: VRMProcessingTime
     public let mp4AdBufferingTime: MP4AdBufferingTime
+    public let contentBufferingTime: ContentBufferingTime
 }
 
 
@@ -116,12 +114,7 @@ extension State {
             playbackBuffering: PlaybackBuffering(content: .unknown, ad: .unknown),
             averageBitrate: AverageBitrate(content: 0, ad: 0),
             adTracker: .unknown,
-            adVRMManager: AdVRMManager(timeoutBarrier: Int(timeoutBarrier * 1000),
-                                       requestsFired: 0,
-                                       request: .initial()),
             mediaOptions: .empty,
-            adInfoHolder: nil,
-            transactionIDHolder: nil,
             contentFullScreen: .inactive,
             userActions: .nothing,
             vpaid: VPAIDState(events: [],
@@ -149,7 +142,8 @@ extension State {
             vrmFinalResult: .initial,
             vrmItemResponseTime: .initial,
             vrmProcessingTime: .initial,
-            mp4AdBufferingTime: .initial
+            mp4AdBufferingTime: .initial,
+            contentBufferingTime: .initial
         )
     }
 }
@@ -182,10 +176,7 @@ public func reduce(state: State, action: Action) -> State {
         playbackBuffering: reduce(state: state.playbackBuffering, action: action),
         averageBitrate: reduce(state: state.averageBitrate, action: action),
         adTracker: reduce(state: state.adTracker, action: action),
-        adVRMManager: reduce(state: state.adVRMManager, action: action),
         mediaOptions: reduce(state: state.mediaOptions, action: action),
-        adInfoHolder: reduce(state: state.adInfoHolder, action: action),
-        transactionIDHolder: reduce(state: state.transactionIDHolder, action: action),
         contentFullScreen: reduce(state: state.contentFullScreen, action: action),
         userActions: reduce(state: state.userActions, action: action),
         vpaid: reduce(state: state.vpaid, action: action),
@@ -210,6 +201,7 @@ public func reduce(state: State, action: Action) -> State {
         vrmFinalResult: reduce(state: state.vrmFinalResult, action: action),
         vrmItemResponseTime: reduce(state: state.vrmItemResponseTime, action: action),
         vrmProcessingTime: reduce(state: state.vrmProcessingTime, action: action),
-        mp4AdBufferingTime: reduce(state: state.mp4AdBufferingTime, action: action)
+        mp4AdBufferingTime: reduce(state: state.mp4AdBufferingTime, action: action),
+        contentBufferingTime: reduce(state: state.contentBufferingTime, action: action)
     )
 }

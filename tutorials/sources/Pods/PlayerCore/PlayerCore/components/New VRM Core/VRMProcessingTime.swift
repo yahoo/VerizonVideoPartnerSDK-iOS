@@ -3,27 +3,25 @@
 
 import Foundation
 
-public enum VRMProcessingTime {
-    static let initial = VRMProcessingTime.empty
+public struct VRMProcessingTime {
+    static let initial = VRMProcessingTime(status: .empty)
     
-    case inProgress(startAt: Date)
-    case finished(startAt: Date, finishAt: Date)
-    case empty
+    public let status: BufferingStatus
 }
 
 func reduce(state: VRMProcessingTime, action: Action) -> VRMProcessingTime {
     switch action {
-    case is VRMCore.AdRequest, is AdRequest:
-        return .inProgress(startAt: Date())
+    case is VRMCore.AdRequest:
+        return VRMProcessingTime(status: .inProgress(startAt: Date()))
         
-    case is ShowMP4Ad, is ShowVPAIDAd, is ShowAd:
-        guard case let .inProgress(stateAt) = state else { return state }
-        return .finished(startAt: stateAt, finishAt: Date())
+    case is ShowMP4Ad, is ShowVPAIDAd:
+        guard case let .inProgress(stateAt) = state.status else { return state }
+        return VRMProcessingTime(status: .finished(startAt: stateAt, finishAt: Date()))
         
     case is VRMCore.NoGroupsToProcess,
          is VRMCore.VRMResponseFetchFailed,
          is VRMCore.MaxSearchTimeout:
-        return .empty
+        return VRMProcessingTime(status: .empty)
         
     default: return state
     }

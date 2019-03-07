@@ -9,7 +9,8 @@ func vastMapper(vastModel: VASTModel) -> VRMCore.VASTModel {
     case .wrapper(let wrapper):
         let vrmCoreWrapper = VRMCore.VASTModel.WrapperModel(tagURL: wrapper.tagURL,
                                                             adVerifications: wrapper.adVerifications,
-                                                            pixels: wrapper.pixels)
+                                                            pixels: wrapper.pixels,
+                                                            adProgress: wrapper.progress)
         return VRMCore.VASTModel.wrapper(vrmCoreWrapper)
     case .inline(let model):
         return VRMCore.VASTModel.inline(model)

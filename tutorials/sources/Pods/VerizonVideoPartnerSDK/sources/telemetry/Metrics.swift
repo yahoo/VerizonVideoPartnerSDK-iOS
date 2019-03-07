@@ -2,6 +2,7 @@
 //  Licensed under the terms of the MIT License. See LICENSE.md file in project root for terms.
 import Foundation
 import PlayerCore
+import CoreMedia
 
 extension Telemetry {
     struct Metrics {
@@ -12,8 +13,7 @@ extension Telemetry {
         let adStartTimeout: AdStartTimeout
         let vpaid: VPAID
         let openMeasurement: OpenMeasurement
-        let vrmProcessing: VRMProcessing
-        let adBuffering: AdBuffering
+        let buffering: Buffering
         
         init(url: URL, context: JSON, ephemeralSession: URLSession) {
             let send = Telemetry.CustomTelemetrySender(session: ephemeralSession,
@@ -25,8 +25,7 @@ extension Telemetry {
             adStartTimeout = AdStartTimeout(context: context, send: send)
             vpaid = VPAID(context: context, send: send)
             openMeasurement = OpenMeasurement(context: context, send: send)
-            vrmProcessing = VRMProcessing(context: context, send: send)
-            adBuffering = AdBuffering(context: context, send: send)
+            buffering = Buffering(context: context, send: send)
         }
         
         func process(props: Player.Properties) {
@@ -39,8 +38,7 @@ extension Telemetry {
             vpaid.process(state: state)
             adStartTimeout.process(state: state)
             openMeasurement.process(state: state)
-            vrmProcessing.process(state: state)
-            adBuffering.process(state: state)
+            buffering.process(state: state)
         }
         
         func process(videoProviderError error: Error) {
@@ -166,8 +164,7 @@ extension Telemetry.Metrics {
         
         func process(state: PlayerCore.State) {
             let newCoreResult = state.vrmFinalResult.successResult ?? state.vrmFinalResult.failedResult
-            guard let ruleId = state.adInfoHolder?.info.ruleId ??
-                newCoreResult?.item.metaInfo.ruleId else { return }
+            guard let ruleId = newCoreResult?.item.metaInfo.ruleId else { return }
             process(isTimeoutReached: state.adKill == .adStartTimeout, for: ruleId)
         }
         func process(isTimeoutReached: Bool, for ruleId: String) {
@@ -182,71 +179,108 @@ extension Telemetry.Metrics {
 }
 
 extension Telemetry.Metrics {
-    final class VRMProcessing {
+    struct Buffering {
         
-        let context: JSON
-        let send: (JSON) -> ()
+        final class Reporter {
+            
+            let context: JSON
+            let send: (JSON) -> ()
+            
+            private var uniqueKeys = Set<UUID>()
+            
+            init(context: JSON, send: @escaping (JSON) -> ()) {
+                self.context = context
+                self.send = send
+            }
+            func process(uniqueKey: UUID?,
+                         processingTime: BufferingStatus,
+                         telemetryType: String) {
+                guard let uniqueKey = uniqueKey,
+                    case let .finished(startAt, finishAt) = processingTime,
+                    uniqueKeys.contains(uniqueKey) == false else { return }
+                
+                uniqueKeys.insert(uniqueKey)
+                
+                let timeInterval = Int(finishAt.timeIntervalSince(startAt) * 1000)
+                send(telemetryJSON(withContext: context,
+                                   type: telemetryType,
+                                   value: ["time": timeInterval]))
+            }
+        }
         
-        private var processedRequests = Set<UUID>()
+        let vrm: VRM
+        let mp4Ad: MP4Ad
+        let content: Content
         
         init(context: JSON, send: @escaping (JSON) -> ()) {
-            self.context = context
-            self.send = send
+            mp4Ad = MP4Ad(context: context, send: send)
+            vrm = VRM(context: context, send: send)
+            content = Content(context: context, send: send)
         }
         
         func process(state: PlayerCore.State) {
-            process(adRequest: state.vrmRequestStatus.request?.id,
-                    processingTime: state.vrmProcessingTime)
-        }
-        
-        func process(adRequest: UUID?,
-                     processingTime: VRMProcessingTime) {
-            guard let requestID = adRequest,
-                case let .finished(startAt, finishAt) = processingTime,
-                processedRequests.contains(requestID) == false else { return }
+            mp4Ad.process(requestId: state.vrmRequestStatus.request?.id,
+                          processingStatus: state.mp4AdBufferingTime.status)
             
-            processedRequests.insert(requestID)
+            vrm.process(requestId: state.vrmRequestStatus.request?.id,
+                        processingStatus: state.vrmProcessingTime.status)
             
-            let timeInterval = Int(finishAt.timeIntervalSince(startAt) * 1000)
-            send(telemetryJSON(withContext: context,
-                               type: "VRM_PROCESSING_TIME",
-                               value: ["time": timeInterval]))
+            content.process(playbackSession: state.playbackSession.id,
+                            processingStatus: state.contentBufferingTime.status,
+                            duration: state.duration.content)
         }
     }
 }
 
-extension Telemetry.Metrics {
-    final class AdBuffering {
-        
-        let context: JSON
-        let send: (JSON) -> ()
-        
-        private var processedRequests = Set<UUID>()
+extension Telemetry.Metrics.Buffering {
+    struct MP4Ad {
+        let mp4Ad: Reporter
         
         init(context: JSON, send: @escaping (JSON) -> ()) {
-            self.context = context
-            self.send = send
+            mp4Ad = Reporter(context: context, send: send)
         }
         
-        func process(state: PlayerCore.State) {
-            process(adRequest: state.vrmRequestStatus.request?.id,
-                    processingTime: state.mp4AdBufferingTime)
+        func process(requestId: UUID?, processingStatus: BufferingStatus) {
+            mp4Ad.process(uniqueKey: requestId,
+                          processingTime: processingStatus,
+                          telemetryType: "AD_BUFFERING_TIME")
+        }
+    }
+}
+
+extension Telemetry.Metrics.Buffering {
+    struct VRM {
+        let vrm: Reporter
+        
+        init(context: JSON, send: @escaping (JSON) -> ()) {
+            vrm = Reporter(context: context, send: send)
         }
         
-        func process(adRequest: UUID?,
-                     processingTime: MP4AdBufferingTime) {
-            guard let requestID = adRequest,
-                case let .finished(startAt, finishAt) = processingTime,
-                processedRequests.contains(requestID) == false else { return }
-            
-            processedRequests.insert(requestID)
-            
-            let timeInterval = Int(finishAt.timeIntervalSince(startAt) * 1000)
-            send(telemetryJSON(withContext: context,
-                               type: "AD_BUFFERING_TIME",
-                               value: ["time": timeInterval]))
+        func process(requestId: UUID?, processingStatus: BufferingStatus) {
+            vrm.process(uniqueKey: requestId,
+                        processingTime: processingStatus,
+                          telemetryType: "VRM_PROCESSING_TIME")
+        }
+    }
+}
+
+extension Telemetry.Metrics.Buffering {
+    struct Content {
+        let content: Reporter
+        
+        init(context: JSON, send: @escaping (JSON) -> ()) {
+            content = Reporter(context: context, send: send)
         }
         
+        func process(playbackSession: UUID?,
+                     processingStatus: BufferingStatus,
+                     duration: CMTime?) {
+            guard let duration = duration,
+                CMTIME_IS_INDEFINITE(duration) == false else { return }
+            content.process(uniqueKey: playbackSession,
+                        processingTime: processingStatus,
+                        telemetryType: "VIDEO_BUFFERING_TIME")
+        }
     }
 }
 
@@ -265,8 +299,7 @@ extension Telemetry.Metrics {
         
         func process(state: PlayerCore.State) {
             let newCoreResult = state.vrmFinalResult.successResult ?? state.vrmFinalResult.failedResult
-            guard let ruleId = state.adInfoHolder?.info.ruleId ??
-                newCoreResult?.item.metaInfo.ruleId  else { return }
+            guard let ruleId = newCoreResult?.item.metaInfo.ruleId  else { return }
             
             abuseEventReporter.process(abusedEvents: state.vpaidErrors.abusedEvents,
                                        forRuleId: ruleId)
@@ -402,7 +435,7 @@ extension Telemetry.Metrics {
         
         func process(state: PlayerCore.State) {
             let newCoreResult = state.vrmFinalResult.successResult ?? state.vrmFinalResult.failedResult
-            guard let ruleId = state.adInfoHolder?.info.ruleId ?? newCoreResult?.item.metaInfo.ruleId else { return }
+            guard let ruleId = newCoreResult?.item.metaInfo.ruleId else { return }
             let isMeasurementStarted: Bool = perform {
                 guard case .active = state.openMeasurement else { return false }
                 return true

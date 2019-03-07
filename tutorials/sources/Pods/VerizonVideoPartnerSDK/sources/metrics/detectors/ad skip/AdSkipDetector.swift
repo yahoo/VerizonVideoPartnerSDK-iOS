@@ -11,7 +11,7 @@ extension Detectors {
         
         func process(state: PlayerCore.State) -> Bool {
             return process(isSkipped: state.adTracker == .skipped,
-                           id: state.adVRMManager.request.id ?? state.vrmRequestStatus.request?.id)
+                           id: state.vrmRequestStatus.request?.id)
         }
         
         func process(isSkipped: Bool, id: UUID?) -> Bool {

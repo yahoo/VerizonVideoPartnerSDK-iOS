@@ -3,26 +3,23 @@
 
 import Foundation
 
-public enum MP4AdBufferingTime {
-    static let initial = MP4AdBufferingTime.empty
+public struct MP4AdBufferingTime {
+    static let initial = MP4AdBufferingTime(status: .empty)
     
-    case inProgress(startAt: Date)
-    case finished(startAt: Date, finishAt: Date)
-    case empty
+    public let status: BufferingStatus
 }
 
 func reduce(state: MP4AdBufferingTime, action: Action) -> MP4AdBufferingTime {
     switch action {
     case is AdPlaybackBufferingActive:
-        return .inProgress(startAt: Date())
+        return MP4AdBufferingTime(status: .inProgress(startAt: Date()))
     case is AdPlaybackBufferingInactive:
-            guard case let .inProgress(startAt) = state else { return state }
-        return .finished(startAt: startAt, finishAt: Date())
+            guard case let .inProgress(startAt) = state.status else { return state }
+        return MP4AdBufferingTime(status: .finished(startAt: startAt, finishAt: Date()))
         case is AdPlaybackFailed,
              is VRMCore.AdRequest,
-             is AdRequest,
              is AdStartTimeout:
-        return .empty
+        return MP4AdBufferingTime(status: .empty)
     default:
         return state
     }

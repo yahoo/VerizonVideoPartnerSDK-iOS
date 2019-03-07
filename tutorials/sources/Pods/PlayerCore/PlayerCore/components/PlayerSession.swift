@@ -24,7 +24,7 @@ func reduce(state: PlayerSession, action: Action) -> PlayerSession {
                              isCompleted: true,
                              isStarted: state.isStarted)
         
-    case is Play,is ContentDidPlay:
+    case is Play, is ContentDidPlay:
         return PlayerSession(id: state.id,
                              creationTime: state.creationTime,
                              isCompleted: state.isCompleted,

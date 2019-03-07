@@ -7,7 +7,7 @@ public struct AdClickthrough {
 func reduce(state: AdClickthrough, action: Action) -> AdClickthrough {
     switch action {
     case is RequestClickthroughAdPresentation,
-         is AdClickThru, is AdWindowOpen:
+         is VPAIDActions.AdClickThru, is VPAIDActions.AdWindowOpen:
         return AdClickthrough(isPresentationRequested: true)
     case is DidHideAdClickthrough:
         return AdClickthrough(isPresentationRequested: false)

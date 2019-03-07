@@ -26,68 +26,21 @@ extension TrackingPixels.Connector {
             }
         }
         
-        let transactionId: String? = perform {
-            let oldCoreTransactionId: String? = perform {
-                return state.transactionIDHolder?.transactionID
-            }
-            
-            let newCoreTransactionId: String? = perform {
-                return state.vrmResponse?.transactionId
-            }
-            
-            return newCoreTransactionId ?? oldCoreTransactionId
-        }
-        
         let adId: String? = perform {
-            let oldCoreAdId: String? = perform {
-                return state.adInfoHolder?.adID
-            }
-            
-            let newCoreAdId: String? = perform {
-                guard let inline = state.vrmFinalResult.successResult ?? state.vrmFinalResult.failedResult,
-                    let vrmResponse = state.vrmResponse else { return nil }
-                return inline.inlineVAST.id
-            }
-            
-            return newCoreAdId ?? oldCoreAdId
+            guard let inline = state.vrmFinalResult.successResult ?? state.vrmFinalResult.failedResult,
+                let vrmResponse = state.vrmResponse else { return nil }
+            return inline.inlineVAST.id
         }
         
         let adMetricsInfo: Ad.Metrics.Info? = perform {
-            let oldCoreInfo: Ad.Metrics.Info? = perform {
-                guard let adInfo = state.adInfoHolder?.info else { return nil }
-                return info(from: adInfo)
-            }
-            
-            let newCoreInfo: Ad.Metrics.Info? = perform {
-                guard let inline = state.vrmFinalResult.successResult ?? state.vrmFinalResult.failedResult,
-                    let vrmResponse = state.vrmResponse else { return nil }
-                return Ad.Metrics.Info(metaInfo: inline.item.metaInfo)
-            }
-            
-            return newCoreInfo ?? oldCoreInfo
+            guard let inline = state.vrmFinalResult.successResult ?? state.vrmFinalResult.failedResult,
+                let vrmResponse = state.vrmResponse else { return nil }
+            return Ad.Metrics.Info(metaInfo: inline.item.metaInfo)
         }
         
-        let slot: String? = perform {
-            let oldSlot: String? = perform {
-                switch state.adVRMManager.request.state {
-                case .finish(let finish):
-                    return finish.slot
-                case .failed(let failed):
-                    return failed.slot
-                case .skipped(let skipped):
-                    return skipped.slot
-                default: return nil
-                }
-            }
-            
-            let newSlot: String? = perform {
-                return state.vrmResponse?.slot
-            }
-            
-            return newSlot ?? oldSlot
-        }
-        
-        let sessionID = state.adVRMManager.request.id ?? state.vrmRequestStatus.request?.id
+        let slot = state.vrmResponse?.slot
+        let sessionID = state.vrmRequestStatus.request?.id
+        let transactionId = state.vrmResponse?.transactionId
         
         adRequestDetector.process(with: state).flatMap { result in
             reporter.adVRMRequest(videoIndex: state.playlist.currentIndex,
@@ -120,56 +73,7 @@ extension TrackingPixels.Connector {
                                       videoViewUID: state.playbackSession.id.uuidString)
         }
         
-        vrmDetector.process(state: state.adVRMManager).forEach { result in
-            switch result {
-            case .completeRequest(let complete):
-                reporter.adVRMRequest(videoIndex: state.playlist.currentIndex,
-                                      type: adType,
-                                      sequenceNumber: state.adVRMManager.requestsFired,
-                                      transactionId: complete.transactionID,
-                                      videoViewUID: state.playbackSession.id.uuidString)
-            case .startItem(let start):
-                reporter.adEngineRequest(videoIndex: state.playlist.currentIndex,
-                                         info: VerizonVideoPartnerSDK.info(from: start.info),
-                                         type: adType,
-                                         transactionId: start.transactionID,
-                                         videoViewUID: state.playbackSession.id.uuidString)
-                reporter.adServerRequest(info: VerizonVideoPartnerSDK.info(from: start.info),
-                                         videoIndex: state.playlist.currentIndex,
-                                         videoViewUID: state.playbackSession.id.uuidString)
-                
-            case .completeItem(let item):
-                reporter.adEngineResponse(videoIndex: state.playlist.currentIndex,
-                                          info: VerizonVideoPartnerSDK.info(from: item.info),
-                                          type: adType,
-                                          responseStatus: .yes,
-                                          responseTime: UInt(item.responseTime),
-                                          timeout: item.timeoutBarrier,
-                                          fillType: item.fillType,
-                                          transactionId: item.transactionID,
-                                          videoViewUID: state.playbackSession.id.uuidString)
-            case .timeoutItem(let timeout):
-                reporter.adEngineResponse(videoIndex: state.playlist.currentIndex,
-                                          info: VerizonVideoPartnerSDK.info(from: timeout.info),
-                                          type: adType,
-                                          responseStatus: .timeout,
-                                          responseTime: UInt(timeout.responseTime),
-                                          timeout: timeout.timeoutBarrier,
-                                          fillType: timeout.fillType,
-                                          transactionId: timeout.transactionID,
-                                          videoViewUID: state.playbackSession.id.uuidString)
-            case .otherErrorItem(let other):
-                reporter.adEngineResponse(videoIndex: state.playlist.currentIndex,
-                                          info: VerizonVideoPartnerSDK.info(from: other.info),
-                                          type: adType,
-                                          responseStatus: .no,
-                                          responseTime: UInt(other.responseTime),
-                                          timeout: nil,
-                                          fillType: other.fillType,
-                                          transactionId: other.transactionID,
-                                          videoViewUID: state.playbackSession.id.uuidString)
-            }
-        }
+        
         struct Payload {
             let info: Ad.Metrics.Info
             let transactionID: String?
@@ -192,8 +96,7 @@ extension TrackingPixels.Connector {
         
         func report(with function: (Payload) -> ()) {
             func pixels() -> PlayerCore.AdPixels {
-                if let pixels = state.adInfoHolder?.pixels ??
-                                state.vrmFinalResult.successResult?.inlineVAST.pixels ??
+                if let pixels = state.vrmFinalResult.successResult?.inlineVAST.pixels ??
                                 state.vrmFinalResult.failedResult?.inlineVAST.pixels {
                     return .init(impression: pixels.impression,
                                  error: pixels.error,
@@ -602,12 +505,3 @@ extension TrackingPixels.Connector {
         }
     }
 }
-func info(from info: PlayerCore.VRMMetaInfo) -> Ad.Metrics.Info {
-    return Ad.Metrics.Info(engineType: info.engineType,
-                           ruleId: info.ruleId,
-                           ruleCompanyId: info.ruleCompanyId,
-                           vendor: info.vendor,
-                           name: info.name,
-                           cpm: info.cpm)
-}
-
