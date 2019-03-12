@@ -212,6 +212,14 @@ extension TrackingPixels.Connector {
                                                   progressPixelsArray: state.adProgress.pixels)
             reporter.sendBeacon(urls: urls)
         }
+        /*Ad Failover Detector*/ do {
+            if adFailoverDetector.process(isFailover: state.adTracker == .failover,
+                                          adSessionID: sessionID) {
+                report { payload in
+                    engineFlow(stage: .failover, payload: payload)
+                }
+            }
+        }
         switch state.selectedAdCreative {
         case .vpaid:
             vpaidEventsDetector.process(events: state.vpaid.events).forEach {
