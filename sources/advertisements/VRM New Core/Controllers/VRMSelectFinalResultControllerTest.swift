@@ -24,7 +24,7 @@ class VRMSelectFinalResultControllerTest: XCTestCase {
             $0.item == $1.item && $0.inlineVAST == $1.inlineVAST
         }
         let dispatch = recorder.hook("hook", cmp: comparator.compare)
-        sut = VRMSelectFinalResultController(dispatch: dispatch)
+        sut = VRMSelectFinalResultController(isFailoverEnabled: true, dispatch: dispatch)
         
         adModel1 = .init(adVerifications: [],
                          mp4MediaFiles: [],
@@ -143,6 +143,46 @@ class VRMSelectFinalResultControllerTest: XCTestCase {
                                                    inlineVAST: result1.inlineVAST))
             sut.dispatch(VRMCore.selectFinalResult(item: result2.item,
                                                    inlineVAST: result2.inlineVAST))
+        }
+    }
+    func testDispatchFirstOnFailoverDisabled() {
+        let comparator = ActionComparator<PlayerCore.Action> {
+            switch ($0, $1) {
+            case (is DropAd, is DropAd):
+                return true
+            case (let action1 as VRMCore.SelectFinalResult,
+                  let action2 as VRMCore.SelectFinalResult):
+                return action1.item == action2.item && action1.inlineVAST == action2.inlineVAST
+            default: return false
+            }
+        }
+        let dispatch = recorder.hook("hook", cmp: comparator.compare)
+        sut = VRMSelectFinalResultController(isFailoverEnabled: false, dispatch: dispatch)
+        
+        recorder.record {
+            sut.process(processingResults: Set([result1, result2]),
+                        currentGroup: group,
+                        isMaxAdSearchTimeoutReached: false,
+                        finalResult: nil,
+                        topPriorityItem: nil)
+            
+            sut.process(processingResults: Set([result1, result2]),
+                        currentGroup: group,
+                        isMaxAdSearchTimeoutReached: false,
+                        finalResult: result1,
+                        topPriorityItem: nil)
+            
+            sut.process(processingResults: Set([result1, result2]),
+                        currentGroup: group,
+                        isMaxAdSearchTimeoutReached: false,
+                        finalResult: nil,
+                        topPriorityItem: nil)
+        }
+        
+        recorder.verify {
+            sut.dispatch(VRMCore.selectFinalResult(item: result1.item,
+                                                   inlineVAST: result1.inlineVAST))
+            sut.dispatch(dropAd())
         }
     }
 }

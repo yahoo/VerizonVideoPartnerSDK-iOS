@@ -7,10 +7,12 @@ import PlayerCore
 final class VRMSelectFinalResultController {
     
     let dispatch: (PlayerCore.Action) -> Void
+    let isFailoverEnabled: Bool
     private var firedResults = Set<VRMCore.Result>()
     
-    init(dispatch: @escaping (PlayerCore.Action) -> Void) {
+    init(isFailoverEnabled: Bool, dispatch: @escaping (PlayerCore.Action) -> Void) {
         self.dispatch = dispatch
+        self.isFailoverEnabled = isFailoverEnabled
     }
     
     func process(with state: PlayerCore.State) {
@@ -26,10 +28,18 @@ final class VRMSelectFinalResultController {
                  isMaxAdSearchTimeoutReached: Bool,
                  finalResult: VRMCore.Result?,
                  topPriorityItem: VRMCore.Item?) {
+        guard let currentGroup = currentGroup else {
+            firedResults = []
+            return
+        }
         guard isMaxAdSearchTimeoutReached == false,
-            finalResult == nil,
-            let currentGroup = currentGroup else {
+            finalResult == nil else {
                 return
+        }
+        
+        guard firedResults.isEmpty || isFailoverEnabled else {
+            dispatch(dropAd())
+            return
         }
         
         func dispatchResult(result: VRMCore.Result) {
