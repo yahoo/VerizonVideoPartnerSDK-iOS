@@ -163,11 +163,11 @@ extension Telemetry.Metrics {
         }
         
         func process(state: PlayerCore.State) {
-            let newCoreResult = state.vrmFinalResult.successResult ?? state.vrmFinalResult.failedResult
-            guard let ruleId = newCoreResult?.item.metaInfo.ruleId else { return }
-            process(isTimeoutReached: state.adKill == .adStartTimeout, for: ruleId)
+            process(isTimeoutReached: state.adKill == .adStartTimeout,
+                    for: state.vrmFinalResult.failedResult?.item.metaInfo.ruleId)
         }
-        func process(isTimeoutReached: Bool, for ruleId: String) {
+        func process(isTimeoutReached: Bool, for ruleId: String?) {
+            guard let ruleId = ruleId else { return }
             guard isTimeoutReached, !processedAds.contains(ruleId) else { return }
             
             processedAds.insert(ruleId)
@@ -298,15 +298,12 @@ extension Telemetry.Metrics {
         }
         
         func process(state: PlayerCore.State) {
-            let newCoreResult = state.vrmFinalResult.successResult ?? state.vrmFinalResult.failedResult
-            guard let ruleId = newCoreResult?.item.metaInfo.ruleId  else { return }
-            
             abuseEventReporter.process(abusedEvents: state.vpaidErrors.abusedEvents,
-                                       forRuleId: ruleId)
+                                       forRuleId: state.vrmFinalResult.successResult?.item.metaInfo.ruleId)
             javascriptErrorReporter.process(javascriptErrors: state.vpaidErrors.javaScriptEvaluationErrors,
-                                            forRuleId: ruleId)
+                                            forRuleId: state.vrmFinalResult.failedResult?.item.metaInfo.ruleId)
             unsupportedVPAIDReporter.process(isUnsupported: state.vpaidErrors.isAdNotSupported,
-                                             forRuleId: ruleId)
+                                             forRuleId: state.vrmFinalResult.failedResult?.item.metaInfo.ruleId)
         }
     }
 }
@@ -330,7 +327,8 @@ extension Telemetry.Metrics.VPAID {
             self.send = send
         }
         
-        func process(abusedEvents: [VPAIDErrors.UniqueEventError], forRuleId ruleId: String) {
+        func process(abusedEvents: [VPAIDErrors.UniqueEventError], forRuleId ruleId: String?) {
+            guard let ruleId = ruleId else { return }
             abusedEvents.forEach { error in
                 let candidate = AbuseInfo(name: error.eventName, ruleId: ruleId)
                 guard !processedAbuseErrors.contains(candidate) else { return }
@@ -362,8 +360,9 @@ extension Telemetry.Metrics.VPAID {
             self.send = send
         }
         
-        func process(javascriptErrors: [Error], forRuleId ruleId: String) {
-            func prepareValue(from jsError: Error, with ruleId: String) -> JSON {
+        func process(javascriptErrors: [Error], forRuleId ruleId: String?) {
+            guard let ruleId = ruleId else { return }
+            func prepareValue(from jsError: Error, with ruleId: String?) -> JSON {
                 var value: JSON = ["rid": ruleId]
                 
                 if let error = jsError as NSError? {
@@ -408,8 +407,9 @@ extension Telemetry.Metrics.VPAID {
             self.send = send
         }
         
-        func process(isUnsupported: Bool, forRuleId ruleId: String) {
+        func process(isUnsupported: Bool, forRuleId ruleId: String?) {
             guard isUnsupported,
+                let ruleId = ruleId,
                 !processedAds.contains(ruleId) else { return }
             
             processedAds.insert(ruleId)
@@ -434,8 +434,6 @@ extension Telemetry.Metrics {
         }
         
         func process(state: PlayerCore.State) {
-            let newCoreResult = state.vrmFinalResult.successResult ?? state.vrmFinalResult.failedResult
-            guard let ruleId = newCoreResult?.item.metaInfo.ruleId else { return }
             let isMeasurementStarted: Bool = perform {
                 guard case .active = state.openMeasurement else { return false }
                 return true
@@ -449,9 +447,9 @@ extension Telemetry.Metrics {
                 return error
             }
             successInitializationReporter.process(isMeasurementStarted: isMeasurementStarted,
-                                                  forRuleId: ruleId)
+                                                  forRuleId: state.vrmFinalResult.successResult?.item.metaInfo.ruleId)
             scriptFetchingFailedReporter.process(with: fetchingError)
-            failedConfigurationReporter.process(with: measurementError, forRuleId: ruleId)
+            failedConfigurationReporter.process(with: measurementError, forRuleId: state.vrmFinalResult.failedResult?.item.metaInfo.ruleId)
         }
     }
 }
@@ -468,8 +466,9 @@ extension Telemetry.Metrics.OpenMeasurement {
             self.send = send
         }
         
-        func process(isMeasurementStarted: Bool, forRuleId ruleId: String) {
+        func process(isMeasurementStarted: Bool, forRuleId ruleId: String?) {
             guard isMeasurementStarted,
+                let ruleId = ruleId,
                 !processedAds.contains(ruleId) else { return }
             
             processedAds.insert(ruleId)
@@ -492,7 +491,8 @@ extension Telemetry.Metrics.OpenMeasurement {
             self.send = send
         }
         
-        func process(with error: Error?, forRuleId ruleId: String) {
+        func process(with error: Error?, forRuleId ruleId: String?) {
+            guard let ruleId = ruleId else { return }
             guard let error = error,
                 !processedAds.contains(ruleId) else { return }
             
