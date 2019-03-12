@@ -14,6 +14,7 @@ final class VPAIDAdCreativeController {
     
     
     func process(state: State) {
+        
         process(adCreative: state.selectedAdCreative, id: state.vrmRequestStatus.request?.id)
     }
     

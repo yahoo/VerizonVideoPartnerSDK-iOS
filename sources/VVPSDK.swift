@@ -396,6 +396,15 @@ public struct VVPSDK {
         let mp4AdCreativeController = MP4AdCreativeController(dispatch: dispatcher)
         let vpaidAdCreativeController = VPAIDAdCreativeController(dispatch: dispatcher)
         
+        let maxAdDuration = player.model.adSettings.maxDuration
+        let maxShowTimeController = MaxShowTimeController(timerCreator: { Timer(duration: $0){ dispatcher(maxShowTimeReached())} },
+                                                          maxAdDuration: maxAdDuration,
+                                                          dispatcher: dispatcher)
+        let adStartTimeout = player.model.adSettings.startTimeout
+        let adStartTimeoutController = AdStartTimeoutController(dispatcher: dispatcher) { onFire in
+            Timer(duration: adStartTimeout, fire: onFire)
+        }
+    
         _ = player.store.state.addObserver { state in
             vrmRequestController.process(with: state)
             startGroupProcessing.process(with: state)
@@ -409,23 +418,13 @@ public struct VVPSDK {
             maxAdSearchTimeController.process(with: state)
             mp4AdCreativeController.process(state: state)
             vpaidAdCreativeController.process(state: state)
+            maxShowTimeController.process(state: state)
+            adStartTimeoutController.process(state: state)
         }
         
         _ = player.addObserver { playerProps in
             prerollProcessor.process(props: playerProps)
             midrollProcessor.process(props: playerProps)
-        }
-        
-        let timerController = MaxShowTimeController(timerCreator: { Timer(duration: $0){ dispatcher(maxShowTimeReached())} },
-                                                    maxAdDuration: player.model.adSettings.maxDuration,
-                                                    dispatcher: dispatcher)
-        let adStartTimeout = player.model.adSettings.startTimeout
-        let adStartTimeoutController = AdStartTimeoutController {
-            Timer(duration: adStartTimeout) { dispatcher(adStartTimeoutReached()) }
-        }
-        _ = player.store.state.addObserver { state in
-            timerController.process(state: state)
-            adStartTimeoutController.process(state: state)
         }
     }
 }

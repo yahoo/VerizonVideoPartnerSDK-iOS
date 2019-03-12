@@ -9,4 +9,5 @@ class MockTimer: VerizonVideoPartnerSDK.Cancellable {
     func cancel() {
         didCancelCalled = true
     }
+    
 }
