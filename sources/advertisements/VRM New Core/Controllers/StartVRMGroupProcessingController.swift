@@ -17,8 +17,8 @@ final class StartVRMGroupProcessingController {
         process(with: state.vrmCurrentGroup.currentGroup,
                 groupsQueue: state.vrmGroupsQueue.groupsQueue,
                 isMaxAdSearchReached: state.vrmMaxAdSearchTimeout.isReached,
-            vrmRequest: state.vrmRequestStatus.request,
-            hasReceivedVRMResponse: state.vrmResponse != nil)
+                vrmRequest: state.vrmRequestStatus.request,
+                hasReceivedVRMResponse: state.vrmResponse != nil)
     }
     
     func process(with currentGroup: VRMCore.Group?,

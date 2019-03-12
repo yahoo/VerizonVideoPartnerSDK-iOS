@@ -385,8 +385,8 @@ public struct VVPSDK {
                                                         Timer(duration: softTimeout, fire: onFire) },
                                                      hardTimeoutTimerFactory: { onFire in
                                                         Timer(duration: hardTimeout, fire: onFire) })
-        
-        let selectFinalResult = VRMSelectFinalResultController(dispatch: dispatcher)
+        let isFailoverEnabled = player.model.isFailoverEnabled
+        let selectFinalResult = VRMSelectFinalResultController(isFailoverEnabled: isFailoverEnabled, dispatch: dispatcher)
         let maxAdSearchTimeController = MaxAdSearchTimeController { requestID in
             Timer(duration: maxAdSearchTime) {
                 dispatcher(PlayerCore.VRMCore.maxSearchTimeoutReached(requestID: requestID))
@@ -404,7 +404,7 @@ public struct VVPSDK {
         let adStartTimeoutController = AdStartTimeoutController(dispatcher: dispatcher) { onFire in
             Timer(duration: adStartTimeout, fire: onFire)
         }
-    
+        
         _ = player.store.state.addObserver { state in
             vrmRequestController.process(with: state)
             startGroupProcessing.process(with: state)
