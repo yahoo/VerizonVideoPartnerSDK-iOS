@@ -16,13 +16,17 @@ enum OpenMeasurement {
         let adEvents: PlayerCore.OpenMeasurement.AdEvents
         let videoEvents: PlayerCore.OpenMeasurement.VideoEvents
     }
-    enum Errors: Swift.Error {
+    enum Errors: CustomNSError {
         case failedToCreateOMIDPartner
         case failedToCreateVerificationScriptResource
         case failedToActivateSDK
         case scriptNotAvailable
         case failedToGetAdView
         case sdkVersionIsNotCompatible
+        
+        var errorUserInfo: [String : Any] {
+            return [NSLocalizedDescriptionKey : "\(self)"]
+        }
     }
     
     static func createOpenMeasurementContext(input: Input) throws -> Output {
@@ -45,19 +49,19 @@ enum OpenMeasurement {
                     return OMIDVerizonmediaVerificationScriptResource(url: $0.javaScriptResource)
                 }
                 return OMIDVerizonmediaVerificationScriptResource(url: $0.javaScriptResource,
-                                                       vendorKey: vendorKey,
-                                                       parameters: parameters.absoluteString)
+                                                                  vendorKey: vendorKey,
+                                                                  parameters: parameters.absoluteString)
             }
         }()
         
         let context = try OMIDVerizonmediaAdSessionContext(partner: partner,
-                                                    script: input.jsServiceScript,
-                                                    resources: verificationResources,
-                                                    customReferenceIdentifier: nil)
+                                                           script: input.jsServiceScript,
+                                                           resources: verificationResources,
+                                                           customReferenceIdentifier: nil)
         
         let configuration = try OMIDVerizonmediaAdSessionConfiguration(impressionOwner: .nativeOwner,
-                                                                videoEventsOwner: .nativeOwner,
-                                                                isolateVerificationScripts: false)
+                                                                       videoEventsOwner: .nativeOwner,
+                                                                       isolateVerificationScripts: false)
         
         let adSession = try OMIDVerizonmediaAdSession(configuration: configuration, adSessionContext: context)
         
