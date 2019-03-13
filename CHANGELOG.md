@@ -1,8 +1,20 @@
 # Change Log
 
-## [Unreleased](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/tree/HEAD)
+## [1.3.2](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/tree/1.3.2) (2019-03-13)
+[Full Changelog](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/compare/1.3.1...1.3.2)
 
-[Full Changelog](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/compare/1.3.0...HEAD)
+**Merged pull requests:**
+
+- Fix for om sdk init [\#96](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/pull/96) ([VladyslavAnokhin](https://github.com/VladyslavAnokhin))
+- OMSDK update [\#95](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/pull/95) ([AndriiMoskvin](https://github.com/AndriiMoskvin))
+- Handled isFailoverEnabled in selectFinalResult controller [\#94](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/pull/94) ([RomanTysiachnik](https://github.com/RomanTysiachnik))
+- Updated player controls [\#92](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/pull/92) ([RomanTysiachnik](https://github.com/RomanTysiachnik))
+- Added fixes in vpaid telemetry [\#91](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/pull/91) ([RomanTysiachnik](https://github.com/RomanTysiachnik))
+- Updated AdStartTimeoutController with isVPAID property [\#90](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/pull/90) ([RomanTysiachnik](https://github.com/RomanTysiachnik))
+- Bump podspec to 1.3.1 [\#86](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/pull/86) ([VladyslavAnokhin](https://github.com/VladyslavAnokhin))
+
+## [1.3.1](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/tree/1.3.1) (2019-03-07)
+[Full Changelog](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/compare/1.3.0...1.3.1)
 
 **Merged pull requests:**
 
