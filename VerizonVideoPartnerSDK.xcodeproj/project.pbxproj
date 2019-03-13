@@ -29,7 +29,6 @@
 		067209D821B6BE520086CDBE /* NoOMScriptFixture.json in Resources */ = {isa = PBXBuildFile; fileRef = 067209D621B6BE490086CDBE /* NoOMScriptFixture.json */; };
 		067209DB21B6BE710086CDBE /* VASTVerificationInExtension.xml in Resources */ = {isa = PBXBuildFile; fileRef = 067209D921B6BE710086CDBE /* VASTVerificationInExtension.xml */; };
 		067209DC21B6BE710086CDBE /* VASTWrapperWithExtension.xml in Resources */ = {isa = PBXBuildFile; fileRef = 067209DA21B6BE710086CDBE /* VASTWrapperWithExtension.xml */; };
-		067209E321B6BF070086CDBE /* OMSDK_Oath2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 067209E221B6BF070086CDBE /* OMSDK_Oath2.framework */; };
 		067209EB21B6BF3E0086CDBE /* OpenMeasurementControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067209B921B6BD9A0086CDBE /* OpenMeasurementControllerTests.swift */; };
 		067209EC21B6BF440086CDBE /* BufferingDetectorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067209D321B6BE320086CDBE /* BufferingDetectorTests.swift */; };
 		067209F221B6CCAE0086CDBE /* BufferingDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067209D221B6BE320086CDBE /* BufferingDetector.swift */; };
@@ -173,6 +172,7 @@
 		50D7475C1CE389EF00CB91D4 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D7475B1CE389EF00CB91D4 /* Network.swift */; };
 		50D747751CE6235F00CB91D4 /* VRMRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D747731CE6235F00CB91D4 /* VRMRequest.swift */; };
 		50D747891CE624E200CB91D4 /* VRMRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D747741CE6235F00CB91D4 /* VRMRequestTests.swift */; };
+		50E14840223833390000D181 /* OMSDK_Verizonmedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50E1483F223833390000D181 /* OMSDK_Verizonmedia.framework */; };
 		50E5ADE91EE08A76004104D6 /* PlayerTracer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E5ADE81EE08A76004104D6 /* PlayerTracer.swift */; };
 		50E5ADEA1EE08A76004104D6 /* PlayerTracer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E5ADE81EE08A76004104D6 /* PlayerTracer.swift */; };
 		50E6E455208F94EF003B0F4E /* UserActionInitiated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E6E454208F94EF003B0F4E /* UserActionInitiated.swift */; };
@@ -469,7 +469,6 @@
 		067209D621B6BE490086CDBE /* NoOMScriptFixture.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = NoOMScriptFixture.json; sourceTree = "<group>"; };
 		067209D921B6BE710086CDBE /* VASTVerificationInExtension.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = VASTVerificationInExtension.xml; sourceTree = "<group>"; };
 		067209DA21B6BE710086CDBE /* VASTWrapperWithExtension.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = VASTWrapperWithExtension.xml; sourceTree = "<group>"; };
-		067209E221B6BF070086CDBE /* OMSDK_Oath2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OMSDK_Oath2.framework; sourceTree = "<group>"; };
 		068B16A0220223FD003ABD69 /* MP4AdCreativeControllerTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MP4AdCreativeControllerTest.swift; sourceTree = "<group>"; };
 		068B16A1220223FD003ABD69 /* MP4AdCreativeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MP4AdCreativeController.swift; sourceTree = "<group>"; };
 		069DC3E620EA9BA600D70B28 /* VPAIDEvents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VPAIDEvents.swift; sourceTree = "<group>"; };
@@ -538,6 +537,7 @@
 		50D7475B1CE389EF00CB91D4 /* Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = Network.swift; path = sources/network/Network.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		50D747731CE6235F00CB91D4 /* VRMRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VRMRequest.swift; path = VRM/VRMRequest.swift; sourceTree = "<group>"; };
 		50D747741CE6235F00CB91D4 /* VRMRequestTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VRMRequestTests.swift; path = VRM/VRMRequestTests.swift; sourceTree = "<group>"; };
+		50E1483F223833390000D181 /* OMSDK_Verizonmedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OMSDK_Verizonmedia.framework; sourceTree = "<group>"; };
 		50E5ADE71EE0428A004104D6 /* PlayerTracer.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = PlayerTracer.playground; path = tracer/PlayerTracer.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		50E5ADE81EE08A76004104D6 /* PlayerTracer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlayerTracer.swift; path = tracer/PlayerTracer.swift; sourceTree = "<group>"; };
 		50E6E454208F94EF003B0F4E /* UserActionInitiated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserActionInitiated.swift; sourceTree = "<group>"; };
@@ -686,8 +686,8 @@
 			files = (
 				06E5F33721C2CA7E0099D733 /* PlayerControls.framework in Frameworks */,
 				06E5F33821C2CA7E0099D733 /* PlayerCore.framework in Frameworks */,
+				50E14840223833390000D181 /* OMSDK_Verizonmedia.framework in Frameworks */,
 				06E5F33921C2CA7E0099D733 /* VideoRenderer.framework in Frameworks */,
-				067209E321B6BF070086CDBE /* OMSDK_Oath2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -713,7 +713,7 @@
 		062C9C1A20A5E62A005FB21F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				067209E221B6BF070086CDBE /* OMSDK_Oath2.framework */,
+				50E1483F223833390000D181 /* OMSDK_Verizonmedia.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
