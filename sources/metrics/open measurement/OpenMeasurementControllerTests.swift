@@ -76,7 +76,7 @@ class OpenMeasurementComponentTestCase: XCTestCase {
     func testNoScriptAvailable() {
         recorder.record {
             controller.serviceScript = nil
-            controller.process(with: .loading(adVerifications))
+            controller.process(with: .loading)
         }
         
         recorder.verify {
@@ -87,7 +87,8 @@ class OpenMeasurementComponentTestCase: XCTestCase {
     }
     func testActivatedSuccessfully() {
         recorder.record {
-            controller.process(with: .loading(adVerifications))
+            controller.process(with: .readyForLoad(adVerifications))
+            controller.process(with: .loading)
         }
         
         recorder.verify {
@@ -99,7 +100,9 @@ class OpenMeasurementComponentTestCase: XCTestCase {
         XCTAssertNotNil(adSession.mainAdView)
     }
     func testActivatedState() {
-        controller.process(with: .loading(adVerifications))
+        controller.process(with: .readyForLoad(adVerifications))
+        controller.process(with: .loading)
+        
         recorder.record {
             controller.process(with: .active(adEvents, videoEvents))
         }
@@ -109,7 +112,8 @@ class OpenMeasurementComponentTestCase: XCTestCase {
         XCTAssertFalse(adSession.isFinished)
     }
     func testShouldNotBeFinished() {
-        controller.process(with: .loading(adVerifications))
+        controller.process(with: .readyForLoad(adVerifications))
+        controller.process(with: .loading)
         
         recorder.record {
             controller.process(with: .finished(adEvents,videoEvents))
@@ -122,7 +126,8 @@ class OpenMeasurementComponentTestCase: XCTestCase {
         XCTAssertFalse(adSession.isFinished)
     }
     func testShouldBeFinished() {
-        controller.process(with: .loading(adVerifications))
+        controller.process(with: .readyForLoad(adVerifications))
+        controller.process(with: .loading)
         controller.process(with: .finished(adEvents,videoEvents))
         controller.process(with: .inactive)
         XCTAssertTrue(adSession.isStarted)
@@ -140,7 +145,8 @@ class OpenMeasurementComponentTestCase: XCTestCase {
         controller.serviceScript = "{}"
         
         recorder.record {
-            controller.process(with: .loading(adVerifications))
+            controller.process(with: .readyForLoad(adVerifications))
+            controller.process(with: .loading)
         }
         
         recorder.verify {
@@ -157,12 +163,13 @@ class OpenMeasurementComponentTestCase: XCTestCase {
         controller.serviceScript = "{}"
         
         recorder.record {
-            controller.process(with: .loading(adVerifications))
+            controller.process(with: .readyForLoad(adVerifications))
+            controller.process(with: .loading)
         }
         
         recorder.verify {
-            dispatcher(PlayerCore.failedOMConfiguration(with: OMErrors.failedToGetAdView))
         }
+        
         XCTAssertFalse(adSession.isStarted)
         XCTAssertFalse(adSession.isFinished)
     }
