@@ -5,7 +5,7 @@ import AVKit
 import PlayerCore
 // Added import only for testing purposes
 #if os(iOS)
-import OMSDK_Oath2
+import OMSDK_Verizonmedia
 #endif
 /// Glue code for connecting all parts of an SDK.
 /// It contains some configuration details for other components.

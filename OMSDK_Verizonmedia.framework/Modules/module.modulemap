@@ -1,0 +1,4 @@
+module OMSDK_Verizonmedia {
+    header "Headers/OMIDImports.h"
+    export *
+}
