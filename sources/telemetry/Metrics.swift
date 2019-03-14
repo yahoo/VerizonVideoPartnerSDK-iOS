@@ -226,8 +226,7 @@ extension Telemetry.Metrics {
                         processingStatus: state.vrmProcessingTime.status)
             
             content.process(playbackSession: state.playbackSession.id,
-                            processingStatus: state.contentBufferingTime.status,
-                            duration: state.duration.content)
+                            processingStatus: state.contentBufferingTime.status)
         }
     }
 }
@@ -273,10 +272,7 @@ extension Telemetry.Metrics.Buffering {
         }
         
         func process(playbackSession: UUID?,
-                     processingStatus: BufferingStatus,
-                     duration: CMTime?) {
-            guard let duration = duration,
-                CMTIME_IS_INDEFINITE(duration) == false else { return }
+                     processingStatus: BufferingStatus) {
             content.process(uniqueKey: playbackSession,
                         processingTime: processingStatus,
                         telemetryType: "VIDEO_BUFFERING_TIME")
