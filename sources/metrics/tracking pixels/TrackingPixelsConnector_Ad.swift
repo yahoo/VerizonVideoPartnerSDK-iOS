@@ -213,7 +213,10 @@ extension TrackingPixels.Connector {
             reporter.sendBeacon(urls: urls)
         }
         /*Ad Failover Detector*/ do {
-            if adFailoverDetector.process(vrmResponse: state.vrmResponse, adSessionID: sessionID) {
+            if adFailoverDetector.process(vrmResponse: state.vrmResponse,
+                                          currentGroup: state.vrmCurrentGroup.currentGroup,
+                                          groupQueue: state.vrmGroupsQueue.groupsQueue,
+                                          adSessionID: sessionID) {
                 report { payload in
                     engineFlow(stage: .failover, payload: payload)
                 }

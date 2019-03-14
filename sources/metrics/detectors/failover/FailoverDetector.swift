@@ -1,4 +1,4 @@
-//  Copyright 2018, Oath Inc.
+//  Copyright 2019, Oath Inc.
 //  Licensed under the terms of the MIT License. See LICENSE.md file in project root for terms.
 import Foundation
 import PlayerCore
@@ -7,37 +7,33 @@ extension Detectors {
     final class Failover {
         
         private enum AdResult {
-            case other
-            case processing
+            case none
             case failover
-            case noAds
         }
         
         private var adSessionIDs = Set<UUID>()
-        private var currentResult = AdResult.other
         
         func process(vrmResponse: VRMResponse?,
+                     currentGroup: VRMCore.Group?,
+                     groupQueue: [VRMCore.Group],
                      adSessionID: UUID?) -> Bool {
             guard let vrmResponse = vrmResponse,
                 let adSessionID = adSessionID,
                 adSessionIDs.contains(adSessionID) == false else {
-                    currentResult = .other
                     return false
             }
-            
-            switch (vrmResponse.groups.isEmpty, currentResult) {
-            case (true, .other):
-                currentResult = .noAds
-                adSessionIDs.insert(adSessionID)
-                return false
-            case (true, .processing):
-                currentResult = .failover
-                adSessionIDs.insert(adSessionID)
-                return true
-            default: break
+            func finishProcessing(with result: AdResult) -> Bool {
+                self.adSessionIDs.insert(adSessionID)
+                return result == .failover
             }
-            currentResult = .processing
-            return false
+            guard vrmResponse.groups.isEmpty == false else {
+                return finishProcessing(with: .none)
+            }
+            guard currentGroup == nil,
+                groupQueue.isEmpty else {
+                    return false
+            }
+            return finishProcessing(with: .failover)
         }
     }
 }
