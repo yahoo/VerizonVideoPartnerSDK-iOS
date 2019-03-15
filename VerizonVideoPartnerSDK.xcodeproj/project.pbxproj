@@ -15,8 +15,10 @@
 		061CFFFF211C7272002B5BE9 /* MuteDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061CFFFD211C7272002B5BE9 /* MuteDetector.swift */; };
 		061EB355222573C700DF149C /* VASTMultipleCreatives.xml in Resources */ = {isa = PBXBuildFile; fileRef = 061EB3522225731F00DF149C /* VASTMultipleCreatives.xml */; };
 		062E9B3E20F5097C00AF1D54 /* PlayerViewController_Clickthrough.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062E9B3D20F5097C00AF1D54 /* PlayerViewController_Clickthrough.swift */; };
-		0633BA11223BA512004A8474 /* TrackingPixelsAdProps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0633BA10223BA512004A8474 /* TrackingPixelsAdProps.swift */; };
-		0633BA12223BA512004A8474 /* TrackingPixelsAdProps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0633BA10223BA512004A8474 /* TrackingPixelsAdProps.swift */; };
+		0633BA11223BA512004A8474 /* TrackingPixelsProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0633BA10223BA512004A8474 /* TrackingPixelsProperties.swift */; };
+		0633BA12223BA512004A8474 /* TrackingPixelsProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0633BA10223BA512004A8474 /* TrackingPixelsProperties.swift */; };
+		0633BA4C223BD941004A8474 /* TrackingPixelsProperties_init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0633BA4B223BD941004A8474 /* TrackingPixelsProperties_init.swift */; };
+		0633BA4D223BD941004A8474 /* TrackingPixelsProperties_init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0633BA4B223BD941004A8474 /* TrackingPixelsProperties_init.swift */; };
 		063988A72100C95000FE8475 /* VPAIDMessageHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 063988A62100C95000FE8475 /* VPAIDMessageHandler.swift */; };
 		063C8354221C568D0052C1DC /* AdEngineResponseDetectorSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26043F9220885B60034FC48 /* AdEngineResponseDetectorSpec.swift */; };
 		063C8374221D9AD00052C1DC /* AdSkipDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06EC86CA221467C300CB4A8E /* AdSkipDetector.swift */; };
@@ -462,7 +464,8 @@
 		061CFFFD211C7272002B5BE9 /* MuteDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MuteDetector.swift; sourceTree = "<group>"; };
 		061EB3522225731F00DF149C /* VASTMultipleCreatives.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = VASTMultipleCreatives.xml; sourceTree = "<group>"; };
 		062E9B3D20F5097C00AF1D54 /* PlayerViewController_Clickthrough.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PlayerViewController_Clickthrough.swift; path = "sources/custom controls/PlayerViewController_Clickthrough.swift"; sourceTree = "<group>"; };
-		0633BA10223BA512004A8474 /* TrackingPixelsAdProps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingPixelsAdProps.swift; sourceTree = "<group>"; };
+		0633BA10223BA512004A8474 /* TrackingPixelsProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingPixelsProperties.swift; sourceTree = "<group>"; };
+		0633BA4B223BD941004A8474 /* TrackingPixelsProperties_init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingPixelsProperties_init.swift; sourceTree = "<group>"; };
 		063988A62100C95000FE8475 /* VPAIDMessageHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPAIDMessageHandler.swift; sourceTree = "<group>"; };
 		06419E1720EF7433007FE2F0 /* WebviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebviewViewController.swift; sourceTree = "<group>"; };
 		06419E2020EF7950007FE2F0 /* VPAIDProps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPAIDProps.swift; sourceTree = "<group>"; };
@@ -1244,11 +1247,12 @@
 			isa = PBXGroup;
 			children = (
 				DE4C51BE1C80839100BFFB0B /* generator */,
-				DE4C51571C80731B00BFFB0B /* TrackingPixelsReporter.swift */,
 				DE07F0501EF9956B00C8E9F2 /* ReporterTracer.swift */,
 				DE4C51E01C80D43200BFFB0B /* TrackingPixelsConnector.swift */,
 				50D629D220237BA5000B2F8F /* TrackingPixelsConnector_Ad.swift */,
-				0633BA10223BA512004A8474 /* TrackingPixelsAdProps.swift */,
+				0633BA10223BA512004A8474 /* TrackingPixelsProperties.swift */,
+				0633BA4B223BD941004A8474 /* TrackingPixelsProperties_init.swift */,
+				DE4C51571C80731B00BFFB0B /* TrackingPixelsReporter.swift */,
 			);
 			path = "tracking pixels";
 			sourceTree = "<group>";
@@ -1817,6 +1821,7 @@
 				06BF53D4209B59E300B98A6D /* UserActionsDetector.swift in Sources */,
 				50A11DBC1D59D7E000F4A068 /* VideoTimeDetector.swift in Sources */,
 				FEEB8E5A1F4C92F4003507BE /* ErrorDetector.swift in Sources */,
+				0633BA4D223BD941004A8474 /* TrackingPixelsProperties_init.swift in Sources */,
 				50A11DBD1D59D7E000F4A068 /* VRMProvider.swift in Sources */,
 				E2FE09562200AC14005E91C0 /* MaxAdSearchTimeController.swift in Sources */,
 				501AB1DF2028934A00BAFA9C /* AdErrorDetector.swift in Sources */,
@@ -1847,7 +1852,7 @@
 				069DC3E820EA9BA600D70B28 /* VPAIDEvents.swift in Sources */,
 				50A11DCC1D59D7E000F4A068 /* MetricsSender.swift in Sources */,
 				E2E575962211E0D40068C394 /* VRMMidrollProcessorController.swift in Sources */,
-				0633BA12223BA512004A8474 /* TrackingPixelsAdProps.swift in Sources */,
+				0633BA12223BA512004A8474 /* TrackingPixelsProperties.swift in Sources */,
 				DEB1123D1E30F56C007E65BD /* ConfigurationParser.swift in Sources */,
 				5070535A1DAE9700003C023A /* Memoise.swift in Sources */,
 				50A11DCE1D59D7E000F4A068 /* ContextStartedDetector.swift in Sources */,
@@ -1946,6 +1951,7 @@
 				06FDBCCD223941F000462527 /* FailoverDetector.swift in Sources */,
 				DE06F78C1E7AB647006B5DD3 /* VideoProviderResponse.swift in Sources */,
 				50CFB5281FB61EA20017328C /* PlayerProperties_Init.swift in Sources */,
+				0633BA4C223BD941004A8474 /* TrackingPixelsProperties_init.swift in Sources */,
 				DE4C51C01C808D8000BFFB0B /* DecileDetector.swift in Sources */,
 				06EC86EC2214841D00CB4A8E /* AdVASTProgressDetector.swift in Sources */,
 				DE4C51C11C808DD400BFFB0B /* QuartileDetector.swift in Sources */,
@@ -1956,7 +1962,7 @@
 				06419E2120EF7950007FE2F0 /* VPAIDProps.swift in Sources */,
 				DE4C51C51C8094FB00BFFB0B /* TrackingPixelsReporter.swift in Sources */,
 				501AB1E42029C69C00BAFA9C /* AdPlaybackCycleDetector.swift in Sources */,
-				0633BA11223BA512004A8474 /* TrackingPixelsAdProps.swift in Sources */,
+				0633BA11223BA512004A8474 /* TrackingPixelsProperties.swift in Sources */,
 				DE4C51C61C8094FE00BFFB0B /* MetricsSender.swift in Sources */,
 				067209BC21B6BD9A0086CDBE /* OpenMeasurementServiceScript.swift in Sources */,
 				06419E1A20EF7433007FE2F0 /* WebviewViewController.swift in Sources */,

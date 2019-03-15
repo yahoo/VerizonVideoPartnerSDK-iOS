@@ -426,6 +426,9 @@ public struct VVPSDK {
             prerollProcessor.process(props: playerProps)
             midrollProcessor.process(props: playerProps)
         }
+        _ = player.addTrackingObserver { playerProps in
+            
+        }
     }
 }
 
