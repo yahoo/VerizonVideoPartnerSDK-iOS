@@ -313,40 +313,19 @@ class TelemetryMetricsTest: XCTestCase {
     func testContentBufferingTime() {
         let startAt = Date(timeIntervalSince1970: 0)
         let finishAt = Date(timeIntervalSince1970: 2.5)
-        let duration = CMTime(seconds: 30, preferredTimescale: 600)
         recorder.record {
             let sessionId = UUID()
             contentBuffering.process(playbackSession: sessionId,
-                                     processingStatus: .inProgress(startAt: startAt),
-                                     duration: duration)
+                                     processingStatus: .inProgress(startAt: startAt))
             contentBuffering.process(playbackSession: sessionId,
-                                     processingStatus: .finished(startAt: startAt, finishAt: finishAt),
-                                     duration: duration)
+                                     processingStatus: .finished(startAt: startAt, finishAt: finishAt))
             contentBuffering.process(playbackSession: sessionId,
-                                     processingStatus: .finished(startAt: startAt, finishAt: finishAt),
-                                     duration: duration)
+                                     processingStatus: .finished(startAt: startAt, finishAt: finishAt))
         }
         
         recorder.verify {
             contentBuffering.content.send(json(for: "VIDEO_BUFFERING_TIME",
                                               and: ["time": 2500]))
-        }
-    }
-    func testContentBufferingTimeWithLiveVideo() {
-        let startAt = Date(timeIntervalSince1970: 0)
-        let finishAt = Date(timeIntervalSince1970: 2.5)
-        let duration = CMTime.indefinite
-        recorder.record {
-            let sessionId = UUID()
-            contentBuffering.process(playbackSession: sessionId,
-                                     processingStatus: .inProgress(startAt: startAt),
-                                     duration: duration)
-            contentBuffering.process(playbackSession: sessionId,
-                                     processingStatus: .finished(startAt: startAt, finishAt: finishAt),
-                                     duration: duration)
-        }
-        
-        recorder.verify {
         }
     }
     

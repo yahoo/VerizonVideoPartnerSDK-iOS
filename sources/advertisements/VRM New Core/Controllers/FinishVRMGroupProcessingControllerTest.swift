@@ -180,4 +180,29 @@ class FinishVRMGroupProcessingControllerTest: XCTestCase {
         recorder.verify {
         }
     }
+    func testEmptyGroup() {
+        recorder.record {
+            sut.process(with: .none,
+                        isMaxSearchTimeReached: false,
+                        currentGroup: VRMCore.Group(items: []),
+                        erroredItems: Set(),
+                        processedItems: Set(),
+                        finalResult: nil)
+        }
+        recorder.verify {
+            sut.dispatch(VRMCore.finishCurrentGroupProcessing())
+        }
+    }
+    func testNoGroups() {
+        recorder.record {
+            sut.process(with: .none,
+                        isMaxSearchTimeReached: false,
+                        currentGroup: nil,
+                        erroredItems: Set(),
+                        processedItems: Set(),
+                        finalResult: nil)
+        }
+        recorder.verify {
+        }
+    }
 }
