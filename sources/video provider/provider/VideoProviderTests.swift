@@ -343,7 +343,7 @@ class VideoProviderTests: XCTestCase {
         "isControlsAnimationEnabled": false,
         "isVPAIDAllowed": true,
         "isOpenMeasurementEnabled": true,
-        "isFailoverEnabled": false
+        "isFailoverEnabled": true
     ]
     
     static let adSettings: JSON = [
@@ -380,7 +380,7 @@ class VideoProviderTests: XCTestCase {
         expect(value.features.isControlsAnimationEnabled) == false
         expect(value.features.isVPAIDAllowed) == true
         expect(value.features.isOpenMeasurementEnabled) == true
-        expect(value.features.isFailoverEnabled) == false
+        expect(value.features.isFailoverEnabled) == true
         expect(value.adSettings.prefetchingOffset) == 7
         expect(value.adSettings.softTimeout) == 0.5
         expect(value.adSettings.hardTimeout) == 2.5
