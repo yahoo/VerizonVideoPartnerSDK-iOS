@@ -301,6 +301,9 @@ public struct VVPSDK {
             _ = player.addObserver(connector.process)
             _ = player.store.addObserver(with: playerModel, mode: .everyUpdate, connector.process)
             
+            let propsConnector = TrackingPixels.PropsConnector(reporter: reporter)
+            _ = player.addTrackingObserver(propsConnector.process)
+            
         case (.javascript(let context), .javascript(let javascript)):
             func send(url: URL) {
                 ephemeralSession.dataTask(with: url).resume()

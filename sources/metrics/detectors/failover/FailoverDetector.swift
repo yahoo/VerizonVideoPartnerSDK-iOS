@@ -6,34 +6,21 @@ import PlayerCore
 extension Detectors {
     final class Failover {
         
-        private enum AdResult {
-            case none
-            case failover
-        }
+        private var adSessionIds = Set<UUID>()
         
-        private var adSessionIDs = Set<UUID>()
-        
-        func process(vrmResponse: VRMResponse?,
-                     currentGroup: VRMCore.Group?,
-                     groupQueue: [VRMCore.Group],
-                     adSessionID: UUID?) -> Bool {
-            guard let vrmResponse = vrmResponse,
-                let adSessionID = adSessionID,
-                adSessionIDs.contains(adSessionID) == false else {
+        func process(isVRMResponseGroupsEmpty: Bool,
+                     isCurrentVRMGroupEmpty: Bool,
+                     isVRMGroupsQueueEmpty: Bool,
+                     adSessionId: UUID?) -> Bool {
+            guard let adSessionId = adSessionId,
+                adSessionIds.contains(adSessionId) == false else {
                     return false
             }
-            func finishProcessing(with result: AdResult) -> Bool {
-                self.adSessionIDs.insert(adSessionID)
-                return result == .failover
-            }
-            guard vrmResponse.groups.isEmpty == false else {
-                return finishProcessing(with: .none)
-            }
-            guard currentGroup == nil,
-                groupQueue.isEmpty else {
-                    return false
-            }
-            return finishProcessing(with: .failover)
+            guard isVRMResponseGroupsEmpty == false,
+                isCurrentVRMGroupEmpty,
+                isVRMGroupsQueueEmpty else { return false }
+            self.adSessionIds.insert(adSessionId)
+            return true
         }
     }
 }
