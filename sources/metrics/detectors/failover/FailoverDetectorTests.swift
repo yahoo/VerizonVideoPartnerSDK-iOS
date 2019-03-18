@@ -7,96 +7,56 @@ import XCTest
 
 class FailoverDetectorsTests: XCTestCase {
     
-    let adSessionID = UUID()
+    let adRequestId = UUID()
     var detector: Detectors.Failover!
-    var group: VRMCore.Group!
-    var response: VRMResponse!
-    let item = VRMCore.Item(source: VRMCore.Item.Source.vast(""),
-                            metaInfo: VRMCore.Item.MetaInfo.init(engineType: "",
-                                                                 ruleId: "",
-                                                                 ruleCompanyId: "",
-                                                                 vendor: "",
-                                                                 name: "",
-                                                                 cpm: ""))
     
     override func setUp() {
         super.setUp()
         detector = Detectors.Failover()
-        group = VRMCore.Group(items: [])
-        response = VRMResponse(transactionId: "", slot: "", groups: [group])
     }
     
-    
-    func testResponseWithoutVRMResponse() {
-        let result = detector.process(vrmResponse: nil,
-                                       currentGroup: group,
-                                       groupQueue: [],
-                                       adSessionID: adSessionID)
-        XCTAssertFalse(result)
-    }
     func testResponseAndNonEmptyGroupQueue() {
-        let result = detector.process(vrmResponse: response,
-                                      currentGroup: group,
-                                      groupQueue: [group],
-                                      adSessionID: adSessionID)
+        let result = detector.process(isVRMResponseGroupsEmpty: false,
+                                      isCurrentVRMGroupEmpty: false,
+                                      isVRMGroupsQueueEmpty: false,
+                                      adSessionId: adRequestId)
         XCTAssertFalse(result)
     }
     func testResponseWithEmptyGroupQueue() {
-        let result = detector.process(vrmResponse: response,
-                                      currentGroup: group,
-                                      groupQueue: [],
-                                      adSessionID: adSessionID)
+        let result = detector.process(isVRMResponseGroupsEmpty: false,
+                                      isCurrentVRMGroupEmpty: false,
+                                      isVRMGroupsQueueEmpty: true,
+                                      adSessionId: adRequestId)
         XCTAssertFalse(result)
     }
     
     func testFailoverCase() {
-        var result = detector.process(vrmResponse: response,
-                                      currentGroup: group,
-                                      groupQueue: [group],
-                                      adSessionID: adSessionID)
-        result = detector.process(vrmResponse: response,
-                                  currentGroup: group,
-                                  groupQueue: [],
-                                  adSessionID: adSessionID)
-        result = detector.process(vrmResponse: response,
-                                  currentGroup: nil,
-                                  groupQueue: [],
-                                  adSessionID: adSessionID)
+        let result = detector.process(isVRMResponseGroupsEmpty: false,
+                                  isCurrentVRMGroupEmpty: true,
+                                  isVRMGroupsQueueEmpty: true,
+                                  adSessionId: adRequestId)
         XCTAssertTrue(result)
     }
     
     func testResponseWithNoAds() {
-        let emptyResponse = VRMResponse(transactionId: "", slot: "", groups: [])
-        var result = detector.process(vrmResponse: nil,
-                                      currentGroup: nil,
-                                      groupQueue: [],
-                                      adSessionID: adSessionID)
-        result = detector.process(vrmResponse: emptyResponse,
-                                  currentGroup: nil,
-                                  groupQueue: [],
-                                  adSessionID: adSessionID)
+        let result = detector.process(isVRMResponseGroupsEmpty: true,
+                                      isCurrentVRMGroupEmpty: true,
+                                      isVRMGroupsQueueEmpty: true,
+                                      adSessionId: adRequestId)
         XCTAssertFalse(result)
     }
     func testResponseWithMultipleAdSessions() {
-        var result = detector.process(vrmResponse: response,
-                                      currentGroup: group,
-                                      groupQueue: [group],
-                                      adSessionID: adSessionID)
-        result = detector.process(vrmResponse: response,
-                                  currentGroup: nil,
-                                  groupQueue: [],
-                                  adSessionID: adSessionID)
+        var result = detector.process(isVRMResponseGroupsEmpty: false,
+                                      isCurrentVRMGroupEmpty: true,
+                                      isVRMGroupsQueueEmpty: true,
+                                      adSessionId: adRequestId)
         XCTAssertTrue(result)
         
-        let newSessionID = UUID()
-        result = detector.process(vrmResponse: response,
-                                      currentGroup: group,
-                                      groupQueue: [group],
-                                      adSessionID: newSessionID)
-        result = detector.process(vrmResponse: response,
-                                  currentGroup: nil,
-                                  groupQueue: [],
-                                  adSessionID: newSessionID)
+        let newRequestId = UUID()
+        result = detector.process(isVRMResponseGroupsEmpty: false,
+                                  isCurrentVRMGroupEmpty: true,
+                                  isVRMGroupsQueueEmpty: true,
+                                  adSessionId: newRequestId)
         XCTAssertTrue(result)
     }
 }
