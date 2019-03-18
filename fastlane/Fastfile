@@ -282,9 +282,15 @@ lane :run_sourcery do |options|
 end
 
 lane :lint_current_podspec do
-  lint_podspec(
-    podspec_path: 'VerizonVideoPartnerSDK.podspec',
-    sources_repo: 'https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-releases-iOS')
+  result = sh("git --no-pager diff --name-only FETCH_HEAD $(git merge-base FETCH_HEAD master)")
+  if result.include? "VerizonVideoPartnerSDK.podspec"
+    UI.message("Podspec has changes - starting linting!")
+    lint_podspec(
+      podspec_path: 'VerizonVideoPartnerSDK.podspec',
+      sources_repo: 'https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-releases-iOS')    
+  else
+    UI.message("Skipping podspec validation!")
+  end
 end
 
 lane :build_tutorials do 
