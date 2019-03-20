@@ -322,7 +322,8 @@ extension TrackingPixels.Generator {
 		poid: String? = nil,
 		adseq: String? = nil,
 		bckt: String? = nil,
-		expn: String? = nil) -> URLComponents
+		expn: String? = nil,
+		pblob_id: String? = nil) -> URLComponents
     {
         var queryItems = [URLQueryItem]()
         
@@ -348,6 +349,7 @@ extension TrackingPixels.Generator {
         if let adseq = adseq { queryItems.append(URLQueryItem(name: "adseq", value: adseq)) }
         if let bckt = bckt { queryItems.append(URLQueryItem(name: "bckt", value: bckt)) }
         if let expn = expn { queryItems.append(URLQueryItem(name: "expn", value: expn)) }
+        if let pblob_id = pblob_id { queryItems.append(URLQueryItem(name: "pblob_id", value: pblob_id)) }
         
         var components = URLComponents()
         components.path = "trk/slot-opp.gif"
@@ -418,7 +420,8 @@ extension TrackingPixels.Generator {
 		m_fwsitesection: String? = nil,
 		bckt: String? = nil,
 		expn: String? = nil,
-		cpm: String? = nil) -> URLComponents
+		cpm: String? = nil,
+		pblob_id: String? = nil) -> URLComponents
     {
         var queryItems = [URLQueryItem]()
         
@@ -436,6 +439,7 @@ extension TrackingPixels.Generator {
         if let bckt = bckt { queryItems.append(URLQueryItem(name: "bckt", value: bckt)) }
         if let expn = expn { queryItems.append(URLQueryItem(name: "expn", value: expn)) }
         if let cpm = cpm { queryItems.append(URLQueryItem(name: "cpm", value: cpm)) }
+        if let pblob_id = pblob_id { queryItems.append(URLQueryItem(name: "pblob_id", value: pblob_id)) }
         
         var components = URLComponents()
         components.path = "ads/ad-request.gif"
@@ -471,7 +475,8 @@ extension TrackingPixels.Generator {
 		adseq: String? = nil,
 		bckt: String? = nil,
 		expn: String? = nil,
-		cpm: String? = nil) -> URLComponents
+		cpm: String? = nil,
+		pblob_id: String? = nil) -> URLComponents
     {
         var queryItems = [URLQueryItem]()
         
@@ -502,6 +507,7 @@ extension TrackingPixels.Generator {
         if let bckt = bckt { queryItems.append(URLQueryItem(name: "bckt", value: bckt)) }
         if let expn = expn { queryItems.append(URLQueryItem(name: "expn", value: expn)) }
         if let cpm = cpm { queryItems.append(URLQueryItem(name: "cpm", value: cpm)) }
+        if let pblob_id = pblob_id { queryItems.append(URLQueryItem(name: "pblob_id", value: pblob_id)) }
         
         var components = URLComponents()
         components.path = "trk/ad-issue.gif"
@@ -533,7 +539,8 @@ extension TrackingPixels.Generator {
 		adseq: String? = nil,
 		bckt: String? = nil,
 		expn: String? = nil,
-		cpm: String? = nil) -> URLComponents
+		cpm: String? = nil,
+		pblob_id: String? = nil) -> URLComponents
     {
         var queryItems = [URLQueryItem]()
         
@@ -560,6 +567,7 @@ extension TrackingPixels.Generator {
         if let bckt = bckt { queryItems.append(URLQueryItem(name: "bckt", value: bckt)) }
         if let expn = expn { queryItems.append(URLQueryItem(name: "expn", value: expn)) }
         if let cpm = cpm { queryItems.append(URLQueryItem(name: "cpm", value: cpm)) }
+        if let pblob_id = pblob_id { queryItems.append(URLQueryItem(name: "pblob_id", value: pblob_id)) }
         
         var components = URLComponents()
         components.path = "trk/ad-view-time.gif"
@@ -592,7 +600,8 @@ extension TrackingPixels.Generator {
 		adseq: String? = nil,
 		bckt: String? = nil,
 		expn: String? = nil,
-		cpm: String? = nil) -> URLComponents
+		cpm: String? = nil,
+		pblob_id: String? = nil) -> URLComponents
     {
         var queryItems = [URLQueryItem]()
         
@@ -620,6 +629,7 @@ extension TrackingPixels.Generator {
         if let bckt = bckt { queryItems.append(URLQueryItem(name: "bckt", value: bckt)) }
         if let expn = expn { queryItems.append(URLQueryItem(name: "expn", value: expn)) }
         if let cpm = cpm { queryItems.append(URLQueryItem(name: "cpm", value: cpm)) }
+        if let pblob_id = pblob_id { queryItems.append(URLQueryItem(name: "pblob_id", value: pblob_id)) }
         
         var components = URLComponents()
         components.path = "trk/ad-engine-request.gif"
@@ -656,7 +666,8 @@ extension TrackingPixels.Generator {
 		adseq: String? = nil,
 		bckt: String? = nil,
 		expn: String? = nil,
-		cpm: String? = nil) -> URLComponents
+		cpm: String? = nil,
+		pblob_id: String? = nil) -> URLComponents
     {
         var queryItems = [URLQueryItem]()
         
@@ -688,6 +699,7 @@ extension TrackingPixels.Generator {
         if let bckt = bckt { queryItems.append(URLQueryItem(name: "bckt", value: bckt)) }
         if let expn = expn { queryItems.append(URLQueryItem(name: "expn", value: expn)) }
         if let cpm = cpm { queryItems.append(URLQueryItem(name: "cpm", value: cpm)) }
+        if let pblob_id = pblob_id { queryItems.append(URLQueryItem(name: "pblob_id", value: pblob_id)) }
         
         var components = URLComponents()
         components.path = "trk/ad-engine-response.gif"
@@ -725,7 +737,8 @@ extension TrackingPixels.Generator {
 		adseq: String? = nil,
 		bckt: String? = nil,
 		expn: String? = nil,
-		cpm: String? = nil) -> URLComponents
+		cpm: String? = nil,
+		pblob_id: String? = nil) -> URLComponents
     {
         var queryItems = [URLQueryItem]()
         
@@ -758,6 +771,7 @@ extension TrackingPixels.Generator {
         if let bckt = bckt { queryItems.append(URLQueryItem(name: "bckt", value: bckt)) }
         if let expn = expn { queryItems.append(URLQueryItem(name: "expn", value: expn)) }
         if let cpm = cpm { queryItems.append(URLQueryItem(name: "cpm", value: cpm)) }
+        if let pblob_id = pblob_id { queryItems.append(URLQueryItem(name: "pblob_id", value: pblob_id)) }
         
         var components = URLComponents()
         components.path = "trk/ad-engine-flow.gif"
@@ -787,7 +801,8 @@ extension TrackingPixels.Generator {
 		adseq: String? = nil,
 		bckt: String? = nil,
 		expn: String? = nil,
-		cpm: String? = nil) -> URLComponents
+		cpm: String? = nil,
+		pblob_id: String? = nil) -> URLComponents
     {
         var queryItems = [URLQueryItem]()
         
@@ -812,6 +827,7 @@ extension TrackingPixels.Generator {
         if let bckt = bckt { queryItems.append(URLQueryItem(name: "bckt", value: bckt)) }
         if let expn = expn { queryItems.append(URLQueryItem(name: "expn", value: expn)) }
         if let cpm = cpm { queryItems.append(URLQueryItem(name: "cpm", value: cpm)) }
+        if let pblob_id = pblob_id { queryItems.append(URLQueryItem(name: "pblob_id", value: pblob_id)) }
         
         var components = URLComponents()
         components.path = "trk/mrc-ad-view.gif"
@@ -949,6 +965,7 @@ extension TrackingPixels.Generator {
     static func adStart(
         app_id: String,
 		bcid: String? = nil,
+		sid: String,
 		pid: String,
 		bid: String? = nil,
 		rid: String? = nil,
@@ -960,12 +977,14 @@ extension TrackingPixels.Generator {
 		m_fwsitesection: String? = nil,
 		bckt: String? = nil,
 		expn: String? = nil,
-		cpm: String? = nil) -> URLComponents
+		cpm: String? = nil,
+		pblob_id: String? = nil) -> URLComponents
     {
         var queryItems = [URLQueryItem]()
         
         queryItems.append(URLQueryItem(name: "app_id", value: app_id))
         if let bcid = bcid { queryItems.append(URLQueryItem(name: "bcid", value: bcid)) }
+        queryItems.append(URLQueryItem(name: "sid", value: sid))
         queryItems.append(URLQueryItem(name: "pid", value: pid))
         if let bid = bid { queryItems.append(URLQueryItem(name: "bid", value: bid)) }
         if let rid = rid { queryItems.append(URLQueryItem(name: "rid", value: rid)) }
@@ -978,6 +997,7 @@ extension TrackingPixels.Generator {
         if let bckt = bckt { queryItems.append(URLQueryItem(name: "bckt", value: bckt)) }
         if let expn = expn { queryItems.append(URLQueryItem(name: "expn", value: expn)) }
         if let cpm = cpm { queryItems.append(URLQueryItem(name: "cpm", value: cpm)) }
+        if let pblob_id = pblob_id { queryItems.append(URLQueryItem(name: "pblob_id", value: pblob_id)) }
         
         var components = URLComponents()
         components.path = "ads/ad-start.gif"
