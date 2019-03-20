@@ -598,6 +598,7 @@ extension TrackingPixels.Reporter {
             TrackingPixels.Generator.adStart(
                 app_id: context.applicationID,
                 bcid: context.buyingCompanyID,
+                sid: context.sessionID,
                 pid: context.playerID,
                 bid: context.playlistID,
                 rid: info.ruleId,
