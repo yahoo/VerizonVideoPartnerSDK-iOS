@@ -128,7 +128,6 @@
 		50A11DAA1D59D7E000F4A068 /* Disposable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE22C78C1D0EFAA000F47147 /* Disposable.swift */; };
 		50A11DAB1D59D7E000F4A068 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D7475B1CE389EF00CB91D4 /* Network.swift */; };
 		50A11DB21D59D7E000F4A068 /* Player_VideoEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504CA7571C874A5D006D0ADF /* Player_VideoEvents.swift */; };
-		50A11DB51D59D7E000F4A068 /* VRMRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D747731CE6235F00CB91D4 /* VRMRequest.swift */; };
 		50A11DB71D59D7E000F4A068 /* TrackingPixelsConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4C51E01C80D43200BFFB0B /* TrackingPixelsConnector.swift */; };
 		50A11DBC1D59D7E000F4A068 /* VideoTimeDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4C51501C80731B00BFFB0B /* VideoTimeDetector.swift */; };
 		50A11DBD1D59D7E000F4A068 /* VRMProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1FB2941CE3679500B99941 /* VRMProvider.swift */; };
@@ -179,8 +178,6 @@
 		50D629D320237BA5000B2F8F /* TrackingPixelsConnector_Ad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D629D220237BA5000B2F8F /* TrackingPixelsConnector_Ad.swift */; };
 		50D629D420237BA5000B2F8F /* TrackingPixelsConnector_Ad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D629D220237BA5000B2F8F /* TrackingPixelsConnector_Ad.swift */; };
 		50D7475C1CE389EF00CB91D4 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D7475B1CE389EF00CB91D4 /* Network.swift */; };
-		50D747751CE6235F00CB91D4 /* VRMRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D747731CE6235F00CB91D4 /* VRMRequest.swift */; };
-		50D747891CE624E200CB91D4 /* VRMRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D747741CE6235F00CB91D4 /* VRMRequestTests.swift */; };
 		50E14840223833390000D181 /* OMSDK_Verizonmedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50E1483F223833390000D181 /* OMSDK_Verizonmedia.framework */; };
 		50E5ADE91EE08A76004104D6 /* PlayerTracer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E5ADE81EE08A76004104D6 /* PlayerTracer.swift */; };
 		50E5ADEA1EE08A76004104D6 /* PlayerTracer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50E5ADE81EE08A76004104D6 /* PlayerTracer.swift */; };
@@ -549,8 +546,6 @@
 		50D442581D0FF9DB00C0DAB0 /* AdMetrics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AdMetrics.swift; path = ../advertisements/AdMetrics.swift; sourceTree = "<group>"; };
 		50D629D220237BA5000B2F8F /* TrackingPixelsConnector_Ad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingPixelsConnector_Ad.swift; sourceTree = "<group>"; };
 		50D7475B1CE389EF00CB91D4 /* Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = Network.swift; path = sources/network/Network.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		50D747731CE6235F00CB91D4 /* VRMRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VRMRequest.swift; path = VRM/VRMRequest.swift; sourceTree = "<group>"; };
-		50D747741CE6235F00CB91D4 /* VRMRequestTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VRMRequestTests.swift; path = VRM/VRMRequestTests.swift; sourceTree = "<group>"; };
 		50E1483F223833390000D181 /* OMSDK_Verizonmedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OMSDK_Verizonmedia.framework; sourceTree = "<group>"; };
 		50E5ADE71EE0428A004104D6 /* PlayerTracer.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = PlayerTracer.playground; path = tracer/PlayerTracer.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		50E5ADE81EE08A76004104D6 /* PlayerTracer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlayerTracer.swift; path = tracer/PlayerTracer.swift; sourceTree = "<group>"; };
@@ -1071,8 +1066,6 @@
 				DE1FB2941CE3679500B99941 /* VRMProvider.swift */,
 				DE1FB2961CE48FAC00B99941 /* VRMProviderTests.swift */,
 				50B5EF501E1690EA00EA88E3 /* Comparators.playground */,
-				50D747731CE6235F00CB91D4 /* VRMRequest.swift */,
-				50D747741CE6235F00CB91D4 /* VRMRequestTests.swift */,
 			);
 			name = vrm;
 			sourceTree = "<group>";
@@ -1566,6 +1559,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = DEF3CBAD1C7F12D200CB5A74;
@@ -1819,7 +1813,6 @@
 				DE3DA42C1E55D9A900D34880 /* VVPSDKPlugins.swift in Sources */,
 				06EC86B82214398E00CB4A8E /* VASTParser_Offset.swift in Sources */,
 				E22B6A8621D14D1F00D480A0 /* ParseVRMItemController.swift in Sources */,
-				50A11DB51D59D7E000F4A068 /* VRMRequest.swift in Sources */,
 				DE445EE41FB347A900D50790 /* Store.swift in Sources */,
 				506C59D11F1797F100AAA662 /* JavaScriptTelemetry.swift in Sources */,
 				50A11DB71D59D7E000F4A068 /* TrackingPixelsConnector.swift in Sources */,
@@ -1929,7 +1922,6 @@
 				E2604391220379740034FC48 /* VRMRequestDetector.swift in Sources */,
 				507053591DAE9700003C023A /* Memoise.swift in Sources */,
 				06EC86CB221467C300CB4A8E /* AdSkipDetector.swift in Sources */,
-				50D747751CE6235F00CB91D4 /* VRMRequest.swift in Sources */,
 				DE4C51E11C80D43200BFFB0B /* TrackingPixelsConnector.swift in Sources */,
 				50D629D320237BA5000B2F8F /* TrackingPixelsConnector_Ad.swift in Sources */,
 				DE07F0511EF9956B00C8E9F2 /* ReporterTracer.swift in Sources */,
@@ -2079,7 +2071,6 @@
 				E22B6AD921EF852800D480A0 /* VRMProcessingControllerTest.swift in Sources */,
 				FE940A001F3DD56600A867CD /* IntentDetectorTests.swift in Sources */,
 				50A12D031CE639160088A74E /* NetworkTests.swift in Sources */,
-				50D747891CE624E200CB91D4 /* VRMRequestTests.swift in Sources */,
 				061CFFFC211C7263002B5BE9 /* MuteDetectorTests.swift in Sources */,
 				065F37262099F53200813113 /* VideoActionsDetectorsTests.swift in Sources */,
 				061AFD6721F256ED0024BAC5 /* ContentPlaybackCycleDetectorTests.swift in Sources */,
@@ -2326,7 +2317,7 @@
 				OTHER_SWIFT_FLAGS = "-Xfrontend -warn-long-function-bodies=200 -Xfrontend -warn-long-expression-type-checking=300";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -2382,7 +2373,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 				VALIDATE_PRODUCT = YES;
