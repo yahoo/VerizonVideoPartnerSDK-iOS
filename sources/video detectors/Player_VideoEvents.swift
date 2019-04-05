@@ -60,7 +60,7 @@ extension Player {
     /// Add video events
     /// - parameter playbackEvents: Playback events struct with callbacks.
     /// - returns: Dispose lambda to be called when events no longer needed.
-    @available(*, deprecated: 2.12)
+    @available(*, deprecated)
     public func addVideoEvents(playbackEvents: PlaybackEvents) -> Player.PropsObserverDispose {
         return addVideoEvents(on: .main, playbackEvents: playbackEvents)
     }

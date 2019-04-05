@@ -1556,11 +1556,11 @@
 			};
 			buildConfigurationList = DEF3CBB11C7F12D200CB5A74 /* Build configuration list for PBXProject "VerizonVideoPartnerSDK" */;
 			compatibilityVersion = "Xcode 6.3";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				en,
+				Base,
 			);
 			mainGroup = DEF3CBAD1C7F12D200CB5A74;
 			productRefGroup = DEF3CBAD1C7F12D200CB5A74;
