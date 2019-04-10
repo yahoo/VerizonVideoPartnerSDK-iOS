@@ -6,7 +6,7 @@ import JavaScriptCore
 import CoreMedia
 import PlayerCore
 
-indirect enum JSøN {
+indirect enum JSøN: Hashable {
     case null
     case bool(Bool)
     case string(String)
