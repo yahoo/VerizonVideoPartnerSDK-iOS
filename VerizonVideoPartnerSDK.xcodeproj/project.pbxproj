@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		06123FDC225E42DE00CA8766 /* Pipeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBE4A7E1CA2EEDC006E01C1 /* Pipeline.swift */; };
 		061AFD6521F256CB0024BAC5 /* ContentPlaybackCycleDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061AFD6321F256CA0024BAC5 /* ContentPlaybackCycleDetector.swift */; };
 		061AFD6721F256ED0024BAC5 /* ContentPlaybackCycleDetectorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061AFD6421F256CA0024BAC5 /* ContentPlaybackCycleDetectorTests.swift */; };
 		061AFD7421F53BC30024BAC5 /* ContentPlaybackCycleDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061AFD6321F256CA0024BAC5 /* ContentPlaybackCycleDetector.swift */; };
@@ -227,8 +228,6 @@
 		DE684CD71E0C2F36007CE35C /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE684CD61E0C2F36007CE35C /* Action.swift */; };
 		DE684CD81E0C2F36007CE35C /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE684CD61E0C2F36007CE35C /* Action.swift */; };
 		DE684CDC1E0EBFC3007CE35C /* SystemPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5067F5FE1D49120E00FEC27C /* SystemPlayerViewController.swift */; };
-		DE79CE211E979F9700C3A660 /* AdURLProviderProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE79CE201E979F9700C3A660 /* AdURLProviderProcess.swift */; };
-		DE79CE221E979F9700C3A660 /* AdURLProviderProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE79CE201E979F9700C3A660 /* AdURLProviderProcess.swift */; };
 		DE8416A11F4493FF00E57971 /* PlayerInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8416A01F4493FF00E57971 /* PlayerInterface.swift */; };
 		DE8416A21F4493FF00E57971 /* PlayerInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8416A01F4493FF00E57971 /* PlayerInterface.swift */; };
 		DEAE91D81CAA830800C736D0 /* ApplyDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEAE91D71CAA830800C736D0 /* ApplyDecorator.swift */; };
@@ -609,7 +608,6 @@
 		DE4C51E01C80D43200BFFB0B /* TrackingPixelsConnector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackingPixelsConnector.swift; sourceTree = "<group>"; };
 		DE611A791E9D40F200D253B2 /* PlayerControls.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = PlayerControls.xcodeproj; path = PlayerControls/PlayerControls/PlayerControls.xcodeproj; sourceTree = "<group>"; };
 		DE684CD61E0C2F36007CE35C /* Action.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
-		DE79CE201E979F9700C3A660 /* AdURLProviderProcess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdURLProviderProcess.swift; sourceTree = "<group>"; };
 		DE8416A01F4493FF00E57971 /* PlayerInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerInterface.swift; sourceTree = "<group>"; };
 		DEAE91D71CAA830800C736D0 /* ApplyDecorator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplyDecorator.swift; sourceTree = "<group>"; };
 		DEAE91DA1CAA83D200C736D0 /* SkipRepeatsDecorator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkipRepeatsDecorator.swift; sourceTree = "<group>"; };
@@ -1117,7 +1115,6 @@
 				06F8DBB621C2A2A00019021D /* VRM New Core */,
 				DE1685D71CE7308500492A90 /* vast parser */,
 				50D7476D1CE6234900CB91D4 /* vrm */,
-				DE79CE201E979F9700C3A660 /* AdURLProviderProcess.swift */,
 				E23168002126D67D00F5AD5B /* AdStartTimeoutController.swift */,
 				E231AA78213402C3008C5B6A /* AdStartTimeoutControllerTest.swift */,
 				E2316874212C3B5D00F5AD5B /* MaxShowTimeController.swift */,
@@ -1556,11 +1553,11 @@
 			};
 			buildConfigurationList = DEF3CBB11C7F12D200CB5A74 /* Build configuration list for PBXProject "VerizonVideoPartnerSDK" */;
 			compatibilityVersion = "Xcode 6.3";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				en,
+				Base,
 			);
 			mainGroup = DEF3CBAD1C7F12D200CB5A74;
 			productRefGroup = DEF3CBAD1C7F12D200CB5A74;
@@ -1804,7 +1801,6 @@
 				50A11DAB1D59D7E000F4A068 /* Network.swift in Sources */,
 				E22B6ADC21F0A95700D480A0 /* VVPSDK_Version.swift in Sources */,
 				50C99D4F2010B4E00041B013 /* Observable.swift in Sources */,
-				DE79CE221E979F9700C3A660 /* AdURLProviderProcess.swift in Sources */,
 				DEE069D61E840BDF00A95BE9 /* VideoProviderResponse.swift in Sources */,
 				DEB112371E30F0CE007E65BD /* Context.swift in Sources */,
 				E22B6AE621F0C6D100D480A0 /* VRMTimeoutController.swift in Sources */,
@@ -2006,7 +2002,6 @@
 				067209BE21B6BD9A0086CDBE /* OpenMeasurementContext.swift in Sources */,
 				5034AD2A207E69CA00B5CAA1 /* VideoSelector.swift in Sources */,
 				50D442591D0FF9DB00C0DAB0 /* AdMetrics.swift in Sources */,
-				DE79CE211E979F9700C3A660 /* AdURLProviderProcess.swift in Sources */,
 				062E9B3E20F5097C00AF1D54 /* PlayerViewController_Clickthrough.swift in Sources */,
 				E23168A5212C4C9E00F5AD5B /* MaxShowTimeController.swift in Sources */,
 			);
@@ -2047,6 +2042,7 @@
 				FEEB8E5B1F4C92F5003507BE /* ErrorDetectorTests.swift in Sources */,
 				DEB112331E30E5ED007E65BD /* VideoLoadingDetectorTests.swift in Sources */,
 				06BF5394209B471A00B98A6D /* UserActionsDetectorTests.swift in Sources */,
+				06123FDC225E42DE00CA8766 /* Pipeline.swift in Sources */,
 				E287B0A621F8A67F00FC49AA /* VRMSelectFinalResultControllerTest.swift in Sources */,
 				508748261C80750100F2511A /* Recorder.swift in Sources */,
 				06EC86EF2214842900CB4A8E /* AdVASTProgressDetectorTest.swift in Sources */,

@@ -50,19 +50,6 @@ public struct VVPSDK {
             self.vrmProvider = VRMProvider(session: ephemeralSession)
         }
         
-        /* attach ad url process listener */ do {
-            if let url = configuration.telemetry?.url {
-                let listener = Telemetry.Listeners.AdURLProcessListener.shared
-                
-                listener.session = ephemeralSession
-                listener.url = url
-                
-                Telemetry.Station.shared.add(
-                    listener: Telemetry.Listeners.AdURLProcessListener.shared
-                )
-            }
-        }
-        
         telemetryMetrics = configuration
             .telemetry
             .flatMap { config in

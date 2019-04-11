@@ -34,13 +34,8 @@ class TelemetryMetricsTest: XCTestCase {
     override func setUp() {
         super.setUp()
         
-        func compareJSON(target: JSON, recorded: JSON) -> Bool {
-            let targetJSONkeys = target.keys
-            let recordedJSONkeys = recorded.keys
-            guard targetJSONkeys.elementsEqual(recordedJSONkeys) else { return false }
-            let targetDictionary = target as NSDictionary
-            let recordedDictionary = recorded as NSDictionary
-            return targetDictionary.isEqual(recordedDictionary)
+        func compareJSON(target: Telemetry.TelemetryJSON, recorded: Telemetry.TelemetryJSON) -> Bool {
+            return target.data == recorded.data
         }
         
         let send = recorder.hook("hook", cmp: compareJSON)
@@ -69,9 +64,9 @@ class TelemetryMetricsTest: XCTestCase {
         }
         
         recorder.verify {
-            abuseTelemetry.send(json(for: "VPAID_UNIQUE_EVENT_ABUSE",
-                                     and: ["event_name": "AdImpression",
-                                           "rid": "rule id"]))
+            abuseTelemetry.send(telemetryJSON(for: "VPAID_UNIQUE_EVENT_ABUSE",
+                                              and: ["event_name": "AdImpression" |> json,
+                                                    "rid": "rule id" |> json]))
         }
     }
     
@@ -85,12 +80,12 @@ class TelemetryMetricsTest: XCTestCase {
         }
         
         recorder.verify {
-            abuseTelemetry.send(json(for: "VPAID_UNIQUE_EVENT_ABUSE",
-                                     and: ["event_name": "AdImpression",
-                                           "rid": "rule id"]))
-            abuseTelemetry.send(json(for: "VPAID_UNIQUE_EVENT_ABUSE",
-                                     and: ["event_name": "AdStart",
-                                           "rid": "rule id"]))
+            abuseTelemetry.send(telemetryJSON(for: "VPAID_UNIQUE_EVENT_ABUSE",
+                                              and: ["event_name": "AdImpression" |> json,
+                                                    "rid": "rule id" |> json]))
+            abuseTelemetry.send(telemetryJSON(for: "VPAID_UNIQUE_EVENT_ABUSE",
+                                              and: ["event_name": "AdStart" |> json,
+                                                    "rid": "rule id" |> json]))
         }
     }
     
@@ -103,12 +98,12 @@ class TelemetryMetricsTest: XCTestCase {
         }
         
         recorder.verify {
-            abuseTelemetry.send(json(for: "VPAID_UNIQUE_EVENT_ABUSE",
-                                     and: ["event_name": "AdImpression",
-                                           "rid": "rule id 1"]))
-            abuseTelemetry.send(json(for: "VPAID_UNIQUE_EVENT_ABUSE",
-                                     and: ["event_name": "AdImpression",
-                                           "rid": "rule id 2"]))
+            abuseTelemetry.send(telemetryJSON(for: "VPAID_UNIQUE_EVENT_ABUSE",
+                                              and: ["event_name": "AdImpression" |> json,
+                                                    "rid": "rule id 1" |> json]))
+            abuseTelemetry.send(telemetryJSON(for: "VPAID_UNIQUE_EVENT_ABUSE",
+                                              and: ["event_name": "AdImpression" |> json,
+                                                    "rid": "rule id 2" |> json]))
         }
     }
     
@@ -121,11 +116,11 @@ class TelemetryMetricsTest: XCTestCase {
         }
         
         recorder.verify {
-            jsTelemetry.send(json(for: "VPAID_JAVASCRIPT_EVALUATION_ERROR",
-                                  and: ["rid": "rule",
-                                        "error_code": "\(error.errorCode)",
-                                    "error_description": (error as NSError).description,
-                                    "error_additional_info": error.errorUserInfo]))
+            jsTelemetry.send(telemetryJSON(for: "VPAID_JAVASCRIPT_EVALUATION_ERROR",
+                                           and: ["rid": "rule" |> json,
+                                                 "error_code": "\(error.errorCode)" |> json,
+                                                 "error_description": (error as NSError).description |> json,
+                                                 "error_additional_info": error.errorUserInfo.description |> json]))
         }
     }
     
@@ -140,23 +135,23 @@ class TelemetryMetricsTest: XCTestCase {
         }
         
         recorder.verify {
-            jsTelemetry.send(json(for: "VPAID_JAVASCRIPT_EVALUATION_ERROR",
-                                  and: ["rid": "rule1",
-                                        "error_code": "\(error1.errorCode)",
-                                    "error_description": (error1 as NSError).description,
-                                    "error_additional_info": error1.errorUserInfo]))
+            jsTelemetry.send(telemetryJSON(for: "VPAID_JAVASCRIPT_EVALUATION_ERROR",
+                                           and: ["rid": "rule1" |> json,
+                                                 "error_code": "\(error1.errorCode)" |> json,
+                                                 "error_description": (error1 as NSError).description |> json,
+                                                 "error_additional_info": error1.errorUserInfo.description |> json]))
             
-            jsTelemetry.send(json(for: "VPAID_JAVASCRIPT_EVALUATION_ERROR",
-                                  and: ["rid": "rule2",
-                                        "error_code": "\(error2.errorCode)",
-                                    "error_description": (error2 as NSError).description,
-                                    "error_additional_info": error2.errorUserInfo]))
+            jsTelemetry.send(telemetryJSON(for: "VPAID_JAVASCRIPT_EVALUATION_ERROR",
+                                           and: ["rid": "rule2" |> json,
+                                                 "error_code": "\(error2.errorCode)" |> json,
+                                                 "error_description": (error2 as NSError).description |> json,
+                                                 "error_additional_info": error2.errorUserInfo.description |> json]))
             
-            jsTelemetry.send(json(for: "VPAID_JAVASCRIPT_EVALUATION_ERROR",
-                                  and: ["rid": "rule2",
-                                        "error_code": "\(error3.errorCode)",
-                                    "error_description": (error3 as NSError).description,
-                                    "error_additional_info": error3.errorUserInfo]))
+            jsTelemetry.send(telemetryJSON(for: "VPAID_JAVASCRIPT_EVALUATION_ERROR",
+                                           and: ["rid": "rule2" |> json,
+                                                 "error_code": "\(error3.errorCode)" |> json,
+                                                 "error_description": (error3 as NSError).description |> json,
+                                                 "error_additional_info": error3.errorUserInfo.description |> json]))
         }
     }
     
@@ -167,8 +162,8 @@ class TelemetryMetricsTest: XCTestCase {
         }
         
         recorder.verify {
-            unsupportedVPAID.send(json(for: "VPAID_UNSUPPORTED_VERSION_ERROR",
-                                       and: ["rid": "rule id"]))
+            unsupportedVPAID.send(telemetryJSON(for: "VPAID_UNSUPPORTED_VERSION_ERROR",
+                                                and: ["rid": "rule id" |> json]))
         }
     }
     
@@ -180,11 +175,11 @@ class TelemetryMetricsTest: XCTestCase {
         }
         
         recorder.verify {
-            unsupportedVPAID.send(json(for: "VPAID_UNSUPPORTED_VERSION_ERROR",
-                                       and: ["rid": "rule 1"]))
+            unsupportedVPAID.send(telemetryJSON(for: "VPAID_UNSUPPORTED_VERSION_ERROR",
+                                                and: ["rid": "rule 1" |> json]))
             
-            unsupportedVPAID.send(json(for: "VPAID_UNSUPPORTED_VERSION_ERROR",
-                                       and: ["rid": "rule 2"]))
+            unsupportedVPAID.send(telemetryJSON(for: "VPAID_UNSUPPORTED_VERSION_ERROR",
+                                                and: ["rid": "rule 2" |> json]))
         }
     }
     
@@ -195,8 +190,8 @@ class TelemetryMetricsTest: XCTestCase {
         }
         
         recorder.verify {
-            adStartTimeout.send(json(for: "START_TIMEOUT_REACHED",
-                                     and: ["rid": "rule 1"]))
+            adStartTimeout.send(telemetryJSON(for: "START_TIMEOUT_REACHED",
+                                              and: ["rid": "rule 1" |> json]))
         }
     }
     func testAdStartTimeoutOnSecondSession() {
@@ -207,8 +202,8 @@ class TelemetryMetricsTest: XCTestCase {
         }
         
         recorder.verify {
-            adStartTimeout.send(json(for: "START_TIMEOUT_REACHED",
-                                     and: ["rid": "rule 2"]))
+            adStartTimeout.send(telemetryJSON(for: "START_TIMEOUT_REACHED",
+                                              and: ["rid": "rule 2" |> json]))
         }
     }
     func testAdStartTimeoutTwoSessions() {
@@ -219,10 +214,10 @@ class TelemetryMetricsTest: XCTestCase {
         }
         
         recorder.verify {
-            adStartTimeout.send(json(for: "START_TIMEOUT_REACHED",
-                                     and: ["rid": "rule 1"]))
-            adStartTimeout.send(json(for: "START_TIMEOUT_REACHED",
-                                     and: ["rid": "rule 2"]))
+            adStartTimeout.send(telemetryJSON(for: "START_TIMEOUT_REACHED",
+                                              and: ["rid": "rule 1" |> json]))
+            adStartTimeout.send(telemetryJSON(for: "START_TIMEOUT_REACHED",
+                                              and: ["rid": "rule 2" |> json]))
         }
     }
     func testOpenMeasurementInitiated() {
@@ -234,10 +229,10 @@ class TelemetryMetricsTest: XCTestCase {
         }
         
         recorder.verify {
-            successInitializationReporter.send(json(for: "OM_SDK_INITIATED",
-                                                    and: ["rid": "rule 1"]))
-            successInitializationReporter.send(json(for: "OM_SDK_INITIATED",
-                                                    and: ["rid": "rule 2"]))
+            successInitializationReporter.send(telemetryJSON(for: "OM_SDK_INITIATED",
+                                                             and: ["rid": "rule 1" |> json]))
+            successInitializationReporter.send(telemetryJSON(for: "OM_SDK_INITIATED",
+                                                             and: ["rid": "rule 2" |> json]))
         }
     }
     func testOpenMeasurementFailed() {
@@ -252,12 +247,12 @@ class TelemetryMetricsTest: XCTestCase {
         }
         
         recorder.verify {
-            failedConfigurationReporter.send(json(for: "OM_SDK_ERROR",
-                                                  and: ["message": error.localizedDescription,
-                                                        "rid": "rule 1"]))
-            failedConfigurationReporter.send(json(for: "OM_SDK_ERROR",
-                                                  and: ["message": error.localizedDescription,
-                                                        "rid": "rule 2"]))
+            failedConfigurationReporter.send(telemetryJSON(for: "OM_SDK_ERROR",
+                                                           and: ["message": error.localizedDescription |> json,
+                                                                 "rid": "rule 1" |> json]))
+            failedConfigurationReporter.send(telemetryJSON(for: "OM_SDK_ERROR",
+                                                           and: ["message": error.localizedDescription |> json,
+                                                                 "rid": "rule 2" |> json]))
         }
     }
     func testServiceScriptFetchingFailed() {
@@ -271,8 +266,8 @@ class TelemetryMetricsTest: XCTestCase {
         }
         
         recorder.verify {
-            scriptFetchingFailedReporter.send(json(for: "OM_SDK_SCRIPT_FETCHING_FAILED",
-                                                   and: ["message": error.localizedDescription]))
+            scriptFetchingFailedReporter.send(telemetryJSON(for: "OM_SDK_SCRIPT_FETCHING_FAILED",
+                                                            and: ["message": error.localizedDescription |> json]))
         }
     }
     
@@ -288,8 +283,8 @@ class TelemetryMetricsTest: XCTestCase {
         }
         
         recorder.verify {
-            vrmProcessing.vrm.send(json(for: "VRM_PROCESSING_TIME",
-                                        and: ["time": 2500]))
+            vrmProcessing.vrm.send(telemetryJSON(for: "VRM_PROCESSING_TIME",
+                                                 and: ["time": 2500 |> json]))
         }
     }
     
@@ -305,8 +300,8 @@ class TelemetryMetricsTest: XCTestCase {
         }
         
         recorder.verify {
-            mp4AdBuffering.mp4Ad.send(json(for: "AD_BUFFERING_TIME",
-                                           and: ["time": 2500]))
+            mp4AdBuffering.mp4Ad.send(telemetryJSON(for: "AD_BUFFERING_TIME",
+                                                    and: ["time": 2500 |> json]))
         }
     }
     
@@ -324,19 +319,19 @@ class TelemetryMetricsTest: XCTestCase {
         }
         
         recorder.verify {
-            contentBuffering.content.send(json(for: "VIDEO_BUFFERING_TIME",
-                                              and: ["time": 2500]))
+            contentBuffering.content.send(telemetryJSON(for: "VIDEO_BUFFERING_TIME",
+                                                        and: ["time": 2500 |> json]))
         }
     }
     
-    private func json(for name: String, and value: JSON) -> JSON {
-        return  [
-            "context" : [:],
+    private func telemetryJSON(for type: String, and value: [String: JSøN]) -> Telemetry.TelemetryJSON {
+        let data: [String: JSøN] = [
             "data" : [
-                "type" : name,
-                "value": value
-            ]
+                "type" : type |> json,
+                "value": value |> json
+                ] |> json
         ]
+        return .init(context: [:], data: data |> json)
     }
     
     private func eventErrorWithName(name: String) -> VPAIDErrors.UniqueEventError {

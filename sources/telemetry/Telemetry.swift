@@ -95,11 +95,15 @@ public enum Telemetry {
         let session: URLSession
         let url: URL
         
-        func send(json: JSON) {
+        func send(json: Telemetry.TelemetryJSON) {
+            let telemetryJSON = [
+                "context" : json.context,
+                "data" : json.data.object
+            ]
             var request = URLRequest(url: url)
             request.httpMethod = "POST"
             request.httpBody = try? JSONSerialization.data(
-                withJSONObject: json,
+                withJSONObject: telemetryJSON,
                 options: .prettyPrinted)
             request.setValue("application/json", forHTTPHeaderField: "Content-Type")
             session.dataTask(with: request).resume()
