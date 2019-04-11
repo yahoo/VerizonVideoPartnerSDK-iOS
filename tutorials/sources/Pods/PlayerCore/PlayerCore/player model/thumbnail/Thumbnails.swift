@@ -4,8 +4,9 @@ import Foundation
 import CoreGraphics
 
 extension CGSize: Hashable {
-    public var hashValue: Int {
-        return width.hashValue ^ height.hashValue
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(self.width)
+        hasher.combine(self.height)
     }
 }
 

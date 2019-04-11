@@ -3,15 +3,15 @@
 import Foundation
 
 public extension VRMCore {
-    public static func startGroupProcessing(group: Group) -> Action {
+    static func startGroupProcessing(group: Group) -> Action {
         return StartGroupProcessing(group: group)
     }
     
-    public static func noGroupsToProcess(id: UUID) -> Action {
+    static func noGroupsToProcess(id: UUID) -> Action {
         return NoGroupsToProcess(id: id)
     }
     
-    public static func finishCurrentGroupProcessing() -> Action {
+    static func finishCurrentGroupProcessing() -> Action {
         return FinishCurrentGroupProcessing()
     }
 }

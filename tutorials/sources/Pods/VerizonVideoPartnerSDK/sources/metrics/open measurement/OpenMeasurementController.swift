@@ -12,7 +12,9 @@ extension OpenMeasurement {
         let adViewAction: () -> UIView?
         let createOMContext: (Input) throws -> Output
         var serviceScript: String?
+        
         private var adSession: OpenMeasurementAdSessionProtocol?
+        private var adVerifications: [PlayerCore.Ad.VASTModel.AdVerification]?
         
         init(adViewAction: @escaping () -> UIView?,
              createOMContext: @escaping (Input) throws -> Output,
@@ -30,18 +32,25 @@ extension OpenMeasurement {
             if case .finished = openMeasurement {
                 return dispatcher(PlayerCore.openMeasurementDeactivated())
             }
-            guard case .loading(let adVerifications) = openMeasurement, adSession == nil else { return }
+            
+            if case .readyForLoad(let adVerifications) = openMeasurement {
+                self.adVerifications = adVerifications
+                return
+            }
+            
+            guard case .loading = openMeasurement, adSession == nil else { return }
             
             guard let serviceScript = serviceScript else {
                 dispatcher(PlayerCore.failedOMConfiguration(with: OpenMeasurement.Errors.scriptNotAvailable))
                 return
             }
-            guard let adView = adViewAction() else {
-                dispatcher(PlayerCore.failedOMConfiguration(with: OpenMeasurement.Errors.failedToGetAdView))
+            guard let adView = adViewAction(),
+                  let adVerifications = adVerifications else {
                 return
             }
+            
             do {
-                let input = OpenMeasurement.Input(partnerBundleName: "Oath2",
+                let input = OpenMeasurement.Input(partnerBundleName: "Verizonmedia",
                                                   partnerVersion: VVPSDK.version,
                                                   jsServiceScript: serviceScript,
                                                   adVerifications: adVerifications)

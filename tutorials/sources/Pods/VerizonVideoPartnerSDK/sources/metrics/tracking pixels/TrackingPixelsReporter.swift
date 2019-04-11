@@ -2,8 +2,6 @@
 //  Licensed under the terms of the MIT License. See LICENSE.md file in project root for terms.
 import Foundation
 
-enum TrackingPixels {}
-
 extension TrackingPixels {
     final class Reporter {
         enum Item {
@@ -293,7 +291,7 @@ extension TrackingPixels.Reporter {
                 mpid: context.mpid?[videoIndex],
                 m_fwsitesection: context.siteSection,
                 bft: bufferedTime.map(String.init),
-                bit: averageBitrate.map(String.init),
+                bit: averageBitrate.map { String($0) },
                 cvt: currentTime.map(String.init),
                 vcdn: context.vcdn?[videoIndex],
                 apid: context.apid,
@@ -328,7 +326,7 @@ extension TrackingPixels.Reporter {
                 h: String(Int(height)),
                 vpt: videoPlayType(for: isAutoplay),
                 bft: bufferedTime.map(String.init),
-                bit: averageBitrate.map(String.init),
+                bit: averageBitrate.map { String($0) },
                 vcdn: context.vcdn?[videoIndex],
                 cb: cachebuster(),
                 m_fwsitesection: context.siteSection,
@@ -600,6 +598,7 @@ extension TrackingPixels.Reporter {
             TrackingPixels.Generator.adStart(
                 app_id: context.applicationID,
                 bcid: context.buyingCompanyID,
+                sid: context.sessionID,
                 pid: context.playerID,
                 bid: context.playlistID,
                 rid: info.ruleId,

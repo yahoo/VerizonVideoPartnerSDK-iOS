@@ -3,13 +3,13 @@
 import Foundation
 
 public extension VRMCore {
-    public static func adResponse(transactionId: String?, slot: String, groups: [Group]) -> Action {
+    static func adResponse(transactionId: String?, slot: String, groups: [Group]) -> Action {
         return VRMResponseAction(transactionId: transactionId,
                                 slot: slot,
                                 groups: groups)
     }
     
-    public static func adResponseFetchFailed(requestID: UUID) -> Action {
+    static func adResponseFetchFailed(requestID: UUID) -> Action {
         return VRMResponseFetchFailed(requestID: requestID)
     }
 }

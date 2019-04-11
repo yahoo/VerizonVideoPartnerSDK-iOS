@@ -49,6 +49,18 @@ public final class Player {
         }
     }
     
+    
+    typealias TrackingPropsObserver = (TrackingPixels.Properties) -> ()
+    typealias TrackingPropsObserverDispose = () -> ()
+    
+    func addTrackingObserver(on queue: DispatchQueue = .main,
+                             mode: ObservationMode = .throttleUpdates,
+                             _ observer: @escaping TrackingPropsObserver) -> TrackingPropsObserverDispose {
+        return store.addObserver(with: model, on: queue, mode: mode) { state, model in
+            observer(TrackingPixels.Properties(state: state, model: model))
+        }
+    }
+    
     func dispatch(action: PlayerCore.Action, type: DispatchType = .async) {
         store.dispatch(action: action, type: type)
     }

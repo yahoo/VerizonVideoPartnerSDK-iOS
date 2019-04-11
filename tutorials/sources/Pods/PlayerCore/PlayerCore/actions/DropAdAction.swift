@@ -3,6 +3,4 @@
 
 import Foundation
 
-struct DropAd: Action {
-    let id: UUID
-}
+struct DropAd: Action {}

@@ -5,7 +5,7 @@ import Foundation
 
 public extension VRMCore {
     
-    public struct ID<ParentType>: Hashable {
+    struct ID<ParentType>: Hashable {
         let value: UUID
         
         public init(value: UUID = UUID()) {
@@ -13,7 +13,7 @@ public extension VRMCore {
         }
     }
     
-    public struct Group: Equatable {
+    struct Group: Equatable {
         public typealias ID = VRMCore.ID<Group>
         
         public let id: ID
@@ -25,7 +25,7 @@ public extension VRMCore {
         }
     }
     
-    public struct Item: Hashable {
+    struct Item: Hashable {
         
         public enum Source: Hashable {
             case vast(String)

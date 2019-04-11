@@ -9,13 +9,16 @@ public enum AdKill {
 
 func reduce(state: AdKill, action: Action) -> AdKill {
     switch action {
-    case is AdStartTimeout:
+    case is MP4AdStartTimeout,
+         is VPAIDAdStartTimeout:
         return .adStartTimeout
     case is AdMaxShowTimeout:
         return .maxShowTime
     case is ShowContent,
          is SkipAd,
          is AdPlaybackFailed,
+         is VRMCore.SelectFinalResult,
+         is VRMCore.NoGroupsToProcess,
          is VPAIDActions.AdError,
          is VPAIDActions.AdStopped,
          is VPAIDActions.AdSkipped,

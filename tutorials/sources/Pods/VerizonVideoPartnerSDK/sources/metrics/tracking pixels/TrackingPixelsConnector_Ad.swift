@@ -98,25 +98,7 @@ extension TrackingPixels.Connector {
             func pixels() -> PlayerCore.AdPixels {
                 if let pixels = state.vrmFinalResult.successResult?.inlineVAST.pixels ??
                                 state.vrmFinalResult.failedResult?.inlineVAST.pixels {
-                    return .init(impression: pixels.impression,
-                                 error: pixels.error,
-                                 clickTracking: pixels.clickTracking,
-                                 creativeView: pixels.creativeView,
-                                 start: pixels.start,
-                                 firstQuartile: pixels.firstQuartile,
-                                 midpoint: pixels.midpoint,
-                                 thirdQuartile: pixels.thirdQuartile,
-                                 complete: pixels.complete,
-                                 pause: pixels.pause,
-                                 resume: pixels.resume,
-                                 skip: pixels.skip,
-                                 mute: pixels.mute,
-                                 unmute: pixels.unmute,
-                                 acceptInvitation: pixels.acceptInvitation,
-                                 acceptInvitationLinear: pixels.acceptInvitationLinear,
-                                 close: pixels.close,
-                                 closeLinear: pixels.closeLinear,
-                                 collapse: pixels.collapse)
+                    return pixels
                 } else {
                     fatalError("No pixels which are required to fire!")
                 }

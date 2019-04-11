@@ -123,7 +123,7 @@ extension Renderer {
 }
 
 extension Renderer {
-    public struct Descriptor {
+    public struct Descriptor: Hashable {
         /// Example: com.aol.onemobilesdk.flat
         public let id: String
         
@@ -135,19 +135,6 @@ extension Renderer {
             self.version = version
         }
     }
-}
-
-extension Renderer.Descriptor: Equatable {
-    public static func == (left: Renderer.Descriptor, right: Renderer.Descriptor) -> Bool {
-        guard left.id == right.id else { return false }
-        guard left.version == right.version else { return false }
-        
-        return true
-    }
-}
-
-extension Renderer.Descriptor: Hashable {
-    public var hashValue: Int { return id.hashValue ^ version.hashValue }
 }
 
 extension Renderer {
