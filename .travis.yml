@@ -20,7 +20,7 @@ matrix:
     script:
     - bundle exec fastlane test
     - bundle exec fastlane build_tvos_target
-    #- bundle exec fastlane build_tutorials
+    - bundle exec fastlane build_tutorials
     - bundle exec fastlane lint_current_podspec
     - bundle exec danger || true
     
