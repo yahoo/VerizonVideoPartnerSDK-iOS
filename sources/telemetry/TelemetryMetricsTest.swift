@@ -326,10 +326,8 @@ class TelemetryMetricsTest: XCTestCase {
     
     private func telemetryJSON(for type: String, and value: [String: JSøN]) -> Telemetry.TelemetryJSON {
         let data: [String: JSøN] = [
-            "data" : [
                 "type" : type |> json,
                 "value": value |> json
-                ] |> json
         ]
         return .init(context: [:], data: data |> json)
     }
