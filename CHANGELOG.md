@@ -1,5 +1,22 @@
 # Change Log
 
+## [1.4.0](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/tree/1.4.0) (2019-04-11)
+[Full Changelog](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/compare/1.3.2...1.4.0)
+
+**Merged pull requests:**
+
+- Updated repos and added changes for Xcode 10.2 [\#108](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/pull/108) ([RomanTysiachnik](https://github.com/RomanTysiachnik))
+- Switched to manual code signing [\#107](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/pull/107) ([AndriiMoskvin](https://github.com/AndriiMoskvin))
+- Added some fixes for Xcode 10.2 support [\#106](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/pull/106) ([RomanTysiachnik](https://github.com/RomanTysiachnik))
+- Updated controls with fixes for Replay video button [\#105](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/pull/105) ([RomanTysiachnik](https://github.com/RomanTysiachnik))
+- Updated player controls submodule [\#104](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/pull/104) ([RomanTysiachnik](https://github.com/RomanTysiachnik))
+- Added `sid` parameter to ad-start.gif [\#103](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/pull/103) ([AndriiMoskvin](https://github.com/AndriiMoskvin))
+- Added Tracking Properties New Connector for failover detector [\#101](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/pull/101) ([RomanTysiachnik](https://github.com/RomanTysiachnik))
+- Added actual parsing of failover feature [\#99](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/pull/99) ([RomanTysiachnik](https://github.com/RomanTysiachnik))
+- Bump pod spec to 1.3.2 [\#98](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/pull/98) ([VladyslavAnokhin](https://github.com/VladyslavAnokhin))
+- Implemented failover detector [\#97](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/pull/97) ([RomanTysiachnik](https://github.com/RomanTysiachnik))
+- Added script to lint podspec only if necessary [\#93](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/pull/93) ([RomanTysiachnik](https://github.com/RomanTysiachnik))
+
 ## [1.3.2](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/tree/1.3.2) (2019-03-13)
 [Full Changelog](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/compare/1.3.1...1.3.2)
 

@@ -10,7 +10,10 @@ public protocol UUIDPhantom: Hashable {
 }
 
 extension UUIDPhantom {
-    public var hashValue: Int { return uuid.hashValue }
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(uuid.hashValue)
+    }
+    
     public static func ==(left: Self, right: Self) -> Bool {
         return left.uuid == right.uuid
     }

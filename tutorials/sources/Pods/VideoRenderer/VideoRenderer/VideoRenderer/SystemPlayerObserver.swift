@@ -11,8 +11,8 @@ public final class SystemPlayerObserver: NSObject {
         case didChangeExternalPlaybackStatus(to: Bool)
         case didChangeExternalPlaybackAllowance(to: Bool)
         case didChangeUrl(from: URL?, to: URL?)
-        case didChangeItemStatusToUnknown()
-        case didChangeItemStatusToReadyToPlay()
+        case didChangeItemStatusToUnknown
+        case didChangeItemStatusToReadyToPlay
         case didChangeItemPlaybackLikelyToKeepUp(to: Bool)
         case didChangeItemPlaybackBufferEmpty(to: Bool)
         case didChangeItemStatusToFailed(error: Error)
@@ -221,8 +221,8 @@ public final class SystemPlayerObserver: NSObject {
         case #keyPath(AVPlayerItem.status):
             guard let newStatus = newValue().flatMap(AVPlayerItem.Status.init) else { fatalError("Unexpected nil in AVPlayerItem.status value!") }
             switch newStatus {
-            case .unknown: emit(.didChangeItemStatusToUnknown())
-            case .readyToPlay: emit(.didChangeItemStatusToReadyToPlay())
+            case .unknown: emit(.didChangeItemStatusToUnknown)
+            case .readyToPlay: emit(.didChangeItemStatusToReadyToPlay)
             case .failed:
                 struct SystemPlayerFailed: Swift.Error { }
                 let error = player.currentItem?.error ?? SystemPlayerFailed()

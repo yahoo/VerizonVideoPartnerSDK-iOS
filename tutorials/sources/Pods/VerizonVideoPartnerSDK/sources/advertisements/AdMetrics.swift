@@ -59,6 +59,7 @@ extension Ad.Metrics {
         case killed
         case win
         case loaded
+        case failover
         case Quartile1 = "q1"
         case Quartile2 = "q2"
         case Quartile3 = "q3"

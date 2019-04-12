@@ -27,7 +27,8 @@ func reduce(state: VRMFinalResult, action: Action) -> VRMFinalResult {
         return .selected( result: .init(item: finalResult.item,
                                         inlineVAST: finalResult.inlineVAST))
     case is AdPlaybackFailed,
-         is AdStartTimeout,
+         is MP4AdStartTimeout,
+         is VPAIDAdStartTimeout,
          is VPAIDActions.AdError,
          is VPAIDActions.AdNotSupported:
         guard let result = state.successResult else { return state }

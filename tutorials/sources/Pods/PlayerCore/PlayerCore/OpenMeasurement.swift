@@ -5,7 +5,8 @@ import Foundation
 public enum OpenMeasurement {
     case disabled
     case inactive
-    case loading([Ad.VASTModel.AdVerification])
+    case readyForLoad([Ad.VASTModel.AdVerification])
+    case loading
     case active(AdEvents, VideoEvents)
     case finished(AdEvents, VideoEvents)
     case failed(Error)
@@ -32,7 +33,10 @@ func reduce(state: OpenMeasurement, action: Action) -> OpenMeasurement {
               inline.mp4MediaFiles.isEmpty == false else {
             return .inactive
         }
-        return .loading(inline.adVerifications)
+        return .readyForLoad(inline.adVerifications)
+        
+    case is ShowMP4Ad:
+        return .loading
         
     case let action as OpenMeasurementActivated where state != .disabled:
         return .active(action.adEvents, action.videoEvents)
@@ -45,7 +49,7 @@ func reduce(state: OpenMeasurement, action: Action) -> OpenMeasurement {
          is SkipAd,
          is AdPlaybackFailed,
          is SelectVideoAtIdx,
-         is AdStartTimeout,
+         is MP4AdStartTimeout,
          is AdMaxShowTimeout:
         guard case .active(let adEvents, let videoEvents) = state else { return state }
         return .finished(adEvents, videoEvents)
@@ -65,7 +69,8 @@ extension OpenMeasurement: Equatable {
         case (.inactive, .inactive): return true
         case (.active, .active): return true
         case (.failed, .failed): return true
-        case (.loading(let left), .loading(let right)):
+        case (.loading, .loading): return true
+        case let (.readyForLoad(left), .readyForLoad(right)):
             return left == right
         default: return false
         }

@@ -21,7 +21,7 @@ func reduce(state: Duration, action: Action) -> Duration {
     case is DropAd,
          is ShowContent,
          is SkipAd,
-         is AdStartTimeout,
+         is MP4AdStartTimeout,
          is AdMaxShowTimeout,
          is VPAIDActions.AdStopped,
          is VPAIDActions.AdError,

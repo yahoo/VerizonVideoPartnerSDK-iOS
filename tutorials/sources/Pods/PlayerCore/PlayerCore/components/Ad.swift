@@ -74,27 +74,41 @@ func reduce(state: Ad, action: Action) -> Ad {
                   currentAd: .play,
                   currentType: state.currentType)
         
-    case let action as DropAd:
-        return markIDAsPlayed(id: action.id)
-        
     case let action as VRMCore.VRMResponseFetchFailed:
         return markIDAsPlayed(id: action.requestID)
         
     case let action as VRMCore.NoGroupsToProcess:
-        return markIDAsPlayed(id: action.id)
+        var playedAds = state.playedAds
+        playedAds.insert(action.id)
+        return Ad(playedAds: playedAds,
+                  midrolls: state.midrolls,
+                  mp4AdCreative: nil,
+                  vpaidAdCreative: nil,
+                  currentAd: .empty,
+                  currentType: state.currentType)
         
     case let action as VRMCore.MaxSearchTimeout:
         return markIDAsPlayed(id: action.requestID)
         
+    case is VPAIDAdStartTimeout,
+         is VPAIDActions.AdError,
+         is VPAIDActions.AdNotSupported:
+        return Ad(playedAds: state.playedAds,
+                  midrolls: state.midrolls,
+                  mp4AdCreative: state.mp4AdCreative,
+                  vpaidAdCreative: nil,
+                  currentAd: state.currentAd,
+                  currentType: state.currentType)
+        
     case is ShowContent,
          is SkipAd,
+         is DropAd,
          is AdPlaybackFailed,
-         is VPAIDActions.AdError,
-         is AdStartTimeout,
+         is MP4AdStartTimeout,
          is AdMaxShowTimeout,
+         is VRMCore.MaxSearchTimeout,
          is VPAIDActions.AdStopped,
-         is VPAIDActions.AdSkipped,
-         is VPAIDActions.AdNotSupported:
+         is VPAIDActions.AdSkipped:
         return Ad(playedAds: state.playedAds,
                   midrolls: state.midrolls,
                   mp4AdCreative: state.mp4AdCreative,

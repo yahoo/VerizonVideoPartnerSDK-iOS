@@ -3,8 +3,13 @@
 import Foundation
 import PlayerCore
 import CoreMedia
-
 extension Telemetry {
+    
+    struct TelemetryJSON {
+        let context: JSON
+        let data: JSøN
+    }
+
     struct Metrics {
         let airPlay: AirPlay
         let subtitles: Subtitles
@@ -50,10 +55,10 @@ extension Telemetry {
 extension Telemetry.Metrics {
     final class AirPlay {
         let context: JSON
-        let send: (JSON) -> ()
+        let send: (Telemetry.TelemetryJSON) -> ()
         private var isTriggered = false
         
-        init(context: JSON, send: @escaping (JSON) -> ()) {
+        init(context: JSON, send: @escaping (Telemetry.TelemetryJSON) -> ()) {
             self.context = context
             self.send = send
         }
@@ -64,7 +69,7 @@ extension Telemetry.Metrics {
             guard item.ad.airPlay == .active || item.content.airPlay == .active else { return }
             
             isTriggered = true
-            send(telemetryJSON(withContext: context, type: "EXTERNAL_PLAYBACK_TRIGGERED"))
+            send(telemetryJSøN(withContext: context, type: "EXTERNAL_PLAYBACK_TRIGGERED"))
         }
     }
 }
@@ -72,10 +77,10 @@ extension Telemetry.Metrics {
 extension Telemetry.Metrics {
     final class Subtitles {
         let context: JSON
-        let send: (JSON) -> ()
+        let send: (Telemetry.TelemetryJSON) -> ()
         private var triggeredSessionIds: Set<UUID> = []
         
-        init(context: JSON, send: @escaping (JSON) -> ()) {
+        init(context: JSON, send: @escaping (Telemetry.TelemetryJSON) -> ()) {
             self.context = context
             self.send = send
         }
@@ -104,9 +109,9 @@ extension Telemetry.Metrics {
             guard let selectedSubtitlesType = selectedSubtitlesType(item: item) else { return }
             
             triggeredSessionIds.insert(props.session.playback.id)
-            send(telemetryJSON(withContext: context,
+            send(telemetryJSøN(withContext: context,
                                type: "SUBTITLES_ENABLED",
-                               value: ["subtitlesType" : selectedSubtitlesType]))
+                               value: ["subtitlesType" : selectedSubtitlesType |> json] |> json))
         }
     }
 }
@@ -114,15 +119,15 @@ extension Telemetry.Metrics {
 extension Telemetry.Metrics {
     struct VideoProvider {
         let context: JSON
-        let send: (JSON) -> ()
+        let send: (Telemetry.TelemetryJSON) -> ()
         
         func process(error: Error) {
             guard let error = error as? Network.Parse.JSONError else { return }
             
-            send(telemetryJSON(withContext: context,
+            send(telemetryJSøN(withContext: context,
                                type: "VIDEO_SERVICE_JSON_PARSING_ERROR",
-                               value: ["responseJson": error.json,
-                                       "message": error.message]))
+                               value: ["responseJSON": error.json |> json,
+                                       "message": error.message |> json] |> json))
         }
     }
 }
@@ -130,11 +135,11 @@ extension Telemetry.Metrics {
 extension Telemetry.Metrics {
     final class PictureInPicture {
         let context: JSON
-        let send: (JSON) -> ()
+        let send: (Telemetry.TelemetryJSON) -> ()
         
         private var triggeredSessionIds: Set<UUID> = []
         
-        init(context: JSON, send: @escaping (JSON) -> ()) {
+        init(context: JSON, send: @escaping (Telemetry.TelemetryJSON) -> ()) {
             self.context = context
             self.send = send
         }
@@ -145,7 +150,7 @@ extension Telemetry.Metrics {
             guard item.content.pictureInPictureMode == .active else { return }
             triggeredSessionIds.insert(props.session.playback.id)
             
-            send(telemetryJSON(withContext: context, type: "PICTURE_IN_PICTURE_MODE_ENABLED"))
+            send(telemetryJSøN(withContext: context, type: "PICTURE_IN_PICTURE_MODE_ENABLED"))
         }
     }
 }
@@ -153,27 +158,27 @@ extension Telemetry.Metrics {
 extension Telemetry.Metrics {
     final class AdStartTimeout {
         let context: JSON
-        let send: (JSON) -> ()
+        let send: (Telemetry.TelemetryJSON) -> ()
         
         private var processedAds = Set<String>()
         
-        init(context: JSON, send: @escaping (JSON) -> ()) {
+        init(context: JSON, send: @escaping (Telemetry.TelemetryJSON) -> ()) {
             self.context = context
             self.send = send
         }
         
         func process(state: PlayerCore.State) {
-            let newCoreResult = state.vrmFinalResult.successResult ?? state.vrmFinalResult.failedResult
-            guard let ruleId = newCoreResult?.item.metaInfo.ruleId else { return }
-            process(isTimeoutReached: state.adKill == .adStartTimeout, for: ruleId)
+            process(isTimeoutReached: state.adKill == .adStartTimeout,
+                    for: state.vrmFinalResult.failedResult?.item.metaInfo.ruleId)
         }
-        func process(isTimeoutReached: Bool, for ruleId: String) {
+        func process(isTimeoutReached: Bool, for ruleId: String?) {
+            guard let ruleId = ruleId else { return }
             guard isTimeoutReached, !processedAds.contains(ruleId) else { return }
             
             processedAds.insert(ruleId)
-            send(telemetryJSON(withContext: context,
+            send(telemetryJSøN(withContext: context,
                                type: "START_TIMEOUT_REACHED",
-                               value: ["rid": ruleId]))
+                               value: ["rid": ruleId |> json] |> json))
         }
     }
 }
@@ -184,11 +189,11 @@ extension Telemetry.Metrics {
         final class Reporter {
             
             let context: JSON
-            let send: (JSON) -> ()
+            let send: (Telemetry.TelemetryJSON) -> ()
             
             private var uniqueKeys = Set<UUID>()
             
-            init(context: JSON, send: @escaping (JSON) -> ()) {
+            init(context: JSON, send: @escaping (Telemetry.TelemetryJSON) -> ()) {
                 self.context = context
                 self.send = send
             }
@@ -202,9 +207,9 @@ extension Telemetry.Metrics {
                 uniqueKeys.insert(uniqueKey)
                 
                 let timeInterval = Int(finishAt.timeIntervalSince(startAt) * 1000)
-                send(telemetryJSON(withContext: context,
+                send(telemetryJSøN(withContext: context,
                                    type: telemetryType,
-                                   value: ["time": timeInterval]))
+                                   value: ["time": timeInterval |> json] |> json))
             }
         }
         
@@ -212,7 +217,7 @@ extension Telemetry.Metrics {
         let mp4Ad: MP4Ad
         let content: Content
         
-        init(context: JSON, send: @escaping (JSON) -> ()) {
+        init(context: JSON, send: @escaping (Telemetry.TelemetryJSON) -> ()) {
             mp4Ad = MP4Ad(context: context, send: send)
             vrm = VRM(context: context, send: send)
             content = Content(context: context, send: send)
@@ -226,8 +231,7 @@ extension Telemetry.Metrics {
                         processingStatus: state.vrmProcessingTime.status)
             
             content.process(playbackSession: state.playbackSession.id,
-                            processingStatus: state.contentBufferingTime.status,
-                            duration: state.duration.content)
+                            processingStatus: state.contentBufferingTime.status)
         }
     }
 }
@@ -236,7 +240,7 @@ extension Telemetry.Metrics.Buffering {
     struct MP4Ad {
         let mp4Ad: Reporter
         
-        init(context: JSON, send: @escaping (JSON) -> ()) {
+        init(context: JSON, send: @escaping (Telemetry.TelemetryJSON) -> ()) {
             mp4Ad = Reporter(context: context, send: send)
         }
         
@@ -252,7 +256,7 @@ extension Telemetry.Metrics.Buffering {
     struct VRM {
         let vrm: Reporter
         
-        init(context: JSON, send: @escaping (JSON) -> ()) {
+        init(context: JSON, send: @escaping (Telemetry.TelemetryJSON) -> ()) {
             vrm = Reporter(context: context, send: send)
         }
         
@@ -268,15 +272,12 @@ extension Telemetry.Metrics.Buffering {
     struct Content {
         let content: Reporter
         
-        init(context: JSON, send: @escaping (JSON) -> ()) {
+        init(context: JSON, send: @escaping (Telemetry.TelemetryJSON) -> ()) {
             content = Reporter(context: context, send: send)
         }
         
         func process(playbackSession: UUID?,
-                     processingStatus: BufferingStatus,
-                     duration: CMTime?) {
-            guard let duration = duration,
-                CMTIME_IS_INDEFINITE(duration) == false else { return }
+                     processingStatus: BufferingStatus) {
             content.process(uniqueKey: playbackSession,
                         processingTime: processingStatus,
                         telemetryType: "VIDEO_BUFFERING_TIME")
@@ -291,22 +292,19 @@ extension Telemetry.Metrics {
         let javascriptErrorReporter: JSEvaluationErrorReporter
         let unsupportedVPAIDReporter: UnsupportedVPAIDReporter
         
-        init(context: JSON, send: @escaping (JSON) -> ()) {
+        init(context: JSON, send: @escaping (Telemetry.TelemetryJSON) -> ()) {
             abuseEventReporter = AbuseEventErrorReporter(context: context, send: send)
             javascriptErrorReporter = JSEvaluationErrorReporter(context: context, send: send)
             unsupportedVPAIDReporter = UnsupportedVPAIDReporter(context: context, send: send)
         }
         
         func process(state: PlayerCore.State) {
-            let newCoreResult = state.vrmFinalResult.successResult ?? state.vrmFinalResult.failedResult
-            guard let ruleId = newCoreResult?.item.metaInfo.ruleId  else { return }
-            
             abuseEventReporter.process(abusedEvents: state.vpaidErrors.abusedEvents,
-                                       forRuleId: ruleId)
+                                       forRuleId: state.vrmFinalResult.successResult?.item.metaInfo.ruleId)
             javascriptErrorReporter.process(javascriptErrors: state.vpaidErrors.javaScriptEvaluationErrors,
-                                            forRuleId: ruleId)
+                                            forRuleId: state.vrmFinalResult.failedResult?.item.metaInfo.ruleId)
             unsupportedVPAIDReporter.process(isUnsupported: state.vpaidErrors.isAdNotSupported,
-                                             forRuleId: ruleId)
+                                             forRuleId: state.vrmFinalResult.failedResult?.item.metaInfo.ruleId)
         }
     }
 }
@@ -321,25 +319,26 @@ extension Telemetry.Metrics.VPAID {
         }
         
         let context: JSON
-        let send: (JSON) -> ()
+        let send: (Telemetry.TelemetryJSON) -> ()
         
         private var processedAbuseErrors = Set<AbuseInfo>()
         
-        init(context: JSON, send: @escaping (JSON) -> ()) {
+        init(context: JSON, send: @escaping (Telemetry.TelemetryJSON) -> ()) {
             self.context = context
             self.send = send
         }
         
-        func process(abusedEvents: [VPAIDErrors.UniqueEventError], forRuleId ruleId: String) {
+        func process(abusedEvents: [VPAIDErrors.UniqueEventError], forRuleId ruleId: String?) {
+            guard let ruleId = ruleId else { return }
             abusedEvents.forEach { error in
                 let candidate = AbuseInfo(name: error.eventName, ruleId: ruleId)
                 guard !processedAbuseErrors.contains(candidate) else { return }
                 
                 processedAbuseErrors.insert(candidate)
-                send(telemetryJSON(withContext: context,
+                send(telemetryJSøN(withContext: context,
                                    type: "VPAID_UNIQUE_EVENT_ABUSE",
-                                   value: ["event_name": error.eventName,
-                                           "rid": ruleId]))
+                                   value: ["event_name": error.eventName |> json,
+                                           "rid": ruleId |> json] |> json))
             }
         }
     }
@@ -353,32 +352,37 @@ extension Telemetry.Metrics.VPAID {
         }
         
         let context: JSON
-        let send: (JSON) -> ()
+        let send: (Telemetry.TelemetryJSON) -> ()
         
         private var processedJsErrors = Set<JSErrorInfo>()
         
-        init(context: JSON, send: @escaping (JSON) -> ()) {
+        init(context: JSON, send: @escaping (Telemetry.TelemetryJSON) -> ()) {
             self.context = context
             self.send = send
         }
         
-        func process(javascriptErrors: [Error], forRuleId ruleId: String) {
-            func prepareValue(from jsError: Error, with ruleId: String) -> JSON {
-                var value: JSON = ["rid": ruleId]
-                
-                if let error = jsError as NSError? {
-                    let userInfo = error.userInfo.reduce([:]) { (result, next) -> JSON in
-                        var newResult = result
-                        newResult["\(next.key)"] = "\(next.value)"
-                        return newResult
+        func process(javascriptErrors: [Error], forRuleId ruleId: String?) {
+            guard let ruleId = ruleId else { return }
+            func prepareValue(from jsError: Error, with ruleId: String) -> JSøN {
+                let value: JSøN = {
+                    if let error = jsError as NSError? {
+                        let ruleIdJson = ruleId |> json
+                        let errorCodeJson = "\(error.code)" |> json
+                        let errorDescriptionJson = error.description |> json
+                        let errorUserInfoJson = error.userInfo.description |> json
+                        return [
+                            "rid" : ruleIdJson,
+                            "error_code" : errorCodeJson,
+                            "error_description" : errorDescriptionJson,
+                            "error_additional_info": errorUserInfoJson
+                            ] |> json
+                    } else {
+                        return [
+                            "rid" : ruleId |> json,
+                            "error_description" : jsError.localizedDescription |> json
+                            ] |> json
                     }
-                    value["error_code"] = "\(error.code)"
-                    value["error_description"] = error.description
-                    value["error_additional_info"] = userInfo
-                } else {
-                    value["error_description"] = jsError.localizedDescription
-                }
-                
+                }()
                 return value
             }
             
@@ -387,7 +391,7 @@ extension Telemetry.Metrics.VPAID {
                 guard !processedJsErrors.contains(candidate) else { return }
                 
                 processedJsErrors.insert(candidate)
-                send(telemetryJSON(withContext: context,
+                send(telemetryJSøN(withContext: context,
                                    type: "VPAID_JAVASCRIPT_EVALUATION_ERROR",
                                    value: prepareValue(from: jserror, with: ruleId)))
                 
@@ -399,23 +403,24 @@ extension Telemetry.Metrics.VPAID {
 extension Telemetry.Metrics.VPAID {
     final class UnsupportedVPAIDReporter {
         let context: JSON
-        let send: (JSON) -> ()
+        let send: (Telemetry.TelemetryJSON) -> ()
         
         private var processedAds = Set<String>()
         
-        init(context: JSON, send: @escaping (JSON) -> ()) {
+        init(context: JSON, send: @escaping (Telemetry.TelemetryJSON) -> ()) {
             self.context = context
             self.send = send
         }
         
-        func process(isUnsupported: Bool, forRuleId ruleId: String) {
+        func process(isUnsupported: Bool, forRuleId ruleId: String?) {
             guard isUnsupported,
+                let ruleId = ruleId,
                 !processedAds.contains(ruleId) else { return }
             
             processedAds.insert(ruleId)
-            send(telemetryJSON(withContext: context,
+            send(telemetryJSøN(withContext: context,
                                type: "VPAID_UNSUPPORTED_VERSION_ERROR",
-                               value: ["rid": ruleId]))
+                               value: ["rid": ruleId |> json] |> json))
         }
     }
 }
@@ -427,15 +432,13 @@ extension Telemetry.Metrics {
         let failedConfigurationReporter: FailedConfigurationReporter
         let scriptFetchingFailedReporter: ScriptFetchingFailedReporter
         
-        init(context: JSON, send: @escaping (JSON) -> ()) {
+        init(context: JSON, send: @escaping (Telemetry.TelemetryJSON) -> ()) {
             successInitializationReporter = SuccessInitializationReporter(context: context, send: send)
             failedConfigurationReporter = FailedConfigurationReporter(context: context, send: send)
             scriptFetchingFailedReporter = ScriptFetchingFailedReporter(context: context, send: send)
         }
         
         func process(state: PlayerCore.State) {
-            let newCoreResult = state.vrmFinalResult.successResult ?? state.vrmFinalResult.failedResult
-            guard let ruleId = newCoreResult?.item.metaInfo.ruleId else { return }
             let isMeasurementStarted: Bool = perform {
                 guard case .active = state.openMeasurement else { return false }
                 return true
@@ -449,9 +452,9 @@ extension Telemetry.Metrics {
                 return error
             }
             successInitializationReporter.process(isMeasurementStarted: isMeasurementStarted,
-                                                  forRuleId: ruleId)
+                                                  forRuleId: state.vrmFinalResult.successResult?.item.metaInfo.ruleId)
             scriptFetchingFailedReporter.process(with: fetchingError)
-            failedConfigurationReporter.process(with: measurementError, forRuleId: ruleId)
+            failedConfigurationReporter.process(with: measurementError, forRuleId: state.vrmFinalResult.failedResult?.item.metaInfo.ruleId)
         }
     }
 }
@@ -459,23 +462,24 @@ extension Telemetry.Metrics {
 extension Telemetry.Metrics.OpenMeasurement {
     final class SuccessInitializationReporter {
         let context: JSON
-        let send: (JSON) -> ()
+        let send: (Telemetry.TelemetryJSON) -> ()
         
         private var processedAds = Set<String>()
         
-        init(context: JSON, send: @escaping (JSON) -> ()) {
+        init(context: JSON, send: @escaping (Telemetry.TelemetryJSON) -> ()) {
             self.context = context
             self.send = send
         }
         
-        func process(isMeasurementStarted: Bool, forRuleId ruleId: String) {
+        func process(isMeasurementStarted: Bool, forRuleId ruleId: String?) {
             guard isMeasurementStarted,
+                let ruleId = ruleId,
                 !processedAds.contains(ruleId) else { return }
             
             processedAds.insert(ruleId)
-            send(telemetryJSON(withContext: context,
+            send(telemetryJSøN(withContext: context,
                                type: "OM_SDK_INITIATED",
-                               value: ["rid": ruleId]))
+                               value: ["rid": ruleId |> json] |> json))
         }
     }
 }
@@ -483,35 +487,36 @@ extension Telemetry.Metrics.OpenMeasurement {
 extension Telemetry.Metrics.OpenMeasurement {
     final class FailedConfigurationReporter {
         let context: JSON
-        let send: (JSON) -> ()
+        let send: (Telemetry.TelemetryJSON) -> ()
         
         private var processedAds = Set<String>()
         
-        init(context: JSON, send: @escaping (JSON) -> ()) {
+        init(context: JSON, send: @escaping (Telemetry.TelemetryJSON) -> ()) {
             self.context = context
             self.send = send
         }
         
-        func process(with error: Error?, forRuleId ruleId: String) {
+        func process(with error: Error?, forRuleId ruleId: String?) {
+            guard let ruleId = ruleId else { return }
             guard let error = error,
                 !processedAds.contains(ruleId) else { return }
             
             processedAds.insert(ruleId)
-            send(telemetryJSON(withContext: context,
+            send(telemetryJSøN(withContext: context,
                                type: "OM_SDK_ERROR",
-                               value: ["message": error.localizedDescription,
-                                       "rid": ruleId]))
+                               value: ["message": error.localizedDescription |> json,
+                                       "rid": ruleId |> json] |> json))
         }
     }
 }
 extension Telemetry.Metrics.OpenMeasurement {
     final class ScriptFetchingFailedReporter {
         let context: JSON
-        let send: (JSON) -> ()
+        let send: (Telemetry.TelemetryJSON) -> ()
         
         private var processed = false
         
-        init(context: JSON, send: @escaping (JSON) -> ()) {
+        init(context: JSON, send: @escaping (Telemetry.TelemetryJSON) -> ()) {
             self.context = context
             self.send = send
         }
@@ -520,19 +525,19 @@ extension Telemetry.Metrics.OpenMeasurement {
             guard let error = error, processed == false else { return }
             
             processed = true
-            send(telemetryJSON(withContext: context,
+            send(telemetryJSøN(withContext: context,
                                type: "OM_SDK_SCRIPT_FETCHING_FAILED",
-                               value: ["message": error.localizedDescription]))
+                               value: ["message": error.localizedDescription |> json] |> json))
         }
     }
 }
 
-func telemetryJSON(withContext context: JSON, type: String, value: JSON = [:]) -> JSON {
-    return [
-        "context" : context,
+func telemetryJSøN(withContext context: JSON, type: String, value: JSøN = .null) -> Telemetry.TelemetryJSON {
+    let data: JSøN = [
         "data" : [
-            "type" : type,
+            "type" : type |> json,
             "value": value
-        ]
-    ]
+            ] |> json
+        ] |> json
+    return Telemetry.TelemetryJSON(context: context, data: data)
 }

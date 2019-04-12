@@ -46,5 +46,4 @@ enum VPAIDActions {
     struct AdUserMinimize: Action {}
     struct AdUserClose: Action {}
     struct AdScriptLoaded: Action {}
-    struct AdStartTimeout: Action {}
 }

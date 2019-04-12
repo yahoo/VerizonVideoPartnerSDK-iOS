@@ -5,7 +5,7 @@ import AVKit
 import PlayerCore
 // Added import only for testing purposes
 #if os(iOS)
-import OMSDK_Oath2
+import OMSDK_Verizonmedia
 #endif
 /// Glue code for connecting all parts of an SDK.
 /// It contains some configuration details for other components.
@@ -48,19 +48,6 @@ public struct VVPSDK {
         
         /* setup vrm provider */ do {
             self.vrmProvider = VRMProvider(session: ephemeralSession)
-        }
-        
-        /* attach ad url process listener */ do {
-            if let url = configuration.telemetry?.url {
-                let listener = Telemetry.Listeners.AdURLProcessListener.shared
-                
-                listener.session = ephemeralSession
-                listener.url = url
-                
-                Telemetry.Station.shared.add(
-                    listener: Telemetry.Listeners.AdURLProcessListener.shared
-                )
-            }
         }
         
         telemetryMetrics = configuration
@@ -301,6 +288,9 @@ public struct VVPSDK {
             _ = player.addObserver(connector.process)
             _ = player.store.addObserver(with: playerModel, mode: .everyUpdate, connector.process)
             
+            let propsConnector = TrackingPixels.PropsConnector(reporter: reporter)
+            _ = player.addTrackingObserver(propsConnector.process)
+            
         case (.javascript(let context), .javascript(let javascript)):
             func send(url: URL) {
                 ephemeralSession.dataTask(with: url).resume()
@@ -385,8 +375,8 @@ public struct VVPSDK {
                                                         Timer(duration: softTimeout, fire: onFire) },
                                                      hardTimeoutTimerFactory: { onFire in
                                                         Timer(duration: hardTimeout, fire: onFire) })
-        
-        let selectFinalResult = VRMSelectFinalResultController(dispatch: dispatcher)
+        let isFailoverEnabled = player.model.isFailoverEnabled
+        let selectFinalResult = VRMSelectFinalResultController(isFailoverEnabled: isFailoverEnabled, dispatch: dispatcher)
         let maxAdSearchTimeController = MaxAdSearchTimeController { requestID in
             Timer(duration: maxAdSearchTime) {
                 dispatcher(PlayerCore.VRMCore.maxSearchTimeoutReached(requestID: requestID))
@@ -395,6 +385,15 @@ public struct VVPSDK {
         
         let mp4AdCreativeController = MP4AdCreativeController(dispatch: dispatcher)
         let vpaidAdCreativeController = VPAIDAdCreativeController(dispatch: dispatcher)
+        
+        let maxAdDuration = player.model.adSettings.maxDuration
+        let maxShowTimeController = MaxShowTimeController(timerCreator: { Timer(duration: $0){ dispatcher(maxShowTimeReached())} },
+                                                          maxAdDuration: maxAdDuration,
+                                                          dispatcher: dispatcher)
+        let adStartTimeout = player.model.adSettings.startTimeout
+        let adStartTimeoutController = AdStartTimeoutController(dispatcher: dispatcher) { onFire in
+            Timer(duration: adStartTimeout, fire: onFire)
+        }
         
         _ = player.store.state.addObserver { state in
             vrmRequestController.process(with: state)
@@ -409,23 +408,13 @@ public struct VVPSDK {
             maxAdSearchTimeController.process(with: state)
             mp4AdCreativeController.process(state: state)
             vpaidAdCreativeController.process(state: state)
+            maxShowTimeController.process(state: state)
+            adStartTimeoutController.process(state: state)
         }
         
         _ = player.addObserver { playerProps in
             prerollProcessor.process(props: playerProps)
             midrollProcessor.process(props: playerProps)
-        }
-        
-        let timerController = MaxShowTimeController(timerCreator: { Timer(duration: $0){ dispatcher(maxShowTimeReached())} },
-                                                    maxAdDuration: player.model.adSettings.maxDuration,
-                                                    dispatcher: dispatcher)
-        let adStartTimeout = player.model.adSettings.startTimeout
-        let adStartTimeoutController = AdStartTimeoutController {
-            Timer(duration: adStartTimeout) { dispatcher(adStartTimeoutReached()) }
-        }
-        _ = player.store.state.addObserver { state in
-            timerController.process(state: state)
-            adStartTimeoutController.process(state: state)
         }
     }
 }

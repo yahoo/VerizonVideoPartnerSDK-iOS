@@ -7,6 +7,15 @@ public enum AdCreative: Hashable {
     case vpaid([VPAID])
     case none
     
+    public var isVPAID: Bool {
+        guard case .vpaid = self else { return false }
+        return true
+    }
+    public var isMP4: Bool {
+        guard case .mp4 = self else { return false }
+        return true
+    }
+    
     public struct MP4: Hashable {
         public let internalID: UUID
         public let url: URL

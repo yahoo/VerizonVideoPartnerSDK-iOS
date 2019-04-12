@@ -132,6 +132,14 @@ func reduce(state: Rate, action: Action) -> Rate {
                     adRate: state.adRate,
                     isAttachedToViewPort: false,
                     currentKind: state.currentKind)
+        
+    case (is VRMCore.NoGroupsToProcess, .ad) where state.isAttachedToViewPort:
+        return Rate(contentRate: .init(player: true,
+                                       stream: state.contentRate.stream),
+                    adRate: .init(player: false,
+                                  stream: false),
+                    isAttachedToViewPort: state.isAttachedToViewPort,
+                    currentKind: .content)
    
     case (is VPAIDActions.AdStarted, .ad) where state.isAttachedToViewPort:
         return Rate(contentRate: .init(player: false, stream: false),
@@ -169,7 +177,7 @@ func reduce(state: Rate, action: Action) -> Rate {
          (is VPAIDActions.AdSkipped, .ad),
          (is VPAIDActions.AdError, .ad),
          (is SkipAd, .ad),
-         (is AdStartTimeout, .ad),
+         (is MP4AdStartTimeout, .ad),
          (is AdMaxShowTimeout, .ad):
         return Rate(contentRate: .init(player: true,
                                        stream: state.contentRate.stream),

@@ -6,7 +6,7 @@ import Foundation
 public extension VRMCore {
     
     /// Currently we support only InLine ads.
-    public enum VASTModel: Hashable {
+    enum VASTModel: Hashable {
         
         public struct WrapperModel: Hashable {
             public let tagURL: URL
@@ -42,7 +42,7 @@ public extension VRMCore.VASTModel.WrapperModel {
 }
 
 public extension Ad.VASTModel {
-    public func merge(pixels: AdPixels,
+    func merge(pixels: AdPixels,
                       verifications: [Ad.VASTModel.AdVerification],
                       adProgress: [Ad.VASTModel.AdProgress]) -> Ad.VASTModel {
         return PlayerCore.Ad.VASTModel(
@@ -59,7 +59,7 @@ public extension Ad.VASTModel {
 }
 
 public extension AdPixels {
-    public func merge(with pixels: AdPixels) -> AdPixels {
+    func merge(with pixels: AdPixels) -> AdPixels {
         return AdPixels(
             impression: impression + pixels.impression,
             error: error + pixels.error,

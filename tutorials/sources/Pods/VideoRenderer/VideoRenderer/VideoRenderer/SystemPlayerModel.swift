@@ -107,7 +107,7 @@ extension SystemPlayer {
         func print(event: String) {
             let formatter = DateFormatter()
             formatter.dateFormat = "HH:mm:ss,mmm"
-            print(event: "\(self.player): \(formatter.string(from: Date())) \(event)")
+            Swift.print("\(self.player): \(formatter.string(from: Date())) \(event)")
         }
         
         @objc func handleNotification(notification: NSNotification) {
