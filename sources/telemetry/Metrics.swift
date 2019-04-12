@@ -534,10 +534,8 @@ extension Telemetry.Metrics.OpenMeasurement {
 
 func telemetryJSøN(withContext context: JSON, type: String, value: JSøN = .null) -> Telemetry.TelemetryJSON {
     let data: JSøN = [
-        "data" : [
-            "type" : type |> json,
-            "value": value
-            ] |> json
+        "type" : type |> json,
+        "value": value
         ] |> json
     return Telemetry.TelemetryJSON(context: context, data: data)
 }
