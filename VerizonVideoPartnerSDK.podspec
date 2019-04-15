@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'VerizonVideoPartnerSDK'
-  s.version          = '1.4.0'
+  s.version          = '1.4.1'
   s.summary          = 'Verizon Video Partner SDK'
   s.license          = { type: 'MIT', file: 'LICENSE' }
   s.swift_version    = '4.2'
