@@ -1,5 +1,13 @@
 # Change Log
 
+## [1.4.2](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/tree/1.4.2) (2019-04-16)
+[Full Changelog](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/compare/1.4.1...1.4.2)
+
+**Merged pull requests:**
+
+- Fixes in player controls hierarchy [\#112](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/pull/112) ([RomanTysiachnik](https://github.com/RomanTysiachnik))
+- VVP SDK 1.4.1 release [\#111](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/pull/111) ([RomanTysiachnik](https://github.com/RomanTysiachnik))
+
 ## [1.4.1](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/tree/1.4.1) (2019-04-12)
 [Full Changelog](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/compare/1.4.0...1.4.1)
 
