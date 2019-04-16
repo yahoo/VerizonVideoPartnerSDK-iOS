@@ -44,7 +44,8 @@ extension VideoProvider.Parse {
             vcdn: json.parse("mediaFileHosts"),
             apid: json.parse("apid"),
             vcid: json.parse("vcid"),
-            mpid: json.parse("mpid")
+            mpid: json.parse("mpid"),
+            spaceId: json.parse("spaceId")
         )
     }
     

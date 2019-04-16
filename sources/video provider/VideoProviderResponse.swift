@@ -71,6 +71,7 @@ extension VideoProvider.Response {
             public let apid: String?
             public let vcid: [String?]?
             public let mpid: [String?]?
+            public let spaceId: String
             
             public enum Error: Swift.Error {
                 case emptyPid
@@ -84,6 +85,7 @@ extension VideoProvider.Response {
                 case emptySessionID
                 case emptyReferringURLString
                 case emptyPlatformSupport
+                case emptySpaceId
             }
             
             public init(adURL: URL,
@@ -103,7 +105,8 @@ extension VideoProvider.Response {
                         vcdn: [String]?,
                         apid: String?,
                         vcid: [String?]?,
-                        mpid: [String?]?) throws {
+                        mpid: [String?]?,
+                        spaceId: String) throws {
                 
                 guard !pid.isEmpty else { throw Error.emptyPid }
                 guard !bcid.isEmpty else { throw Error.emptyBcid }
@@ -115,6 +118,7 @@ extension VideoProvider.Response {
                 guard !sessionId.isEmpty else { throw Error.emptySessionID }
                 guard !referringURLString.isEmpty else { throw Error.emptyReferringURLString}
                 guard !platformSupport.isEmpty else { throw Error.emptyPlatformSupport }
+                guard !spaceId.isEmpty else { throw Error.emptySpaceId }
                 
                 self.pid = pid
                 self.bcid = bcid
@@ -134,6 +138,7 @@ extension VideoProvider.Response {
                 self.apid = apid
                 self.vcid = vcid
                 self.mpid = mpid
+                self.spaceId = spaceId
             }
         }
     }

@@ -303,7 +303,8 @@ class VideoProviderTests: XCTestCase {
             "vcdn": nil,
             "apid": nil,
             "vcid": nil,
-            "mpid": nil
+            "mpid": nil,
+            "spaceId": "123123"
         ]
     ]
     
@@ -328,6 +329,7 @@ class VideoProviderTests: XCTestCase {
         XCTAssertNil(native.apid)
         XCTAssertNil(native.vcid)
         XCTAssertNil(native.mpid)
+        XCTAssertEqual(native.spaceId, "123123")
     }
     
     func testJavascriptTrackingContextParsing() throws {
@@ -424,7 +426,8 @@ class VideoProviderTests: XCTestCase {
             "mediaFileHosts": ["com.domain.1", "com.domain.2"],
             "apid": "apid",
             "vcid": [nil, "test"],
-            "mpid": [nil, "test"]
+            "mpid": [nil, "test"],
+            "spaceId" : "123123"
         ]
     ]
     
@@ -455,5 +458,6 @@ class VideoProviderTests: XCTestCase {
         XCTAssertNil(native.mpid?[0])
         XCTAssertEqual(native.vcid?[1], "test")
         XCTAssertEqual(native.mpid?[1], "test")
+        XCTAssertEqual(native.spaceId, "123123")
     }
 }

@@ -24,10 +24,15 @@ extension VVPSDK {
             public var renderers: [Renderer.Descriptor]
         }
         
+        public struct RapidConfig {
+            public var spaceId: String?
+        }
+        
         public var client: Client
         public var device: Device
         public var sdk: SDK
         public var extra: JSON
+        public var rapidConfig: RapidConfig
         
         public static var current: Context {
             let mainInfo = Bundle.main.infoDictionary!
@@ -56,7 +61,8 @@ extension VVPSDK {
                     version: VVPSDK.backendVersion,
                     renderers: Renderer.Repository.shared.availableRenderers
                 ),
-                extra: [:])
+                extra: [:],
+                rapidConfig: RapidConfig(spaceId: nil))
         }
         
         var json: JSON {
@@ -93,6 +99,10 @@ extension VVPSDK {
             
             if !extra.isEmpty {
                 context["extra"] = extra
+            }
+            
+            if let spaceId = rapidConfig.spaceId {
+                context["rapidConfig"] = [ "spaceId" : spaceId ]
             }
             
             return ["context": context]

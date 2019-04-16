@@ -5,11 +5,8 @@ import Foundation <%
 require 'YAML'
 require 'FileUtils'
 
-file = nil
-Dir.chdir('..') do 
-  path = "mobile-sdk-evolution/definitions/tracking pixels/tracking-pixels.yaml"
-  file = File.read(path)
-end
+path = "tracking-pixels.yaml"
+file = File.read(path)
 
 api = YAML.load(file).map { |request_name, fields|
   fields[:request_name] = request_name
