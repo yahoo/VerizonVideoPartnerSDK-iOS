@@ -1,5 +1,13 @@
 # Change Log
 
+## [1.5.0](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/tree/1.5.0) (2019-04-18)
+[Full Changelog](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/compare/1.4.2...1.5.0)
+
+**Merged pull requests:**
+
+- `spaceid` support [\#114](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/pull/114) ([AndriiMoskvin](https://github.com/AndriiMoskvin))
+- VVP SDK 1.4.2 release [\#113](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/pull/113) ([RomanTysiachnik](https://github.com/RomanTysiachnik))
+
 ## [1.4.2](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/tree/1.4.2) (2019-04-16)
 [Full Changelog](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/compare/1.4.1...1.4.2)
 
