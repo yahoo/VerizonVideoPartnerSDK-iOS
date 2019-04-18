@@ -271,7 +271,8 @@ public struct VVPSDK {
                 vcdn: native.vcdn,
                 apid: native.apid,
                 mpid: native.mpid,
-                vcid: native.vcid
+                vcid: native.vcid,
+                spaceId: native.spaceId
             )
             
             let reporter = TrackingPixels.Reporter(

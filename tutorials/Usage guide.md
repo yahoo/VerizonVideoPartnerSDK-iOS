@@ -40,6 +40,8 @@ This context is completed with values available in your application plist, devic
 `extra` portion of context is empty by default, however, you can pass any JSON compatible dictionary here.
 Content of this dictionary will be treated by web service in app specific way.
 
+`rapidConfig` can be used to pass `spaceId` parameter. If it is not specified Video MicroService will return default one.
+
 ### VVPSDK.Configuration
 
 `VVPSDK.Provider` have another method `func getConfiguration() -> Future<Result<VVPSDK.Configuration>>`.

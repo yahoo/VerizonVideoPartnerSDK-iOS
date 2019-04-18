@@ -27,6 +27,7 @@ extension TrackingPixels {
             let apid: String?
             let mpid: [String?]?
             let vcid: [String?]?
+            let spaceId: String
         }
         
         let context: Context
@@ -70,7 +71,8 @@ extension TrackingPixels.Reporter {
                 vcid: context.vcid?[videoIndex],
                 mpid: context.mpid?[videoIndex],
                 cb: cachebuster(),
-                m_fwsitesection: context.siteSection)))
+                m_fwsitesection: context.siteSection,
+                spaceid: context.spaceId)))
     }
     
     func videoQuartile(videoIndex: Int,
@@ -97,7 +99,8 @@ extension TrackingPixels.Reporter {
                 vcid: context.vcid?[videoIndex],
                 mpid: context.mpid?[videoIndex],
                 cb: cachebuster(),
-                m_fwsitesection: context.siteSection)))
+                m_fwsitesection: context.siteSection,
+                spaceid: context.spaceId)))
     }
     
     func videoPlay(videoIndex: Int,
@@ -125,7 +128,8 @@ extension TrackingPixels.Reporter {
                 vcid: context.vcid?[videoIndex],
                 mpid: context.mpid?[videoIndex],
                 cb: cachebuster(),
-                m_fwsitesection: context.siteSection)))
+                m_fwsitesection: context.siteSection,
+                spaceid: context.spaceId)))
     }
     
     func videoStats(
@@ -150,7 +154,8 @@ extension TrackingPixels.Reporter {
                 r: context.referringURL,
                 vvuid: videoViewUID,
                 cb: cachebuster(),
-                m_fwsitesection: context.siteSection)))
+                m_fwsitesection: context.siteSection,
+                spaceid: context.spaceId)))
     }
     
     func videoTime(
@@ -181,7 +186,8 @@ extension TrackingPixels.Reporter {
                 vcid: context.vcid?[videoIndex],
                 mpid: context.mpid?[videoIndex],
                 cb: cachebuster(),
-                m_fwsitesection: context.siteSection)))
+                m_fwsitesection: context.siteSection,
+                spaceid: context.spaceId)))
     }
     
     func contextStarted(videoIndex: Int, videoViewUID: String) {
@@ -201,7 +207,8 @@ extension TrackingPixels.Reporter {
                 vcid: context.vcid?[videoIndex],
                 mpid: context.mpid?[videoIndex],
                 cb: cachebuster(),
-                m_fwsitesection: context.siteSection)))
+                m_fwsitesection: context.siteSection,
+                spaceid: context.spaceId)))
     }
     
     func impression() {
@@ -215,7 +222,8 @@ extension TrackingPixels.Reporter {
                 sid:  context.sessionID,
                 r: context.referringURL,
                 cb: cachebuster(),
-                m_fwsitesection: context.siteSection)))
+                m_fwsitesection: context.siteSection,
+                spaceid: context.spaceId)))
     }
     
     func displays(size: CGSize?, videoIndex: Int, videoViewUID: String, timestamp: String?) {
@@ -234,7 +242,8 @@ extension TrackingPixels.Reporter {
                 r: context.referringURL,
                 vvuid: videoViewUID,
                 cb: cachebuster(),
-                m_fwsitesection: context.siteSection)))
+                m_fwsitesection: context.siteSection,
+                spaceid: context.spaceId)))
     }
     
     func slotOpportunity(videoIndex: Int,
@@ -262,7 +271,8 @@ extension TrackingPixels.Reporter {
                 cb: cachebuster(),
                 s: "true",
                 w: width.map { String(describing: $0) },
-                m_fwsitesection: context.siteSection)))
+                m_fwsitesection: context.siteSection,
+                spaceid: context.spaceId)))
     }
     
     func threeSecPlayback(videoIndex: Int,
@@ -295,7 +305,8 @@ extension TrackingPixels.Reporter {
                 cvt: currentTime.map(String.init),
                 vcdn: context.vcdn?[videoIndex],
                 apid: context.apid,
-                p_vw_sound: String(volume))))
+                p_vw_sound: String(volume),
+                spaceid: context.spaceId)))
     }
     
     func heartbeat(videoIndex: Int,
@@ -331,7 +342,8 @@ extension TrackingPixels.Reporter {
                 cb: cachebuster(),
                 m_fwsitesection: context.siteSection,
                 apid: context.apid,
-                p_vw_sound: String(volume))))
+                p_vw_sound: String(volume),
+                spaceid: context.spaceId)))
     }
     
     func videoImpression(videoIndex: Int,
@@ -357,7 +369,8 @@ extension TrackingPixels.Reporter {
                 vcid: context.vcid?[videoIndex],
                 mpid: context.mpid?[videoIndex],
                 seq: String(videoIndex),
-                m_fwsitesection: context.siteSection)
+                m_fwsitesection: context.siteSection,
+                spaceid: context.spaceId)
             ))
     }
 }
@@ -391,7 +404,8 @@ extension TrackingPixels.Reporter {
                 cb: cachebuster(),
                 al: formatter.string(from: adDuration as NSNumber),
                 m_fwsitesection: context.siteSection,
-                cpm: info.cpm)))
+                cpm: info.cpm,
+                spaceid: context.spaceId)))
     }
     
     
@@ -422,7 +436,8 @@ extension TrackingPixels.Reporter {
                 vvuid: videoViewUID,
                 cb: cachebuster(),
                 m_fwsitesection: context.siteSection,
-                cpm: info.cpm)))
+                cpm: info.cpm,
+                spaceid: context.spaceId)))
     }
     
     func adEngineResponse(
@@ -460,7 +475,8 @@ extension TrackingPixels.Reporter {
                 vvuid: videoViewUID,
                 cb: cachebuster(),
                 m_fwsitesection: context.siteSection,
-                cpm: info.cpm)))
+                cpm: info.cpm,
+                spaceid: context.spaceId)))
     }
     
     func adEngineIssue(
@@ -496,7 +512,8 @@ extension TrackingPixels.Reporter {
                 cb: cachebuster(),
                 aid: adId,
                 m_fwsitesection: context.siteSection,
-                cpm: info.cpm)))
+                cpm: info.cpm,
+                spaceid: context.spaceId)))
     }
     
     func adEngineFlow(
@@ -536,7 +553,8 @@ extension TrackingPixels.Reporter {
                 cb: cachebuster(),
                 aid: adId,
                 m_fwsitesection: context.siteSection,
-                cpm: info.cpm)))
+                cpm: info.cpm,
+                spaceid: context.spaceId)))
     }
     
     func adVRMRequest(
@@ -562,7 +580,8 @@ extension TrackingPixels.Reporter {
                 r: context.referringURL,
                 vvuid: videoViewUID,
                 cb: cachebuster(),
-                m_fwsitesection: context.siteSection)))
+                m_fwsitesection: context.siteSection,
+                spaceid: context.spaceId)))
     }
     
     func mrcAdViewGroupM(videoIndex: Int,
@@ -588,7 +607,8 @@ extension TrackingPixels.Reporter {
                 vvuid: videoViewUID,
                 cb: cachebuster(),
                 m_fwsitesection: context.siteSection,
-                cpm: info.cpm)))
+                cpm: info.cpm,
+                spaceid: context.spaceId)))
     }
     
     func adStart(info: Ad.Metrics.Info,
@@ -608,7 +628,8 @@ extension TrackingPixels.Reporter {
                 vvuid: videoViewUID,
                 cb: cachebuster(),
                 m_fwsitesection: context.siteSection,
-                cpm: info.cpm)))
+                cpm: info.cpm,
+                spaceid: context.spaceId)))
     }
     
     func adServerRequest(info: Ad.Metrics.Info,
@@ -627,7 +648,8 @@ extension TrackingPixels.Reporter {
                 vvuid: videoViewUID,
                 cb: cachebuster(),
                 m_fwsitesection: context.siteSection,
-                cpm: info.cpm)))
+                cpm: info.cpm,
+                spaceid: context.spaceId)))
     }
 }
 
@@ -647,7 +669,8 @@ extension TrackingPixels.Reporter {
                                             vvuid: videoViewUID,
                                             app_id: context.applicationID,
                                             cb: cachebuster(),
-                                            m_fwsitesection: context.siteSection)))
+                                            m_fwsitesection: context.siteSection,
+                                            spaceid: context.spaceId)))
     }
     
     func start(videoIndex: Int, videoViewUID: String, intentElapsedTime: String?) {
@@ -665,7 +688,8 @@ extension TrackingPixels.Reporter {
                                            vvuid: videoViewUID,
                                            app_id: context.applicationID,
                                            cb: cachebuster(),
-                                           m_fwsitesection: context.siteSection)))
+                                           m_fwsitesection: context.siteSection,
+                                           spaceid: context.spaceId)))
     }
     
     func bufferingStart(videoIndex: Int,
@@ -687,7 +711,8 @@ extension TrackingPixels.Reporter {
                                                  vvuid: videoViewUID,
                                                  app_id: context.applicationID,
                                                  cb: cachebuster(),
-                                                 m_fwsitesection: context.siteSection)))
+                                                 m_fwsitesection: context.siteSection,
+                                                 spaceid: context.spaceId)))
     }
     
     func bufferingEnd(videoIndex: Int,
@@ -710,7 +735,8 @@ extension TrackingPixels.Reporter {
                                                vvuid: videoViewUID,
                                                app_id: context.applicationID,
                                                cb: cachebuster(),
-                                               m_fwsitesection: context.siteSection)))
+                                               m_fwsitesection: context.siteSection,
+                                               spaceid: context.spaceId)))
     }
     
     func error(videoIndex: Int,
@@ -731,7 +757,8 @@ extension TrackingPixels.Reporter {
                                                             sid: context.sessionID,
                                                             app_id: context.applicationID,
                                                             cb: cachebuster(),
-                                                            m_fwsitesection: context.siteSection)))
+                                                            m_fwsitesection: context.siteSection,
+                                                            spaceid: context.spaceId)))
     }
 }
 

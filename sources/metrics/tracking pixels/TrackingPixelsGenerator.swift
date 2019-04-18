@@ -27,7 +27,8 @@ extension TrackingPixels.Generator {
 		cb: String,
 		m_fwsitesection: String? = nil,
 		bckt: String? = nil,
-		expn: String? = nil) -> URLComponents
+		expn: String? = nil,
+		spaceid: String) -> URLComponents
     {
         var queryItems = [URLQueryItem]()
         
@@ -48,6 +49,7 @@ extension TrackingPixels.Generator {
         if let m_fwsitesection = m_fwsitesection { queryItems.append(URLQueryItem(name: "m.fwsitesection", value: m_fwsitesection)) }
         if let bckt = bckt { queryItems.append(URLQueryItem(name: "bckt", value: bckt)) }
         if let expn = expn { queryItems.append(URLQueryItem(name: "expn", value: expn)) }
+        queryItems.append(URLQueryItem(name: "spaceid", value: spaceid))
         
         var components = URLComponents()
         components.path = "trk/context-started.gif"
@@ -77,7 +79,8 @@ extension TrackingPixels.Generator {
 		cb: String,
 		m_fwsitesection: String? = nil,
 		bckt: String? = nil,
-		expn: String? = nil) -> URLComponents
+		expn: String? = nil,
+		spaceid: String) -> URLComponents
     {
         var queryItems = [URLQueryItem]()
         
@@ -102,6 +105,7 @@ extension TrackingPixels.Generator {
         if let m_fwsitesection = m_fwsitesection { queryItems.append(URLQueryItem(name: "m.fwsitesection", value: m_fwsitesection)) }
         if let bckt = bckt { queryItems.append(URLQueryItem(name: "bckt", value: bckt)) }
         if let expn = expn { queryItems.append(URLQueryItem(name: "expn", value: expn)) }
+        queryItems.append(URLQueryItem(name: "spaceid", value: spaceid))
         
         var components = URLComponents()
         components.path = "trk/video-play.gif"
@@ -128,7 +132,8 @@ extension TrackingPixels.Generator {
 		vcid: String? = nil,
 		mpid: String? = nil,
 		cb: String,
-		m_fwsitesection: String? = nil) -> URLComponents
+		m_fwsitesection: String? = nil,
+		spaceid: String) -> URLComponents
     {
         var queryItems = [URLQueryItem]()
         
@@ -150,6 +155,7 @@ extension TrackingPixels.Generator {
         if let mpid = mpid { queryItems.append(URLQueryItem(name: "mpid", value: mpid)) }
         queryItems.append(URLQueryItem(name: "cb", value: cb))
         if let m_fwsitesection = m_fwsitesection { queryItems.append(URLQueryItem(name: "m.fwsitesection", value: m_fwsitesection)) }
+        queryItems.append(URLQueryItem(name: "spaceid", value: spaceid))
         
         var components = URLComponents()
         components.path = "trk/video-decile.gif"
@@ -178,7 +184,8 @@ extension TrackingPixels.Generator {
 		cb: String,
 		m_fwsitesection: String? = nil,
 		bckt: String? = nil,
-		expn: String? = nil) -> URLComponents
+		expn: String? = nil,
+		spaceid: String) -> URLComponents
     {
         var queryItems = [URLQueryItem]()
         
@@ -202,6 +209,7 @@ extension TrackingPixels.Generator {
         if let m_fwsitesection = m_fwsitesection { queryItems.append(URLQueryItem(name: "m.fwsitesection", value: m_fwsitesection)) }
         if let bckt = bckt { queryItems.append(URLQueryItem(name: "bckt", value: bckt)) }
         if let expn = expn { queryItems.append(URLQueryItem(name: "expn", value: expn)) }
+        queryItems.append(URLQueryItem(name: "spaceid", value: spaceid))
         
         var components = URLComponents()
         components.path = "trk/video-quartile.gif"
@@ -229,7 +237,8 @@ extension TrackingPixels.Generator {
 		vcid: String? = nil,
 		mpid: String? = nil,
 		cb: String,
-		m_fwsitesection: String? = nil) -> URLComponents
+		m_fwsitesection: String? = nil,
+		spaceid: String) -> URLComponents
     {
         var queryItems = [URLQueryItem]()
         
@@ -252,6 +261,7 @@ extension TrackingPixels.Generator {
         if let mpid = mpid { queryItems.append(URLQueryItem(name: "mpid", value: mpid)) }
         queryItems.append(URLQueryItem(name: "cb", value: cb))
         if let m_fwsitesection = m_fwsitesection { queryItems.append(URLQueryItem(name: "m.fwsitesection", value: m_fwsitesection)) }
+        queryItems.append(URLQueryItem(name: "spaceid", value: spaceid))
         
         var components = URLComponents()
         components.path = "trk/video-time.gif"
@@ -274,7 +284,8 @@ extension TrackingPixels.Generator {
 		r: String,
 		vvuid: String? = nil,
 		cb: String,
-		m_fwsitesection: String? = nil) -> URLComponents
+		m_fwsitesection: String? = nil,
+		spaceid: String) -> URLComponents
     {
         var queryItems = [URLQueryItem]()
         
@@ -292,6 +303,7 @@ extension TrackingPixels.Generator {
         if let vvuid = vvuid { queryItems.append(URLQueryItem(name: "vvuid", value: vvuid)) }
         queryItems.append(URLQueryItem(name: "cb", value: cb))
         if let m_fwsitesection = m_fwsitesection { queryItems.append(URLQueryItem(name: "m.fwsitesection", value: m_fwsitesection)) }
+        queryItems.append(URLQueryItem(name: "spaceid", value: spaceid))
         
         var components = URLComponents()
         components.path = "trk/video-stats.gif"
@@ -323,7 +335,8 @@ extension TrackingPixels.Generator {
 		adseq: String? = nil,
 		bckt: String? = nil,
 		expn: String? = nil,
-		pblob_id: String? = nil) -> URLComponents
+		pblob_id: String? = nil,
+		spaceid: String) -> URLComponents
     {
         var queryItems = [URLQueryItem]()
         
@@ -350,6 +363,7 @@ extension TrackingPixels.Generator {
         if let bckt = bckt { queryItems.append(URLQueryItem(name: "bckt", value: bckt)) }
         if let expn = expn { queryItems.append(URLQueryItem(name: "expn", value: expn)) }
         if let pblob_id = pblob_id { queryItems.append(URLQueryItem(name: "pblob_id", value: pblob_id)) }
+        queryItems.append(URLQueryItem(name: "spaceid", value: spaceid))
         
         var components = URLComponents()
         components.path = "trk/slot-opp.gif"
@@ -376,7 +390,8 @@ extension TrackingPixels.Generator {
 		cb: String,
 		m_fwsitesection: String? = nil,
 		bckt: String? = nil,
-		expn: String? = nil) -> URLComponents
+		expn: String? = nil,
+		spaceid: String) -> URLComponents
     {
         var queryItems = [URLQueryItem]()
         
@@ -398,6 +413,7 @@ extension TrackingPixels.Generator {
         if let m_fwsitesection = m_fwsitesection { queryItems.append(URLQueryItem(name: "m.fwsitesection", value: m_fwsitesection)) }
         if let bckt = bckt { queryItems.append(URLQueryItem(name: "bckt", value: bckt)) }
         if let expn = expn { queryItems.append(URLQueryItem(name: "expn", value: expn)) }
+        queryItems.append(URLQueryItem(name: "spaceid", value: spaceid))
         
         var components = URLComponents()
         components.path = "trk/ad-request.gif"
@@ -421,7 +437,8 @@ extension TrackingPixels.Generator {
 		bckt: String? = nil,
 		expn: String? = nil,
 		cpm: String? = nil,
-		pblob_id: String? = nil) -> URLComponents
+		pblob_id: String? = nil,
+		spaceid: String) -> URLComponents
     {
         var queryItems = [URLQueryItem]()
         
@@ -440,6 +457,7 @@ extension TrackingPixels.Generator {
         if let expn = expn { queryItems.append(URLQueryItem(name: "expn", value: expn)) }
         if let cpm = cpm { queryItems.append(URLQueryItem(name: "cpm", value: cpm)) }
         if let pblob_id = pblob_id { queryItems.append(URLQueryItem(name: "pblob_id", value: pblob_id)) }
+        queryItems.append(URLQueryItem(name: "spaceid", value: spaceid))
         
         var components = URLComponents()
         components.path = "ads/ad-request.gif"
@@ -476,7 +494,8 @@ extension TrackingPixels.Generator {
 		bckt: String? = nil,
 		expn: String? = nil,
 		cpm: String? = nil,
-		pblob_id: String? = nil) -> URLComponents
+		pblob_id: String? = nil,
+		spaceid: String) -> URLComponents
     {
         var queryItems = [URLQueryItem]()
         
@@ -508,6 +527,7 @@ extension TrackingPixels.Generator {
         if let expn = expn { queryItems.append(URLQueryItem(name: "expn", value: expn)) }
         if let cpm = cpm { queryItems.append(URLQueryItem(name: "cpm", value: cpm)) }
         if let pblob_id = pblob_id { queryItems.append(URLQueryItem(name: "pblob_id", value: pblob_id)) }
+        queryItems.append(URLQueryItem(name: "spaceid", value: spaceid))
         
         var components = URLComponents()
         components.path = "trk/ad-issue.gif"
@@ -540,7 +560,8 @@ extension TrackingPixels.Generator {
 		bckt: String? = nil,
 		expn: String? = nil,
 		cpm: String? = nil,
-		pblob_id: String? = nil) -> URLComponents
+		pblob_id: String? = nil,
+		spaceid: String) -> URLComponents
     {
         var queryItems = [URLQueryItem]()
         
@@ -568,6 +589,7 @@ extension TrackingPixels.Generator {
         if let expn = expn { queryItems.append(URLQueryItem(name: "expn", value: expn)) }
         if let cpm = cpm { queryItems.append(URLQueryItem(name: "cpm", value: cpm)) }
         if let pblob_id = pblob_id { queryItems.append(URLQueryItem(name: "pblob_id", value: pblob_id)) }
+        queryItems.append(URLQueryItem(name: "spaceid", value: spaceid))
         
         var components = URLComponents()
         components.path = "trk/ad-view-time.gif"
@@ -601,7 +623,8 @@ extension TrackingPixels.Generator {
 		bckt: String? = nil,
 		expn: String? = nil,
 		cpm: String? = nil,
-		pblob_id: String? = nil) -> URLComponents
+		pblob_id: String? = nil,
+		spaceid: String) -> URLComponents
     {
         var queryItems = [URLQueryItem]()
         
@@ -630,6 +653,7 @@ extension TrackingPixels.Generator {
         if let expn = expn { queryItems.append(URLQueryItem(name: "expn", value: expn)) }
         if let cpm = cpm { queryItems.append(URLQueryItem(name: "cpm", value: cpm)) }
         if let pblob_id = pblob_id { queryItems.append(URLQueryItem(name: "pblob_id", value: pblob_id)) }
+        queryItems.append(URLQueryItem(name: "spaceid", value: spaceid))
         
         var components = URLComponents()
         components.path = "trk/ad-engine-request.gif"
@@ -667,7 +691,8 @@ extension TrackingPixels.Generator {
 		bckt: String? = nil,
 		expn: String? = nil,
 		cpm: String? = nil,
-		pblob_id: String? = nil) -> URLComponents
+		pblob_id: String? = nil,
+		spaceid: String) -> URLComponents
     {
         var queryItems = [URLQueryItem]()
         
@@ -700,6 +725,7 @@ extension TrackingPixels.Generator {
         if let expn = expn { queryItems.append(URLQueryItem(name: "expn", value: expn)) }
         if let cpm = cpm { queryItems.append(URLQueryItem(name: "cpm", value: cpm)) }
         if let pblob_id = pblob_id { queryItems.append(URLQueryItem(name: "pblob_id", value: pblob_id)) }
+        queryItems.append(URLQueryItem(name: "spaceid", value: spaceid))
         
         var components = URLComponents()
         components.path = "trk/ad-engine-response.gif"
@@ -738,7 +764,8 @@ extension TrackingPixels.Generator {
 		bckt: String? = nil,
 		expn: String? = nil,
 		cpm: String? = nil,
-		pblob_id: String? = nil) -> URLComponents
+		pblob_id: String? = nil,
+		spaceid: String) -> URLComponents
     {
         var queryItems = [URLQueryItem]()
         
@@ -772,6 +799,7 @@ extension TrackingPixels.Generator {
         if let expn = expn { queryItems.append(URLQueryItem(name: "expn", value: expn)) }
         if let cpm = cpm { queryItems.append(URLQueryItem(name: "cpm", value: cpm)) }
         if let pblob_id = pblob_id { queryItems.append(URLQueryItem(name: "pblob_id", value: pblob_id)) }
+        queryItems.append(URLQueryItem(name: "spaceid", value: spaceid))
         
         var components = URLComponents()
         components.path = "trk/ad-engine-flow.gif"
@@ -802,7 +830,8 @@ extension TrackingPixels.Generator {
 		bckt: String? = nil,
 		expn: String? = nil,
 		cpm: String? = nil,
-		pblob_id: String? = nil) -> URLComponents
+		pblob_id: String? = nil,
+		spaceid: String) -> URLComponents
     {
         var queryItems = [URLQueryItem]()
         
@@ -828,6 +857,7 @@ extension TrackingPixels.Generator {
         if let expn = expn { queryItems.append(URLQueryItem(name: "expn", value: expn)) }
         if let cpm = cpm { queryItems.append(URLQueryItem(name: "cpm", value: cpm)) }
         if let pblob_id = pblob_id { queryItems.append(URLQueryItem(name: "pblob_id", value: pblob_id)) }
+        queryItems.append(URLQueryItem(name: "spaceid", value: spaceid))
         
         var components = URLComponents()
         components.path = "trk/mrc-ad-view.gif"
@@ -845,7 +875,8 @@ extension TrackingPixels.Generator {
 		sid: String? = nil,
 		r: String,
 		cb: String,
-		m_fwsitesection: String? = nil) -> URLComponents
+		m_fwsitesection: String? = nil,
+		spaceid: String) -> URLComponents
     {
         var queryItems = [URLQueryItem]()
         
@@ -858,6 +889,7 @@ extension TrackingPixels.Generator {
         queryItems.append(URLQueryItem(name: "r", value: r))
         queryItems.append(URLQueryItem(name: "cb", value: cb))
         if let m_fwsitesection = m_fwsitesection { queryItems.append(URLQueryItem(name: "m.fwsitesection", value: m_fwsitesection)) }
+        queryItems.append(URLQueryItem(name: "spaceid", value: spaceid))
         
         var components = URLComponents()
         components.path = "trk/impression.gif"
@@ -886,7 +918,8 @@ extension TrackingPixels.Generator {
 		seq: String? = nil,
 		m_fwsitesection: String? = nil,
 		bckt: String? = nil,
-		expn: String? = nil) -> URLComponents
+		expn: String? = nil,
+		spaceid: String) -> URLComponents
     {
         var queryItems = [URLQueryItem]()
         
@@ -910,6 +943,7 @@ extension TrackingPixels.Generator {
         if let m_fwsitesection = m_fwsitesection { queryItems.append(URLQueryItem(name: "m.fwsitesection", value: m_fwsitesection)) }
         if let bckt = bckt { queryItems.append(URLQueryItem(name: "bckt", value: bckt)) }
         if let expn = expn { queryItems.append(URLQueryItem(name: "expn", value: expn)) }
+        queryItems.append(URLQueryItem(name: "spaceid", value: spaceid))
         
         var components = URLComponents()
         components.path = "trk/video-impression.gif"
@@ -934,7 +968,9 @@ extension TrackingPixels.Generator {
 		cb: String,
 		m_fwsitesection: String? = nil,
 		bckt: String? = nil,
-		expn: String? = nil) -> URLComponents
+		expn: String? = nil,
+		ab: String? = nil,
+		spaceid: String) -> URLComponents
     {
         var queryItems = [URLQueryItem]()
         
@@ -954,6 +990,8 @@ extension TrackingPixels.Generator {
         if let m_fwsitesection = m_fwsitesection { queryItems.append(URLQueryItem(name: "m.fwsitesection", value: m_fwsitesection)) }
         if let bckt = bckt { queryItems.append(URLQueryItem(name: "bckt", value: bckt)) }
         if let expn = expn { queryItems.append(URLQueryItem(name: "expn", value: expn)) }
+        if let ab = ab { queryItems.append(URLQueryItem(name: "ab", value: ab)) }
+        queryItems.append(URLQueryItem(name: "spaceid", value: spaceid))
         
         var components = URLComponents()
         components.path = "trk/display.gif"
@@ -978,7 +1016,8 @@ extension TrackingPixels.Generator {
 		bckt: String? = nil,
 		expn: String? = nil,
 		cpm: String? = nil,
-		pblob_id: String? = nil) -> URLComponents
+		pblob_id: String? = nil,
+		spaceid: String) -> URLComponents
     {
         var queryItems = [URLQueryItem]()
         
@@ -998,6 +1037,7 @@ extension TrackingPixels.Generator {
         if let expn = expn { queryItems.append(URLQueryItem(name: "expn", value: expn)) }
         if let cpm = cpm { queryItems.append(URLQueryItem(name: "cpm", value: cpm)) }
         if let pblob_id = pblob_id { queryItems.append(URLQueryItem(name: "pblob_id", value: pblob_id)) }
+        queryItems.append(URLQueryItem(name: "spaceid", value: spaceid))
         
         var components = URLComponents()
         components.path = "ads/ad-start.gif"
@@ -1028,7 +1068,8 @@ extension TrackingPixels.Generator {
 		cvt: String? = nil,
 		vcdn: String? = nil,
 		apid: String? = nil,
-		p_vw_sound: String? = nil) -> URLComponents
+		p_vw_sound: String? = nil,
+		spaceid: String) -> URLComponents
     {
         var queryItems = [URLQueryItem]()
         
@@ -1054,6 +1095,7 @@ extension TrackingPixels.Generator {
         if let vcdn = vcdn { queryItems.append(URLQueryItem(name: "vcdn", value: vcdn)) }
         if let apid = apid { queryItems.append(URLQueryItem(name: "apid", value: apid)) }
         if let p_vw_sound = p_vw_sound { queryItems.append(URLQueryItem(name: "p.vw.sound", value: p_vw_sound)) }
+        queryItems.append(URLQueryItem(name: "spaceid", value: spaceid))
         
         var components = URLComponents()
         components.path = "trk/video-3sec.gif"
@@ -1085,7 +1127,8 @@ extension TrackingPixels.Generator {
 		cb: String,
 		m_fwsitesection: String? = nil,
 		apid: String? = nil,
-		p_vw_sound: String? = nil) -> URLComponents
+		p_vw_sound: String? = nil,
+		spaceid: String) -> URLComponents
     {
         var queryItems = [URLQueryItem]()
         
@@ -1112,6 +1155,7 @@ extension TrackingPixels.Generator {
         if let m_fwsitesection = m_fwsitesection { queryItems.append(URLQueryItem(name: "m.fwsitesection", value: m_fwsitesection)) }
         if let apid = apid { queryItems.append(URLQueryItem(name: "apid", value: apid)) }
         if let p_vw_sound = p_vw_sound { queryItems.append(URLQueryItem(name: "p.vw.sound", value: p_vw_sound)) }
+        queryItems.append(URLQueryItem(name: "spaceid", value: spaceid))
         
         var components = URLComponents()
         components.path = "lstr/heartbeat.gif"
@@ -1134,7 +1178,8 @@ extension TrackingPixels.Generator {
 		it: String? = nil,
 		app_id: String? = nil,
 		cb: String,
-		m_fwsitesection: String? = nil) -> URLComponents
+		m_fwsitesection: String? = nil,
+		spaceid: String) -> URLComponents
     {
         var queryItems = [URLQueryItem]()
         
@@ -1152,6 +1197,7 @@ extension TrackingPixels.Generator {
         if let app_id = app_id { queryItems.append(URLQueryItem(name: "app_id", value: app_id)) }
         queryItems.append(URLQueryItem(name: "cb", value: cb))
         if let m_fwsitesection = m_fwsitesection { queryItems.append(URLQueryItem(name: "m.fwsitesection", value: m_fwsitesection)) }
+        queryItems.append(URLQueryItem(name: "spaceid", value: spaceid))
         
         var components = URLComponents()
         components.path = "qoe/intent.gif"
@@ -1174,7 +1220,8 @@ extension TrackingPixels.Generator {
 		vvuid: String? = nil,
 		app_id: String? = nil,
 		cb: String,
-		m_fwsitesection: String? = nil) -> URLComponents
+		m_fwsitesection: String? = nil,
+		spaceid: String) -> URLComponents
     {
         var queryItems = [URLQueryItem]()
         
@@ -1192,6 +1239,7 @@ extension TrackingPixels.Generator {
         if let app_id = app_id { queryItems.append(URLQueryItem(name: "app_id", value: app_id)) }
         queryItems.append(URLQueryItem(name: "cb", value: cb))
         if let m_fwsitesection = m_fwsitesection { queryItems.append(URLQueryItem(name: "m.fwsitesection", value: m_fwsitesection)) }
+        queryItems.append(URLQueryItem(name: "spaceid", value: spaceid))
         
         var components = URLComponents()
         components.path = "qoe/start.gif"
@@ -1216,7 +1264,8 @@ extension TrackingPixels.Generator {
 		sid: String? = nil,
 		app_id: String? = nil,
 		cb: String,
-		m_fwsitesection: String? = nil) -> URLComponents
+		m_fwsitesection: String? = nil,
+		spaceid: String) -> URLComponents
     {
         var queryItems = [URLQueryItem]()
         
@@ -1236,6 +1285,7 @@ extension TrackingPixels.Generator {
         if let app_id = app_id { queryItems.append(URLQueryItem(name: "app_id", value: app_id)) }
         queryItems.append(URLQueryItem(name: "cb", value: cb))
         if let m_fwsitesection = m_fwsitesection { queryItems.append(URLQueryItem(name: "m.fwsitesection", value: m_fwsitesection)) }
+        queryItems.append(URLQueryItem(name: "spaceid", value: spaceid))
         
         var components = URLComponents()
         components.path = "qoe/error.gif"
@@ -1260,7 +1310,8 @@ extension TrackingPixels.Generator {
 		vvuid: String? = nil,
 		app_id: String? = nil,
 		cb: String,
-		m_fwsitesection: String? = nil) -> URLComponents
+		m_fwsitesection: String? = nil,
+		spaceid: String) -> URLComponents
     {
         var queryItems = [URLQueryItem]()
         
@@ -1280,6 +1331,7 @@ extension TrackingPixels.Generator {
         if let app_id = app_id { queryItems.append(URLQueryItem(name: "app_id", value: app_id)) }
         queryItems.append(URLQueryItem(name: "cb", value: cb))
         if let m_fwsitesection = m_fwsitesection { queryItems.append(URLQueryItem(name: "m.fwsitesection", value: m_fwsitesection)) }
+        queryItems.append(URLQueryItem(name: "spaceid", value: spaceid))
         
         var components = URLComponents()
         components.path = "qoe/ray-load.gif"
@@ -1303,7 +1355,8 @@ extension TrackingPixels.Generator {
 		vvuid: String? = nil,
 		app_id: String? = nil,
 		cb: String,
-		m_fwsitesection: String? = nil) -> URLComponents
+		m_fwsitesection: String? = nil,
+		spaceid: String) -> URLComponents
     {
         var queryItems = [URLQueryItem]()
         
@@ -1322,6 +1375,7 @@ extension TrackingPixels.Generator {
         if let app_id = app_id { queryItems.append(URLQueryItem(name: "app_id", value: app_id)) }
         queryItems.append(URLQueryItem(name: "cb", value: cb))
         if let m_fwsitesection = m_fwsitesection { queryItems.append(URLQueryItem(name: "m.fwsitesection", value: m_fwsitesection)) }
+        queryItems.append(URLQueryItem(name: "spaceid", value: spaceid))
         
         var components = URLComponents()
         components.path = "qoe/buffer-start.gif"
@@ -1346,7 +1400,8 @@ extension TrackingPixels.Generator {
 		vvuid: String? = nil,
 		app_id: String? = nil,
 		cb: String,
-		m_fwsitesection: String? = nil) -> URLComponents
+		m_fwsitesection: String? = nil,
+		spaceid: String) -> URLComponents
     {
         var queryItems = [URLQueryItem]()
         
@@ -1366,6 +1421,7 @@ extension TrackingPixels.Generator {
         if let app_id = app_id { queryItems.append(URLQueryItem(name: "app_id", value: app_id)) }
         queryItems.append(URLQueryItem(name: "cb", value: cb))
         if let m_fwsitesection = m_fwsitesection { queryItems.append(URLQueryItem(name: "m.fwsitesection", value: m_fwsitesection)) }
+        queryItems.append(URLQueryItem(name: "spaceid", value: spaceid))
         
         var components = URLComponents()
         components.path = "qoe/buffer-end.gif"
