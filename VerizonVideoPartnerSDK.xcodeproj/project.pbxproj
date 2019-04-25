@@ -90,6 +90,7 @@
 		502288F721CD142C0045B868 /* VRMItemController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E257A9F421C927FF0016D35A /* VRMItemController.swift */; };
 		5034AD2A207E69CA00B5CAA1 /* VideoSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5034AD29207E69CA00B5CAA1 /* VideoSelector.swift */; };
 		5034AD2B207E69CA00B5CAA1 /* VideoSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5034AD29207E69CA00B5CAA1 /* VideoSelector.swift */; };
+		5038F76E2271E6DA007064C9 /* TrackingPixelsGeneratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038F76D2271E6DA007064C9 /* TrackingPixelsGeneratorTests.swift */; };
 		50463DF61ED42D2300521E7D /* SystemPlayerViewControlller_Binding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5098D6931ECC930F00070681 /* SystemPlayerViewControlller_Binding.swift */; };
 		50463E551ED73AC200521E7D /* SystemPlayerReplayDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50463E541ED73AC200521E7D /* SystemPlayerReplayDetector.swift */; };
 		504CA73D1C85D5D9006D0ADF /* VerizonVideoPartnerSDK.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = DE4C511B1C8071D500BFFB0B /* VerizonVideoPartnerSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -511,6 +512,8 @@
 		5027D62B1E9BFE3F007A07E2 /* PlayerControls.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = PlayerControls.xcodeproj; path = "Carthage/Checkouts/OneMobileSDK-controls-ios/PlayerControls/PlayerControls.xcodeproj"; sourceTree = "<group>"; };
 		503392701E96AFC4002562D9 /* PlayerControls.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = PlayerControls.xcodeproj; path = "Carthage/Checkouts/OneMobileSDK-controls-ios/PlayerControls/PlayerControls.xcodeproj"; sourceTree = "<group>"; };
 		5034AD29207E69CA00B5CAA1 /* VideoSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoSelector.swift; sourceTree = "<group>"; };
+		5038F76D2271E6DA007064C9 /* TrackingPixelsGeneratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingPixelsGeneratorTests.swift; sourceTree = "<group>"; };
+		5038F7722271E9AA007064C9 /* TrackingPixelsGeneratorTests.swift.erb */ = {isa = PBXFileReference; lastKnownFileType = text; path = TrackingPixelsGeneratorTests.swift.erb; sourceTree = "<group>"; };
 		50463E541ED73AC200521E7D /* SystemPlayerReplayDetector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SystemPlayerReplayDetector.swift; path = "sources/default controls/SystemPlayerReplayDetector.swift"; sourceTree = "<group>"; };
 		504CA73E1C85D601006D0ADF /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		504CA7441C85F508006D0ADF /* VideoLoadingDetector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoLoadingDetector.swift; sourceTree = "<group>"; };
@@ -1345,7 +1348,9 @@
 			isa = PBXGroup;
 			children = (
 				DE4C51551C80731B00BFFB0B /* TrackingPixelsGenerator.swift */,
+				5038F76D2271E6DA007064C9 /* TrackingPixelsGeneratorTests.swift */,
 				DE4C51561C80731B00BFFB0B /* TrackingPixelsGenerator.swift.erb */,
+				5038F7722271E9AA007064C9 /* TrackingPixelsGeneratorTests.swift.erb */,
 			);
 			name = generator;
 			sourceTree = "<group>";
@@ -2039,6 +2044,7 @@
 				E22B6A8B21D14D2D00D480A0 /* ParseVRMItemControllerTest.swift in Sources */,
 				E231AA79213402C3008C5B6A /* AdStartTimeoutControllerTest.swift in Sources */,
 				501C8BD91D1C0BAB00C52AB3 /* ContextStartedDetectorTests.swift in Sources */,
+				5038F76E2271E6DA007064C9 /* TrackingPixelsGeneratorTests.swift in Sources */,
 				FEEB8E5B1F4C92F5003507BE /* ErrorDetectorTests.swift in Sources */,
 				DEB112331E30E5ED007E65BD /* VideoLoadingDetectorTests.swift in Sources */,
 				06BF5394209B471A00B98A6D /* UserActionsDetectorTests.swift in Sources */,

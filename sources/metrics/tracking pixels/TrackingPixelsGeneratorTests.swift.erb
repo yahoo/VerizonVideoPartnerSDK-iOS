@@ -1,0 +1,54 @@
+//  Copyright 2019, Oath Inc.
+//  Licensed under the terms of the MIT License. See LICENSE.md file in project root for terms.
+
+import Foundation
+import XCTest
+@testable import VerizonVideoPartnerSDK <%
+
+require 'YAML'
+require 'FileUtils'
+
+path = "tracking-pixels.yaml"
+file = File.read(path)
+
+api = YAML.load(file).map { |request_name, fields|
+fields[:request_name] = request_name
+fields["parameters"] = fields["parameters"].map { |key, value|
+{
+name: key,
+nullable: value[0],
+description: value[1]
+}
+}
+fields
+}
+
+def escapeDotsIn(parameterName)
+parameterName.gsub('.','_')
+end
+
+def parametersList(parameters) 
+parameters.map { |p| 
+name = escapeDotsIn(p[:name])
+"#{name}: \"#{name}\"" 
+}.join(",\n\t\t")
+end
+
+def queryItem(parameterName)
+".init(name: \"#{parameterName}\", value: \"#{escapeDotsIn(parameterName)}\")"
+end
+%>
+
+class TrackingPixelsGeneratorTests: XCTestCase {
+<% for call in api %>
+func test<%=call[:request_name]%>()
+{
+    let pixel = TrackingPixels.Generator.<%=call[:request_name]%>(
+        <%=parametersList(call["parameters"])%>
+    )
+    guard let query = pixel.queryItems else { XCTFail("`queryItems` is nil!"); return }
+    <% for p in call["parameters"]%>XCTAssertTrue(query.contains(<%= queryItem(p[:name])%>))
+    <%end%>
+}
+<% end%>
+}
