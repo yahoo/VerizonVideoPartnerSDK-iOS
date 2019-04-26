@@ -1,107 +1,9 @@
-//  Copyright 2018, Oath Inc.
+//  Copyright © 2019 Oath Inc. All rights reserved.
 //  Licensed under the terms of the MIT License. See LICENSE.md file in project root for terms.
 
 import Foundation
-import JavaScriptCore
 import CoreMedia
 import PlayerCore
-
-indirect enum JSøN: Hashable {
-    case null
-    case bool(Bool)
-    case string(String)
-    case number(NSNumber)
-    case array([JSøN])
-    case object([String: JSøN])
-}
-
-extension JSøN {
-    var object: Any {
-        switch self {
-        case .bool(let bool): return bool
-        case .number(let number): return number
-        case .null: return NSNull()
-        case .string(let string): return string
-        case .array(let array): return array.map { $0.object }
-        case .object(let object):
-            var mapped: [String: Any] = [:]
-            object.forEach { key, value in
-                mapped[key] = value.object
-            }
-            
-            return mapped
-        }
-    }
-}
-
-func json(for bool: Bool?) -> JSøN {
-    guard let bool = bool else { return .null }
-    return JSøN.bool(bool)
-}
-
-func json(for string: String?) -> JSøN {
-    guard let string = string else { return .null }
-    return JSøN.string(string)
-}
-
-func json(for uint: UInt?) -> JSøN {
-    guard let number = uint as NSNumber? else { return .null }
-    return JSøN.number(number)
-}
-
-func json(for int: Int?) -> JSøN {
-    guard let number = int as NSNumber? else { return .null }
-    return JSøN.number(number)
-}
-
-func json(for int: Int64?) -> JSøN {
-    guard let number = int as NSNumber? else { return .null }
-    return JSøN.number(number)
-}
-
-func json(for int: Int32?) -> JSøN {
-    guard let number = int as NSNumber? else { return .null }
-    return JSøN.number(number)
-}
-
-func json(for int: UInt32?) -> JSøN {
-    guard let number = int as NSNumber? else { return .null }
-    return JSøN.number(number)
-}
-
-
-func json(for float: Float?) -> JSøN {
-    guard let number = float as NSNumber? else { return .null }
-    return JSøN.number(number)
-}
-
-func json(for float: CGFloat?) -> JSøN {
-    guard let number = float as NSNumber? else { return .null }
-    return JSøN.number(number)
-}
-
-func json(for double: Double?) -> JSøN {
-    guard let number = double as NSNumber? else { return .null }
-    return JSøN.number(number)
-}
-
-func json(for object: [String: JSøN]?) -> JSøN {
-    guard let object = object else { return .null }
-    return JSøN.object(object)
-}
-
-func json(for array: [JSøN]?) -> JSøN {
-    guard let array = array else { return .null }
-    return JSøN.array(array)
-}
-
-func json(for uuid: UUID?) -> JSøN {
-    return json(for: uuid?.uuidString)
-}
-
-func json(for url: URL?) -> JSøN {
-    return json(for: url?.absoluteString)
-}
 
 func json(for size: CGSize?) -> JSøN {
     guard let size = size else { return .null }
@@ -132,7 +34,7 @@ func json(for props: Player.Properties) -> JSøN {
         "isMuted": props.isMuted |> json,
         "isPlaybackInitiated": props.isPlaybackInitiated |> json,
         "isSessionCompleted": props.isSessionCompleted |> json,
-        ]
+    ]
     return object |> json
 }
 
@@ -189,13 +91,6 @@ func json(for item: Player.Properties.PlaybackItem) -> JSøN {
     case .unavailable(let unavailable):
         return ["unavailable": unavailable |> json] |> json
     }
-}
-
-func json(for error: NSError?) -> JSøN {
-    return error.map { error in
-        [ "code": error.code |> json,
-          "domain": error.domain |> json
-            ] |> json } ?? .null
 }
 
 func json(for time: Player.Properties.PlaybackItem.Video.Time?) -> JSøN {
@@ -280,10 +175,6 @@ func json(for adModel: AdCreative.MP4?) -> JSøN {
     return object |> json
 }
 
-func json(for urls: [URL]) -> JSøN {
-    return urls.map(json) |> json
-}
-
 func json(for adModelPixels: PlayerCore.AdPixels?) -> JSøN {
     guard let adModelPixels = adModelPixels else { return .null }
     
@@ -299,7 +190,7 @@ func json(for adModelPixels: PlayerCore.AdPixels?) -> JSøN {
         "resume": adModelPixels.resume |> json,
         "start": adModelPixels.start |> json,
         "thirdQuartile": adModelPixels.thirdQuartile |> json,
-        ]
+    ]
     
     return object |> json
 }
@@ -334,16 +225,6 @@ func json(for subtitles: Player.Properties.PlaybackItem.Video.Subtitles?) -> JS�
     case .`internal`: return ["internal" : .null] |> json
     case .external: return .null
     }
-}
-
-func json(for model: Player.Properties.PlaybackItem.Video.Subtitles.External) -> JSøN {
-    let object: [String : JSøN] = [
-        "isActive": model.isActive |> json,
-        "isLoaded": model.isLoaded |> json,
-        "isLoading": model.isLoading |> json,
-        "text": model.text |> json]
-    
-    return object |> json
 }
 
 func json(for mediaGroup: Player.Properties.PlaybackItem.Video.MediaGroup?) -> JSøN {

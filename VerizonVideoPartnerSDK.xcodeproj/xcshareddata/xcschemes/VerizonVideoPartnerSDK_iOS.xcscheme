@@ -79,13 +79,6 @@
             BlueprintName = "VerizonVideoPartnerSDK_iOS"
             ReferencedContainer = "container:VerizonVideoPartnerSDK.xcodeproj">
          </BuildableReference>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "06CD5298213D8D0700C5B783"
-            BuildableName = "PlayerCore.framework"
-            BlueprintName = "PlayerCore"
-            ReferencedContainer = "container:PlayerCore/PlayerCore.xcodeproj">
-         </BuildableReference>
       </CodeCoverageTargets>
       <Testables>
          <TestableReference

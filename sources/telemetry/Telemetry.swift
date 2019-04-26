@@ -98,7 +98,7 @@ public enum Telemetry {
         func send(json: Telemetry.TelemetryJSON) {
             let telemetryJSON = [
                 "context" : json.context,
-                "data" : json.data.object
+                "data" : json.data.jsonObject
             ]
             var request = URLRequest(url: url)
             request.httpMethod = "POST"

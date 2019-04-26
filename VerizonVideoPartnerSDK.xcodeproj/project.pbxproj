@@ -91,6 +91,14 @@
 		5034AD2A207E69CA00B5CAA1 /* VideoSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5034AD29207E69CA00B5CAA1 /* VideoSelector.swift */; };
 		5034AD2B207E69CA00B5CAA1 /* VideoSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5034AD29207E69CA00B5CAA1 /* VideoSelector.swift */; };
 		5038F76E2271E6DA007064C9 /* TrackingPixelsGeneratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038F76D2271E6DA007064C9 /* TrackingPixelsGeneratorTests.swift */; };
+		5038F78A22731F3B007064C9 /* JSøN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038F78922731F3B007064C9 /* JSøN.swift */; };
+		5038F78C22732156007064C9 /* PropsMapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038F78B22732156007064C9 /* PropsMapping.swift */; };
+		5038F78E22732266007064C9 /* JSøNTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038F78D22732266007064C9 /* JSøNTests.swift */; };
+		5038F79022732277007064C9 /* PropsMappingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038F78F22732277007064C9 /* PropsMappingTests.swift */; };
+		5038F79622732958007064C9 /* JSøNPrisms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038F79522732958007064C9 /* JSøNPrisms.swift */; };
+		5038F79722735D9D007064C9 /* JSøN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038F78922731F3B007064C9 /* JSøN.swift */; };
+		5038F79822735E01007064C9 /* PropsMapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038F78B22732156007064C9 /* PropsMapping.swift */; };
+		5038F79922735E06007064C9 /* JSøNPrisms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5038F79522732958007064C9 /* JSøNPrisms.swift */; };
 		50463DF61ED42D2300521E7D /* SystemPlayerViewControlller_Binding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5098D6931ECC930F00070681 /* SystemPlayerViewControlller_Binding.swift */; };
 		50463E551ED73AC200521E7D /* SystemPlayerReplayDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50463E541ED73AC200521E7D /* SystemPlayerReplayDetector.swift */; };
 		504CA73D1C85D5D9006D0ADF /* VerizonVideoPartnerSDK.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = DE4C511B1C8071D500BFFB0B /* VerizonVideoPartnerSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -195,8 +203,6 @@
 		B418F54E1ECB2C8100C9131D /* VASTWrapper.xml in Resources */ = {isa = PBXBuildFile; fileRef = B418F5461ECB267B00C9131D /* VASTWrapper.xml */; };
 		DE0031321EBA0E48007FE000 /* JavaScriptObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0031311EBA0E48007FE000 /* JavaScriptObserver.swift */; };
 		DE0031331EBA0E48007FE000 /* JavaScriptObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0031311EBA0E48007FE000 /* JavaScriptObserver.swift */; };
-		DE00317F1ED5ADE0007FE000 /* PropsMapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE00317E1ED5ADE0007FE000 /* PropsMapping.swift */; };
-		DE0031801ED5ADE0007FE000 /* PropsMapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE00317E1ED5ADE0007FE000 /* PropsMapping.swift */; };
 		DE06F78C1E7AB647006B5DD3 /* VideoProviderResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE06F78B1E7AB647006B5DD3 /* VideoProviderResponse.swift */; };
 		DE07CE081DD2353C00DAE3EC /* PlayerProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE07CE071DD2353C00DAE3EC /* PlayerProperties.swift */; };
 		DE07CE091DD2353C00DAE3EC /* PlayerProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE07CE071DD2353C00DAE3EC /* PlayerProperties.swift */; };
@@ -404,6 +410,20 @@
 			remoteGlobalIDString = 50582F5A1E65C41900B18908;
 			remoteInfo = PlayerControls;
 		};
+		5038F79122732501007064C9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 06E6F4CC213DA6FF008BAA23 /* PlayerCore.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 06CD539D213D90DD00C5B783;
+			remoteInfo = PlayerCoreTests;
+		};
+		5038F79322732518007064C9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 06E6F4CC213DA6FF008BAA23 /* PlayerCore.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 06CD5298213D8D0700C5B783;
+			remoteInfo = PlayerCore;
+		};
 		50AC123821C414E400B428D1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = DE611A791E9D40F200D253B2 /* PlayerControls.xcodeproj */;
@@ -514,6 +534,11 @@
 		5034AD29207E69CA00B5CAA1 /* VideoSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoSelector.swift; sourceTree = "<group>"; };
 		5038F76D2271E6DA007064C9 /* TrackingPixelsGeneratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingPixelsGeneratorTests.swift; sourceTree = "<group>"; };
 		5038F7722271E9AA007064C9 /* TrackingPixelsGeneratorTests.swift.erb */ = {isa = PBXFileReference; lastKnownFileType = text; path = TrackingPixelsGeneratorTests.swift.erb; sourceTree = "<group>"; };
+		5038F78922731F3B007064C9 /* JSøN.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "JSøN.swift"; sourceTree = "<group>"; };
+		5038F78B22732156007064C9 /* PropsMapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropsMapping.swift; sourceTree = "<group>"; };
+		5038F78D22732266007064C9 /* JSøNTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSøNTests.swift"; sourceTree = "<group>"; };
+		5038F78F22732277007064C9 /* PropsMappingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropsMappingTests.swift; sourceTree = "<group>"; };
+		5038F79522732958007064C9 /* JSøNPrisms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSøNPrisms.swift"; sourceTree = "<group>"; };
 		50463E541ED73AC200521E7D /* SystemPlayerReplayDetector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SystemPlayerReplayDetector.swift; path = "sources/default controls/SystemPlayerReplayDetector.swift"; sourceTree = "<group>"; };
 		504CA73E1C85D601006D0ADF /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		504CA7441C85F508006D0ADF /* VideoLoadingDetector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoLoadingDetector.swift; sourceTree = "<group>"; };
@@ -559,7 +584,6 @@
 		A61B687B2029BB98007CFB32 /* Metrics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Metrics.swift; path = sources/telemetry/Metrics.swift; sourceTree = "<group>"; };
 		B418F5461ECB267B00C9131D /* VASTWrapper.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = VASTWrapper.xml; sourceTree = "<group>"; };
 		DE0031311EBA0E48007FE000 /* JavaScriptObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JavaScriptObserver.swift; sourceTree = "<group>"; };
-		DE00317E1ED5ADE0007FE000 /* PropsMapping.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PropsMapping.swift; sourceTree = "<group>"; };
 		DE06F78B1E7AB647006B5DD3 /* VideoProviderResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoProviderResponse.swift; sourceTree = "<group>"; };
 		DE07CE071DD2353C00DAE3EC /* PlayerProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerProperties.swift; sourceTree = "<group>"; };
 		DE07F0501EF9956B00C8E9F2 /* ReporterTracer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReporterTracer.swift; sourceTree = "<group>"; };
@@ -1083,9 +1107,13 @@
 		DE00312A1EBA0E11007FE000 /* dynamic analytics */ = {
 			isa = PBXGroup;
 			children = (
+				5038F78922731F3B007064C9 /* JSøN.swift */,
+				5038F79522732958007064C9 /* JSøNPrisms.swift */,
+				5038F78D22732266007064C9 /* JSøNTests.swift */,
 				DE0031311EBA0E48007FE000 /* JavaScriptObserver.swift */,
-				DE00317E1ED5ADE0007FE000 /* PropsMapping.swift */,
 				506C59CF1F1797F100AAA662 /* JavaScriptTelemetry.swift */,
+				5038F78B22732156007064C9 /* PropsMapping.swift */,
+				5038F78F22732277007064C9 /* PropsMappingTests.swift */,
 			);
 			name = "dynamic analytics";
 			path = "sources/dynamic analytics";
@@ -1527,6 +1555,8 @@
 			buildRules = (
 			);
 			dependencies = (
+				5038F79422732518007064C9 /* PBXTargetDependency */,
+				5038F79222732501007064C9 /* PBXTargetDependency */,
 				DE4C51271C8071D500BFFB0B /* PBXTargetDependency */,
 			);
 			name = VerizonVideoPartnerSDKTests;
@@ -1793,6 +1823,7 @@
 				50A11D9C1D59D7E000F4A068 /* OnMainThread.swift in Sources */,
 				50A11D9D1D59D7E000F4A068 /* TrackingPixelsGenerator.swift in Sources */,
 				50A11DA51D59D7E000F4A068 /* VideoLoadingDetector.swift in Sources */,
+				5038F79722735D9D007064C9 /* JSøN.swift in Sources */,
 				E231AA74213400F3008C5B6A /* AdMaxShowTimeDetector.swift in Sources */,
 				50A11DA71D59D7E000F4A068 /* Stub.swift in Sources */,
 				061CFFFF211C7272002B5BE9 /* MuteDetector.swift in Sources */,
@@ -1810,6 +1841,7 @@
 				DEB112371E30F0CE007E65BD /* Context.swift in Sources */,
 				E22B6AE621F0C6D100D480A0 /* VRMTimeoutController.swift in Sources */,
 				50A11DB21D59D7E000F4A068 /* Player_VideoEvents.swift in Sources */,
+				5038F79822735E01007064C9 /* PropsMapping.swift in Sources */,
 				DE07CE091DD2353C00DAE3EC /* PlayerProperties.swift in Sources */,
 				DE3DA42C1E55D9A900D34880 /* VVPSDKPlugins.swift in Sources */,
 				06EC86B82214398E00CB4A8E /* VASTParser_Offset.swift in Sources */,
@@ -1827,13 +1859,13 @@
 				DEBAA7C91E1571A100DFC359 /* Result.swift in Sources */,
 				50A11DBE1D59D7E000F4A068 /* VideoContextPresenter.swift in Sources */,
 				06B13EF32090AB13009A6645 /* AdViewTimeDetector.swift in Sources */,
+				5038F79922735E06007064C9 /* JSøNPrisms.swift in Sources */,
 				50C99D4B2010B4A00041B013 /* Observer.swift in Sources */,
 				502288F721CD142C0045B868 /* VRMItemController.swift in Sources */,
 				501AB1E52029C69C00BAFA9C /* AdPlaybackCycleDetector.swift in Sources */,
 				50A11DC01D59D7E000F4A068 /* VVP.swift in Sources */,
 				50A5A5011E69958600C15E12 /* Timer.swift in Sources */,
 				50A11DC21D59D7E000F4A068 /* VVPSDK.swift in Sources */,
-				DE0031801ED5ADE0007FE000 /* PropsMapping.swift in Sources */,
 				50A11DC41D59D7E000F4A068 /* VideoPlayDetector.swift in Sources */,
 				50A11DC51D59D7E000F4A068 /* VASTParser.swift in Sources */,
 				50A11DC71D59D7E000F4A068 /* SkipRepeatsDecorator.swift in Sources */,
@@ -1914,6 +1946,7 @@
 				E23168032127050400F5AD5B /* AdStartTimeoutController.swift in Sources */,
 				DEB112391E30F12B007E65BD /* Configuration.swift in Sources */,
 				50D7475C1CE389EF00CB91D4 /* Network.swift in Sources */,
+				5038F79622732958007064C9 /* JSøNPrisms.swift in Sources */,
 				50C99D4A2010B4A00041B013 /* Observer.swift in Sources */,
 				061AFD6521F256CB0024BAC5 /* ContentPlaybackCycleDetector.swift in Sources */,
 				A61B687C2029BB98007CFB32 /* Metrics.swift in Sources */,
@@ -1957,11 +1990,13 @@
 				501AB1DE2028934A00BAFA9C /* AdErrorDetector.swift in Sources */,
 				50E5ADE91EE08A76004104D6 /* PlayerTracer.swift in Sources */,
 				E2FD5AEC2203413E007EBE86 /* AdEngineRequestDetector.swift in Sources */,
+				5038F78A22731F3B007064C9 /* JSøN.swift in Sources */,
 				06419E2120EF7950007FE2F0 /* VPAIDProps.swift in Sources */,
 				DE4C51C51C8094FB00BFFB0B /* TrackingPixelsReporter.swift in Sources */,
 				501AB1E42029C69C00BAFA9C /* AdPlaybackCycleDetector.swift in Sources */,
 				0633BA11223BA512004A8474 /* TrackingPixelsProperties.swift in Sources */,
 				DE4C51C61C8094FE00BFFB0B /* MetricsSender.swift in Sources */,
+				5038F78C22732156007064C9 /* PropsMapping.swift in Sources */,
 				067209BC21B6BD9A0086CDBE /* OpenMeasurementServiceScript.swift in Sources */,
 				06419E1A20EF7433007FE2F0 /* WebviewViewController.swift in Sources */,
 				E287B08C21F884A900FC49AA /* VRMSelectFinalResultController.swift in Sources */,
@@ -1983,7 +2018,6 @@
 				DE0B1D6A1DB8F8D00007D107 /* ContentControlsViewController_Binding.swift in Sources */,
 				E2B0061F21CD265000B72485 /* FetchVRMItemController.swift in Sources */,
 				E22B6ADB21F0A95700D480A0 /* VVPSDK_Version.swift in Sources */,
-				DE00317F1ED5ADE0007FE000 /* PropsMapping.swift in Sources */,
 				DE4C51C21C808F0200BFFB0B /* PlaylistStatisticDetector.swift in Sources */,
 				501AB1D8202892DA00BAFA9C /* AdClickDetector.swift in Sources */,
 				E231AA73213400F3008C5B6A /* AdMaxShowTimeDetector.swift in Sources */,
@@ -2026,6 +2060,7 @@
 				50C4602B1C80B791002AB8AB /* PlaylistStatisticDetectorTests.swift in Sources */,
 				063C8354221C568D0052C1DC /* AdEngineResponseDetectorSpec.swift in Sources */,
 				E2604397220379F10034FC48 /* VRMRequestDetectorTest.swift in Sources */,
+				5038F78E22732266007064C9 /* JSøNTests.swift in Sources */,
 				501AB1DB202892E800BAFA9C /* AdClickDetectorTests.swift in Sources */,
 				FEF072CB1F59A3D5006A0BDC /* PlayerDestructionTests.swift in Sources */,
 				E2FE095B2200AD01005E91C0 /* MaxAdSearchTimeControllerTest.swift in Sources */,
@@ -2036,6 +2071,7 @@
 				507A83C11D19799F0013B729 /* ExecuteOnceTests.swift in Sources */,
 				9A1469E621CE9549007315BA /* ActionComparator.swift in Sources */,
 				DE1685E71CE76A5D00492A90 /* VASTParserTests.swift in Sources */,
+				5038F79022732277007064C9 /* PropsMappingTests.swift in Sources */,
 				E241041621C3FAF400036290 /* VRMRequestControllerTest.swift in Sources */,
 				E2FD5AEF2203414D007EBE86 /* AdEngineRequestDetectorTest.swift in Sources */,
 				E2E575982211E12E0068C394 /* VRMMidrollProcessorControllerTest.swift in Sources */,
@@ -2091,6 +2127,16 @@
 			isa = PBXTargetDependency;
 			name = PlayerControls;
 			targetProxy = 503392791E96AFCA002562D9 /* PBXContainerItemProxy */;
+		};
+		5038F79222732501007064C9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = PlayerCoreTests;
+			targetProxy = 5038F79122732501007064C9 /* PBXContainerItemProxy */;
+		};
+		5038F79422732518007064C9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = PlayerCore;
+			targetProxy = 5038F79322732518007064C9 /* PBXContainerItemProxy */;
 		};
 		50AC123921C414E400B428D1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -2186,7 +2232,6 @@
 				INFOPLIST_FILE = "$(SRCROOT)/support/VerizonVideoPartnerSDK-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				OTHER_SWIFT_FLAGS = "-Xfrontend -warn-long-function-bodies=300 -Xfrontend -warn-long-expression-type-checking=300";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Verizon.VideoPartnerSDK;
 				PRODUCT_NAME = VerizonVideoPartnerSDK;
 				SDKROOT = iphoneos;
@@ -2318,7 +2363,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_SWIFT_FLAGS = "-Xfrontend -warn-long-function-bodies=200 -Xfrontend -warn-long-expression-type-checking=300";
+				OTHER_SWIFT_FLAGS = "";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;

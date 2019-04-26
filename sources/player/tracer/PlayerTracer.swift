@@ -25,7 +25,7 @@ extension Player {
         
         func save(to directory: URL) throws {
             func save(json: JSøN, to file: String) throws {
-                let data = try JSONSerialization.data(withJSONObject: json.object,
+                let data = try JSONSerialization.data(withJSONObject: json.jsonObject,
                                                       options: .prettyPrinted)
                 try data.write(to: directory.appendingPathComponent(file))
             }

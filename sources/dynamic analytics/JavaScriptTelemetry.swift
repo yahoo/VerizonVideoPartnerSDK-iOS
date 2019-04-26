@@ -1,5 +1,6 @@
 //  Copyright 2018, Oath Inc.
 //  Licensed under the terms of the MIT License. See LICENSE.md file in project root for terms.
+
 import Foundation
 
 struct JavaScriptTelemetry {
@@ -12,7 +13,7 @@ struct JavaScriptTelemetry {
         request.httpMethod = "POST"
         request.httpBody = try? JSONSerialization.data(
             withJSONObject:["context" : context,
-                            "issue" : json(for: issue).object],
+                            "issue" : json(for: issue).jsonObject],
             options: .prettyPrinted)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         session.dataTask(with: request).resume()
