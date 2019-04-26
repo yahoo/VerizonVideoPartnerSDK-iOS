@@ -93,13 +93,6 @@ func json(for item: Player.Properties.PlaybackItem) -> JSøN {
     }
 }
 
-func json(for error: NSError?) -> JSøN {
-    return error.map { error in
-        [ "code": error.code |> json,
-          "domain": error.domain |> json
-            ] |> json } ?? .null
-}
-
 func json(for time: Player.Properties.PlaybackItem.Video.Time?) -> JSøN {
     guard let time = time else { return .null }
     var object: [String: JSøN]
@@ -182,10 +175,6 @@ func json(for adModel: AdCreative.MP4?) -> JSøN {
     return object |> json
 }
 
-func json(for urls: [URL]) -> JSøN {
-    return urls.map(json) |> json
-}
-
 func json(for adModelPixels: PlayerCore.AdPixels?) -> JSøN {
     guard let adModelPixels = adModelPixels else { return .null }
     
@@ -236,16 +225,6 @@ func json(for subtitles: Player.Properties.PlaybackItem.Video.Subtitles?) -> JS�
     case .`internal`: return ["internal" : .null] |> json
     case .external: return .null
     }
-}
-
-func json(for model: Player.Properties.PlaybackItem.Video.Subtitles.External) -> JSøN {
-    let object: [String : JSøN] = [
-        "isActive": model.isActive |> json,
-        "isLoaded": model.isLoaded |> json,
-        "isLoading": model.isLoading |> json,
-        "text": model.text |> json]
-    
-    return object |> json
 }
 
 func json(for mediaGroup: Player.Properties.PlaybackItem.Video.MediaGroup?) -> JSøN {

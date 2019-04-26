@@ -121,7 +121,7 @@ class AnalyticsObserver {
         case .waiting(let box): box.props.append(props)
         case .ready(let processor):
             queue.async {
-                guard let value = JSValue(object: json(for: props).object,
+                guard let value = JSValue(object: json(for: props).jsonObject,
                                           in: processor.props.context)
                     else {
                         preconditionFailure("cannot convert json to jsvalue")

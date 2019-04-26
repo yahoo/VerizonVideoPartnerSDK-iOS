@@ -21,7 +21,7 @@ extension JSøN {
         case .number(let number): return number
         case .null: return NSNull()
         case .string(let string): return string
-        case .array(let array): return array.map { $0.object }
+        case .array(let array): return array.map { $0.jsonObject }
         case .object(let object):
             var mapped: [String: Any] = [:]
             object.forEach { key, value in
@@ -99,4 +99,8 @@ func json(for uuid: UUID?) -> JSøN {
 
 func json(for url: URL?) -> JSøN {
     return json(for: url?.absoluteString)
+}
+
+func json(for urls: [URL]) -> JSøN {
+    return urls.map(json) |> json
 }
