@@ -53,6 +53,7 @@
 		06BF53D4209B59E300B98A6D /* UserActionsDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06BF5391209B470F00B98A6D /* UserActionsDetector.swift */; };
 		06BF541F20A078FE00B98A6D /* VASTVpaid.xml in Resources */ = {isa = PBXBuildFile; fileRef = 06BF541620A062E300B98A6D /* VASTVpaid.xml */; };
 		06D14E342203699000195483 /* AdCreativeTestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06D14E2F2203696700195483 /* AdCreativeTestData.swift */; };
+		06E0D5E3227AF35E00B01817 /* AdClickthroughWorkerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06E0D5E2227AF35E00B01817 /* AdClickthroughWorkerTests.swift */; };
 		06E5F33321C2C9FD0099D733 /* Autogeneratable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06E5F33221C2C9D40099D733 /* Autogeneratable.swift */; };
 		06E5F33521C2CA750099D733 /* PlayerCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06E5F31D21C2C7F80099D733 /* PlayerCore.framework */; };
 		06E5F33621C2CA750099D733 /* VideoRenderer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06E5F31521C2C7EB0099D733 /* VideoRenderer.framework */; };
@@ -507,6 +508,7 @@
 		06BF5393209B471A00B98A6D /* UserActionsDetectorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserActionsDetectorTests.swift; sourceTree = "<group>"; };
 		06BF541620A062E300B98A6D /* VASTVpaid.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = VASTVpaid.xml; sourceTree = "<group>"; };
 		06D14E2F2203696700195483 /* AdCreativeTestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdCreativeTestData.swift; sourceTree = "<group>"; };
+		06E0D5E2227AF35E00B01817 /* AdClickthroughWorkerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdClickthroughWorkerTests.swift; sourceTree = "<group>"; };
 		06E5F33221C2C9D40099D733 /* Autogeneratable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Autogeneratable.swift; sourceTree = "<group>"; };
 		06E6F4CC213DA6FF008BAA23 /* PlayerCore.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = PlayerCore.xcodeproj; path = PlayerCore/PlayerCore.xcodeproj; sourceTree = "<group>"; };
 		06EC86B62214398E00CB4A8E /* VASTParser_Offset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VASTParser_Offset.swift; sourceTree = "<group>"; };
@@ -917,6 +919,7 @@
 		500D34D61CB3EF0A00CD6716 /* default UI */ = {
 			isa = PBXGroup;
 			children = (
+				06E0D5E2227AF35E00B01817 /* AdClickthroughWorkerTests.swift */,
 				50A11E081D59D9F000F4A068 /* OpenSafariUtil.swift */,
 				50B049871CD2546800CC2D47 /* PlayerViewController.swift */,
 				DE22C78E1D11830300F47147 /* PlayerViewController_Binding.swift */,
@@ -2082,6 +2085,7 @@
 				501C8BD91D1C0BAB00C52AB3 /* ContextStartedDetectorTests.swift in Sources */,
 				5038F76E2271E6DA007064C9 /* TrackingPixelsGeneratorTests.swift in Sources */,
 				FEEB8E5B1F4C92F5003507BE /* ErrorDetectorTests.swift in Sources */,
+				06E0D5E3227AF35E00B01817 /* AdClickthroughWorkerTests.swift in Sources */,
 				DEB112331E30E5ED007E65BD /* VideoLoadingDetectorTests.swift in Sources */,
 				06BF5394209B471A00B98A6D /* UserActionsDetectorTests.swift in Sources */,
 				06123FDC225E42DE00CA8766 /* Pipeline.swift in Sources */,
