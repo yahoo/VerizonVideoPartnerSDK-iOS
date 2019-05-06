@@ -95,4 +95,16 @@ class ObserverTests: XCTestCase {
         token?()
         wait(for: [currentExpectation], timeout: 0.1)
     }
+    func testTrackingObserver() {
+        token = sut.addTrackingObserver(mode: .everyUpdate) { _ in
+            self.currentExpectation.fulfill()
+        }
+        wait(for: [currentExpectation], timeout: 0.2)
+        
+        currentExpectation = self.expectation(description: "props update")
+        sut.update(playback: true)
+        token?()
+        wait(for: [currentExpectation], timeout: 0.1)
+    }
+
 }
