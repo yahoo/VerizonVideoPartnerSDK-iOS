@@ -20,17 +20,3 @@ func nop() {
 public func nop<T, U>(defaultValue: U) -> ((T) -> U) {
     return { _ in return defaultValue }
 }
-
-/// Creates closure that will fail
-/// if called. Runtime safe check.
-public func unimplemented<T>() -> Action<T> {
-    return unimplemented("function")
-}
-
-/// Creates closure with description 
-/// that will fail if called. Runtime safe check.
-public func unimplemented<T>(_ description: String) -> Action<T> {
-    return { argument in
-        fatalError("Calling unimplemented \(description): \(argument)")
-    }
-}
