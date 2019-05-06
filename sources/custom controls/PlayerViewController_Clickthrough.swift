@@ -3,6 +3,7 @@
 
 import UIKit
 import SafariServices
+import PlayerCore
 
 extension PlayerViewController {
     final class AdClickthroughWorker: NSObject {
@@ -17,21 +18,32 @@ extension PlayerViewController {
         
         var isClickthroughActive = false
         var isAdVPAID = false
-        func process(props: Player.Properties) {
-            guard let item = props.playbackItem else { return }
-            guard item.isClickThroughToggled, !isClickthroughActive else { return }
+        
+        func process(isClickThroughToggled: Bool,
+                     vpaidClickThroughURL: URL?,
+                     mp4AdCreative: PlayerCore.AdCreative.MP4?,
+                     vpaidAdCreative: PlayerCore.AdCreative.VPAID?) {
+            guard isClickThroughToggled, !isClickthroughActive else { return }
             
-            if let creative = item.mp4AdCreative {
+            if let creative = mp4AdCreative {
                 isAdVPAID = false
                 guard let url = creative.clickthrough else { return }
                 showSafari(url, self)
             }
-            if let creative = item.vpaidAdCreative {
+            if let creative = vpaidAdCreative {
                 isAdVPAID = true
-                guard let url = item.vpaidClickthrough ?? creative.clickthrough else { return safariFinishHandler(isAdVPAID) }
+                guard let url = vpaidClickThroughURL ?? creative.clickthrough else { return safariFinishHandler(isAdVPAID) }
                 showSafari(url, self)
             }
             isClickthroughActive = true
+        }
+        
+        func process(props: Player.Properties) {
+            guard let item = props.playbackItem else { return }
+            process(isClickThroughToggled: item.isClickThroughToggled,
+                    vpaidClickThroughURL: item.vpaidClickthrough,
+                    mp4AdCreative: item.mp4AdCreative,
+                    vpaidAdCreative: item.vpaidAdCreative)
         }
     }
 }
