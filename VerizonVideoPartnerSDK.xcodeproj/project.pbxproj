@@ -109,6 +109,7 @@
 		504CA7581C874A5D006D0ADF /* Player_VideoEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504CA7571C874A5D006D0ADF /* Player_VideoEvents.swift */; };
 		504D8C961E65960B0068120E /* Telemetry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504D8C951E65960B0068120E /* Telemetry.swift */; };
 		504D8C971E65960B0068120E /* Telemetry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504D8C951E65960B0068120E /* Telemetry.swift */; };
+		504E9700228995FE004F99A9 /* TrackingPixelsReporterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504E96FF228995FE004F99A9 /* TrackingPixelsReporterTests.swift */; };
 		505136171C90A35100629078 /* UserActionInitiatedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 505136161C90A35100629078 /* UserActionInitiatedTests.swift */; };
 		505136181C91750C00629078 /* DecileDetectorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4C51431C80731B00BFFB0B /* DecileDetectorTests.swift */; };
 		505136191C917A3B00629078 /* QuartileDetectorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE4C51491C80731B00BFFB0B /* QuartileDetectorTests.swift */; };
@@ -503,7 +504,7 @@
 		06BF5393209B471A00B98A6D /* UserActionsDetectorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserActionsDetectorTests.swift; sourceTree = "<group>"; };
 		06BF541620A062E300B98A6D /* VASTVpaid.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = VASTVpaid.xml; sourceTree = "<group>"; };
 		06D14E2F2203696700195483 /* AdCreativeTestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdCreativeTestData.swift; sourceTree = "<group>"; };
-		06E0D5E2227AF35E00B01817 /* AdClickthroughWorkerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdClickthroughWorkerTests.swift; sourceTree = "<group>"; };
+		06E0D5E2227AF35E00B01817 /* AdClickthroughWorkerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AdClickthroughWorkerTests.swift; path = "sources/custom controls/AdClickthroughWorkerTests.swift"; sourceTree = "<group>"; };
 		06E0D608227B271900B01817 /* VPAIDEventsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPAIDEventsTest.swift; sourceTree = "<group>"; };
 		06E5F33221C2C9D40099D733 /* Autogeneratable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Autogeneratable.swift; sourceTree = "<group>"; };
 		06E6F4CC213DA6FF008BAA23 /* PlayerCore.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = PlayerCore.xcodeproj; path = PlayerCore/PlayerCore.xcodeproj; sourceTree = "<group>"; };
@@ -545,6 +546,7 @@
 		504CA7531C87342A006D0ADF /* VideoActionsDetectorsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = VideoActionsDetectorsTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		504CA7571C874A5D006D0ADF /* Player_VideoEvents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Player_VideoEvents.swift; path = "../video detectors/Player_VideoEvents.swift"; sourceTree = "<group>"; };
 		504D8C951E65960B0068120E /* Telemetry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Telemetry.swift; path = sources/telemetry/Telemetry.swift; sourceTree = "<group>"; };
+		504E96FF228995FE004F99A9 /* TrackingPixelsReporterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackingPixelsReporterTests.swift; sourceTree = "<group>"; };
 		505136161C90A35100629078 /* UserActionInitiatedTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = UserActionInitiatedTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		5067F5FE1D49120E00FEC27C /* SystemPlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SystemPlayerViewController.swift; path = "sources/default controls/SystemPlayerViewController.swift"; sourceTree = "<group>"; };
 		506C59CF1F1797F100AAA662 /* JavaScriptTelemetry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JavaScriptTelemetry.swift; sourceTree = "<group>"; };
@@ -1275,6 +1277,7 @@
 				0633BA10223BA512004A8474 /* TrackingPixelsProperties.swift */,
 				0633BA4B223BD941004A8474 /* TrackingPixelsProperties_init.swift */,
 				DE4C51571C80731B00BFFB0B /* TrackingPixelsReporter.swift */,
+				504E96FF228995FE004F99A9 /* TrackingPixelsReporterTests.swift */,
 			);
 			path = "tracking pixels";
 			sourceTree = "<group>";
@@ -2104,6 +2107,7 @@
 				061AFD6721F256ED0024BAC5 /* ContentPlaybackCycleDetectorTests.swift in Sources */,
 				06FDBCD02239433400462527 /* FailoverDetectorTests.swift in Sources */,
 				DEF969421CF06930000788AD /* VideoContextPresenterTests.swift in Sources */,
+				504E9700228995FE004F99A9 /* TrackingPixelsReporterTests.swift in Sources */,
 				067209EB21B6BF3E0086CDBE /* OpenMeasurementControllerTests.swift in Sources */,
 				501AB1E12028936F00BAFA9C /* AdErrorDetectorTests.swift in Sources */,
 				5087482F1C80764500F2511A /* Utils.swift in Sources */,
