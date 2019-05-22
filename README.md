@@ -3,18 +3,21 @@
 > The Verizon Video Partner SDK (formerly named _Oath Video Partner SDK_) is a native iOS SDK that makes it easy to play and monetize videos from the Verizon/Oath Video Partner network on iOS-based platforms.
 
 <p>
+    <a href="https://travis-ci.org/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS">
+        <img src="https://travis-ci.org/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS.svg" alt="Build Status" />
+    </a>
+    <a href="https://codecov.io/gh/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/branch/master">
+        <img src="https://codecov.io/gh/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/branch/master/graphs/badge.svg" alt="Code Coverage" />
+    </a>
     <a href="https://raw.githubusercontent.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/master/LICENSE.md">
         <img src="https://img.shields.io/badge/License-MIT-blue.svg?style=flat" alt="MIT LICENSE" />
     </a>
-    <img src="https://img.shields.io/badge/Swift-4.2-orange.svg" alt="Swift 4.1" />
+    <img src="https://img.shields.io/badge/Swift-4.2-orange.svg" alt="Swift 4.2" />
     <a href="https://github.com/Cocoapods">
         <img src="https://img.shields.io/badge/CocoaPods-compatible-4BC51D.svg?style=flat" alt="CocoaPods Compatible" />
     </a>
     <a href="https://github.com/Carthage/Carthage">
         <img src="https://img.shields.io/badge/Carthage-unsupported-ff658d.svg?style=flat" alt="Carthage Unsupported" />
-    </a>
-    <a href="https://github.com/apple/swift-package-manager">
-        <img src="https://img.shields.io/badge/Swift%20Package%20Manager-n/a (unsupported for iOS)-ff658d.svg?style=flat" alt="Swift Package Manager Incompatible" />
     </a>
 </p>
 
