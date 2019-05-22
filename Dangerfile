@@ -10,8 +10,3 @@ warn "#{git.commits.count} commits too many - please, squash them" if git.commit
 
 warn 'Please, set correct Jira link in the PR comment.' if 
 github.pr_body.include? "[JIRA Ticket](xxx)"
-
-xcov.report(
-   scheme: 'VerizonVideoPartnerSDK_iOS',
-   project: 'VerizonVideoPartnerSDK.xcodeproj'
-)

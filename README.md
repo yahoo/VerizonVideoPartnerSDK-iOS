@@ -4,7 +4,7 @@
 
 <p>
     <a href="https://travis-ci.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS">
-        <img src="https://travis-ci.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS.svg" alt="Build Status" />
+        <img src="https://travis-ci.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS.svg?branch=master" alt="Build Status" />
     </a>
     <a href="https://codecov.io/gh/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/branch/master">
         <img src="https://codecov.io/gh/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/branch/master/graphs/badge.svg" alt="Code Coverage" />
