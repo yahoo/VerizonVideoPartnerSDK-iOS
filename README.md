@@ -3,8 +3,8 @@
 > The Verizon Video Partner SDK (formerly named _Oath Video Partner SDK_) is a native iOS SDK that makes it easy to play and monetize videos from the Verizon/Oath Video Partner network on iOS-based platforms.
 
 <p>
-    <a href="https://travis-ci.org/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS">
-        <img src="https://travis-ci.org/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS.svg" alt="Build Status" />
+    <a href="https://travis-ci.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS">
+        <img src="https://travis-ci.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS.svg" alt="Build Status" />
     </a>
     <a href="https://codecov.io/gh/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/branch/master">
         <img src="https://codecov.io/gh/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/branch/master/graphs/badge.svg" alt="Code Coverage" />
