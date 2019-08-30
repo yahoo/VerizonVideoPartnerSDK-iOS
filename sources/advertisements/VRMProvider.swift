@@ -30,7 +30,16 @@ struct VRMProvider {
             transactionId: parseTransactionId(from: json),
             slot: try parseSlot(from: json),
             cpm: try parseCpm(from: json),
-            items: try parseGroups(from: json).map { try $0.map(parseItem) })
+            items: try parseGroups(from: json).compactMap {
+                $0.compactMap {
+                    do {
+                        return try parseItem(json: $0)
+                    } catch {
+                        return nil
+                    }
+                }
+            }
+        )
     }
     
     static func parseItem(json: JSON) throws -> Item {
