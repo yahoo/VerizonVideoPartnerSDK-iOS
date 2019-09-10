@@ -3,7 +3,7 @@ Pod::Spec.new do |s|
   s.version          = '1.5.1'
   s.summary          = 'Verizon Video Partner SDK'
   s.license          = { type: 'MIT', file: 'LICENSE' }
-  s.swift_version    = '5.0'
+  s.swift_version    = '4.2'
 
   s.description = <<-DESC
   A native iOS SDK that makes it easy to play and monetize videos from the Verizon Video Partner network on iOS-based platforms. 
