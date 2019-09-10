@@ -1,9 +1,9 @@
 Pod::Spec.new do |s|
   s.name             = 'VerizonVideoPartnerSDK'
-  s.version          = '1.5.0'
+  s.version          = '1.5.1'
   s.summary          = 'Verizon Video Partner SDK'
   s.license          = { type: 'MIT', file: 'LICENSE' }
-  s.swift_version    = '4.2'
+  s.swift_version    = '5.0'
 
   s.description = <<-DESC
   A native iOS SDK that makes it easy to play and monetize videos from the Verizon Video Partner network on iOS-based platforms. 
@@ -13,6 +13,7 @@ DESC
   s.homepage         = 'https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS'
 
   s.authors          = {
+    'James Lou' => 'jlou@verizonmedia.com',
     'Andrey Moskvin' => 'andrey.moskvin@verizonmedia.com',
     'Roman Tysiachnik' => 'roman.tysiachnik@verizonmedia.com',
     'Vladyslav Anokhin' => 'vladyslav.anokhin@verizonmedia.com'
