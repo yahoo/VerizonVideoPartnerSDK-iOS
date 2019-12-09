@@ -1,12 +1,12 @@
 CONFIGURATION_BUILD_DIR = ${PODS_CONFIGURATION_BUILD_DIR}/VerizonVideoPartnerSDK-iOS
-FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/VerizonVideoPartnerSDK"
+FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/../../.."
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
 OTHER_CFLAGS = $(inherited) -fmodule-map-file="${PODS_CONFIGURATION_BUILD_DIR}/PlayerControls/PlayerControls.modulemap" -fmodule-map-file="${PODS_CONFIGURATION_BUILD_DIR}/PlayerCore-iOS/PlayerCore.modulemap" -fmodule-map-file="${PODS_CONFIGURATION_BUILD_DIR}/VideoRenderer-iOS/VideoRenderer.modulemap"
 OTHER_SWIFT_FLAGS = $(inherited) -D COCOAPODS -Xcc -fmodule-map-file="${PODS_CONFIGURATION_BUILD_DIR}/PlayerControls/PlayerControls.modulemap" -Xcc -fmodule-map-file="${PODS_CONFIGURATION_BUILD_DIR}/PlayerCore-iOS/PlayerCore.modulemap" -Xcc -fmodule-map-file="${PODS_CONFIGURATION_BUILD_DIR}/VideoRenderer-iOS/VideoRenderer.modulemap" -import-underlying-module -Xcc -fmodule-map-file="${SRCROOT}/${MODULEMAP_FILE}"
 PODS_BUILD_DIR = ${BUILD_DIR}
 PODS_CONFIGURATION_BUILD_DIR = ${PODS_BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
 PODS_ROOT = ${SRCROOT}
-PODS_TARGET_SRCROOT = ${PODS_ROOT}/VerizonVideoPartnerSDK
+PODS_TARGET_SRCROOT = ${PODS_ROOT}/../../..
 PRODUCT_BUNDLE_IDENTIFIER = org.cocoapods.${PRODUCT_NAME:rfc1034identifier}
 SKIP_INSTALL = YES
 SWIFT_INCLUDE_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/PlayerControls" "${PODS_CONFIGURATION_BUILD_DIR}/PlayerCore-iOS" "${PODS_CONFIGURATION_BUILD_DIR}/VideoRenderer-iOS"

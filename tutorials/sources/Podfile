@@ -2,10 +2,10 @@ source 'https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-releases-iO
 
 target 'Tutorial' do
 	platform :ios, 9.0
-  	pod 'VerizonVideoPartnerSDK'
+  	pod 'VerizonVideoPartnerSDK', :path=>'../../'
 end
 
 target 'Tutorial_tvOS' do
 	platform :tvos, 9.0
-  	pod 'VerizonVideoPartnerSDK'
+  	pod 'VerizonVideoPartnerSDK', :path=>'../../'
 end
