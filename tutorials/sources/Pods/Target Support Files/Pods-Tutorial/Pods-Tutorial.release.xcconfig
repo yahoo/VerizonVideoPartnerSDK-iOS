@@ -1,5 +1,5 @@
 ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES
-FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/VerizonVideoPartnerSDK"
+FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/../../.."
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
 LIBRARY_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/PlayerControls" "${PODS_CONFIGURATION_BUILD_DIR}/PlayerCore-iOS" "${PODS_CONFIGURATION_BUILD_DIR}/VerizonVideoPartnerSDK-iOS" "${PODS_CONFIGURATION_BUILD_DIR}/VideoRenderer-iOS"
 OTHER_CFLAGS = $(inherited) -fmodule-map-file="${PODS_CONFIGURATION_BUILD_DIR}/PlayerControls/PlayerControls.modulemap" -fmodule-map-file="${PODS_CONFIGURATION_BUILD_DIR}/PlayerCore-iOS/PlayerCore.modulemap" -fmodule-map-file="${PODS_CONFIGURATION_BUILD_DIR}/VerizonVideoPartnerSDK-iOS/VerizonVideoPartnerSDK.modulemap" -fmodule-map-file="${PODS_CONFIGURATION_BUILD_DIR}/VideoRenderer-iOS/VideoRenderer.modulemap"
