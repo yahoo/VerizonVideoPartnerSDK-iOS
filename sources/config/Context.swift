@@ -11,6 +11,7 @@ extension VVPSDK {
             public var version: String
             public var build: String
             public var advertisementID: String?
+            public var USPrivacy : String?
         }
         
         public struct Device {
@@ -52,7 +53,9 @@ extension VVPSDK {
                     name: mainInfo["CFBundleName"] as! String,
                     version: mainInfo["CFBundleShortVersionString"] as! String,
                     build: mainInfo["CFBundleVersion"] as! String,
-                    advertisementID: ASIdentifierManager.shared().advertisingIdentifier.uuidString),
+                    advertisementID: ASIdentifierManager.shared().advertisingIdentifier.uuidString,
+                    USPrivacy: (UserDefaults.standard.value(forKey: "IABUSPrivacy_String") as? String)
+                ),
                 device: Device.init(
                     platform: "iOS",
                     model: hardwareVersion,
@@ -62,7 +65,8 @@ extension VVPSDK {
                     renderers: Renderer.Repository.shared.availableRenderers
                 ),
                 extra: [:],
-                rapidConfig: RapidConfig(spaceId: nil))
+                rapidConfig: RapidConfig(spaceId: nil)
+            )
         }
         
         var json: JSON {
@@ -75,6 +79,10 @@ extension VVPSDK {
             
             if let advertisementID = self.client.advertisementID {
                 client["advertisementId"] = advertisementID
+            }
+            
+            if let usPrivacy = self.client.USPrivacy {
+                client["usPrivacy"] = usPrivacy
             }
             
             let device: JSON = [
