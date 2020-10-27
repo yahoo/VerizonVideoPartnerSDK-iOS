@@ -67,8 +67,8 @@ class Observer<Value>: Hashable {
         }
     }
     
-    var hashValue: Int {
-        return ObjectIdentifier(self).hashValue
+    func hash(into hasher: inout Hasher) {
+        return hasher.combine(ObjectIdentifier(self))
     }
     
     static func ==(lhs: Observer, rhs: Observer) -> Bool {

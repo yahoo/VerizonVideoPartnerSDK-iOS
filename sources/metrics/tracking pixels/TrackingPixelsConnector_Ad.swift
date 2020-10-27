@@ -7,7 +7,7 @@ import CoreMedia
 
 extension TrackingPixels.Connector {
     func process(state: PlayerCore.State, model: PlayerCore.Model) {
-        guard let item = model.playlist[state.playlist.currentIndex].available else { return }
+        guard model.playlist[state.playlist.currentIndex].available != nil else { return }
         var openMeasurementAdEvents: PlayerCore.OpenMeasurement.AdEvents?
         var openMeasurementVideoEvents: PlayerCore.OpenMeasurement.VideoEvents?
         switch state.openMeasurement {
@@ -28,13 +28,13 @@ extension TrackingPixels.Connector {
         
         let adId: String? = perform {
             guard let inline = state.vrmFinalResult.successResult ?? state.vrmFinalResult.failedResult,
-                let vrmResponse = state.vrmResponse else { return nil }
+                  let _ = state.vrmResponse else { return nil }
             return inline.inlineVAST.id
         }
         
         let adMetricsInfo: Ad.Metrics.Info? = perform {
             guard let inline = state.vrmFinalResult.successResult ?? state.vrmFinalResult.failedResult,
-                let vrmResponse = state.vrmResponse else { return nil }
+                  let _ = state.vrmResponse else { return nil }
             return Ad.Metrics.Info(metaInfo: inline.item.metaInfo)
         }
         
