@@ -6,7 +6,7 @@ actions_path 'actions/json/'
 actions_path 'actions/utils/'
 
 before_all do |_lane, _options|
-  xcversion(version: '~> 11.0')
+  xcversion(version: '~> 11.6')
 end
 
 lane :clean do
