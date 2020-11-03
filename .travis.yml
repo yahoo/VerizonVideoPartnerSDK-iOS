@@ -18,7 +18,7 @@ install:
 matrix:
   include:
   - os: osx
-    osx_image: xcode11.0
+    osx_image: xcode11.1
     before_script:
     - ". ./fastlane/travis-scripts/pre-xcode10.sh"
     script:
