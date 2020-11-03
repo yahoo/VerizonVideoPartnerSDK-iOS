@@ -65,7 +65,6 @@ class VRMProviderTests: QuickSpec {
                 expect {
                     let result = try VRMProvider.parseCpm(from: [:])
                     expect(result).to(beNil())
-                    return result
                 }.toNot(throwError())
             }
             
@@ -74,7 +73,6 @@ class VRMProviderTests: QuickSpec {
                     let result = try VRMProvider.parseCpm(from: ["cpm" : "NTA="])
                     expect(result).toNot(beNil())
                     expect(result) == "50"
-                    return result
                 }.toNot(throwError())
             }
             
@@ -82,7 +80,6 @@ class VRMProviderTests: QuickSpec {
                 expect {
                     let result = try VRMProvider.parseCpm(from: ["cpm" : "cpm"])
                     expect(result).to(beNil())
-                    return result
                     }.toNot(throwError())
             }
         }
