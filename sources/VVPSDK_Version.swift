@@ -10,6 +10,6 @@ extension VVPSDK {
     }
     
     static var backendVersion: String {
-        return "2.36"
+        return "2.37"
     }
 }
