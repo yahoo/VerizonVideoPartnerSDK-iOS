@@ -58,7 +58,7 @@ enum OpenMeasurement {
                                                            customReferenceIdentifier: nil)
         
         let configuration = try OMIDVerizonmediaAdSessionConfiguration(creativeType:.video,
-                                                                       impressionType: .beginToRender,
+                                                                       impressionType: .loaded,
                                                                        impressionOwner: .nativeOwner,
                                                                        mediaEventsOwner: .nativeOwner,
                                                                        isolateVerificationScripts: false);
