@@ -6,10 +6,10 @@ import Foundation
 extension VVPSDK {
     // Current VVPSDK Version
     public static var version: String {
-        return "1.5.2"
+        return "1.5.3"
     }
     
     static var backendVersion: String {
-        return "2.36"
+        return "2.37"
     }
 }

@@ -7,18 +7,30 @@
 
 #import <UIKit/UIKit.h>
 
-/*!
- * @abstract List of supported video player positions.
+/**
+ * List of supported media player positions.
  */
 typedef NS_ENUM(NSUInteger, OMIDPosition) {
+    /**
+     * The ad plays preceding video content.
+     */
     OMIDPositionPreroll,
+    /**
+     * The ad plays in the middle of video content, or between two separate content videos.
+     */
     OMIDPositionMidroll,
+    /**
+     * The ad plays following video content.
+     */
     OMIDPositionPostroll,
+    /**
+     * The ad plays independently of any video content.
+     */
     OMIDPositionStandalone
 };
 
-/*!
- * @discussion This object is used to capture key VAST properties so this can be shared with all registered verification providers.
+/**
+ *  This object is used to capture key VAST properties so this can be shared with all registered verification providers.
  */
 @interface OMIDVerizonmediaVASTProperties : NSObject
 
@@ -27,28 +39,33 @@ typedef NS_ENUM(NSUInteger, OMIDPosition) {
 @property(nonatomic, readonly, getter = isAutoPlay) BOOL autoPlay;
 @property(nonatomic, readonly) OMIDPosition position;
 
-/*!
- * @abstract This method enables the video player to create a new VAST properties instance for skippable video ad placement.
+/**
+ *  This method enables the media player to create a new VAST properties instance for skippable media ad placement.
  *
  * @param skipOffset The number of seconds before the skip button is presented.
- * @param autoPlay Determines whether the video will auto-play content.
- * @param position The position of the video in relation to other content.
+ * @param autoPlay Determines whether the media will auto-play content.
+ * @param position The position of the media in relation to other content.
  * @return A new instance of VAST properties.
  */
 - (nonnull instancetype)initWithSkipOffset:(CGFloat)skipOffset
                                   autoPlay:(BOOL)autoPlay
                                   position:(OMIDPosition)position;
 
-/*!
- * @abstract This method enables the video player to create a new VAST properties instance for non-skippable video ad placement.
+/**
+ *  This method enables the media player to create a new VAST properties instance for non-skippable media ad placement.
  *
- * @param autoPlay Determines whether the video will auto-play content.
- * @param position The position of the video in relation to other content.
+ * @param autoPlay Determines whether the media will auto-play content.
+ * @param position The position of the media in relation to other content.
  * @return A new instance of VAST properties.
  */
 - (nonnull instancetype)initWithAutoPlay:(BOOL)autoPlay
                                 position:(OMIDPosition)position;
 
 - (null_unspecified instancetype)init NS_UNAVAILABLE;
+
+/**
+ * For OM SDK internal use only.
+ */
+- (NSDictionary *_Nonnull)toJSON;
 
 @end
