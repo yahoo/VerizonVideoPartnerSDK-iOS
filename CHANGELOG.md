@@ -1,5 +1,44 @@
 # Change Log
 
+## [1.5.3](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/tree/1.5.3) (2020-11-25)
+[Full Changelog](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/compare/1.5.2...1.5.3)
+
+**Merged pull requests:**
+
+- update macos image to latest to test sourcery+homebrew build error [\#133](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/pull/133) ([adeolaawoyemi](https://github.com/adeolaawoyemi))
+- OMSDK Update  [\#132](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/pull/132) ([mewpre](https://github.com/mewpre))
+
+## [1.5.2](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/tree/1.5.2) (2019-12-11)
+[Full Changelog](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/compare/1.5.1...1.5.2)
+
+**Closed issues:**
+
+- Can't find VerizonVideoPartnerSDK [\#125](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/issues/125)
+
+**Merged pull requests:**
+
+- Version 1.5.2 [\#130](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/pull/130) ([slevin](https://github.com/slevin))
+- Add IAB CCPA string to config service request [\#129](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/pull/129) ([jclou](https://github.com/jclou))
+
+## [1.5.1](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/tree/1.5.1) (2019-09-10)
+[Full Changelog](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/compare/1.5.0...1.5.1)
+
+**Merged pull requests:**
+
+- Revert Swift Version [\#128](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/pull/128) ([slevin](https://github.com/slevin))
+- Release 1.5.1 [\#127](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/pull/127) ([slevin](https://github.com/slevin))
+- Playback stuck after receiving malformed VRM response [\#126](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/pull/126) ([jclou](https://github.com/jclou))
+- Dropped danger-xcov and added command in travis.yml to run codecov [\#124](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/pull/124) ([RomanTysiachnik](https://github.com/RomanTysiachnik))
+- Fixed travis url and added branch requirement for Travis [\#123](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/pull/123) ([RomanTysiachnik](https://github.com/RomanTysiachnik))
+- Update README.md with new badges [\#122](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/pull/122) ([RomanTysiachnik](https://github.com/RomanTysiachnik))
+- Updated Player Controls submodule with dropped autogeneration [\#121](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/pull/121) ([RomanTysiachnik](https://github.com/RomanTysiachnik))
+- `TrackingPixel.Reporter` tests [\#120](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/pull/120) ([AndriiMoskvin](https://github.com/AndriiMoskvin))
+- Dropped non-used code and added some tests [\#119](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/pull/119) ([RomanTysiachnik](https://github.com/RomanTysiachnik))
+- Added tests for AdClickthroughWorker [\#118](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/pull/118) ([RomanTysiachnik](https://github.com/RomanTysiachnik))
+- `JSøN` and `Player.Properties` mapping tests [\#117](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/pull/117) ([AndriiMoskvin](https://github.com/AndriiMoskvin))
+- Code generated unit tests for `TrackingPixels.Generator` [\#116](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/pull/116) ([AndriiMoskvin](https://github.com/AndriiMoskvin))
+- Release 1.5.0 [\#115](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/pull/115) ([AndriiMoskvin](https://github.com/AndriiMoskvin))
+
 ## [1.5.0](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/tree/1.5.0) (2019-04-18)
 [Full Changelog](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/compare/1.4.2...1.5.0)
 
