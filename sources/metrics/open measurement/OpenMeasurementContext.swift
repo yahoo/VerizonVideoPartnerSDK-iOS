@@ -73,12 +73,15 @@ enum OpenMeasurement {
         )
         let videoEvents = PlayerCore.OpenMeasurement.VideoEvents(
             loaded: { (position, autoplay) in
-                let _: OMIDPosition = {
+                let position: OMIDPosition = {
                     switch position {
                     case .preroll: return .preroll
                     case .midroll: return .midroll
                     }
-                }()},
+                }()
+                let properties = OMIDVerizonmediaVASTProperties(autoPlay: autoplay, position: position)
+                try? omidAdEvents.loaded(with: properties)
+        },
             bufferFinish: omidMediaEvents.bufferFinish,
             bufferStart: omidMediaEvents.bufferStart,
             start: { (duration, volume) in
