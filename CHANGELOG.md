@@ -1,5 +1,18 @@
 # Change Log
 
+## [1.5.4](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/tree/1.5.4)
+
+[Full Changelog](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/compare/1.5.3...1.5.4)
+
+**Closed issues:**
+
+- Apple will stop accepting submissions of apps that use UIWebView APIs starting from December 2020 [\#131](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/issues/131)
+
+**Merged pull requests:**
+
+- Send OMSDK load event correctly [\#135](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/pull/135) ([mewpre](https://github.com/mewpre))
+- Update changelog for 1.5.3 [\#134](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/pull/134) ([mewpre](https://github.com/mewpre))
+
 ## [1.5.3](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/tree/1.5.3) (2020-11-25)
 [Full Changelog](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/compare/1.5.2...1.5.3)
 
