@@ -7,10 +7,10 @@ Pod::Spec.new do |s|
 
   s.description = <<-DESC
   A native iOS SDK that makes it easy to play and monetize videos from the Verizon Video Partner network on iOS-based platforms. 
-  You can find all details and tutorials in our repository https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/.
+  You can find all details and tutorials in our repository https://github.com/yahoo/VerizonVideoPartnerSDK-iOS/.
 DESC
 
-  s.homepage         = 'https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS'
+  s.homepage         = 'https://github.com/yahoo/VerizonVideoPartnerSDK-iOS'
 
   s.authors          = {
     'James Lou' => 'jlou@verizonmedia.com',
@@ -19,7 +19,7 @@ DESC
     'Vladyslav Anokhin' => 'vladyslav.anokhin@verizonmedia.com'
   }
 
-  s.source           = { git: 'https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS.git',
+  s.source           = { git: 'https://github.com/yahoo/VerizonVideoPartnerSDK-iOS.git',
                          tag: s.version.to_s }
   s.source_files     = 'sources/**/*.swift'
   s.exclude_files    = 'sources/utils/Utils.swift', 

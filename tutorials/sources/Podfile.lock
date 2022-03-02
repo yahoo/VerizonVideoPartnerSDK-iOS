@@ -11,7 +11,7 @@ DEPENDENCIES:
   - VerizonVideoPartnerSDK (from `../../`)
 
 SPEC REPOS:
-  https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-releases-iOS:
+  https://github.com/yahoo/VerizonVideoPartnerSDK-releases-iOS:
     - PlayerControls
     - PlayerCore
     - VideoRenderer
