@@ -84,7 +84,7 @@ lane :release_description do |options|
   "\n"\
   "# Examples\n"\
   "\n"\
-  "Checkout [Tutorials](https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-iOS/VerizonVideoPartnerSDK-Tutorials) for up-to-date integration and usage examples.\n"\
+  "Checkout [Tutorials](https://github.com/yahoo/VerizonVideoPartnerSDK-iOS/VerizonVideoPartnerSDK-Tutorials) for up-to-date integration and usage examples.\n"\
   "\n"\
   "# Change Log\n"\
   "\n"
@@ -155,7 +155,7 @@ lane :prerelease_sdk do |options|
   compress(input: omsdk_name,
            output: "#{omsdk_name}.zip")
 
-  sources_repo = 'https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-releases-iOS.git'
+  sources_repo = 'https://github.com/yahoo/VerizonVideoPartnerSDK-releases-iOS.git'
 
   version = get_version_number(xcodeproj: 'VerizonVideoPartnerSDK.xcodeproj', target: 'VerizonVideoPartnerSDK_iOS')
   UI.user_error!('Version not found!') if version.nil?
@@ -164,7 +164,7 @@ lane :prerelease_sdk do |options|
   github_releases_api(action: 'delete_latest_prerelease', tag: version)
 
   release = set_github_release(
-    repository_name: 'VerizonAdPlatforms/VerizonVideoPartnerSDK-releases-iOS',
+    repository_name: 'yahoo/VerizonVideoPartnerSDK-releases-iOS',
     name: "Version #{version}",
     tag_name: version,
     description: release_description(token: github_api_token),
@@ -185,7 +185,7 @@ lane :prerelease_sdk do |options|
   deploy_podspec(
     podspec_path: podspec_name,
     spec_repo_name: 'onemobile-sdk-podspecs',
-    spec_repo_url: 'git@github.com:VerizonAdPlatforms/VerizonVideoPartnerSDK-releases-iOS.git',
+    spec_repo_url: 'git@github.com:yahoo/VerizonVideoPartnerSDK-releases-iOS.git',
     sources_repo: sources_repo,
     swift_version: swift_version
   )
@@ -240,8 +240,8 @@ lane :release_sdk do |options|
   deploy_podspec(
     podspec_path: podspec_name,
     spec_repo_name: 'onemobile-sdk-podspecs',
-    spec_repo_url: 'git@github.com:VerizonAdPlatforms/VerizonVideoPartnerSDK-releases-iOS.git',
-    sources_repo: 'https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-releases-iOS.git',
+    spec_repo_url: 'git@github.com:yahoo/VerizonVideoPartnerSDK-releases-iOS.git',
+    sources_repo: 'https://github.com/yahoo/VerizonVideoPartnerSDK-releases-iOS.git',
     swift_version: swift_version
   )
   reset_git_repo(
@@ -288,7 +288,7 @@ lane :lint_current_podspec do
     UI.message("Podspec has changes - starting linting!")
     lint_podspec(
       podspec_path: 'VerizonVideoPartnerSDK.podspec',
-      sources_repo: 'https://github.com/VerizonAdPlatforms/VerizonVideoPartnerSDK-releases-iOS')    
+      sources_repo: 'https://github.com/yahoo/VerizonVideoPartnerSDK-releases-iOS')    
   else
     UI.message("Skipping podspec validation!")
   end
